@@ -48,24 +48,85 @@ class AdminController extends Controller
             'name' => 'required',
             'email' => 'required',
             'password' => 'required|min:3|max:10',
+            'number' =>'required|min:10|max:10'
         ]);
         /* user registeration */
         $Admin = new Admin;
         $Admin->name = $request->name;
         $Admin->email = $request->email;
-        $Admin->role = 2;
+        $Admin->number = $request->number;
         $Admin->password = md5($request->password);
         $Admin->save();
         if ($Admin) {
-           return redirect('admin')->with('success', 'You have been successfuly register');
+           return redirect('admin.userlist');
          } else {
              return back()->with('Fail', 'Something went wrong');
          }	
     }
 
+    public function edit_user(Request $request)
+    {
+        if (session()->has('Admin_login')) {
+            $data['userinfo'] = Admin::find($request->id);
+            return view('admin.edit_user',$data);
+        }else{
+            return view('userlist');
+        }
+       
+    }
+
+    public function add_user(Request $request)
+    {
+        if (session()->has('Admin_login')) {
+            return view('admin.add_user');
+        } else {
+            return redirect('admin');
+        }
+    }
+
+    public function update_user(Request $request)
+    {
+        $data = Admin::find($request->id);
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->number = $request->number;
+        $data->password = $request->password;
+        $data->save();
+        return redirect('userlist');
+    }
+
     public function dashboard()
     {
-        return view('dashboard');
+        if(session()->has('Admin_login')){
+            return view('admin.welcome');
+        }else{
+            return redirect('admin');
+        }
+    }
+
+    public function userlist()
+    {
+        if (session()->has('Admin_login')) {
+            $data['user_list'] = Admin::where('is_deleted', 1)->get();
+            return view('admin.userlist', $data);
+        }
+        return view('Login');
+    }
+
+    public function Block_user(Request $request)
+    {
+        $request = Admin::find($request->id);
+        $request->is_deleted = 2;
+        $request->save();
+        return redirect('admin.userlist');
+    }
+
+    public function Logout(Request $request)
+    {
+        if (session()->has('Admin_login')) {
+            session()->pull('Admin_login', null);
+            return redirect('admin');
+        }
     }
 
 }
