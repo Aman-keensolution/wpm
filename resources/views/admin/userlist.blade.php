@@ -45,7 +45,7 @@
                                      <td>{{$userlist['email']}} </td>
                                      <td>
                                          <a href="edit_user/{{$userlist['id']}}"><span class="badge bg-danger">Edit</span></a>|
-                                         @if($userlist['is_deleted']==1)
+                                         @if($userlist['is_active']==1)
                                          <a href="block_user/{{$userlist['id']}}"><span class="badge bg-danger">Block</span></a>
                                          @else
                                          <a href="unblock_user/{{$userlist['id']}}"><span class="badge bg-success">Unblock</span></a>

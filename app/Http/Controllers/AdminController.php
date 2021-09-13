@@ -116,14 +116,14 @@ class AdminController extends Controller
     public function block_user(Request $request)
     {
         $request = Admin::find($request->id);
-        $request->is_deleted = 2;
+        $request->is_active = 2;
         $request->save();
         return redirect('userlist');
     }
     public function unblock_user(Request $request)
     {
         $request = Admin::find($request->id);
-        $request->is_deleted = 1;
+        $request->is_active = 1;
         $request->save();
         return redirect('userlist');
     }
