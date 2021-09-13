@@ -28,10 +28,6 @@
                                  <input type="email" name="email" class="form-control" value="{{$userinfo['email']}}" placeholder="Enter email">
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputPassword1">Password</label>
-                                 <input type="password" name="password" class="form-control" value="{{$userinfo['password']}}" placeholder="Password">
-                             </div>
-                             <div class="form-group">
                                  <label for="exampleInputPassword1">Mobile</label>
                                  <input type="number" name="number" class="form-control" value="{{$userinfo['number']}}" placeholder="Enter number">
                              </div>

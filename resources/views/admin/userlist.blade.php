@@ -18,9 +18,9 @@
                          <h3 class="card-title">Userlist</h3>
                          <div class="card-tools">
                              <div class="input-group input-group-sm" style="width: 150px;">
-                                <button type="button" class="btn btn-block btn-outline-primary">
-                                    <a href="add_user">Add New User</a> 
-                                </button>
+                                 <button type="button" class="btn btn-block btn-outline-primary">
+                                     <a href="add_user">Add New User</a>
+                                 </button>
                              </div>
                          </div>
                      </div>
@@ -44,8 +44,13 @@
                                      <td>{{$userlist['name']}} </td>
                                      <td>{{$userlist['email']}} </td>
                                      <td>
-                                         <a href="edit_user/{{$userlist['id']}}"><span class="badge bg-danger">Edit</span></a>
-                                         <a href="Block_user/{{$userlist['id']}}"><span class="badge bg-danger">Block</span></a>
+                                         <a href="edit_user/{{$userlist['id']}}"><span class="badge bg-danger">Edit</span></a>|
+                                         @if($userlist['is_deleted']==1)
+                                         <a href="block_user/{{$userlist['id']}}"><span class="badge bg-danger">Block</span></a>
+                                         @else
+                                         <a href="unblock_user/{{$userlist['id']}}"><span class="badge bg-success">Unblock</span></a>
+                                         @endif
+                                         <!-- <a href="Block_user/{{$userlist['id']}}"><span class="badge bg-danger">Block</span></a> -->
                                      </td>
                                  </tr>
                                  @endforeach

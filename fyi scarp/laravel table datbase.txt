@@ -1,0 +1,5 @@
+ALTER TABLE `pro_user_info` ADD `is_active` tinyint(3) UNSIGNED DEFAULT '1' COMMENT '1=active',
+   ADD  `created_by` int(10) UNSIGNED DEFAULT NULL,
+   ADD  `created_at` timestamp NULL DEFAULT NULL,
+   ADD  `updated_at` timestamp NULL DEFAULT NULL,
+   ADD  `updated_by` int(10) UNSIGNED DEFAULT NULL

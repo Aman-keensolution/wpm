@@ -107,21 +107,28 @@ class AdminController extends Controller
     public function userlist()
     {
         if (session()->has('Admin_login')) {
-            $data['user_list'] = Admin::where('is_deleted', 1)->get();
+            $data['user_list'] = Admin::get();
             return view('admin.userlist', $data);
         }
-        return view('Login');
+        return view('admin');
     }
 
-    public function Block_user(Request $request)
+    public function block_user(Request $request)
     {
         $request = Admin::find($request->id);
         $request->is_deleted = 2;
         $request->save();
-        return redirect('admin.userlist');
+        return redirect('userlist');
+    }
+    public function unblock_user(Request $request)
+    {
+        $request = Admin::find($request->id);
+        $request->is_deleted = 1;
+        $request->save();
+        return redirect('userlist');
     }
 
-    public function Logout(Request $request)
+    public function logout(Request $request)
     {
         if (session()->has('Admin_login')) {
             session()->pull('Admin_login', null);

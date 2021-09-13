@@ -81,7 +81,7 @@
                         <i class="fas fa-sign-out-alt"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <a href="Logout" class="dropdown-item">Logout</a>
+                        <a href="{{route('admin.logout')}}" class="dropdown-item">Logout</a>
                     </div>
                 </li>
 
@@ -95,7 +95,7 @@
             <!-- Brand Logo -->
             <a href="" class="brand-link">
                 <img src="{{asset('public/assets/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">Admin Panel</span>
+                <span class="brand-text font-weight-light">ICS</span>
             </a>
 
             <!-- Sidebar -->
@@ -106,18 +106,23 @@
                         <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                         <li class="nav-item menu-open">
-                            <a href="dashboard" class="nav-link active"><i class="nav-icon fas fa-tachometer-alt"></i>
+                            <a href="{{route('admin.dashboard')}}" class="nav-link active"><i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>Dashboard</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="userlist" class="nav-link">
+                            <a href="{{route('admin.userlist')}}" class="nav-link">
                                 <p>User Mangement</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="" class="nav-link">
-                                <p>Location Mangement</p>
+                                <p>Category Mangement</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <p>Plant/Location Mangement</p>
                             </a>
                         </li>
                         <li class="nav-item">
