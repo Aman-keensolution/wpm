@@ -26,9 +26,9 @@ class AdminController extends Controller
         $email= $request->post('email');
         $password = md5($request->post('password'));
         $result=Admin::where(['email' =>$email,'password' =>$password])->get();
-       if(isset($result['0']->id)){
+       if(isset($result['0']->user_id)){
             $request->session()->put('Admin_login',true);
-            $request->session()->put('Admin_id',$result['0']->id);
+            $request->session()->put('Admin_id',$result['0']->user_id);
             if($result['0']->role == 1){
                 return redirect('dashboard');
             }else{
@@ -67,7 +67,7 @@ class AdminController extends Controller
     public function edit_user(Request $request)
     {
         if (session()->has('Admin_login')) {
-            $data['userinfo'] = Admin::find($request->id);
+            $data['userinfo'] = Admin::find($request->user_id);
             return view('admin.edit_user',$data);
         }else{
             return view('userlist');
@@ -86,7 +86,7 @@ class AdminController extends Controller
 
     public function update_user(Request $request)
     {
-        $data = Admin::find($request->id);
+        $data = Admin::find($request->user_id);
         $data->name = $request->name;
         $data->email = $request->email;
         $data->number = $request->number;
@@ -115,14 +115,14 @@ class AdminController extends Controller
 
     public function block_user(Request $request)
     {
-        $request = Admin::find($request->id);
-        $request->is_active = 2;
+        $request = Admin::find($request->user_id);
+        $request->is_active = 0;
         $request->save();
         return redirect('userlist');
     }
     public function unblock_user(Request $request)
     {
-        $request = Admin::find($request->id);
+        $request = Admin::find($request->user_id);
         $request->is_active = 1;
         $request->save();
         return redirect('userlist');
