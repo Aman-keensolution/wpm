@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Plant;
+use App\Models\WeightScale;
 use Illuminate\Http\Request;
 
-class PlantController extends Controller
+class WeighingController extends Controller
 {
-    public function plant_list()
+    public function weighing_list()
     {
         if (session()->has('Admin_login')) {
-            $data['user_list'] = Plant::get();
-            return view('plant.plant_list', $data);
+            $data['user_list'] = WeightScale::get();
+            return view('weighing.weighing_list', $data);
         }
         return view('admin');
     }
@@ -19,7 +19,7 @@ class PlantController extends Controller
     public function add_plant(Request $request)
     {
         if (session()->has('Admin_login')) {
-            return view('plant.add_plant');
+            return view('weighing.add_weighing');
         } else {
             return redirect('admin');
         }
@@ -32,47 +32,47 @@ class PlantController extends Controller
             'name' => 'required'
         ]);
         /* user registeration */
-        $Plant = new Plant;
-        $Plant->name = $request->name;
-        $Plant->save();
-        if ($Plant) {
-            return redirect('plant.plant_list');
+        $WeightScale = new WeightScale;
+        $WeightScale->name = $request->name;
+        $WeightScale->save();
+        if ($WeightScale) {
+            return redirect('weighing.weighing_list');
         } else {
             return back()->with('Fail', 'Something went wrong');
         }
     }
 
-    public function edit_plant(Request $request)
+    public function edit_weighing(Request $request)
     {
         if (session()->has('Admin_login')) {
-            $data['userinfo'] = Plant::find($request->user_id);
-            return view('plant.edit_plant', $data);
+            $data['userinfo'] = WeightScale::find($request->user_id);
+            return view('weighing.edit_weighing', $data);
         } else {
             return view('admin');
         }
     }
 
-    public function update_plant(Request $request)
+    public function update_weighing(Request $request)
     {
-        $data = Plant::find($request->user_id);
+        $data = WeightScale::find($request->user_id);
         $data->name = $request->name;
         $data->save();
-        return redirect('plant_list');
+        return redirect('weighing_list');
     }
 
 
     public function block_user(Request $request)
     {
-        $request = Plant::find($request->user_id);
+        $request = WeightScale::find($request->user_id);
         $request->is_active = 0;
         $request->save();
-        return redirect('plant_list');
+        return redirect('weighing_list');
     }
     public function unblock_user(Request $request)
     {
-        $request = Plant::find($request->user_id);
+        $request = WeightScale::find($request->user_id);
         $request->is_active = 1;
         $request->save();
-        return redirect('plant_list');
+        return redirect('weighing_list');
     }
 }

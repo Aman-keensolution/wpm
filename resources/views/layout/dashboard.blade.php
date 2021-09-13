@@ -116,27 +116,27 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{route('category.category_list')}}" class="nav-link">
                                 <p>Category Mangement</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{route('plant.plant_list')}}" class="nav-link">
                                 <p>Plant/Location Mangement</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{route('item.item_list')}}" class="nav-link">
                                 <p>Item Mangement</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{route('weighing.weighing_list')}}" class="nav-link">
                                 <p>Weighing Scale Mangement</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{route('bin.bin_list')}}" class="nav-link">
                                 <p>Bin Mangement</p>
                             </a>
                         </li>
@@ -163,10 +163,10 @@
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+            <strong>Copyright &copy; 2014-2021 <a href="">ICS</a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 3.1.0
+                <!-- <b>Version</b> 3.1.0 -->
             </div>
         </footer>
 

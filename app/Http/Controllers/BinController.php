@@ -2,24 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Item;
+use App\Models\Bin;
 use Illuminate\Http\Request;
 
-class ItemController extends Controller
+class BinController extends Controller
 {
-    public function item_list()
+    public function bin_list()
     {
         if (session()->has('Admin_login')) {
-            $data['user_list'] = Item::get();
-            return view('item.item_list', $data);
+            $data['user_list'] = Bin::get();
+            return view('bin.bin_list', $data);
         }
         return view('admin');
     }
 
-    public function add_item(Request $request)
+    public function add_bin(Request $request)
     {
         if (session()->has('Admin_login')) {
-            return view('item.add_item');
+            return view('bin.add_bin');
         } else {
             return redirect('admin');
         }
@@ -32,47 +32,46 @@ class ItemController extends Controller
             'name' => 'required'
         ]);
         /* user registeration */
-        $Item = new Item;
-        $Item->name = $request->name;
-        $Item->save();
-        if ($Item) {
-            return redirect('item.item_list');
+        $Bin = new Bin;
+        $Bin->name = $request->name;
+        $Bin->save();
+        if ($Bin) {
+            return redirect('bin.bin_list');
         } else {
             return back()->with('Fail', 'Something went wrong');
         }
     }
 
-    public function edit_item(Request $request)
+    public function edit_bin(Request $request)
     {
         if (session()->has('Admin_login')) {
-            $data['userinfo'] = Item::find($request->user_id);
-            return view('item.edit_item', $data);
+            $data['userinfo'] = Bin::find($request->user_id);
+            return view('bin.edit_bin', $data);
         } else {
             return view('admin');
         }
     }
 
-    public function update_item(Request $request)
+    public function update_bin(Request $request)
     {
-        $data = Item::find($request->user_id);
+        $data = Bin::find($request->user_id);
         $data->name = $request->name;
         $data->save();
-        return redirect('item_list');
+        return redirect('bin_list');
     }
-
 
     public function block_user(Request $request)
     {
-        $request = Item::find($request->user_id);
+        $request = Bin::find($request->user_id);
         $request->is_active = 0;
         $request->save();
-        return redirect('item_list');
+        return redirect('bin_list');
     }
     public function unblock_user(Request $request)
     {
-        $request = Item::find($request->user_id);
+        $request = Bin::find($request->user_id);
         $request->is_active = 1;
         $request->save();
-        return redirect('item_list');
+        return redirect('bin_list');
     }
 }

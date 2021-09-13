@@ -70,9 +70,8 @@ class AdminController extends Controller
             $data['userinfo'] = Admin::find($request->user_id);
             return view('admin.edit_user',$data);
         }else{
-            return view('userlist');
-        }
-       
+            return view('admin');
+        }  
     }
 
     public function add_user(Request $request)
@@ -98,7 +97,7 @@ class AdminController extends Controller
     public function dashboard()
     {
         if(session()->has('Admin_login')){
-            return view('admin.welcome');
+            return view('welcome');
         }else{
             return redirect('admin');
         }
