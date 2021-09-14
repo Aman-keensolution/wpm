@@ -45,8 +45,8 @@ class BinController extends Controller
     public function add_bin(Request $request)
     {
         if (session()->has('Admin_login')) {
-            $all_plant = Plant::all();
-            return view('bin.add_bin')->with(['all_plant' => $all_plant]);
+            
+            return view('bin.add_bin');
         } else {
             return redirect('admin');
         }

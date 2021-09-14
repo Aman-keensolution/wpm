@@ -26,9 +26,10 @@
                              </div>
                              <div class="form-group">
                                  <label for="role">Plant-name</label>
+                                 <?php $p_arr=arrayPlant();?>
                                  <select name="plant_id" id="plant_id" class="form-control">
-                                     @foreach( $all_plant as $plant)
-                                     <option value="{{$plant->plant_id}}">{{$plant->name}}</option>
+                                     @foreach( $p_arr as $plant)
+                                        <option value="{{$plant['plant_id']}}">{{$plant['name']}}</option>
                                      @endforeach
                                  </select>
                              </div>
