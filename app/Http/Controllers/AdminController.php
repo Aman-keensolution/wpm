@@ -6,6 +6,7 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use DataTables;
 
+
 class AdminController extends Controller
 {
     /**
@@ -68,7 +69,8 @@ class AdminController extends Controller
     public function edit_user(Request $request)
     {
         if (session()->has('Admin_login')) {
-            $data['userinfo'] = Admin::find($request->user_id);
+            $data['userinfo'] = Admin::find($request->id);
+            
             return view('admin.edit_user',$data);
         }else{
             return view('admin');
@@ -104,25 +106,47 @@ class AdminController extends Controller
         }
     }
 
-    public function userlist()
+    public function userlist(Request $request)
     {
         if (session()->has('Admin_login')) {
-            $data['user_list'] = Admin::get();
-            return view('admin.userlist', $data);
+            if ($request->ajax()) {
+                $data = Admin::select('*');
+                return Datatables::of($data)
+                        ->addIndexColumn()
+                        ->addColumn('action', function($row){
+                            
+                                $nm=route('admin.edit_user',$row->user_id);
+                               $btn = '<a href="'.$nm.'"> <span class="badge bg-primary">Edit</span></a>|' ;
+                               if($row->is_active==1){
+                                    $nm=route('admin.block_user',$row->user_id);
+                                    $btn .= '<a href="'.$nm.'"><span class="badge bg-danger">Block</span></a>';
+                               }else{
+                                    $nm=route('admin.unblock_user',$row->user_id);    
+                                    $btn .= '<a href="'.$nm.'"><span class="badge bg-success">Unblock</span></a>';
+                                }
+                                return $btn;
+                        })
+                        ->rawColumns(['action'])
+                        ->make(true);
+            }
+            
+            return view('admin.userlist');
         }
         return view('admin');
+        
     }
+
 
     public function block_user(Request $request)
     {
-        $request = Admin::find($request->user_id);
+        $request = Admin::find($request->id);
         $request->is_active = 0;
         $request->save();
         return redirect('userlist');
     }
     public function unblock_user(Request $request)
     {
-        $request = Admin::find($request->user_id);
+        $request = Admin::find($request->id);
         $request->is_active = 1;
         $request->save();
         return redirect('userlist');

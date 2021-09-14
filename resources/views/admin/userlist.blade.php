@@ -26,48 +26,38 @@
                      </div>
                      <!-- /.card-header -->
                      <div class="card-body">
-                         <table class="table table-bordered">
-                             <thead>
-                                 <tr>
-                                     <th style="width: 10px">#</th>
-                                     <th>Name</th>
-                                     <th>email</th>
-                                     <th>Action</th>
-                                 </tr>
-                             </thead>
-                             <tbody>
-                                 <?php $i = 0; ?>
-                                 @foreach($user_list as $userlist)
-                                 <?php $i++; ?>
-                                 <tr>
-                                     <td> {{$i}} </td>
-                                     <td>{{$userlist['name']}} </td>
-                                     <td>{{$userlist['email']}} </td>
-                                     <td>
-                                         <a href="edit_user/{{$userlist['id']}}"><span class="badge bg-danger">Edit</span></a>|
-                                         @if($userlist['is_active']==1)
-                                         <a href="block_user/{{$userlist['id']}}"><span class="badge bg-danger">Block</span></a>
-                                         @else
-                                         <a href="unblock_user/{{$userlist['id']}}"><span class="badge bg-success">Unblock</span></a>
-                                         @endif
-                                         <!-- <a href="Block_user/{{$userlist['id']}}"><span class="badge bg-danger">Block</span></a> -->
-                                     </td>
-                                 </tr>
-                                 @endforeach
+                        <table class="table table-bordered data-table">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th width="100px">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
 
-                             </tbody>
-                         </table>
+                         
                      </div>
-                     <!-- /.card-body -->
-                     <div class="card-footer clearfix">
-                         <ul class="pagination pagination-sm m-0 float-right">
-                             <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                             <li class="page-item"><a class="page-link" href="#">1</a></li>
-                             <li class="page-item"><a class="page-link" href="#">2</a></li>
-                             <li class="page-item"><a class="page-link" href="#">3</a></li>
-                             <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                         </ul>
-                     </div>
+                     <script type="text/javascript">
+                        $(function () {
+                          
+                          var table = $('.data-table').DataTable({
+                              processing: true,
+                              serverSide: true,
+                              ajax: "{{ route('admin.userlist') }}",
+                              columns: [
+                                  {data: 'user_id', name: 'user_id'},
+                                  {data: 'name', name: 'name'},
+                                  {data: 'email', name: 'email'},
+                                  {data: 'action', name: 'action', orderable: true, searchable: true},
+                              ]
+                          });
+                          
+                        });
+                      </script>
                  </div>
              </div>
          </div>

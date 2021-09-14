@@ -26,6 +26,11 @@
     <link rel="stylesheet" href="{{asset('public/assets/plugins/daterangepicker/daterangepicker.css')}}">
     <!-- summernote -->
     <link rel="stylesheet" href="{{asset('public/assets/plugins/summernote/summernote-bs4.min.css')}}">
+    <link href="{{asset('public/assets/css/jquery.dataTables.min.css')}}" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="  {{asset('public/assets/plugins/jquery/jquery.min.js')}}"></script>
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -178,8 +183,7 @@
     </div>
     <!-- ./wrapper -->
 
-    <!-- jQuery -->
-    <script src="  {{asset('public/assets/plugins/jquery/jquery.min.js')}}"></script>
+
     <!-- jQuery UI 1.11.4 -->
     <script src="  {{asset('public/assets/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -210,8 +214,13 @@
     <script src="  {{asset('public/assets/dist/js/adminlte.js')}}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="  {{asset('public/assets/dist/js/demo.js')}}"></script>
+    <script src="{{asset('public/assets/js/jquery.validate.js')}}"></script>
+    <script src="{{asset('public/assets/js/jquery.dataTables.min.js')}}"></script>
+
+    <script src="{{asset('public/assets/js/dataTables.bootstrap4.min.js')}}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="  {{asset('public/assets/dist/js/pages/dashboard.js')}}"></script>
+
 </body>
 
 </html>

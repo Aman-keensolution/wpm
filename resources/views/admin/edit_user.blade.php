@@ -16,7 +16,8 @@
                      <div class="card-header">
                          <h3 class="card-title">Update User</h3>
                      </div>
-                     <form action="{{route('update_user',$userinfo['id'])}}" method="post">
+                     
+                     <form action="{{route('admin.update_user',$userinfo['user_id'])}}" method="post">
                          @csrf
                          <div class="card-body">
                              <div class="form-group">
