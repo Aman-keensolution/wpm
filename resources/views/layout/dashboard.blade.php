@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="{{asset('public/assets/plugins/summernote/summernote-bs4.min.css')}}">
     <link href="{{asset('public/assets/css/jquery.dataTables.min.css')}}" rel="stylesheet">
 
+    <link href="{{asset('public/assets/css/custom2.css')}}" rel="stylesheet">
+    <link href="{{asset('public/assets/css/custom.css')}}" rel="stylesheet">
     <!-- jQuery -->
     <script src="  {{asset('public/assets/plugins/jquery/jquery.min.js')}}"></script>
 

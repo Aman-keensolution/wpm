@@ -26,7 +26,7 @@
                      </div>
                      <!-- /.card-header -->
                      <div class="card-body">
-                        <table class="table table-bordered data-table">
+                        <table class="table data-table dataTable display compact hover order-column stripe">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -47,6 +47,7 @@
                           var table = $('.data-table').DataTable({
                               processing: true,
                               serverSide: true,
+                              "sDom": 'Rfrtlip',
                               ajax: "{{ route('admin.userlist') }}",
                               columns: [
                                   {data: 'user_id', name: 'user_id'},
