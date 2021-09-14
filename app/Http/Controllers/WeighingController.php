@@ -37,7 +37,8 @@ class WeighingController extends Controller
             }
             return view('weighing.weighing_list');
         }
-        return view('admin');
+         //return view('admin');
+        return redirect()->route('admin');
     }
 
     public function add_weighing(Request $request)
@@ -70,7 +71,8 @@ class WeighingController extends Controller
             $data['WeightScaledata'] = WeightScale::find($request->weight_scale_id);
             return view('weighing.edit_weighing', $data)->with(['all_plant' => $all_plant]);
         } else {
-            return view('admin');
+             //return view('admin');
+        return redirect()->route('admin');
         }
     }
 

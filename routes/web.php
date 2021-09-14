@@ -23,9 +23,9 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'prevent-back-history'], function () {
     Auth::routes();
     Route::get('admin', [AdminController::class, 'index']);
-    Route::get('/', function () {
-        return view('welcome');
-    });
+    Route::get('admin', [AdminController::class, 'index'])->name('admin');
+    Route::get('/', [AdminController::class, 'index']);
+   
                             //AdminController
 
     // Route::get('register', [AdminController::class, 'register']);

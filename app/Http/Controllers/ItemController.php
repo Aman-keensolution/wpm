@@ -41,7 +41,8 @@ class ItemController extends Controller
             }
             return view('item.item_list');
         }
-        return view('admin');
+         //return view('admin');
+        return redirect()->route('admin');
     }
 
     public function add_item(Request $request)
@@ -81,7 +82,8 @@ class ItemController extends Controller
             $data['itemdata'] = Item::find($request->item_id);
             return view('item.edit_item', $data)->with(['all_category' => $all_category, 'all_plant' => $all_plant]);
         } else {
-            return view('admin');
+             //return view('admin');
+        return redirect()->route('admin');
         }
     }
 

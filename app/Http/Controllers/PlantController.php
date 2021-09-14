@@ -33,7 +33,8 @@ class PlantController extends Controller
             }
             return view('plant.plant_list');
         }
-        return view('admin');
+         //return view('admin');
+        return redirect()->route('admin');
     }
 
     public function add_plant(Request $request)
@@ -69,7 +70,8 @@ class PlantController extends Controller
             $data['plant_data'] = Plant::find($request->plant_id);
             return view('plant.edit_plant', $data);
         } else {
-            return view('admin');
+             //return view('admin');
+        return redirect()->route('admin');
         }
     }
 

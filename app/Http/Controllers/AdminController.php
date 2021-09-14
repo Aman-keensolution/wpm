@@ -73,7 +73,8 @@ class AdminController extends Controller
             
             return view('admin.edit_user',$data);
         }else{
-            return view('admin');
+             //return view('admin');
+        return redirect()->route('admin');
         }  
     }
 
@@ -130,7 +131,8 @@ class AdminController extends Controller
             }
             return view('admin.userlist');
         }
-        return view('admin');
+         //return view('admin');
+        return redirect()->route('admin');
         
     }
 

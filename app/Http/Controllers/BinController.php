@@ -39,7 +39,8 @@ class BinController extends Controller
             return view('bin.bin_list');
         }
 
-        return view('admin');
+         //return view('admin');
+        return redirect()->route('admin');
     }
 
     public function add_bin(Request $request)
@@ -77,7 +78,8 @@ class BinController extends Controller
             $data['bindata'] = Bin::find($request->bin_id);
             return view('bin.edit_bin', $data);
         } else {
-            return view('admin');
+             //return view('admin');
+        return redirect()->route('admin');
         }
     }
 

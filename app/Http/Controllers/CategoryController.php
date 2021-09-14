@@ -13,20 +13,11 @@ class CategoryController extends Controller
         if (session()->has('Admin_login')) {
             if ($request->ajax()) {
                 $data = Category::all()->where('p_id', '=', 0);
-                
                 return Datatables::of($data)
                         ->addIndexColumn()
                         ->addColumn('action', function($row){
-                            
                                $nm=route('category.edit_category',$row->cat_id);
                                $btn = '<a href="'.$nm.'"> <span class="badge bg-primary">Edit</span></a>' ;
-                            //    if($row->is_active==1){
-                            //         $nm=route('category.block_category',$row->cat_id);
-                            //         $btn .= '<a href="'.$nm.'"><span class="badge bg-danger">Block</span></a>';
-                            //    }else{
-                            //         $nm=route('category.unblock_category',$row->cat_id);    
-                            //         $btn .= '<a href="'.$nm.'"><span class="badge bg-success">Unblock</span></a>';
-                            //     }
                                 return $btn;
                         })
                         ->rawColumns(['action'])
@@ -34,9 +25,9 @@ class CategoryController extends Controller
             }
             return view('category.category_list');
         }
-        return view('admin');
+        //        //return view('admin');
+        return redirect()->route('admin');
     }
-
     public function sub_category_list(Request $request)
     {
         if (session()->has('Admin_login')) {
@@ -60,14 +51,14 @@ class CategoryController extends Controller
                         })
                         ->addColumn('pcategory_name', function($row){
                             return $row->pcategory->name;
-                            
                         })
                         ->rawColumns(['action'])
                         ->make(true);
             }
             return view('category.sub_category_list');
         }
-        return view('admin');
+                //return view('admin');
+        return redirect()->route('admin');
     }
 
     public function add_category(Request $request)
@@ -131,7 +122,8 @@ class CategoryController extends Controller
             $data['category_list'] = Category::find($request->cat_id);
             return view('category.edit_category', $data);
         } else {
-            return view('admin');
+                    //return view('admin');
+        return redirect()->route('admin');
         }
     }
 
@@ -142,7 +134,8 @@ class CategoryController extends Controller
             $data['category_list'] = Category::find($request->cat_id);
             return view('category.edit_sub_category', $data)->with(['all_category' => $all_category]);
         } else {
-            return view('admin');
+                    //return view('admin');
+        return redirect()->route('admin');
         }
     }
 
