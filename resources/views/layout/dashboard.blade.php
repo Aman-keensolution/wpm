@@ -25,7 +25,7 @@
     <!-- Daterange picker -->
     <link rel="stylesheet" href="{{asset('public/assets/plugins/daterangepicker/daterangepicker.css')}}">
     <!-- summernote -->
-    
+
     <link rel="stylesheet" href="{{asset('public/assets/plugins/summernote/summernote-bs4.min.css')}}">
     <link rel="stylesheet" href="{{asset('public/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
 
@@ -124,9 +124,21 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('category.category_list')}}" class="nav-link">
-                                <p>Category Mangement</p>
+                            <a href="" class="nav-link">
+                                <p>Category Mangement<i class="right fas fa-angle-left"></i></p>
                             </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{route('category.category_list')}}" class="nav-link">
+                                        <p>Category</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('category.sub_category_list')}}" class="nav-link">
+                                        <p>Sub-Category</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('plant.plant_list')}}" class="nav-link">
