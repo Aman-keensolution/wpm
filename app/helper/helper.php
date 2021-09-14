@@ -85,15 +85,35 @@ use Carbon\Carbon;
               ajax: '".$rurl."',
               columns: [".$columns."]
           });
-          
-        });
-        table.on( 'order.dt search.dt', function () {
+          table.on( 'order.dt search.dt', function () {
             table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
                 cell.innerHTML = i+1;
             } );
-        } ).draw();
+        }).draw();
+        });
+        
         
       </script>";
       return $str;
     }
     
+    function arrayAdmin()
+    {
+      return Admin::get()->toArray();
+    }
+    function arrayBin()
+    {
+      return Bin::get()->toArray();
+    }
+    function arrayCategory()
+    {
+      return Category::get()->toArray();
+    }
+    function arrayItem()
+    {
+      return Item::get()->toArray();
+    }
+    function arrayPlant()
+    {
+      return Plant::get()->toArray();
+    }

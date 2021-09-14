@@ -26,10 +26,11 @@
                      </div>
                      <!-- /.card-header -->
                      <div class="card-body">
-                         <table class="table table-bordered">
-                             <thead>
-                                 <tr>
+                        <table class="table data-table dataTable display compact hover order-column stripe">
+                            <thead>
+                                <tr>
                                      <th style="width: 10px">#</th>
+                                     <th>Id</th>
                                      <th>Bin-Name</th>
                                      <th>Plant-Name</th>
                                      <th>Bin-weight</th>
@@ -37,31 +38,23 @@
                                  </tr>
                              </thead>
                              <tbody>
-                                 <?php $i = 0; ?>
-                                 @foreach($bin_list as $binlist)
-                                 <?php $i++; ?>
-                                 <tr>
-                                     <td> {{$i}} </td>
-                                     <td>{{$binlist['name']}} </td>
-                                     <td>{{$binlist->plant['name']}} </td>
-                                     <td>{{$binlist['bin_weight']}} </td>
-                                     <td>
-                                         <a href="edit_bin/{{$binlist['bin_id']}}"><span class="badge bg-danger">Edit</span></a>|
-                                         @if($binlist['is_active']==1)
-                                         <a href="block_bin/{{$binlist['bin_id']}}"><span class="badge bg-danger">Block</span></a>
-                                         @else
-                                         <a href="unblock_bin/{{$binlist['bin_id']}}"><span class="badge bg-success">Unblock</span></a>
-                                         @endif
-
-                                     </td>
-                                 </tr>
-                                 @endforeach
 
                              </tbody>
                          </table>
                      </div>
+                     
                      <!-- /.card-body -->
-
+                     <?php
+                     $rurl=route('bin.bin_list');
+                     $columns =  "{data: null, name: 'bin_id'},
+                                {data: 'bin_id', name: 'bin_id'},
+                                {data: 'name', name: 'name'},
+                                {data: 'plant_name', name: 'plant_name'},
+                                {data: 'bin_weight', name: 'bin_weight'},
+                                {data: 'action', name: 'action', orderable: true, searchable: true}";
+                         echo setDataTable($rurl,$columns);
+                         ?>
+                 
                  </div>
              </div>
          </div>

@@ -5,16 +5,40 @@ namespace App\Http\Controllers;
 use App\Models\Bin;
 use App\Models\Plant;
 use Illuminate\Http\Request;
+use DataTables;
 
 class BinController extends Controller
 {
-    public function bin_list()
+    public function bin_list(Request $request)
     {
         if (session()->has('Admin_login')) {
-            $data['bin_list'] = Bin::with('plant')->get();
-            // $data['bin_list'] = Bin::get();
-            return view('bin.bin_list', $data);
+            if ($request->ajax()) {
+                $data = Bin::with('plant')->get();
+                return Datatables::of($data)
+                        ->addIndexColumn()
+                        ->addColumn('action', function($row){
+                            
+                            $nm=route('bin.edit_bin',$row->bin_id);
+                           $btn = '<a href="'.$nm.'"> <span class="badge bg-primary">Edit</span></a>|' ;
+                           if($row->is_active==1){
+                                $nm=route('bin.block_bin',$row->bin_id);
+                                $btn .= '<a href="'.$nm.'"><span class="badge bg-danger">Block</span></a>';
+                           }else{
+                                $nm=route('bin.unblock_bin',$row->bin_id);    
+                                $btn .= '<a href="'.$nm.'"><span class="badge bg-success">Unblock</span></a>';
+                            }
+                            return $btn;
+                        })
+                        ->addColumn('plant_name', function($row){
+                            return $row->plant->name ;
+                            
+                        })
+                        ->rawColumns(['action'])
+                        ->make(true);
+            }
+            return view('bin.bin_list');
         }
+
         return view('admin');
     }
 

@@ -25,7 +25,14 @@
                              </div>
                              <div class="form-group">
                                  <label for="exampleInputEmail1">Plant-Name</label>
-                                 <input type="text" name="email" class="form-control" value="{{$bindata['name']}}" placeholder="Enter Plant-Name">
+                                 <?php $p_arr=arrayPlant();?>
+                                 <select  name="plant_id" class="form-control"  placeholder="Enter Plant-Name">
+                                     
+                                    
+                                     <?php foreach($p_arr){?>
+                                     <option> </option>
+                                     <?php } ?>
+                                 </select>
                              </div>
                              <div class="form-group">
                                  <label for="exampleInputPassword1">Bin-Weight</label>
