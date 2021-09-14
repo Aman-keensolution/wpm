@@ -26,7 +26,7 @@
                      </div>
                      <!-- /.card-header -->
                      <div class="card-body">
-                        <table class="table data-table dataTable display compact hover order-column stripe">
+                        <table class="table table-striped table-bordered dt-responsive nowrap data-table dataTable"  cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <th>No</th>
