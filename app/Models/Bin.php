@@ -39,8 +39,8 @@ class Bin extends Model
     protected $casts = [
     ];
 
-    // public function category()
-    // {
-    //     return $this->hasOne(UserInfo::class, 'user_id', 'user_id');
-    // }
+     public function plant()
+    {
+         return $this->hasOne(Plant::class, 'plant_id', 'plant_id');
+    }
 }

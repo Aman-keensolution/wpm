@@ -21,14 +21,23 @@
                          @csrf
                          <div class="card-body">
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Category-Name</label>
-                                 <input type="text" name="name" class="form-control" placeholder="Enter name">
+                                 <label for="exampleInputEmail1">Bin-Name</label>
+                                 <input type="text" name="name" class="form-control" placeholder="Bin name">
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Sub-Category</label>
-                                 <input type="text" name="p_id" class="form-control" placeholder="Enter email">
+                                 <label for="role">Plant-name</label>
+                                 <select name="plant_id" id="plant_id" class="form-control">
+                                     @foreach( $all_plant as $plant)
+                                     <option value="{{$plant->plant_id}}">{{$plant->name}}</option>
+                                     @endforeach
+                                 </select>
+                             </div>
+                             <div class="form-group">
+                                 <label for="exampleInputEmail1">Bin-Weight</label>
+                                 <input type="number" name="bin_weight" class="form-control" placeholder="Bin Weight">
                              </div>
                          </div>
+
                          <!-- /.card-body -->
 
                          <div class="card-footer">
