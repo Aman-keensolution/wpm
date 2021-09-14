@@ -81,6 +81,7 @@ use Carbon\Carbon;
           var table = $('.data-table').DataTable({
               processing: true,
               serverSide: true,
+              fixedHeader: true,
               \"dom\": '<\"top\"f>rt<\"bottom\"ilp><\"clear\">',
               ajax: '".$rurl."',
               columns: [".$columns."]
