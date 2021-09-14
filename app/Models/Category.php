@@ -39,8 +39,8 @@ class Category extends Model
     protected $casts = [
     ];
 
-     public function category()
+     public function pcategory()
      {
-        return $this->hasOne(Category::class, 'p_id', 'cat_id');
+        return $this->hasOne(Category::class, 'cat_id', 'p_id');
      }
 }

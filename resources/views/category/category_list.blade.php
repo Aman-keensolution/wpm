@@ -26,39 +26,29 @@
                      </div>
                      <!-- /.card-header -->
                      <div class="card-body">
-                         <table class="table table-bordered">
+                         <table class="table data-table dataTable display compact hover order-column stripe">
                              <thead>
                                  <tr>
-                                     <th style="width: 10px">#</th>
+                                    <th style="width: 10px">#</th>
+                                    <th>Id</th>
                                      <th>Category-Name</th>
-                         
                                      <th>Action</th>
                                  </tr>
                              </thead>
                              <tbody>
-                                 <?php $i = 0; ?>
-                                 @foreach($category_list as $categorylist)
-                                 <?php $i++; ?>
-                                 <tr>
-                                     <td> {{$i}} </td>
-                                     <td>{{$categorylist['name']}} </td>
-                                 
-                                     <td>
-                                         <a href="edit_category/{{$categorylist['cat_id']}}"><span class="badge bg-danger">Edit</span></a>
-                                         <!-- @if($categorylist['is_active']==1)
-                                         <a href="block_category/{{$categorylist['cat_id']}}"><span class="badge bg-danger">Block</span></a>
-                                         @else
-                                         <a href="unblock_category/{{$categorylist['cat_id']}}"><span class="badge bg-success">Unblock</span></a>
-                                         @endif -->
-                                     </td>
-                                 </tr>
-                                 @endforeach
-
                              </tbody>
                          </table>
                      </div>
                      <!-- /.card-body -->
-           
+                     <?php
+                     $rurl=route('category.category_list');
+                     $columns =  "{data: null, name: 'user_id'},
+                                 {data: 'cat_id', name: 'cat_id'},
+                                 {data: 'name', name: 'name'},
+                                 {data: 'action', name: 'action', orderable: true, searchable: true}";
+                         echo setDataTable($rurl,$columns);
+                         ?>
+                 
                  </div>
              </div>
          </div>

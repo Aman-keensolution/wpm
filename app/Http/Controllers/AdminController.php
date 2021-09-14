@@ -114,7 +114,6 @@ class AdminController extends Controller
                 return Datatables::of($data)
                         ->addIndexColumn()
                         ->addColumn('action', function($row){
-                            
                                 $nm=route('admin.edit_user',$row->user_id);
                                $btn = '<a href="'.$nm.'"> <span class="badge bg-primary">Edit</span></a>|' ;
                                if($row->is_active==1){
@@ -129,7 +128,6 @@ class AdminController extends Controller
                         ->rawColumns(['action'])
                         ->make(true);
             }
-            
             return view('admin.userlist');
         }
         return view('admin');
