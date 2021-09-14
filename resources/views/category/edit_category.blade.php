@@ -16,20 +16,20 @@
                      <div class="card-header">
                          <h3 class="card-title">Update Category</h3>
                      </div>
-                     <form action="{{route('update_category',$userinfo['id'])}}" method="post">
+                     <form action="{{route('update_category',$category_list['cat_id'])}}" method="post">
                          @csrf
                          <div class="card-body">
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Name</label>
-                                 <input type="text" name="name" class="form-control" value="{{$userinfo['name']}}" placeholder="Enter name">
+                                 <label for="exampleInputEmail1">Category-Name</label>
+                                 <input type="text" name="name" class="form-control" value="{{$category_list['name']}}">
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Email address</label>
-                                 <input type="email" name="email" class="form-control" value="{{$userinfo['email']}}" placeholder="Enter email">
-                             </div>
-                             <div class="form-group">
-                                 <label for="exampleInputPassword1">Mobile</label>
-                                 <input type="number" name="number" class="form-control" value="{{$userinfo['number']}}" placeholder="Enter number">
+                                 <label for="role">Sub-Category</label>
+                                 <select name="p_id" id="p_id" class="form-control">
+                                     @foreach( $all_category as $category)
+                                     <option value="{{$category->cat_id}}">{{$category->name}}</option>
+                                     @endforeach
+                                 </select>
                              </div>
                          </div>
                          <div class="card-footer">

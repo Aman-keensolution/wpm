@@ -61,14 +61,14 @@ class ItemController extends Controller
     }
 
 
-    public function block_user(Request $request)
+    public function block_item(Request $request)
     {
         $request = Item::find($request->user_id);
         $request->is_active = 0;
         $request->save();
         return redirect('item_list');
     }
-    public function unblock_user(Request $request)
+    public function unblock_item(Request $request)
     {
         $request = Item::find($request->user_id);
         $request->is_active = 1;

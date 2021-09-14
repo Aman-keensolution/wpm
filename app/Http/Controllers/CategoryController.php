@@ -20,7 +20,7 @@ class CategoryController extends Controller
     {
         if (session()->has('Admin_login')) {
             $all_category = Category::all();
-            return view('category.add_category')->with(['all_category' => $all_category]);;
+            return view('category.add_category')->with(['all_category' => $all_category]);
         } else {
             return redirect('admin');
         }
@@ -38,7 +38,7 @@ class CategoryController extends Controller
         $Category->p_id = $request->p_id;
         $Category->save();
         if ($Category) {
-            return redirect('category.category_list');
+            return redirect('category_list');
         } else {
             return back()->with('Fail', 'Something went wrong');
         }
@@ -47,8 +47,9 @@ class CategoryController extends Controller
     public function edit_category(Request $request)
     {
         if (session()->has('Admin_login')) {
-            $data['userinfo'] = Category::find($request->user_id);
-            return view('category.edit_category', $data);
+            $all_category = Category::all();
+            $data['category_list'] = Category::find($request->cat_id);
+            return view('category.edit_category', $data)->with(['all_category' => $all_category]);
         } else {
             return view('admin');
         }
@@ -56,23 +57,24 @@ class CategoryController extends Controller
 
     public function update_category(Request $request)
     {
-        $data = Category::find($request->user_id);
+        $data = Category::find($request->cat_id);
         $data->name = $request->name;
+        $data->p_id = $request->p_id;
         $data->save();
         return redirect('category_list');
     }
 
 
-    public function block_user(Request $request)
+    public function block_category(Request $request)
     {
-        $request = Category::find($request->user_id);
+        $request = Category::find($request->cat_id);
         $request->is_active = 0;
         $request->save();
         return redirect('category_list');
     }
-    public function unblock_user(Request $request)
+    public function unblock_category(Request $request)
     {
-        $request = Category::find($request->user_id);
+        $request = Category::find($request->cat_id);
         $request->is_active = 1;
         $request->save();
         return redirect('category_list');
