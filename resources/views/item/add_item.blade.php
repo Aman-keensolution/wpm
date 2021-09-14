@@ -21,20 +21,40 @@
                          @csrf
                          <div class="card-body">
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Name</label>
-                                 <input type="text" name="name" class="form-control" placeholder="Enter name">
+                                 <label for="exampleInputEmail1">Item-Name</label>
+                                 <input type="text" name="item_name" class="form-control" placeholder="Enter Item name">
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Email address</label>
-                                 <input type="email" name="email" class="form-control" placeholder="Enter email">
+                                 <label for="exampleInputPassword1">Item-Number</label>
+                                 <input type="number" name="item_no" class="form-control" placeholder="Enter Item number">
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputPassword1">Password</label>
-                                 <input type="password" name="password" class="form-control" placeholder="Password">
+                                 <label for="exampleInputPassword1">Item-Avg-Weight</label>
+                                 <input type="number" name="item_avg_weight" class="form-control" placeholder="Enter Weight">
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputPassword1">Mobile</label>
-                                 <input type="number" name="number" class="form-control" placeholder="Enter number">
+                                 <label for="exampleInputPassword1">Batch-Number</label>
+                                 <input type="number" name="batch_no" class="form-control" placeholder="Enter Batch number">
+                             </div>
+                             <div class="form-group">
+                                 <label for="role">Category</label>
+                                 <select name="cat_id" id="cat_id" class="form-control">
+                                     @foreach( $all_category as $category)
+                                     <option value="{{$category->cat_id}}">{{$category->name}}</option>
+                                     @endforeach
+                                 </select>
+                             </div>
+                             <div class="form-group">
+                                 <label for="role">Plant</label>
+                                 <select name="plant_id" id="plant_id" class="form-control">
+                                     @foreach( $all_plant as $plant)
+                                     <option value="{{$plant->plant_id}}">{{$plant->name}}</option>
+                                     @endforeach
+                                 </select>
+                             </div>
+                             <div class="form-group">
+                                 <label for="exampleInputPassword1">Manfactring-Date</label>
+                                 <input type="date" id="manfactring_date" name="manfactring_date" class="form-control">
                              </div>
                          </div>
                          <!-- /.card-body -->

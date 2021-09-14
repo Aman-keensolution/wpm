@@ -52,16 +52,21 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
 
                             //CategoryController
     Route::get('category_list', [CategoryController::class, 'category_list'])->name('category.category_list');
+    Route::get('sub_category_list', [CategoryController::class, 'sub_category_list'])->name('category.sub_category_list');
     Route::get('add_category', [CategoryController::class, 'add_category'])->name('category.add_category');
+    Route::get('add_sub_category', [CategoryController::class, 'add_sub_category'])->name('category.add_sub_category');
     Route::post('category/store', [CategoryController::class, 'store'])->name('category.store');
+    Route::post('category/store_sub_category', [CategoryController::class, 'store_sub_category'])->name('category.store_sub_category');
     Route::get('edit_category/{cat_id}', [CategoryController::class, 'edit_category'])->name('category.edit_category');
+    Route::get('edit_sub_category/{cat_id}', [CategoryController::class, 'edit_sub_category'])->name('category.edit_sub_category');
     Route::post('update_category/{cat_id}', [CategoryController::class, 'update_category'])->name('update_category');
+    Route::post('update_sub_category/{cat_id}', [CategoryController::class, 'update_sub_category'])->name('update_sub_category');
     Route::get('block_category/{cat_id}', [CategoryController::class, 'block_category'])->name('category.block_category');
     Route::get('unblock_category/{cat_id}', [CategoryController::class, 'unblock_category'])->name('category.unblock_category');
 
                             //ItemController
     Route::get('item_list', [ItemController::class, 'item_list'])->name('item.item_list');
-    Route::get('add_item', [ItemController::class, 'add_user'])->name('item.add_item');
+    Route::get('add_item', [ItemController::class, 'add_item'])->name('item.add_item');
     Route::post('item/store', [ItemController::class, 'store'])->name('item.store');
     Route::get('edit_item/{item_id}', [ItemController::class, 'edit_item'])->name('item.edit_item');
     Route::post('update_item/{item_id}', [ItemController::class, 'update_item'])->name('update_item');

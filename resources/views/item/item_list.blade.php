@@ -31,42 +31,41 @@
                                  <tr>
                                      <th style="width: 10px">#</th>
                                      <th>Name</th>
-                                     <th>email</th>
+                                     <th>Item-number</th>
+                                     <th>Category</th>
+                                     <th>Item-weight</th>
+                                     <th>Batch_number</th>
+                                     <th>Plant</th>
+                                     <th>Manfactring_date</th>
                                      <th>Action</th>
                                  </tr>
                              </thead>
                              <tbody>
                                  <?php $i = 0; ?>
-                                 @foreach($user_list as $userlist)
+                                 @foreach($item_list as $itemlist)
                                  <?php $i++; ?>
                                  <tr>
                                      <td> {{$i}} </td>
-                                     <td>{{$userlist['name']}} </td>
-                                     <td>{{$userlist['email']}} </td>
+                                     <td>{{$itemlist['item_name']}} </td>
+                                     <td>{{$itemlist['item_no']}} </td>
+                                     <td>{{$itemlist->category['name']}} </td>
+                                     <td>{{$itemlist['item_avg_weight']}} </td>
+                                     <td>{{$itemlist['batch_no']}} </td>
+                                     <td>{{$itemlist->plant['name']}} </td>
+                                     <td>{{$itemlist['manfactring_date']}} </td>
                                      <td>
-                                         <a href="edit_item/{{$userlist['id']}}"><span class="badge bg-danger">Edit</span></a>|
-                                         @if($userlist['is_active']==1)
-                                         <a href="block_user/{{$userlist['id']}}"><span class="badge bg-danger">Block</span></a>
+                                         <a href="edit_item/{{$itemlist['item_id']}}"><span class="badge bg-danger">Edit</span></a>|
+                                         @if($itemlist['is_active']==1)
+                                         <a href="block_item/{{$itemlist['item_id']}}"><span class="badge bg-danger">Block</span></a>
                                          @else
-                                         <a href="unblock_user/{{$userlist['id']}}"><span class="badge bg-success">Unblock</span></a>
+                                         <a href="unblock_item/{{$itemlist['item_id']}}"><span class="badge bg-success">Unblock</span></a>
                                          @endif
-                                         <!-- <a href="Block_user/{{$userlist['id']}}"><span class="badge bg-danger">Block</span></a> -->
                                      </td>
                                  </tr>
                                  @endforeach
 
                              </tbody>
                          </table>
-                     </div>
-                     <!-- /.card-body -->
-                     <div class="card-footer clearfix">
-                         <ul class="pagination pagination-sm m-0 float-right">
-                             <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                             <li class="page-item"><a class="page-link" href="#">1</a></li>
-                             <li class="page-item"><a class="page-link" href="#">2</a></li>
-                             <li class="page-item"><a class="page-link" href="#">3</a></li>
-                             <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                         </ul>
                      </div>
                  </div>
              </div>

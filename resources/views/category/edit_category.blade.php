@@ -23,14 +23,6 @@
                                  <label for="exampleInputEmail1">Category-Name</label>
                                  <input type="text" name="name" class="form-control" value="{{$category_list['name']}}">
                              </div>
-                             <div class="form-group">
-                                 <label for="role">Sub-Category</label>
-                                 <select name="p_id" id="p_id" class="form-control">
-                                     @foreach( $all_category as $category)
-                                     <option value="{{$category->cat_id}}">{{$category->name}}</option>
-                                     @endforeach
-                                 </select>
-                             </div>
                          </div>
                          <div class="card-footer">
                              <button type="submit" class="btn btn-primary">Submit</button>
