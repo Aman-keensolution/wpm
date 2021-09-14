@@ -6,14 +6,40 @@ use App\Models\Item;
 use App\Models\Plant;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use DataTables;
 
 class ItemController extends Controller
 {
-    public function item_list()
+    public function item_list(Request $request)
     {
         if (session()->has('Admin_login')) {
-            $data['item_list'] = Item::with('category','plant')->get();
-            return view('item.item_list', $data);
+            if ($request->ajax()) {
+                $data = Item::with('plant','category')->get();
+                return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function ($row) {
+
+                        $nm = route('item.edit_item', $row->item_id);
+                        $btn = '<a href="' . $nm . '"> <span class="badge bg-primary">Edit</span></a>|';
+                        if ($row->is_active == 1) {
+                            $nm = route('item.block_item', $row->item_id);
+                            $btn .= '<a href="' . $nm . '"><span class="badge bg-danger">Block</span></a>';
+                        } else {
+                            $nm = route('item.unblock_item', $row->item_id);
+                            $btn .= '<a href="' . $nm . '"><span class="badge bg-success">Unblock</span></a>';
+                        }
+                        return $btn;
+                    })
+                    ->addColumn('plant_name', function ($row) {
+                        return $row->plant->name;
+                    })
+                    ->addColumn('category_name', function ($row) {
+                        return $row->category->name;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+            }
+            return view('item.item_list');
         }
         return view('admin');
     }

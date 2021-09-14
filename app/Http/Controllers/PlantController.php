@@ -4,14 +4,34 @@ namespace App\Http\Controllers;
 
 use App\Models\Plant;
 use Illuminate\Http\Request;
+use DataTables;
 
 class PlantController extends Controller
 {
-    public function plant_list()
+    public function plant_list(Request $request)
     {
         if (session()->has('Admin_login')) {
-            $data['plant_list'] = Plant::get();
-            return view('plant.plant_list', $data);
+            if ($request->ajax()) {
+                $data = Plant::select('*');
+                return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function ($row) {
+
+                        $nm = route('plant.edit_plant', $row->plant_id);
+                        $btn = '<a href="' . $nm . '"> <span class="badge bg-primary">Edit</span></a>|';
+                        if ($row->is_active == 1) {
+                            $nm = route('plant.block_plant', $row->plant_id);
+                            $btn .= '<a href="' . $nm . '"><span class="badge bg-danger">Block</span></a>';
+                        } else {
+                            $nm = route('plant.unblock_plant', $row->plant_id);
+                            $btn .= '<a href="' . $nm . '"><span class="badge bg-success">Unblock</span></a>';
+                        }
+                        return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+            }
+            return view('plant.plant_list');
         }
         return view('admin');
     }

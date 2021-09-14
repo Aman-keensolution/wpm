@@ -15,7 +15,7 @@
              <div class="col-md-12">
                  <div class="card">
                      <div class="card-header">
-                         <h3 class="card-title">Item-list</h3>
+                         <h3 class="card-title">Item list</h3>
                          <div class="card-tools">
                              <div class="input-group input-group-sm" style="width: 150px;">
                                  <button type="button" class="btn btn-block btn-outline-primary">
@@ -26,47 +26,43 @@
                      </div>
                      <!-- /.card-header -->
                      <div class="card-body">
-                         <table class="table table-bordered">
+                         <table class="table data-table dataTable display compact hover order-column stripe">
                              <thead>
                                  <tr>
                                      <th style="width: 10px">#</th>
+                                     <th>Id</th>
                                      <th>Name</th>
-                                     <th>Item-number</th>
+                                     <th>Item number</th>
                                      <th>Category</th>
-                                     <th>Item-weight</th>
-                                     <th>Batch_number</th>
+                                     <th>Item weight</th>
+                                     <th>Batch number</th>
                                      <th>Plant</th>
-                                     <th>Manfactring_date</th>
+                                     <th>Manfactring date</th>
                                      <th>Action</th>
                                  </tr>
                              </thead>
                              <tbody>
-                                 <?php $i = 0; ?>
-                                 @foreach($item_list as $itemlist)
-                                 <?php $i++; ?>
-                                 <tr>
-                                     <td> {{$i}} </td>
-                                     <td>{{$itemlist['item_name']}} </td>
-                                     <td>{{$itemlist['item_no']}} </td>
-                                     <td>{{$itemlist->category['name']}} </td>
-                                     <td>{{$itemlist['item_avg_weight']}} </td>
-                                     <td>{{$itemlist['batch_no']}} </td>
-                                     <td>{{$itemlist->plant['name']}} </td>
-                                     <td>{{$itemlist['manfactring_date']}} </td>
-                                     <td>
-                                         <a href="edit_item/{{$itemlist['item_id']}}"><span class="badge bg-danger">Edit</span></a>|
-                                         @if($itemlist['is_active']==1)
-                                         <a href="block_item/{{$itemlist['item_id']}}"><span class="badge bg-danger">Block</span></a>
-                                         @else
-                                         <a href="unblock_item/{{$itemlist['item_id']}}"><span class="badge bg-success">Unblock</span></a>
-                                         @endif
-                                     </td>
-                                 </tr>
-                                 @endforeach
 
                              </tbody>
                          </table>
                      </div>
+
+                     <?php
+                        $rurl = route('item.item_list');
+                        $columns =  "{data: null, name: 'item_id'},
+                                {data: 'item_id', name: 'item_id'},
+                                {data: 'item_name', name: 'item_name'},
+                                {data: 'item_no', name: 'item_no'},
+                                {data: 'category_name', name: 'category_name'},
+                                {data: 'item_avg_weight', name: 'item_avg_weight'},
+                                {data: 'batch_no', name: 'batch_no'},
+                                {data: 'plant_name', name: 'plant_name'},
+                                {data: 'manfactring_date', name: 'manfactring_date'},
+                                {data: 'action', name: 'action', orderable: true, searchable: true}";
+                        echo setDataTable($rurl, $columns);
+                        ?>
+
+
                  </div>
              </div>
          </div>

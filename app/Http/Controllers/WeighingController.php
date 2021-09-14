@@ -5,14 +5,37 @@ namespace App\Http\Controllers;
 use App\Models\WeightScale;
 use App\Models\Plant;
 use Illuminate\Http\Request;
+use DataTables;
 
 class WeighingController extends Controller
 {
-    public function weighing_list()
+    public function weighing_list(Request $request)
     {
         if (session()->has('Admin_login')) {
-            $data['WeightScaledata'] = WeightScale::with('plant')->get();
-            return view('weighing.weighing_list', $data);
+            if ($request->ajax()) {
+                $data = WeightScale::with('plant')->get();
+                return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function ($row) {
+
+                        $nm = route('weighing.edit_weighing', $row->weight_scale_id);
+                        $btn = '<a href="' . $nm . '"> <span class="badge bg-primary">Edit</span></a>|';
+                        if ($row->is_active == 1) {
+                            $nm = route('weighing.block_weighing', $row->weight_scale_id);
+                            $btn .= '<a href="' . $nm . '"><span class="badge bg-danger">Block</span></a>';
+                        } else {
+                            $nm = route('weighing.unblock_weighing', $row->weight_scale_id);
+                            $btn .= '<a href="' . $nm . '"><span class="badge bg-success">Unblock</span></a>';
+                        }
+                        return $btn;
+                    })
+                    ->addColumn('plant_name', function ($row) {
+                        return $row->plant->name;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+            }
+            return view('weighing.weighing_list');
         }
         return view('admin');
     }

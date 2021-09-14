@@ -15,7 +15,7 @@
              <div class="col-md-12">
                  <div class="card">
                      <div class="card-header">
-                         <h3 class="card-title">Weighing-list</h3>
+                         <h3 class="card-title">Weighing list</h3>
                          <div class="card-tools">
                              <div class="input-group input-group-sm" style="width: 150px;">
                                  <button type="button" class="btn btn-block btn-outline-primary">
@@ -26,38 +26,32 @@
                      </div>
                      <!-- /.card-header -->
                      <div class="card-body">
-                         <table class="table table-bordered">
+                         <table class="table data-table dataTable display compact hover order-column stripe">
                              <thead>
                                  <tr>
                                      <th style="width: 10px">#</th>
+                                     <th>Id</th>
                                      <th>Name</th>
-                                     <th>Plant-Name</th>
+                                     <th>Plant Name</th>
                                      <th>Action</th>
                                  </tr>
                              </thead>
                              <tbody>
-                                 <?php $i = 0; ?>
-                                 @foreach($WeightScaledata as $weight_list)
-                                 <?php $i++; ?>
-                                 <tr>
-                                     <td> {{$i}} </td>
-                                     <td>{{$weight_list['name']}} </td>
-                                     <td>{{$weight_list->plant['name']}} </td>
-                                     <td>
-                                         <a href="edit_weighing/{{$weight_list['weight_scale_id']}}"><span class="badge bg-danger">Edit</span></a>|
-                                         @if($weight_list['is_active']==1)
-                                         <a href="block_weighing/{{$weight_list['weight_scale_id']}}"><span class="badge bg-danger">Block</span></a>
-                                         @else
-                                         <a href="unblock_weighing/{{$weight_list['weight_scale_id']}}"><span class="badge bg-success">Unblock</span></a>
-                                         @endif
-
-                                     </td>
-                                 </tr>
-                                 @endforeach
 
                              </tbody>
                          </table>
                      </div>
+
+                     <!-- /.card-body -->
+                     <?php
+                        $rurl = route('weighing.weighing_list');
+                        $columns =  "{data: null, name: 'weight_scale_id'},
+                                {data: 'weight_scale_id', name: 'weight_scale_id'},
+                                {data: 'name', name: 'name'},
+                                {data: 'plant_name', name: 'plant_name'},
+                                {data: 'action', name: 'action', orderable: true, searchable: true}";
+                        echo setDataTable($rurl, $columns);
+                        ?>
                  </div>
              </div>
          </div>

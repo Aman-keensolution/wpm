@@ -21,19 +21,19 @@
                          @csrf
                          <div class="card-body">
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Item-Name</label>
+                                 <label for="exampleInputEmail1">Item Name</label>
                                  <input type="text" name="item_name" class="form-control" placeholder="Enter Item name">
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputPassword1">Item-Number</label>
+                                 <label for="exampleInputPassword1">Item Number</label>
                                  <input type="number" name="item_no" class="form-control" placeholder="Enter Item number">
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputPassword1">Item-Avg-Weight</label>
+                                 <label for="exampleInputPassword1">Item-Avg Weight</label>
                                  <input type="number" name="item_avg_weight" class="form-control" placeholder="Enter Weight">
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputPassword1">Batch-Number</label>
+                                 <label for="exampleInputPassword1">Batch Number</label>
                                  <input type="number" name="batch_no" class="form-control" placeholder="Enter Batch number">
                              </div>
                              <div class="form-group">
@@ -53,7 +53,7 @@
                                  </select>
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputPassword1">Manfactring-Date</label>
+                                 <label for="exampleInputPassword1">Manfactring Date</label>
                                  <input type="date" id="manfactring_date" name="manfactring_date" class="form-control">
                              </div>
                          </div>

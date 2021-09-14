@@ -20,11 +20,11 @@
                          @csrf
                          <div class="card-body">
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Item-Name</label>
-                                 <input type="text" name="item_name" class="form-control" value="{{$itemdata['item_name']}}" placeholder="Enter name">
+                                 <label for="exampleInputEmail1">Item Name</label>
+                                 <input type="text" name="item_name" class="form-control" value="{{$itemdata['item_name']}}" >
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Item-Number</label>
+                                 <label for="exampleInputEmail1">Item Number</label>
                                  <input type="text" name="item_no" class="form-control" value="{{$itemdata['item_no']}}">
                              </div>
                              <div class="form-group">
@@ -36,15 +36,15 @@
                                  </select>
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Item-Weight</label>
+                                 <label for="exampleInputEmail1">Item Weight</label>
                                  <input type="text" name="item_avg_weight" class="form-control" value="{{$itemdata['item_avg_weight']}}">
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Batch-Number</label>
+                                 <label for="exampleInputEmail1">Batch Number</label>
                                  <input type="text" name="batch_no" class="form-control" value="{{$itemdata['batch_no']}}">
                              </div>
                              <div class="form-group">
-                                 <label for="role">Plant-name</label>
+                                 <label for="role">Plant name</label>
                                  <select name="plant_id" id="plant_id" class="form-control">
                                      @foreach( $all_plant as $plant)
                                      <option @if($itemdata->plant_id == $plant->plant_id) selected @endif value="{{$plant->plant_id}}">{{$plant->name}}</option>
@@ -52,7 +52,7 @@
                                  </select>
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputPassword1">Manfactring-Date</label>
+                                 <label for="exampleInputPassword1">Manfactring Date</label>
                                  <input type="date" name="manfactring_date" id="manfactring_date" class="form-control" value="{{$itemdata['manfactring_date']}}">
                              </div>
                          </div>
