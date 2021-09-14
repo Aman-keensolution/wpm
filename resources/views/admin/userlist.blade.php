@@ -39,18 +39,17 @@
                             <tbody>
                             </tbody>
                         </table>
-
-                         
                      </div>
-                     setDataTable params:-
-    <?php $rurl=route('admin.userlist');
+                     
+    <?php
+    $rurl=route('admin.userlist');
     $columns =  "{data: null, name: 'user_id'},
                 {data: 'user_id', name: 'user_id'},
                 {data: 'name', name: 'name'},
                 {data: 'email', name: 'email'},
                 {data: 'action', name: 'action', orderable: true, searchable: true}";
-    ?>
-                    {{setDataTable($rurl,$columns)}}
+        echo setDataTable($rurl,$columns);
+        ?>
                  </div>
              </div>
          </div>

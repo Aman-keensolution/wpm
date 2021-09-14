@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use DataTables;
+use Helper;
 
 
 class AdminController extends Controller

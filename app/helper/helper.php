@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers;
+
 
 use Illuminate\Support\Facades\Storage;
 
@@ -15,9 +15,7 @@ use App\Models\WeightScale;
 
 use Carbon\Carbon;
  
-class Helper
-{
-    public static function sendResponse($status, $msg, $res_code, $data=null)
+      function sendResponse($status, $msg, $res_code, $data=null)
     {
     	$res = [
             'status' => $status,
@@ -30,7 +28,7 @@ class Helper
         return response()->json($res, $res_code);
     }
 
-    public static function getLocaleDate($date){
+      function getLocaleDate($date){
         try{
             $monthsArr = __('labels.months');
             $parseDate = explode('-', Carbon::parse($date)->setTimezone(env('GET_TIMEZONE', config('app.timezone')))->format('Y-F-d'));
@@ -40,7 +38,7 @@ class Helper
         }
     }
 
-    public static function getLocaleHRDate($date){
+      function getLocaleHRDate($date){
         try{
             return (Carbon::createFromTimeStamp(strtotime($date))->setTimezone(env('GET_TIMEZONE', config('app.timezone')))->diffForHumans());
         }catch(\Exception $e){
@@ -49,12 +47,12 @@ class Helper
     }
 
 
-    public static function sendEmail($to, $subject, $data, $template, $attachment=null){
+      function sendEmail($to, $subject, $data, $template, $attachment=null){
         try{
             Mail::send($template, $data, function($message) use($to, $subject) {
                 $message->to($to)
                 //->cc($moreUsers)
-                ->bcc('anuj.chauhan@opalina.in')
+                ->bcc('vishal@keensolution.in')
                 ->subject($subject);
             });
             return true;
@@ -62,7 +60,7 @@ class Helper
             return false;
         }
     }
-    public static function getRandomString(){
+      function getRandomString(){
         $charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         $substr = $charset[rand(0,61)].$charset[rand(0,61)].$charset[rand(0,61)].$charset[rand(0,61)].$charset[rand(0,61)];
         $time = time();
@@ -77,14 +75,14 @@ class Helper
                 {data: 'email', name: 'email'},
                 {data: 'action', name: 'action', orderable: true, searchable: true},
     */
-    public static function setDataTable($rurl,$columns){
+      function setDataTable($rurl,$columns){
         $str = "<script type=\"text/javascript\">
         $(function () {
           var table = $('.data-table').DataTable({
               processing: true,
               serverSide: true,
               \"dom\": '<\"top\"f>rt<\"bottom\"ilp><\"clear\">',
-              ajax: ".$rurl.",
+              ajax: '".$rurl."',
               columns: [".$columns."]
           });
           
@@ -99,4 +97,3 @@ class Helper
       return $str;
     }
     
-}
