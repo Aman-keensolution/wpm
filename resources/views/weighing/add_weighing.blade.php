@@ -25,16 +25,12 @@
                                  <input type="text" name="name" class="form-control" placeholder="Enter name">
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Email address</label>
-                                 <input type="email" name="email" class="form-control" placeholder="Enter email">
-                             </div>
-                             <div class="form-group">
-                                 <label for="exampleInputPassword1">Password</label>
-                                 <input type="password" name="password" class="form-control" placeholder="Password">
-                             </div>
-                             <div class="form-group">
-                                 <label for="exampleInputPassword1">Mobile</label>
-                                 <input type="number" name="number" class="form-control" placeholder="Enter number">
+                                 <label for="role">Plant</label>
+                                 <select name="plant_id" id="plant_id" class="form-control">
+                                     @foreach( $all_plant as $plant)
+                                     <option value="{{$plant->plant_id}}">{{$plant->name}}</option>
+                                     @endforeach
+                                 </select>
                              </div>
                          </div>
                          <!-- /.card-body -->

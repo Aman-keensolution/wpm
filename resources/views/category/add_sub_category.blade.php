@@ -17,12 +17,20 @@
                      <div class="card-header">
                          <h3 class="card-title">Add New Category</h3>
                      </div>
-                     <form action="{{route('category.store')}}" method="post">
+                     <form action="{{route('category.store_sub_category')}}" method="post">
                          @csrf
                          <div class="card-body">
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Category-Name</label>
-                                 <input type="text" name="name" class="form-control" placeholder="Enter Category-Name">
+                                 <label for="exampleInputEmail1">Sub-Category-Name</label>
+                                 <input type="text" name="name" class="form-control" placeholder="Enter Category-Name" required>
+                             </div>
+                             <div class="form-group">
+                                 <label for="role">Category</label>
+                                 <select name="p_id" id="p_id" class="form-control">
+                                     @foreach( $all_category as $category)
+                                     <option value="{{$category->cat_id}}">{{$category->name}}</option>
+                                     @endforeach
+                                 </select>
                              </div>
                          </div>
                          <!-- /.card-body -->

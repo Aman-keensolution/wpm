@@ -15,11 +15,11 @@
              <div class="col-md-12">
                  <div class="card">
                      <div class="card-header">
-                         <h3 class="card-title">Category-list</h3>
+                         <h3 class="card-title">Sub-Category-list</h3>
                          <div class="card-tools">
                              <div class="input-group input-group-sm" style="width: 150px;">
                                  <button type="button" class="btn btn-block btn-outline-primary">
-                                     <a href="add_category">Add New Category</a>
+                                     <a href="add_sub_category">Add Sub-Category</a>
                                  </button>
                              </div>
                          </div>
@@ -42,14 +42,13 @@
                                  <tr>
                                      <td> {{$i}} </td>
                                      <td>{{$categorylist['name']}} </td>
-                                 
                                      <td>
-                                         <a href="edit_category/{{$categorylist['cat_id']}}"><span class="badge bg-danger">Edit</span></a>
-                                         <!-- @if($categorylist['is_active']==1)
+                                         <a href="edit_sub_category/{{$categorylist['cat_id']}}"><span class="badge bg-danger">Edit</span></a>|
+                                         @if($categorylist['is_active']==1)
                                          <a href="block_category/{{$categorylist['cat_id']}}"><span class="badge bg-danger">Block</span></a>
                                          @else
                                          <a href="unblock_category/{{$categorylist['cat_id']}}"><span class="badge bg-success">Unblock</span></a>
-                                         @endif -->
+                                         @endif
                                      </td>
                                  </tr>
                                  @endforeach
