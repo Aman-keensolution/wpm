@@ -3,3 +3,13 @@
     float: left;
     padding-top: 0.755em;
 }
+
+div.dataTables_length {
+    float: left;
+    padding-top: 15px;
+    padding-left: 30px;
+}
+
+div.dataTables_paginate {
+    float: right;
+}

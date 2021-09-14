@@ -25,11 +25,12 @@
     <!-- Daterange picker -->
     <link rel="stylesheet" href="{{asset('public/assets/plugins/daterangepicker/daterangepicker.css')}}">
     <!-- summernote -->
+    
     <link rel="stylesheet" href="{{asset('public/assets/plugins/summernote/summernote-bs4.min.css')}}">
-    <link href="{{asset('public/assets/css/jquery.dataTables.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('public/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
 
-    <link href="{{asset('public/assets/css/custom2.css')}}" rel="stylesheet">
-    <link href="{{asset('public/assets/css/custom.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('public/assets/css/custom2.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/css/custom.css')}}">
     <!-- jQuery -->
     <script src="  {{asset('public/assets/plugins/jquery/jquery.min.js')}}"></script>
 
@@ -217,9 +218,9 @@
     <!-- AdminLTE for demo purposes -->
     <script src="  {{asset('public/assets/dist/js/demo.js')}}"></script>
     <script src="{{asset('public/assets/js/jquery.validate.js')}}"></script>
-    <script src="{{asset('public/assets/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('public/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
 
-    <script src="{{asset('public/assets/js/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('public/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="  {{asset('public/assets/dist/js/pages/dashboard.js')}}"></script>
 
