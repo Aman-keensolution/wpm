@@ -104,7 +104,7 @@
             <!-- Brand Logo -->
             <a href="" class="brand-link">
                 <center><img class="logo responsive img-fluid" src="{{asset('public/images/logo.jpg')}}"></center>
-
+   
             </a>
 
             <!-- Sidebar -->
