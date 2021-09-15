@@ -26,13 +26,16 @@
                      </div>
                      <!-- /.card-header -->
                      <div class="card-body">
-                         <table class="table table-striped table-bordered dt-responsive nowrap data-table dataTable display compact"  cellspacing="0" width="100%">
+                         <table class="table table-striped table-bordered dt-responsive nowrap data-table dataTable display compact" cellspacing="0" width="100%">
                              <thead>
                                  <tr>
                                      <th style="width: 10px">#</th>
                                      <th>Id</th>
-                                     <th>Name</th>
-                                     <th>Plant Name</th>
+                                     <th>Item</th>
+                                     <th>Bin</th>
+                                     <th>Weighing machine</th>
+                                     <th>Plant</th>
+                                     <th>user</th>
                                      <th>Action</th>
                                  </tr>
                              </thead>
@@ -47,8 +50,11 @@
                         $rurl = route('weighing.weighing_list');
                         $columns =  "{data: null, name: 'weight_scale_id'},
                                 {data: 'weight_scale_id', name: 'weight_scale_id'},
-                                {data: 'name', name: 'name'},
+                                {data: 'item_name', name: 'item_name'},
+                                {data: 'bin_name', name: 'bin_name'},
+                                {data: 'weightScale_name', name: 'weightScale_name'},
                                 {data: 'plant_name', name: 'plant_name'},
+                                {data: 'user_name', name: 'user_name'},
                                 {data: 'action', name: 'action', orderable: true, searchable: true}";
                         echo setDataTable($rurl, $columns);
                         ?>

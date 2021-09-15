@@ -43,7 +43,7 @@
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
             <center></center>
-            <img class="animation__shake" src="{{asset('public/images/logo.jpg')}}" alt="AdminLTELogo" height="60" width="auto">
+            <img class="" src="{{asset('public/images/logo.jpg')}}" alt="AdminLTELogo" height="60" width="auto">
         </div>
 
         <!-- Navbar -->

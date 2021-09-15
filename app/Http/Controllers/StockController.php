@@ -17,24 +17,34 @@ class StockController extends Controller
     {
         if (session()->has('Admin_login')) {
             if ($request->ajax()) {
-                $data = Stock::with('plant')->get();
+                $data = Stock::with('plant','item','bin','admin', 'weightScale')->get();
                 return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function ($row) {
-
+                        if ($row->is_active == 1) {
                         $nm = route('stock.edit_stock', $row->stock_Id);
                         $btn = '<a href="' . $nm . '"> <span class="badge bg-primary">Edit</span></a>&nbsp;&nbsp;';
-                        if ($row->is_active == 1) {
                             $nm = route('stock.block_stock', $row->stock_Id);
-                            $btn .= '<a href="' . $nm . '"><span class="badge bg-danger">Block</span></a>';
-                        } else {
-                            $nm = route('stock.unblock_stock', $row->stock_Id);
-                            $btn .= '<a href="' . $nm . '"><span class="badge bg-success">Unblock</span></a>';
+                            $btn .= '<a href="' . $nm . '"><span class="badge bg-danger">Delete</span></a>';
+                        }else{
+                          $btn = ' <span class="badge bg-secondary">Deleted</span>';
                         }
                         return $btn;
                     })
                     ->addColumn('plant_name', function ($row) {
                         return $row->plant->name;
+                    })
+                    ->addColumn('bin_name', function ($row) {
+                        return $row->bin->name;
+                    })
+                    ->addColumn('item_name', function ($row) {
+                        return $row->item->name;
+                    })
+                    ->addColumn('user_name', function ($row) {
+                        return $row->user->name;
+                    })
+                    ->addColumn('weightScale_name', function ($row) {
+                        return $row->weightScale->name;
                     })
                     ->rawColumns(['action'])
                     ->make(true);
