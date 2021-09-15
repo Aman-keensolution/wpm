@@ -53,15 +53,18 @@ class WeighingController extends Controller
 
     public function store(Request $request)
     {
+        $user_id= session()->get('Admin_id');
         $WeightScale = new WeightScale;
         $WeightScale->name = $request->name;
         $WeightScale->plant_id = $request->plant_id;
+        $WeightScale->user_id = $user_id;
+
         $WeightScale->save();
         if ($WeightScale) {
             return redirect('weighing_list');
         } else {
             return back()->with('Fail', 'Something went wrong');
-        }
+         }
     }
 
     public function edit_weighing(Request $request)

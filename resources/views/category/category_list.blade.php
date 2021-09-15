@@ -31,7 +31,7 @@
                                  <tr>
                                     <th style="width: 10px">#</th>
                                     <th>Id</th>
-                                     <th>Category-Name</th>
+                                     <th>Category Name</th>
                                      <th>Action</th>
                                  </tr>
                              </thead>
