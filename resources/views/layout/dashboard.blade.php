@@ -103,8 +103,8 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="" class="brand-link">
-                <img src="{{asset('public/assets/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">ICS</span>
+                <center><img class="logo responsive img-fluid" src="{{asset('public/images/logo.jpg')}}"></center>
+
             </a>
 
             <!-- Sidebar -->
