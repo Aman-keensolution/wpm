@@ -14,7 +14,7 @@
              <div class="col-md-12">
                  <div class="card card-primary">
                      <div class="card-header">
-                         <h3 class="card-title">Update Sub-Category</h3>
+                         <h3 class="card-title">Update Sub Category</h3>
                      </div>
                      <form action="{{route('update_sub_category',$category_list['cat_id'])}}" method="post">
                          @csrf
@@ -24,7 +24,7 @@
                                  <input type="text" name="name" class="form-control" value="{{$category_list['name']}}">
                              </div>
                              <div class="form-group">
-                                 <label for="role">Sub-Category</label>
+                                 <label for="role">Sub Category</label>
                                  <select name="p_id" id="p_id" class="form-control">
                                      @foreach( $all_category as $category)
                                      <option @if($category_list->p_id == $category->cat_id) selected @endif value="{{$category->cat_id}}">{{$category->name}}</option>

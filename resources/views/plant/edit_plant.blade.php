@@ -20,12 +20,12 @@
                          @csrf
                          <div class="card-body">
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Plant-Name</label>
+                                 <label for="exampleInputEmail1">Plant Name</label>
                                  <input type="text" name="name" class="form-control" value="{{$plant_data['name']}}" placeholder="Enter Plant name">
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Plant-address</label>
-                                 <input type="text" name="plant_address" class="form-control" value="{{$plant_data['plant_address']}}" placeholder="Enter Plant-address">
+                                 <label for="exampleInputEmail1">Plant address</label>
+                                 <input type="text" name="plant_address" class="form-control" value="{{$plant_data['plant_address']}}" placeholder="Enter Plant address">
                              </div>
                          </div>
                          <div class="card-footer">

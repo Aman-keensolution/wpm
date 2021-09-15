@@ -19,7 +19,7 @@ class WeighingController extends Controller
                     ->addColumn('action', function ($row) {
 
                         $nm = route('weighing.edit_weighing', $row->weight_scale_id);
-                        $btn = '<a href="' . $nm . '"> <span class="badge bg-primary">Edit</span></a>|';
+                        $btn = '<a href="' . $nm . '"> <span class="badge bg-primary">Edit</span></a>&nbsp;&nbsp;';
                         if ($row->is_active == 1) {
                             $nm = route('weighing.block_weighing', $row->weight_scale_id);
                             $btn .= '<a href="' . $nm . '"><span class="badge bg-danger">Block</span></a>';

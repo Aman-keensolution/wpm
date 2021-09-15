@@ -15,7 +15,7 @@
              <div class="col-md-12">
                  <div class="card">
                      <div class="card-header">
-                         <h3 class="card-title">Bin-list</h3>
+                         <h3 class="card-title">Bin list</h3>
                          <div class="card-tools">
                              <div class="input-group input-group-sm" style="width: 150px;">
                                  <button type="button" class="btn btn-block btn-outline-primary">
@@ -31,9 +31,9 @@
                                 <tr>
                                      <th style="width: 10px">#</th>
                                      <th>Id</th>
-                                     <th>Bin-Name</th>
-                                     <th>Plant-Name</th>
-                                     <th>Bin-weight</th>
+                                     <th>Bin Name</th>
+                                     <th>Plant Name</th>
+                                     <th>Bin weight</th>
                                      <th>Action</th>
                                  </tr>
                              </thead>

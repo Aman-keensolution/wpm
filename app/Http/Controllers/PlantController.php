@@ -18,7 +18,7 @@ class PlantController extends Controller
                     ->addColumn('action', function ($row) {
 
                         $nm = route('plant.edit_plant', $row->plant_id);
-                        $btn = '<a href="' . $nm . '"> <span class="badge bg-primary">Edit</span></a>|';
+                        $btn = '<a href="' . $nm . '"> <span class="badge bg-primary">Edit</span></a>&nbsp;&nbsp;';
                         if ($row->is_active == 1) {
                             $nm = route('plant.block_plant', $row->plant_id);
                             $btn .= '<a href="' . $nm . '"><span class="badge bg-danger">Block</span></a>';

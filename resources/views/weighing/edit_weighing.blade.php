@@ -24,7 +24,7 @@
                                  <input type="text" name="name" class="form-control" value="{{$WeightScaledata['name']}}" placeholder="Enter name">
                              </div>
                              <div class="form-group">
-                                 <label for="role">Plant-name</label>
+                                 <label for="role">Plant name</label>
                                  <select name="plant_id" id="plant_id" class="form-control">
                                      @foreach( $all_plant as $plant)
                                      <option @if($WeightScaledata->plant_id == $plant->plant_id) selected @endif value="{{$plant->plant_id}}">{{$plant->name}}</option>
