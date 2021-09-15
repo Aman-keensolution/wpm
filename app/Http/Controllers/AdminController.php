@@ -31,6 +31,7 @@ class AdminController extends Controller
        if(isset($result['0']->user_id)){
             $request->session()->put('Admin_login',true);
             $request->session()->put('Admin_id',$result['0']->user_id);
+            $request->session()->put('user_id', $result['0']->user_id);
             if($result['0']->role == 1){
                 return redirect('dashboard');
             }else{

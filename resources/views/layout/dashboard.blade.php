@@ -136,7 +136,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{route('category.sub_category_list')}}" class="nav-link">
-                                        <p>Sub-Category</p>
+                                        <p>Sub Category</p>
                                     </a>
                                 </li>
                             </ul>
