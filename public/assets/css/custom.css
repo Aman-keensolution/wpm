@@ -26,3 +26,8 @@ table.dataTable>thead .sorting:after, table.dataTable>thead .sorting_asc:after, 
 
     padding: 0 20px 0 8px;
 }
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 0;
+    margin-left: -1px;
+}
