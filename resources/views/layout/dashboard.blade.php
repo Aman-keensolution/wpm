@@ -104,7 +104,6 @@
             <!-- Brand Logo -->
             <a href="" class="brand-link">
                 <center><img class="logo responsive img-fluid" src="{{asset('public/images/logo.jpg')}}"></center>
-   
             </a>
 
             <!-- Sidebar -->
@@ -159,6 +158,11 @@
                         <li class="nav-item">
                             <a href="{{route('bin.bin_list')}}" class="nav-link">
                                 <p>Bin Mangement</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('stock.stock_list')}}" class="nav-link">
+                                <p>Stock Mangement</p>
                             </a>
                         </li>
                         <li class="nav-item">
