@@ -6,6 +6,7 @@ use App\Http\Controllers\BinController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\PlantController;
 use App\Http\Controllers\WeighingController;
+use App\Http\Controllers\StockController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -90,5 +91,14 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::post('update_weighing/{weight_scale_id}', [WeighingController::class, 'update_weighing'])->name('update_weighing');
     Route::get('block_weighing/{weight_scale_id}', [WeighingController::class, 'block_weighing'])->name('weighing.block_weighing');
     Route::get('unblock_weighing/{weight_scale_id}', [WeighingController::class, 'unblock_weighing'])->name('weighing.unblock_weighing');
+
+                            //StockController
+    Route::get('stock_list', [StockController::class, 'stock_list'])->name('stock.stock_list');
+    Route::get('add_stock', [StockController::class, 'add_stock'])->name('stock.add_stock');
+    Route::post('stock/store', [StockController::class, 'store'])->name('stock.store');
+    Route::get('edit_stock/{stock_Id}', [StockController::class, 'edit_stock'])->name('stock.edit_stock');
+    Route::post('update_stock/{stock_Id}', [StockController::class, 'update_stock'])->name('update_stock');
+    Route::get('block_stock/{stock_Id}', [StockController::class, 'block_stock'])->name('stock.block_stock');
+    Route::get('unblock_stock/{stock_Id}', [StockController::class, 'unblock_stock'])->name('stock.unblock_stock');
 });
 

@@ -43,8 +43,23 @@ class Stock extends Model
     protected $casts = [
     ];
 
-    // public function category()
-    // {
-    //     return $this->hasOne(UserInfo::class, 'user_id', 'user_id');
-    // }
+    public function plant()
+    {
+        return $this->hasOne(Plant::class, 'plant_id', 'plant_id');
+    }
+
+    public function bin()
+    {
+        return $this->hasOne(Bin::class, 'bin_id', 'bin_id');
+    }
+
+    public function item()
+    {
+        return $this->hasOne(Item::class, 'item_id', 'item_id');
+    }
+
+    public function admin()
+    {
+        return $this->hasOne(Admin::class, 'user_id', 'user_id');
+    }
 }
