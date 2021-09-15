@@ -13,7 +13,7 @@
      <div class="container-fluid">
          <div class="row">
              <div class="col-md-12">
-                 <div class="card card-primary">
+                 <div class="card card-secondary">
                      <div class="card-header">
                          <h3 class="card-title">Add New Stock</h3>
                      </div>
@@ -88,7 +88,7 @@
  </section> -->
  <section class="content">
      <div class="container-fluid">
-         <div class="card card-primary">
+         <div class="card card-secondary">
              <div class="card-header">
                  <h3 class="card-title">Add New Stock</h3>
              </div>
@@ -114,16 +114,12 @@
                                  </select>
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Date</label>
-                                 <input type="date" name="assign_date" class="form-control">
-                             </div>
-                             <div class="form-group">
-                                 <label for="exampleInputEmail1">Batch ID</label>
-                                 <input type="text" name="batch_id" class="form-control" placeholder="Enter Batch ID">
-                             </div>
-                             <div class="form-group">
-                                 <label for="exampleInputEmail1">Total Weight</label>
-                                 <input type="text" name="total_weight" class="form-control" placeholder="Enter Total Weight">
+                                 <label for="role">Weighing machine</label>
+                                 <select name="assigned_weight_scale_id" id="assigned_weight_scale_id" class="form-control">
+                                     @foreach( $all_WeightScale as $WeightScale)
+                                     <option value="{{$WeightScale->weight_scale_id}}">{{$WeightScale->name}}</option>
+                                     @endforeach
+                                 </select>
                              </div>
                          </div>
 
@@ -143,18 +139,6 @@
                                      <option value="{{$admin->user_id}}">{{$admin->name}}</option>
                                      @endforeach
                                  </select>
-                             </div>
-                             <div class="form-group">
-                                 <label for="exampleInputEmail1">Net Weight</label>
-                                 <input type="text" name="net_weight" class="form-control" placeholder="Enter Net Weigh">
-                             </div>
-                             <div class="form-group">
-                                 <label for="exampleInputEmail1">Bin Weight</label>
-                                 <input type="text" name="bin_weight" class="form-control" placeholder="Enter Bin Weight">
-                             </div>
-                             <div class="form-group">
-                                 <label for="exampleInputEmail1">Quantity</label>
-                                 <input type="text" name="counted_quantity" class="form-control" placeholder="Enter Quantity">
                              </div>
                          </div>
                      </div>

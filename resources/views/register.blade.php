@@ -19,7 +19,7 @@
 <body class="hold-transition register-page">
     <div class="register-box">
 
-        <div class="card">
+        <div class="card card-secondary">
             <div class="card-body register-card-body">
                 <p class="login-box-msg"><b>Admin</b></p>
 

@@ -62,4 +62,9 @@ class Stock extends Model
     {
         return $this->hasOne(Admin::class, 'user_id', 'user_id');
     }
+
+    public function weightScale()
+    {
+        return $this->hasOne(WeightScale::class, 'weight_scale_id', 'weight_scale_id');
+    }
 }

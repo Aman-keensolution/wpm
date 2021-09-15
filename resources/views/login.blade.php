@@ -22,7 +22,7 @@
             <a href="../../index2.html"><b>Admin</b>LTE</a>
         </div> -->
         <!-- /.login-logo -->
-        <div class="card">
+        <div class="card card-secondary">
             <div class="card-body login-card-body">
                 <center><img class="logo responsive img-fluid" src="{{asset('public/images/logo.jpg')}}"></center>
                 <p class="login-box-msg"><b>Admin</b></p>

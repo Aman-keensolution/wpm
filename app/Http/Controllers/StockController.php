@@ -8,6 +8,7 @@ use App\Models\Plant;
 use App\Models\Item;
 use App\Models\Bin;
 use App\Models\Admin;
+use App\Models\WeightScale;
 use DataTables;
 
 class StockController extends Controller
@@ -50,8 +51,9 @@ class StockController extends Controller
             $all_plant = Plant::all();
             $all_bin = Bin::all();
             $all_item = Item::all();
+            $all_WeightScale = WeightScale::all();
             $all_user = Admin::where('role', 2)->get();
-            return view('stock.add_stock')->with(['all_plant' => $all_plant, 'all_item' => $all_item, 'all_bin' => $all_bin, 'all_user' => $all_user]);
+            return view('stock.add_stock')->with(['all_plant' => $all_plant, 'all_item' => $all_item, 'all_bin' => $all_bin, 'all_user' => $all_user, 'all_WeightScale' => $all_WeightScale]);
         } else {
             return redirect('admin');
         }
