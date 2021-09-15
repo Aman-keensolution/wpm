@@ -82,15 +82,16 @@ use Carbon\Carbon;
               processing: true,
               serverSide: true,
               fixedHeader: true,
+              \"fnRowCallback\": function( nRow, aData, iDisplayIndex ) {
+                var index = iDisplayIndex +1;
+                $('td:eq(0)',nRow).html(index);
+                return nRow; 
+              },
               \"dom\": '<\"top\"f>rt<\"bottom\"ilp><\"clear\">',
               ajax: '".$rurl."',
               columns: [".$columns."]
           });
-          table.on( 'order.dt search.dt', function () {
-            table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-                cell.innerHTML = i+1;
-            } );
-        } ).draw();
+          
         });
         
         
