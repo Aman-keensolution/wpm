@@ -39,7 +39,7 @@ class CategoryController extends Controller
                         ->addIndexColumn()
                         ->addColumn('action', function($row){
                                $nm=route('category.edit_sub_category',$row->cat_id);
-                               $btn = '<a href="'.$nm.'"> <span class="badge bg-primary">Edit</span></a>' ;
+                               $btn = '<a href="'.$nm. '"> <span class="badge bg-primary">Edit</span></a>&nbsp;&nbsp;' ;
                                 if($row->is_active==1){
                                      $nm=route('category.block_category',$row->cat_id);
                                      $btn .= '<a href="'.$nm.'"><span class="badge bg-danger">Block</span></a>';

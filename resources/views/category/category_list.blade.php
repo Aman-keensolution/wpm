@@ -15,7 +15,7 @@
              <div class="col-md-12">
                  <div class="card">
                      <div class="card-header">
-                         <h3 class="card-title">Category-list</h3>
+                         <h3 class="card-title">Category list</h3>
                          <div class="card-tools">
                              <div class="input-group input-group-sm" style="width: 150px;">
                                  <button type="button" class="btn btn-block btn-outline-primary">

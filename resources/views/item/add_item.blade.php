@@ -29,7 +29,7 @@
                                  <input type="number" name="item_no" class="form-control" placeholder="Enter Item number">
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputPassword1">Item-Avg Weight</label>
+                                 <label for="exampleInputPassword1">Item Avg Weight</label>
                                  <input type="number" name="item_avg_weight" class="form-control" placeholder="Enter Weight">
                              </div>
                              <div class="form-group">

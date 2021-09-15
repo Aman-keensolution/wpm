@@ -21,11 +21,11 @@
                          @csrf
                          <div class="card-body">
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Bin-Name</label>
+                                 <label for="exampleInputEmail1">Bin Name</label>
                                  <input type="text" name="name" class="form-control" placeholder="Bin name">
                              </div>
                              <div class="form-group">
-                                 <label for="role">Plant-name</label>
+                                 <label for="role">Plant name</label>
                                  <?php $p_arr=arrayPlant();?>
                                  <select name="plant_id" id="plant_id" class="form-control">
                                      @foreach( $p_arr as $plant)
@@ -34,7 +34,7 @@
                                  </select>
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Bin-Weight</label>
+                                 <label for="exampleInputEmail1">Bin Weight</label>
                                  <input type="number" name="bin_weight" class="form-control" placeholder="Bin Weight">
                              </div>
                          </div>

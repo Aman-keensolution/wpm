@@ -117,7 +117,7 @@ class AdminController extends Controller
                         ->addIndexColumn()
                         ->addColumn('action', function($row){
                                 $nm=route('admin.edit_user',$row->user_id);
-                               $btn = '<a href="'.$nm.'"> <span class="badge bg-primary">Edit</span></a>|' ;
+                               $btn = '<a href="'.$nm. '"> <span class="badge bg-primary">Edit</span></a>&nbsp;&nbsp;';
                                if($row->is_active==1){
                                     $nm=route('admin.block_user',$row->user_id);
                                     $btn .= '<a href="'.$nm.'"><span class="badge bg-danger">Block</span></a>';

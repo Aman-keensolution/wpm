@@ -19,7 +19,7 @@ class BinController extends Controller
                         ->addColumn('action', function($row){
                             
                             $nm=route('bin.edit_bin',$row->bin_id);
-                           $btn = '<a href="'.$nm.'"> <span class="badge bg-primary">Edit</span></a>|' ;
+                           $btn = '<a href="'.$nm. '"> <span class="badge bg-primary">Edit</span></a>&nbsp;&nbsp;' ;
                            if($row->is_active==1){
                                 $nm=route('bin.block_bin',$row->bin_id);
                                 $btn .= '<a href="'.$nm.'"><span class="badge bg-danger">Block</span></a>';
