@@ -59,9 +59,11 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         $Item = new Item;
-        $Item->item_name = $request->item_name;
+        $Item->name = $request->name;
         $Item->item_no = $request->item_no;
+        $Item->price = $request->price;
         $Item->item_avg_weight = $request->item_avg_weight;
+        $Item->unit_id = $request->unit_id;
         $Item->batch_no = $request->batch_no;
         $Item->cat_id = $request->cat_id;
         $Item->plant_id = $request->plant_id;
@@ -90,10 +92,12 @@ class ItemController extends Controller
     public function update_item(Request $request)
     {
         $data = Item::find($request->item_id);
-        $data->item_name = $request->item_name;
+        $data->name = $request->name;
         $data->item_no = $request->item_no;
+        $data->price = $request->price;
         $data->item_avg_weight = $request->item_avg_weight;
         $data->batch_no = $request->batch_no;
+        $data->unit_id = $request->unit_id;
         $data->cat_id = $request->cat_id;
         $data->plant_id = $request->plant_id;
         $data->manfactring_date = $request->manfactring_date;

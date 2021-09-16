@@ -19,7 +19,7 @@ class Item extends Model
      */
     protected $fillable = [
         "item_no",
-        "item_name",
+        "name",
         "cat_id",
         "item_avg_weight",
         "batch_no",

@@ -19,47 +19,49 @@
                          <div class="card-tools">
                              <div class="input-group input-group-sm" style="width: 150px;">
                                  <button type="button" class="btn btn-block btn-warning">
-                                     <a href="add_weighing">Add Weighing Scale</a>
+                                     <a href="add_weighing">Add New</a>
                                  </button>
                              </div>
                          </div>
                      </div>
                      <!-- /.card-header -->
                      <div class="card-body">
-                         <table class="table table-striped table-bordered dt-responsive nowrap data-table dataTable display compact"  cellspacing="0" width="100%">
-                             <thead>
-                                 <tr>
-                                     <th style="width: 10px">#</th>
-                                     <th>Id</th>
-                                     <th>Name</th>
-                                     <th>Weighing Scale No.</th>
-                                     <th>Plant Name</th>
-                                     <th>User Name</th>
-                                     <th>Action</th>
-                                 </tr>
-                             </thead>
-                             <tbody>
+                         <div class="table-responsive">
+                             <table class="table table-striped table-bordered dt-responsive nowrap data-table dataTable display compact" cellspacing="0" width="100%">
+                                 <thead>
+                                     <tr>
+                                         <th style="width: 10px">#</th>
+                                         <th>Id</th>
+                                         <th>Name</th>
+                                         <th>Weighing Scale No.</th>
+                                         <th>Plant Name</th>
+                                         <th>User Name</th>
+                                         <th>Action</th>
+                                     </tr>
+                                 </thead>
+                                 <tbody>
 
-                             </tbody>
-                         </table>
-                     </div>
+                                 </tbody>
+                             </table>
+                         </div>
+                         </div>
 
-                     <!-- /.card-body -->
-                     <?php
-                        $rurl = route('weighing.weighing_list');
-                        $columns =  "{data: null, name: 'weight_scale_id'},
+                         <!-- /.card-body -->
+                         <?php
+                            $rurl = route('weighing.weighing_list');
+                            $columns =  "{data: null, name: 'weight_scale_id'},
                                 {data: 'weight_scale_id', name: 'weight_scale_id'},
                                 {data: 'name', name: 'name'},
                                 {data: 'weight_scale_no', name: 'weight_scale_no'},
                                 {data: 'plant_name', name: 'plant_name'},
                                 {data: 'user_name', name: 'user_name'},
                                 {data: 'action', name: 'action', orderable: true, searchable: true}";
-                        echo setDataTable($rurl, $columns);
-                        ?>
+                            echo setDataTable($rurl, $columns);
+                            ?>
+                     </div>
                  </div>
              </div>
-         </div>
-     </div><!-- /.container-fluid -->
+         </div><!-- /.container-fluid -->
  </section>
 
  @stop

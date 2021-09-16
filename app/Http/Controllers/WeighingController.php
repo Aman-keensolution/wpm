@@ -60,6 +60,7 @@ class WeighingController extends Controller
         $user_id= session()->get('Admin_id');
         $WeightScale = new WeightScale;
         $WeightScale->name = $request->name;
+        $WeightScale->weight_scale_no = $request->weight_scale_no;
         $WeightScale->plant_id = $request->plant_id;
         $WeightScale->user_id = $user_id;
 
@@ -88,6 +89,7 @@ class WeighingController extends Controller
         $data = WeightScale::find($request->weight_scale_id);
         $data->name = $request->name;
         $data->plant_id = $request->plant_id;
+        $data->weight_scale_no = $request->weight_scale_no;
         $data->save();
         return redirect('weighing_list');
     }

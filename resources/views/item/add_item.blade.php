@@ -18,32 +18,33 @@
                          <h3 class="card-title">Add New Item</h3>
                      </div>
                      <form action="{{route('item.store')}}" method="post">
-                         @csrf  
+                         @csrf
                          <div class="card-body">
                              <div class="form-group">
                                  <label for="exampleInputEmail1">Item Name</label>
-                                 <input type="text" name="item_name" class="form-control" placeholder="Enter Item name">
+                                 <input type="text" name="name" class="form-control" placeholder="Enter Item name">
                              </div>
                              <div class="form-group">
-                                <label for="exampleInputPassword1">Item Number</label>
-                                <input type="number" name="item_no" class="form-control" placeholder="Enter Item number">
-                            </div><div class="form-group">
-                                <label for="exampleInputPassword1">Item Price</label>
-                                <input type="number" name="price" class="form-control" placeholder="Enter Item Price">
-                            </div>
+                                 <label for="exampleInputPassword1">Item Number</label>
+                                 <input type="number" name="item_no" class="form-control" placeholder="Enter Item number">
+                             </div>
                              <div class="form-group">
-                                <label for="exampleInputPassword1">Item Avg Weight</label>
-                                <input type="number" name="item_avg_weight" class="form-control" placeholder="Enter Weight">
-                            </div>
-                            <div class="form-group"><?php $u_arr=arrayUnit();?>
-                                <label for="unit">Item Weight Unit</label>
-                                <select name="unit" class="form-control" placeholder="Enter Unit">
-                                    @foreach( $u_arr as $unit)
-                                    <option value="{{$unit['unit_id']}}">{{$unit['name']}}</option>
-                                 @endforeach
-                            </select>
-                            </div> 
-                           <div class="form-group">
+                                 <label for="exampleInputPassword1">Item Price</label>
+                                 <input type="number" name="price" class="form-control" placeholder="Enter Item Price">
+                             </div>
+                             <div class="form-group">
+                                 <label for="exampleInputPassword1">Item Avg Weight</label>
+                                 <input type="number" name="item_avg_weight" class="form-control" placeholder="Enter Weight">
+                             </div>
+                             <div class="form-group"><?php $u_arr = arrayUnit(); ?>
+                                 <label for="unit_id">Item Weight Unit</label>
+                                 <select name="unit_id" class="form-control" placeholder="Enter Unit">
+                                     @foreach( $u_arr as $unit)
+                                     <option value="{{$unit['unit_id']}}">{{$unit['name']}}</option>
+                                     @endforeach
+                                 </select>
+                             </div>
+                             <div class="form-group">
                                  <label for="exampleInputPassword1">Batch Number</label>
                                  <input type="number" name="batch_no" class="form-control" placeholder="Enter Batch number">
                              </div>

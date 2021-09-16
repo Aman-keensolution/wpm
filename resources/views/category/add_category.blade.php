@@ -27,6 +27,7 @@
                              <div class="form-group">
                                  <label for="role">Parent Category</label>
                                  <select name="p_id" id="p_id" class="form-control">
+                                     <option value="0" >Make as a Parent Category</option>
                                      @foreach( $all_category as $category)
                                      <option value="{{$category->cat_id}}">{{$category->name}}</option>
                                      @endforeach

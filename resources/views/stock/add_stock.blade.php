@@ -23,7 +23,7 @@
                                  <label for="role">Item</label>
                                  <select name="item_id" id="item_id" class="form-control">
                                      @foreach( $all_item as $item)
-                                     <option value="{{$item->item_id}}">{{$item->item_name}}</option>
+                                     <option value="{{$item->item_id}}">{{$item->name}}</option>
                                      @endforeach
                                  </select>
                              </div>
@@ -45,7 +45,7 @@
                              </div>
                              <div class="form-group">
                                  <label for="role">User</label>
-                                 <select name="assigned_user_id" id="assigned_user_id" class="form-control">
+                                 <select name="user_id" id="user_id" class="form-control">
                                      @foreach( $all_user as $admin)
                                      <option value="{{$admin->user_id}}">{{$admin->name}}</option>
                                      @endforeach
@@ -95,68 +95,67 @@
                  @csrf
                  <div class="card-body">
                      <div class="row">
-                             <div class="form-group col-md-6">
-                                 <label for="role">Item</label>
-                                 <select name="item_id" id="item_id" class="form-control">
-                                     @foreach( $all_item as $item)
-                                     <option value="{{$item->item_id}}">{{$item->item_name}}</option>
-                                     @endforeach
-                                 </select>
-                             </div>
-                             <div class="form-group col-md-6">
-                                 <label for="role">Plant</label>
-                                 <select name="plant_id" id="plant_id" class="form-control">
-                                     @foreach( $all_plant as $plant)
-                                     <option value="{{$plant->plant_id}}">{{$plant->name}}</option>
-                                     @endforeach
-                                 </select>
-                             </div>
-                             <div class="form-group col-md-6">
-                                 <label for="role">Bin</label>
-                                 <select name="bin_id" id="bin_id" class="form-control">
-                                     @foreach( $all_bin as $bin)
-                                     <option value="{{$bin->bin_id}}">{{$bin->name}}</option>
-                                     @endforeach
-                                 </select>
-                             </div>
-                             <div class="form-group col-md-6">
-                                 <label for="role">Weighing machine</label>
-                                 <select name="assigned_weight_scale_id" id="assigned_weight_scale_id" class="form-control">
-                                     @foreach( $all_WeightScale as $WeightScale)
-                                     <option value="{{$WeightScale->weight_scale_id}}">{{$WeightScale->name}}</option>
-                                     @endforeach
-                                 </select>
-                             </div>
-                             <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Batch ID</label>
-                                <input type="text" name="batch_id" class="form-control" placeholder="Enter Batch ID">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Gross Weight</label>
-                                <input type="text" name="total_weight" class="form-control" placeholder="Enter Total Weight">
-                            </div>
-                            <div class="form-group col-md-6""><?php $u_arr=arrayUnit();?>
-                                <label for="unit">Gross Weight Unit</label>
-                                <select name="unit" class="form-control" placeholder="Enter Unit">
-                                    @foreach( $u_arr as $unit)
-                                    <option value="{{$unit['unit_id']}}">{{$unit['name']}}</option>
+                         <div class="form-group col-md-6">
+                             <label for="role">Item</label>
+                             <select name="item_id" id="item_id" class="form-control">
+                                 @foreach( $all_item as $item)
+                                 <option value="{{$item->item_id}}">{{$item->name}}</option>
                                  @endforeach
-                            </select>
-                            </div> 
-                             <div class="form-group col-md-6">
-                                 <label for="exampleInputEmail1">Bin Weight</label>
-                                 <input type="text" readonly name="bin_weight" class="form-control" placeholder="Calculate Bin Weight">
-                             </div>
-
-                             <div class="form-group col-md-6">
-                                 <label for="exampleInputEmail1">Net Weight</label>
-                                 <input type="text" readonly name="net_weight" class="form-control" placeholder="Calculate Net Weigh">
-                             </div>
-                             <div class="form-group col-md-6">
-                                 <label for="exampleInputEmail1">Quantity</label>
-                                 <input type="text" readonly name="counted_quantity" class="form-control" placeholder="Calculate Quantity">
-                             </div>
-                        </div>
+                             </select>
+                         </div>
+                         <div class="form-group col-md-6">
+                             <label for="role">Plant</label>
+                             <select name="plant_id" id="plant_id" class="form-control">
+                                 @foreach( $all_plant as $plant)
+                                 <option value="{{$plant->plant_id}}">{{$plant->name}}</option>
+                                 @endforeach
+                             </select>
+                         </div>
+                         <div class="form-group col-md-6">
+                             <label for="role">Bin</label>
+                             <select name="bin_id" id="bin_id" class="form-control">
+                                 @foreach( $all_bin as $bin)
+                                 <option value="{{$bin->bin_id}}">{{$bin->name}}</option>
+                                 @endforeach
+                             </select>
+                         </div>
+                         <div class="form-group col-md-6">
+                             <label for="role">Weighing machine</label>
+                             <select name="weight_scale_id" id="weight_scale_id" class="form-control">
+                                 @foreach( $all_WeightScale as $WeightScale)
+                                 <option value="{{$WeightScale->weight_scale_id}}">{{$WeightScale->name}}</option>
+                                 @endforeach
+                             </select>
+                         </div>
+                         <div class="form-group col-md-6">
+                             <label for="exampleInputEmail1">Batch ID</label>
+                             <input type="text" name="batch_id" class="form-control" placeholder="Enter Batch ID">
+                         </div>
+                         <div class="form-group col-md-6">
+                             <label for="exampleInputEmail1">Gross Weight</label>
+                             <input type="text" name="gross_weight" class="form-control" placeholder="Enter Total Weight">
+                         </div>
+                         <div class="form-group col-md-6"">
+                                <label for=" unit_id">Gross Weight Unit</label>
+                             <select name="unit_id" class="form-control" placeholder="Enter Unit">
+                                 @foreach( $all_unit as $unit)
+                                 <option value="{{$unit['unit_id']}}">{{$unit['name']}}</option>
+                                 @endforeach
+                             </select>
+                         </div>
+                         <div class="form-group col-md-6">
+                             <label for="exampleInputEmail1">Bin Weight</label>
+                             <input type="text" readonly name="bin_weight" class="form-control" placeholder="Calculate Bin Weight">
+                         </div>
+                         <div class="form-group col-md-6">
+                             <label for="exampleInputEmail1">Net Weight</label>
+                             <input type="text" readonly name="net_weight" class="form-control" placeholder="Calculate Net Weigh">
+                         </div>
+                         <div class="form-group col-md-6">
+                             <label for="exampleInputEmail1">Quantity</label>
+                             <input type="text" readonly name="counted_quantity" class="form-control" placeholder="Calculate Quantity">
+                         </div>
+                     </div>
                      <div class="card-footer">
                          <button type="submit" class="btn btn-primary">Submit</button>
                      </div>
