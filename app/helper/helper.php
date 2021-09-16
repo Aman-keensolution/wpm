@@ -9,10 +9,10 @@ use App\Models\Bin;
 use App\Models\Category;
 use App\Models\Item;
 use App\Models\Plant;
+use App\Models\WeightScale;
+use App\Models\Unit;
 use App\Models\Stock;
 use App\Models\User;
-use App\Models\WeightScale;
-
 use Carbon\Carbon;
  
       function sendResponse($status, $msg, $res_code, $data=null)
@@ -118,4 +118,12 @@ use Carbon\Carbon;
     function arrayPlant()
     {
       return Plant::get()->toArray();
+    }
+    function arrayUnit()
+    {
+      return Unit::get()->toArray();
+    }
+    function arrayWeightScale()
+    {
+      return WeightScale::get()->toArray();
     }
