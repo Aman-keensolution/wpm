@@ -21,7 +21,7 @@
                          <div class="card-body">
                              <div class="row">
                                  <div class="form-group col-md-6">
-                                     <label for="role">Item</label>
+                                     <label for="item_id">Item</label>
                                      <select name="item_id" id="item_id" class="form-control">
                                          @foreach( $all_item as $item)
                                          <option @if($Stockdata->item_id == $item->item_id) selected @endif value="{{$item->item_id}}">{{$item->name}}</option>
@@ -29,7 +29,7 @@
                                      </select>
                                  </div>
                                  <div class="form-group col-md-6">
-                                     <label for="role">Plant</label>
+                                     <label for="plant_id">Plant</label>
                                      <select name="plant_id" id="plant_id" class="form-control">
                                          @foreach( $all_plant as $plant)
                                          <option @if($Stockdata->plant_id == $plant->plant_id) selected @endif value="{{$plant->plant_id}}">{{$plant->name}}</option>
@@ -37,7 +37,7 @@
                                      </select>
                                  </div>
                                  <div class="form-group col-md-6">
-                                     <label for="role">Bin</label>
+                                     <label for="bin_id">Bin</label>
                                      <select name="bin_id" id="bin_id" class="form-control">
                                          @foreach( $all_bin as $bin)
                                          <option @if($Stockdata->bin_id == $bin->bin_id) selected @endif value="{{$bin->bin_id}}">{{$bin->name}}</option>
@@ -45,7 +45,7 @@
                                      </select>
                                  </div>
                                  <div class="form-group col-md-6">
-                                     <label for="role">Weighing machine</label>
+                                     <label for="weight_scale_id">Weighing machine</label>
                                      <select name="weight_scale_id" id="weight_scale_id" class="form-control">
                                          @foreach( $all_WeightScale as $WeightScale)
                                          <option @if($Stockdata->weight_scale_id == $WeightScale->weight_scale_id) selected @endif value="{{$WeightScale->weight_scale_id}}">{{$WeightScale->name}}</option>
@@ -53,12 +53,12 @@
                                      </select>
                                  </div>
                                  <div class="form-group col-md-6">
-                                     <label for="exampleInputEmail1">Batch ID</label>
-                                     <input type="text" name="batch_id" value="{{$Stockdata['batch_id']}}" class="form-control" placeholder="Enter Batch ID">
+                                     <label for="batch_id">Batch ID</label>
+                                     <input type="text" name="batch_id" id="batch_id" value="{{$Stockdata['batch_id']}}" class="form-control" placeholder="Enter Batch ID">
                                  </div>
                                  <div class="form-group col-md-6">
-                                     <label for="exampleInputEmail1">Gross Weight</label>
-                                     <input type="text" name="gross_weight" value="{{$Stockdata['gross_weight']}}" class="form-control" placeholder="Enter Total Weight">
+                                     <label for="gross_weight">Gross Weight</label>
+                                     <input type="text" name="gross_weight" id="gross_weight" value="{{$Stockdata['gross_weight']}}" class="form-control" placeholder="Enter Total Weight">
                                  </div>
                                  <div class="form-group col-md-6""><?php $u_arr = arrayUnit(); ?>
                                 <label for=" unit_id">Gross Weight Unit</label>
@@ -69,16 +69,16 @@
                                      </select>
                                  </div>
                                  <div class="form-group col-md-6">
-                                     <label for="exampleInputEmail1">Bin Weight</label>
-                                     <input type="text" readonly name="bin_weight" value="{{$Stockdata['bin_weight']}}" class="form-control" placeholder="Calculate Bin Weight">
+                                     <label for="bin_weight">Bin Weight</label>
+                                     <input type="text" readonly name="bin_weight" id="bin_weight" value="{{$Stockdata['bin_weight']}}" class="form-control" placeholder="Calculate Bin Weight">
                                  </div>
                                  <div class="form-group col-md-6">
-                                     <label for="exampleInputEmail1">Net Weight</label>
-                                     <input type="text" readonly name="net_weight" value="{{$Stockdata['net_weight']}}" class="form-control" placeholder="Calculate Net Weigh">
+                                     <label for="net_weight">Net Weight</label>
+                                     <input type="text" readonly name="net_weight" id="net_weight" value="{{$Stockdata['net_weight']}}" class="form-control" placeholder="Calculate Net Weigh">
                                  </div>
                                  <div class="form-group col-md-6">
-                                     <label for="exampleInputEmail1">Quantity</label>
-                                     <input type="text" readonly name="counted_quantity" value="{{$Stockdata['counted_quantity']}}" class="form-control" placeholder="Calculate Quantity">
+                                     <label for="counted_quantity">Quantity</label>
+                                     <input type="text" readonly name="counted_quantity" id="counted_quantity" value="{{$Stockdata['counted_quantity']}}" class="form-control" placeholder="Calculate Quantity">
                                  </div>
                              </div>
                              <div class="card-footer">

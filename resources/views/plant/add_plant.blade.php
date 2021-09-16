@@ -21,12 +21,12 @@
                          @csrf
                          <div class="card-body">
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Plant Name</label>
-                                 <input type="text" name="name" class="form-control" placeholder="Enter Plant name">
+                                 <label for="name">Plant Name</label>
+                                 <input type="text" name="name" id="name" class="form-control" placeholder="Enter Plant name">
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Plant address</label>
-                                 <input type="text" name="plant_address" class="form-control" placeholder="Enter plant address">
+                                 <label for="plant_address">Plant address</label>
+                                 <input type="text" name="plant_address" id="plant_address" class="form-control" placeholder="Enter plant address">
                              </div>
                          </div>
                          <!-- /.card-body -->
