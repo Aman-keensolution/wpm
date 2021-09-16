@@ -20,8 +20,8 @@
                          @csrf
                          <div class="card-body">
                              <div class="form-group">
-                                 <label for="item_name">Item Name</label>
-                                 <input type="text" name="item_name" class="form-control" value="{{$itemdata['item_name']}}" >
+                                 <label for="name">Item Name</label>
+                                 <input type="text" name="name" class="form-control" value="{{$itemdata['name']}}" >
                              </div>
                              <div class="form-group">
                                  <label for="item_no">Item Number</label>
@@ -45,8 +45,8 @@
                                  <input type="text" name="item_avg_weight" class="form-control" value="{{$itemdata['item_avg_weight']}}">
                              </div>
                              <div class="form-group"><?php $u_arr=arrayUnit();?>
-                                <label for="unit">Item Weight Unit</label>
-                                <select name="unit" class="form-control" placeholder="Enter Unit">
+                                <label for="unit_id">Item Weight Unit</label>
+                                <select name="unit_id" class="form-control" placeholder="Enter Unit">
                                     @foreach( $u_arr as $unit)
                                     <option value="{{$unit['unit_id']}}" <?php if($unit['unit_id']==$itemdata['unit_id']){echo "selected";}?>>
                                         {{$unit['name']}}

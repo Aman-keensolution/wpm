@@ -21,12 +21,13 @@
                          @csrf
                          <div class="card-body">
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Category Name</label>
-                                 <input type="text" name="name" class="form-control" placeholder="Enter Category Name">
+                                 <label for="name">Category Name</label>
+                                 <input type="text" name="name" id="name" class="form-control" placeholder="Enter Category Name">
                              </div>
                              <div class="form-group">
-                                 <label for="role">Parent Category</label>
+                                 <label for="p_id">Parent Category</label>
                                  <select name="p_id" id="p_id" class="form-control">
+                                     <option value="0">Make as a Parent Category</option>
                                      @foreach( $all_category as $category)
                                      <option value="{{$category->cat_id}}">{{$category->name}}</option>
                                      @endforeach

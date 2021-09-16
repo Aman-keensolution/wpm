@@ -17,7 +17,7 @@ CREATE TABLE `bin_master` (
   `name` varchar(100) NOT NULL,
   `plant_id` int(10) unsigned NOT NULL,
   `bin_weight` int(10) unsigned NOT NULL,
-  `unit` int(5) unsigned NOT NULL,
+  `unit_id` int(5) unsigned NOT NULL,
   `is_active` tinyint(3) unsigned DEFAULT 1 COMMENT '1=active',
   `created_by` int(10) unsigned DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE `bin_master` (
   PRIMARY KEY (`bin_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `bin_master` (`bin_id`, `name`, `plant_id`, `bin_weight`, `unit`, `is_active`, `created_by`, `created_at`, `updated_at`, `updated_by`) VALUES
+INSERT INTO `bin_master` (`bin_id`, `name`, `plant_id`, `bin_weight`, `unit_id`, `is_active`, `created_by`, `created_at`, `updated_at`, `updated_by`) VALUES
 (2,	'bin demo',	3,	5,	0,	1,	NULL,	'2021-09-14 02:27:58',	'2021-09-14 08:26:36',	NULL),
 (3,	'bin demo 1',	3,	2,	0,	1,	NULL,	'2021-09-14 02:29:54',	'2021-09-14 02:30:51',	NULL),
 (4,	'bin demo2',	4,	3,	0,	1,	NULL,	'2021-09-14 02:30:06',	'2021-09-14 02:30:53',	NULL);
@@ -59,10 +59,10 @@ CREATE TABLE `item_master` (
   `item_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `item_no` int(10) unsigned NOT NULL,
   `price` int(10) unsigned NOT NULL,
-  `item_name` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `cat_id` int(10) unsigned NOT NULL,
   `item_avg_weight` int(5) unsigned NOT NULL,
-  `unit` int(5) unsigned NOT NULL,
+  `unit_id` int(5) unsigned NOT NULL,
   `batch_no` int(10) unsigned NOT NULL,
   `plant_id` int(10) unsigned NOT NULL,
   `manfactring_date` date NOT NULL,
@@ -74,7 +74,7 @@ CREATE TABLE `item_master` (
   PRIMARY KEY (`item_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `item_master` (`item_id`, `item_no`, `price`, `item_name`, `cat_id`, `item_avg_weight`, `unit`, `batch_no`, `plant_id`, `manfactring_date`, `is_active`, `created_by`, `created_at`, `updated_at`, `updated_by`) VALUES
+INSERT INTO `item_master` (`item_id`, `item_no`, `price`, `name`, `cat_id`, `item_avg_weight`, `unit_id`, `batch_no`, `plant_id`, `manfactring_date`, `is_active`, `created_by`, `created_at`, `updated_at`, `updated_by`) VALUES
 (1,	1,	0,	'Hv Terminals (Tranformers)',	2,	20,	0,	1,	2,	'2021-09-14',	1,	NULL,	'2021-09-14 06:40:09',	'2021-09-14 06:40:09',	NULL),
 (2,	2,	0,	'Chappe',	2,	20,	0,	2,	2,	'2021-09-14',	1,	NULL,	'2021-09-14 06:40:09',	'2021-09-14 06:40:09',	NULL),
 (3,	3,	0,	'Cu Lugge/ Connectors',	2,	20,	0,	3,	2,	'2021-09-14',	1,	NULL,	'2021-09-14 06:40:09',	'2021-09-14 06:40:09',	NULL),
@@ -126,11 +126,11 @@ CREATE TABLE `stock_master` (
   `item_id` int(10) unsigned NOT NULL,
   `bin_id` int(10) unsigned NOT NULL,
   `plant_id` int(10) unsigned NOT NULL,
-  `assigned_user_id` int(10) unsigned NOT NULL,
-  `assigned_weight_scale_id` int(10) unsigned NOT NULL,
+  `user_id` int(10) unsigned NOT NULL,
+  `weight_scale_id` int(10) unsigned NOT NULL,
   `assign_date` date NOT NULL,
   `batch_id` int(10) unsigned NOT NULL,
-  `unit` int(5) unsigned NOT NULL,
+  `unit_id` int(5) unsigned NOT NULL,
   `gross_weight` int(10) unsigned NOT NULL,
   `bin_weight` int(10) unsigned NOT NULL,
   `net_weight` int(10) unsigned NOT NULL,

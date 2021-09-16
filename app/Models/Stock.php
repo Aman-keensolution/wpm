@@ -20,7 +20,7 @@ class Stock extends Model
     protected $fillable = [
         "assign_date",
         "batch_id",
-        "total_weight",
+        "gross_weight",
         "net_weight",
         "bin_weight",
         "counted_quantity",
@@ -58,7 +58,7 @@ class Stock extends Model
         return $this->hasOne(Item::class, 'item_id', 'item_id');
     }
 
-    public function admin()
+    public function user()
     {
         return $this->hasOne(Admin::class, 'user_id', 'user_id');
     }
@@ -66,5 +66,10 @@ class Stock extends Model
     public function weightScale()
     {
         return $this->hasOne(WeightScale::class, 'weight_scale_id', 'weight_scale_id');
+    }
+
+    public function unit()
+    {
+        return $this->hasOne(Unit::class, 'unit_id', 'unit_id');
     }
 }

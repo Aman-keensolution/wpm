@@ -20,23 +20,23 @@
                          @csrf
                          <div class="card-body">
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Bin Name</label>
-                                 <input type="text" name="name" class="form-control" value="{{$bindata['name']}}" placeholder="Enter Bin name">
+                                 <label for="name">Bin Name</label>
+                                 <input type="text" name="name" id="name" class="form-control" value="{{$bindata['name']}}" placeholder="Enter Bin name">
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Plant Name</label>
-                                 <?php $p_arr=arrayPlant();?>
-                                 <select  name="plant_id" class="form-control"  placeholder="Enter Plant Name">
-                                     <?php foreach($p_arr as $p){?>
-                                        <option value="{{$p['plant_id']}}" <?php if($p['plant_id']==$bindata['plant_id']){echo "selected";}?>>
-                                            {{$p['name']}}
-                                        </option>
+                                 <label for="plant_id">Plant Name</label>
+                                 <?php $p_arr = arrayPlant(); ?>
+                                 <select name="plant_id" id="plant_id" class="form-control" placeholder="Enter Plant Name">
+                                     <?php foreach ($p_arr as $p) { ?>
+                                         <option value="{{$p['plant_id']}}" <?php if ($p['plant_id'] == $bindata['plant_id']) {
+                                                                                echo "selected";
+                                                                            } ?>>{{$p['name']}}</option>
                                      <?php } ?>
                                  </select>
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputPassword1">Bin Weight</label>
-                                 <input type="number" name="bin_weight" class="form-control" value="{{$bindata['bin_weight']}}" placeholder="Enter Bin Weight">
+                                 <label for="bin_weight">Bin Weight</label>
+                                 <input type="number" name="bin_weight" id="bin_weight" class="form-control" value="{{$bindata['bin_weight']}}" placeholder="Enter Bin Weight">
                              </div>
                          </div>
                          <div class="card-footer">

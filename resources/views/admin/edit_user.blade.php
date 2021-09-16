@@ -16,21 +16,21 @@
                      <div class="card-header">
                          <h3 class="card-title">Update User</h3>
                      </div>
-                     
+
                      <form action="{{route('admin.update_user',$userinfo['user_id'])}}" method="post">
                          @csrf
                          <div class="card-body">
                              <div class="form-group">
                                  <label for="exampleInputEmail1">Name</label>
-                                 <input type="text" name="name" class="form-control" value="{{$userinfo['name']}}" placeholder="Enter name">
+                                 <input type="text" name="name" id="name" class="form-control" value="{{$userinfo['name']}}" placeholder="Enter name">
                              </div>
                              <div class="form-group">
                                  <label for="exampleInputEmail1">Email address</label>
-                                 <input type="email" name="email" class="form-control" value="{{$userinfo['email']}}" placeholder="Enter email">
+                                 <input type="email" name="email" id="email" class="form-control" value="{{$userinfo['email']}}" placeholder="Enter email">
                              </div>
                              <div class="form-group">
                                  <label for="exampleInputPassword1">Mobile</label>
-                                 <input type="number" name="number" class="form-control" value="{{$userinfo['number']}}" placeholder="Enter number">
+                                 <input type="number" name="number" id="number" class="form-control" value="{{$userinfo['number']}}" placeholder="Enter number">
                              </div>
                          </div>
                          <div class="card-footer">

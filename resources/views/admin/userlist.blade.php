@@ -26,34 +26,36 @@
                      </div>
                      <!-- /.card-header -->
                      <div class="card-body">
-                        <table class="table table-striped table-bordered dt-responsive nowrap data-table dataTable display compact"  cellspacing="0" width="100%">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Id</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th width="100px">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
+                         <div class="table-responsive">
+                             <table class="table table-striped table-bordered dt-responsive nowrap data-table dataTable display compact" cellspacing="0" width="100%">
+                                 <thead>
+                                     <tr>
+                                         <th>No</th>
+                                         <th>Id</th>
+                                         <th>Name</th>
+                                         <th>Email</th>
+                                         <th width="100px">Action</th>
+                                     </tr>
+                                 </thead>
+                                 <tbody>
+                                 </tbody>
+                             </table>
+                         </div>
+                         </div>
+
+                         <?php
+                            $rurl = route('admin.userlist');
+                            $columns = "{data: null, name: 'user_id'},
+                                        {data: 'user_id', name: 'user_id'},
+                                        {data: 'name', name: 'name'},
+                                        {data: 'email', name: 'email'},
+                                        {data: 'action', name: 'action', orderable: true, searchable: true}";
+                            echo setDataTable($rurl, $columns);
+                            ?>
                      </div>
-                     
-    <?php
-    $rurl=route('admin.userlist');
-    $columns =  "{data: null, name: 'user_id'},
-                {data: 'user_id', name: 'user_id'},
-                {data: 'name', name: 'name'},
-                {data: 'email', name: 'email'},
-                {data: 'action', name: 'action', orderable: true, searchable: true}";
-        echo setDataTable($rurl,$columns);
-        ?>
                  </div>
              </div>
-         </div>
-     </div><!-- /.container-fluid -->
+         </div><!-- /.container-fluid -->
  </section>
 
  @stop
