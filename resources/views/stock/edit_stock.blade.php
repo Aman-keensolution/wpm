@@ -16,7 +16,7 @@
                      <div class="card-header">
                          <h3 class="card-title">Update stock</h3>
                      </div>
-                     <form action="{{route('update_stock',$Stockdata['stock_Id'])}}" method="post">
+                     <form action="{{route('update_stock',$Stockdata['stock_id'])}}" method="post">
                          @csrf
                          <div class="card-body">
                              <div class="row">
@@ -58,7 +58,7 @@
                                  </div>
                                  <div class="form-group col-md-6">
                                      <label for="exampleInputEmail1">Gross Weight</label>
-                                     <input type="text" name="total_weight" value="{{$Stockdata['total_weight']}}" class="form-control" placeholder="Enter Total Weight">
+                                     <input type="text" name="gross_weight" value="{{$Stockdata['gross_weight']}}" class="form-control" placeholder="Enter Total Weight">
                                  </div>
                                  <div class="form-group col-md-6""><?php $u_arr = arrayUnit(); ?>
                                 <label for=" unit_id">Gross Weight Unit</label>

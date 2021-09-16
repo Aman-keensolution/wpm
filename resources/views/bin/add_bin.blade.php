@@ -21,21 +21,21 @@
                          @csrf
                          <div class="card-body">
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Bin Name</label>
-                                 <input type="text" name="name" class="form-control" placeholder="Bin name">
+                                 <label for="name">Bin Name</label>
+                                 <input type="text" name="name" id="name" class="form-control" placeholder="Bin name">
                              </div>
                              <div class="form-group">
-                                 <label for="role">Plant name</label>
-                                 <?php $p_arr=arrayPlant();?>
+                                 <label for="plant_id">Plant name</label>
+                                 <?php $p_arr = arrayPlant(); ?>
                                  <select name="plant_id" id="plant_id" class="form-control">
                                      @foreach( $p_arr as $plant)
-                                        <option value="{{$plant['plant_id']}}">{{$plant['name']}}</option>
+                                     <option value="{{$plant['plant_id']}}">{{$plant['name']}}</option>
                                      @endforeach
                                  </select>
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Bin Weight</label>
-                                 <input type="number" name="bin_weight" class="form-control" placeholder="Bin Weight">
+                                 <label for="bin_weight">Bin Weight</label>
+                                 <input type="number" name="bin_weight" id="bin_weight" class="form-control" placeholder="Bin Weight">
                              </div>
                          </div>
 

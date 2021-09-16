@@ -21,20 +21,20 @@
                          @csrf
                          <div class="card-body">
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Name</label>
-                                 <input type="text" name="name" class="form-control" placeholder="Enter name">
+                                 <label for="name">Name</label>
+                                 <input type="text" name="name" id="name" class="form-control" placeholder="Enter name">
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Email address</label>
-                                 <input type="email" name="email" class="form-control" placeholder="Enter email">
+                                 <label for="email">Email address</label>
+                                 <input type="email" name="email" id="email" class="form-control" placeholder="Enter email">
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputPassword1">Password</label>
-                                 <input type="password" name="password" class="form-control" placeholder="Password">
+                                 <label for="password">Password</label>
+                                 <input type="password" name="password" id="password" class="form-control" placeholder="Password">
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputPassword1">Mobile</label>
-                                 <input type="number" name="number" class="form-control" placeholder="Enter number">
+                                 <label for="number">Mobile</label>
+                                 <input type="number" name="number" id="number" class="form-control" placeholder="Enter number">
                              </div>
                          </div>
                          <!-- /.card-body -->

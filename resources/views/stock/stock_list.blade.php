@@ -39,6 +39,7 @@
                                          <th>Plant</th>
                                          <th>user</th>
                                          <th>Gross Weight</th>
+                                         <th>Batch ID</th>
                                          <th>Unit</th>
                                          <th>Action</th>
                                      </tr>
@@ -48,12 +49,12 @@
                                  </tbody>
                              </table>
                          </div>
-                         </div>
+                     </div>
 
-                         <!-- /.card-body -->
-                         <?php
-                            $rurl = route('stock.stock_list');
-                            $columns =  "{data: null, name: 'stock_id'},
+                     <!-- /.card-body -->
+                     <?php
+                        $rurl = route('stock.stock_list');
+                        $columns =  "{data: null, name: 'stock_id'},
                                 {data: 'stock_id', name: 'stock_id'},
                                 {data: 'item_name', name: 'item_name'},
                                 {data: 'bin_name', name: 'bin_name'},
@@ -61,14 +62,15 @@
                                 {data: 'plant_name', name: 'plant_name'},
                                 {data: 'user_name', name: 'user_name'},
                                 {data: 'gross_weight', name: 'gross_weight'},
+                                {data: 'batch_id', name: 'batch_id'},
                                 {data: 'unit_name', name: 'unit_name'},
                                 {data: 'action', name: 'action', orderable: true, searchable: true}";
-                            echo setDataTable($rurl, $columns);
-                            ?>
-                     </div>
+                        echo setDataTable($rurl, $columns);
+                        ?>
                  </div>
              </div>
-         </div><!-- /.container-fluid -->
+         </div>
+     </div><!-- /.container-fluid -->
  </section>
 
  @stop

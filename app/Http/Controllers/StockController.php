@@ -110,8 +110,13 @@ class StockController extends Controller
     {
         if (session()->has('Admin_login')) {
             $all_plant = Plant::all();
+            $all_bin = Bin::all();
+            $all_item = Item::all();
+            $all_WeightScale = WeightScale::all();
+            $all_unit = Unit::all();
+            $all_user = Admin::where('role', 2)->get();
             $data['Stockdata'] = Stock::find($request->stock_id);
-            return view('stock.edit_stock', $data)->with(['all_plant' => $all_plant]);
+            return view('stock.edit_stock', $data)->with(['all_plant' => $all_plant, 'all_item' => $all_item, 'all_bin' => $all_bin, 'all_user' => $all_user, 'all_WeightScale' => $all_WeightScale, 'all_unit' => $all_unit]);
         } else {
             //return view('admin');
             return redirect()->route('admin');
@@ -120,9 +125,16 @@ class StockController extends Controller
 
     public function update_stock(Request $request)
     {
+        $user_id = session()->get('Admin_id');
         $data = Stock::find($request->stock_id);
-        $data->name = $request->name;
+        $data->item_id = $request->item_id;
+        $data->bin_id = $request->bin_id;
         $data->plant_id = $request->plant_id;
+        $data->user_id = $user_id;
+        $data->weight_scale_id = $request->weight_scale_id;
+        $data->batch_id = $request->batch_id;
+        $data->unit_id = $request->unit_id;
+        $data->gross_weight = $request->gross_weight;
         $data->save();
         return redirect('stock_list');
     }
