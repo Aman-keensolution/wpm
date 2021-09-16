@@ -125,22 +125,23 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{route('category.category_list')}}" class="nav-link">
+                                <p>Category Mangement</p>
+                            </a>
+                        </li>
+                        <!-- <li class="nav-item">
                             <a href="" class="nav-link">
                                 <p>Category Mangement<i class="right fas fa-angle-left"></i></p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{route('category.category_list')}}" class="nav-link">
-                                        <p>Category</p>
-                                    </a>
-                                </li>
+
                                 <li class="nav-item">
                                     <a href="{{route('category.sub_category_list')}}" class="nav-link">
                                         <p>Sub Category</p>
                                     </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a href="{{route('plant.plant_list')}}" class="nav-link">
                                 <p>Plant/Location Mangement</p>
@@ -189,7 +190,7 @@
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
-            <strong>Copyright &copy; 2014-2021 <a href="">ICS</a>.</strong>
+            <strong>Copyright &copy; 2021 <a href="">Sage Metals</a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
                 <!-- <b>Version</b> 3.1.0 -->

@@ -26,12 +26,13 @@
                      </div>
                      <!-- /.card-header -->
                      <div class="card-body">
-                         <table class="table table-striped table-bordered dt-responsive nowrap data-table dataTable display compact"  cellspacing="0" width="100%">
+                         <table class="table table-striped table-bordered dt-responsive nowrap data-table dataTable display compact" cellspacing="0" width="100%">
                              <thead>
                                  <tr>
-                                    <th style="width: 10px">#</th>
-                                    <th>Id</th>
+                                     <th style="width: 10px">#</th>
+                                     <th>Id</th>
                                      <th>Category Name</th>
+                                     <th>Parent Category</th>
                                      <th>Action</th>
                                  </tr>
                              </thead>
@@ -41,14 +42,15 @@
                      </div>
                      <!-- /.card-body -->
                      <?php
-                     $rurl=route('category.category_list');
-                     $columns =  "{data: null, name: 'user_id'},
+                        $rurl = route('category.category_list');
+                        $columns =  "{data: null, name: 'user_id'},
                                  {data: 'cat_id', name: 'cat_id'},
                                  {data: 'name', name: 'name'},
+                                 {data: 'pcategory_name', name: 'pcategory_name'},
                                  {data: 'action', name: 'action', orderable: true, searchable: true}";
-                         echo setDataTable($rurl,$columns);
-                         ?>
-                 
+                        echo setDataTable($rurl, $columns);
+                        ?>
+
                  </div>
              </div>
          </div>
