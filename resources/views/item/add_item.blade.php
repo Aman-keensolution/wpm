@@ -25,9 +25,12 @@
                                  <input type="text" name="item_name" class="form-control" placeholder="Enter Item name">
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputPassword1">Item Number</label>
-                                 <input type="number" name="item_no" class="form-control" placeholder="Enter Item number">
-                             </div>
+                                <label for="exampleInputPassword1">Item Number</label>
+                                <input type="number" name="item_no" class="form-control" placeholder="Enter Item number">
+                            </div><div class="form-group">
+                                <label for="exampleInputPassword1">Item Price</label>
+                                <input type="number" name="price" class="form-control" placeholder="Enter Item Price">
+                            </div>
                              <div class="form-group">
                                 <label for="exampleInputPassword1">Item Avg Weight</label>
                                 <input type="number" name="item_avg_weight" class="form-control" placeholder="Enter Weight">

@@ -32,6 +32,7 @@
                                      <th style="width: 10px">#</th>     
                                      <th>Name</th>
                                      <th>Item No.</th>
+                                     <th>Price</th>
                                      <th>Category</th>
                                      <th>Item wt.(Kg)</th>
                                      <th>Batch No.</th>
@@ -48,9 +49,9 @@
                      <?php
                         $rurl = route('item.item_list');
                         $columns =  "{data: null, name: 'item_id'},
-                           
                                 {data: 'item_name', name: 'item_name'},
                                 {data: 'item_no', name: 'item_no'},
+                                {data: 'price', name: 'price'},
                                 {data: 'category_name', name: 'category_name'},
                                 {data: 'item_avg_weight', name: 'item_avg_weight'},
                                 {data: 'batch_no', name: 'batch_no'},

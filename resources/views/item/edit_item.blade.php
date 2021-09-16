@@ -20,15 +20,20 @@
                          @csrf
                          <div class="card-body">
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Item Name</label>
+                                 <label for="item_name">Item Name</label>
                                  <input type="text" name="item_name" class="form-control" value="{{$itemdata['item_name']}}" >
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Item Number</label>
+                                 <label for="item_no">Item Number</label>
                                  <input type="text" name="item_no" class="form-control" value="{{$itemdata['item_no']}}">
                              </div>
+                            </div><div class="form-group">
+                                <label for="price">Item Price</label>
+                                <input type="number" name="price" class="form-control" value="{{$itemdata['price']}}">
+                            </div>
+
                              <div class="form-group">
-                                 <label for="role">Category</label>
+                                 <label for="cat_id">Category</label>
                                  <select name="cat_id" id="cat_id" class="form-control">
                                      @foreach( $all_category as $category)
                                      <option @if($itemdata->cat_id == $category->cat_id) selected @endif value="{{$category->cat_id}}">{{$category->name}}</option>
@@ -36,11 +41,11 @@
                                  </select>
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Item Weight</label>
+                                 <label for="item_avg_weight">Item Weight</label>
                                  <input type="text" name="item_avg_weight" class="form-control" value="{{$itemdata['item_avg_weight']}}">
                              </div>
                              <div class="form-group"><?php $u_arr=arrayUnit();?>
-                                <label for="exampleInputPassword1">Item Weight Unit</label>
+                                <label for="unit">Item Weight Unit</label>
                                 <select name="unit" class="form-control" placeholder="Enter Unit">
                                     @foreach( $u_arr as $unit)
                                     <option value="{{$unit['unit_id']}}" <?php if($unit['unit_id']==$itemdata['unit_id']){echo "selected";}?>>
@@ -50,11 +55,11 @@
                             </select>
                             </div> 
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Batch Number</label>
+                                 <label for="batch_no">Batch Number</label>
                                  <input type="text" name="batch_no" class="form-control" value="{{$itemdata['batch_no']}}">
                              </div>
                              <div class="form-group">
-                                 <label for="role">Plant name</label>
+                                 <label for="plant_id">Plant name</label>
                                  <select name="plant_id" id="plant_id" class="form-control">
                                      @foreach( $all_plant as $plant)
                                      <option @if($itemdata->plant_id == $plant->plant_id) selected @endif value="{{$plant->plant_id}}">{{$plant->name}}</option>
@@ -62,7 +67,7 @@
                                  </select>
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputPassword1">Manfactring Date</label>
+                                 <label for="manfactring_date">Manfactring Date</label>
                                  <input type="date" name="manfactring_date" id="manfactring_date" class="form-control" value="{{$itemdata['manfactring_date']}}">
                              </div>
                          </div>

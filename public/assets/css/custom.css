@@ -31,3 +31,15 @@ table.dataTable>thead .sorting:after, table.dataTable>thead .sorting_asc:after, 
     padding: 0;
     margin-left: -1px;
 }
+
+nav.main-header.navbar.navbar-expand.navbar-white.navbar-light {
+    box-shadow: 0px 0px 6px #c6ac64;
+}
+
+.card.card-secondary {
+    box-shadow: 0px 0px 3px #ffffff, 0px 0px 9px #000000;
+}
+
+footer.main-footer {
+    box-shadow: 0px 0px 2px #000000;
+}

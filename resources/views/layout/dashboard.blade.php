@@ -140,7 +140,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('weighing.weighing_list')}}" class="nav-link <?php if(in_array(request()->route()->getName(),array('weighing.weighing_list','add_weighing','edit_weighing'))){echo "active";} ?>">
+                            <a href="{{route('weighing.weighing_list')}}" class="nav-link <?php if(in_array(request()->route()->getName(),array('weighing.weighing_list','weighing.add_weighing','weighing.edit_weighing'))){echo "active";} ?>">
                                 <p>Weighing Scale Mangement</p>
                             </a>
                         </li>
