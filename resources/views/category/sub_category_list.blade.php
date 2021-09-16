@@ -19,7 +19,7 @@
                          <div class="card-tools">
                              <div class="input-group input-group-sm" style="width: 150px;">
                                  <button type="button" class="btn btn-block btn-warning">
-                                     <a href="add_category">Add Sub Category</a>
+                                     <a href="add_sub_category">Add Sub Category</a>
                                  </button>
                              </div>
                          </div>

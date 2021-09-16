@@ -15,7 +15,7 @@
              <div class="col-md-12">
                  <div class="card card-secondary">
                      <div class="card-header">
-                         <h3 class="card-title">Add New Category</h3>
+                         <h3 class="card-title">Add Sub Category</h3>
                      </div>
                      <form action="{{route('category.store_sub_category')}}" method="post">
                          @csrf
@@ -25,7 +25,7 @@
                                  <input type="text" name="name" class="form-control" placeholder="Enter Category Name" required>
                              </div>
                              <div class="form-group">
-                                 <label for="role">Category</label>
+                                 <label for="role">Parent Category</label>
                                  <select name="p_id" id="p_id" class="form-control">
                                      @foreach( $all_category as $category)
                                      <option value="{{$category->cat_id}}">{{$category->name}}</option>
