@@ -39,6 +39,16 @@
                                  <label for="exampleInputEmail1">Item Weight</label>
                                  <input type="text" name="item_avg_weight" class="form-control" value="{{$itemdata['item_avg_weight']}}">
                              </div>
+                             <div class="form-group"><?php $u_arr=arrayUnit();?>
+                                <label for="exampleInputPassword1">Item Weight Unit</label>
+                                <select name="unit" class="form-control" placeholder="Enter Unit">
+                                    @foreach( $u_arr as $unit)
+                                    <option value="{{$unit['unit_id']}}" <?php if($unit['unit_id']==$itemdata['unit_id']){echo "selected";}?>>
+                                        {{$unit['name']}}
+                                    </option>
+                                 @endforeach
+                            </select>
+                            </div> 
                              <div class="form-group">
                                  <label for="exampleInputEmail1">Batch Number</label>
                                  <input type="text" name="batch_no" class="form-control" value="{{$itemdata['batch_no']}}">

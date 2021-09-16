@@ -19,7 +19,6 @@ class Unit extends Model
      */
     protected $fillable = [
         "name",
-        "unit_code",
         "code_name",
         "in_gram"
     ];

@@ -29,10 +29,18 @@
                                  <input type="number" name="item_no" class="form-control" placeholder="Enter Item number">
                              </div>
                              <div class="form-group">
-                                 <label for="exampleInputPassword1">Item Avg Weight</label>
-                                 <input type="number" name="item_avg_weight" class="form-control" placeholder="Enter Weight">
-                             </div>
-                             <div class="form-group">
+                                <label for="exampleInputPassword1">Item Avg Weight</label>
+                                <input type="number" name="item_avg_weight" class="form-control" placeholder="Enter Weight">
+                            </div>
+                            <div class="form-group"><?php $u_arr=arrayUnit();?>
+                                <label for="exampleInputPassword1">Item Weight Unit</label>
+                                <select name="unit" class="form-control" placeholder="Enter Unit">
+                                    @foreach( $u_arr as $unit)
+                                    <option value="{{$unit['unit_id']}}">{{$unit['name']}}</option>
+                                 @endforeach
+                            </select>
+                            </div> 
+                           <div class="form-group">
                                  <label for="exampleInputPassword1">Batch Number</label>
                                  <input type="number" name="batch_no" class="form-control" placeholder="Enter Batch number">
                              </div>
