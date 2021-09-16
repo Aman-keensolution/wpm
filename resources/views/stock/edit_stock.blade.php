@@ -61,7 +61,7 @@
                                      <input type="text" name="gross_weight" id="gross_weight" value="{{$Stockdata['gross_weight']}}" class="form-control" placeholder="Enter Total Weight">
                                  </div>
                                  <div class="form-group col-md-6""><?php $u_arr = arrayUnit(); ?>
-                                <label for=" unit_id">Gross Weight Unit</label>
+                                <label for="unit_id">Gross Weight Unit</label>
                                      <select name="unit_id" class="form-control" placeholder="Enter Unit">
                                          @foreach( $u_arr as $unit)
                                          <option value="{{$unit['unit_id']}}">{{$unit['name']}}</option>
