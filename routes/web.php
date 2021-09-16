@@ -33,6 +33,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::post('admin/auth', [AdminController::class, 'auth'])->name('admin.auth');
     Route::post('admin/store', [AdminController::class, 'store'])->name('admin.store');
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+
     Route::get('userlist', [AdminController::class, 'userlist'])->name('admin.userlist');
     Route::get('logout', [AdminController::class, 'logout'])->name('admin.logout');
     Route::get('block_user/{id}', [AdminController::class, 'block_user'])->name('admin.block_user');
@@ -40,16 +41,6 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::get('add_user', [AdminController::class, 'add_user'])->name('admin.add_user');
     Route::get('edit_user/{id}', [AdminController::class, 'edit_user'])->name('admin.edit_user');
     Route::post('update_user/{id}', [AdminController::class, 'update_user'])->name('admin.update_user');
-
-                            //BinController
-    Route::get('bin_list', [BinController::class, 'bin_list'])->name('bin.bin_list');
-    Route::get('add_bin', [BinController::class, 'add_bin'])->name('bin.add_bin');
-    Route::post('bin/store', [BinController::class, 'store'])->name('bin.store');
-    Route::get('edit_bin/{bin_id}', [BinController::class, 'edit_bin'])->name('bin.edit_bin');
-    Route::post('update_bin/{bin_id}', [BinController::class, 'update_bin'])->name('update_bin');
-    Route::get('block_bin/{bin_id}', [BinController::class, 'block_bin'])->name('bin.block_bin');
-    Route::get('unblock_bin/{bin_id}', [BinController::class, 'unblock_bin'])->name('bin.unblock_bin');
-    
 
                             //CategoryController
     Route::get('category_list', [CategoryController::class, 'category_list'])->name('category.category_list');
@@ -65,15 +56,6 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::get('block_category/{cat_id}', [CategoryController::class, 'block_category'])->name('category.block_category');
     Route::get('unblock_category/{cat_id}', [CategoryController::class, 'unblock_category'])->name('category.unblock_category');
 
-                            //ItemController
-    Route::get('item_list', [ItemController::class, 'item_list'])->name('item.item_list');
-    Route::get('add_item', [ItemController::class, 'add_item'])->name('item.add_item');
-    Route::post('item/store', [ItemController::class, 'store'])->name('item.store');
-    Route::get('edit_item/{item_id}', [ItemController::class, 'edit_item'])->name('item.edit_item');
-    Route::post('update_item/{item_id}', [ItemController::class, 'update_item'])->name('update_item');
-    Route::get('block_item/{item_id}', [ItemController::class, 'block_item'])->name('item.block_item');
-    Route::get('unblock_item/{item_id}', [ItemController::class, 'unblock_item'])->name('item.unblock_item');
-
                             //PlantController
     Route::get('plant_list', [PlantController::class, 'plant_list'])->name('plant.plant_list');
     Route::get('add_plant', [PlantController::class, 'add_plant'])->name('plant.add_plant');
@@ -83,6 +65,15 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::get('block_plant/{plant_id}', [PlantController::class, 'block_plant'])->name('plant.block_plant');
     Route::get('unblock_plant/{plant_id}', [PlantController::class, 'unblock_plant'])->name('plant.unblock_plant');
 
+    //ItemController
+    Route::get('item_list', [ItemController::class, 'item_list'])->name('item.item_list');
+    Route::get('add_item', [ItemController::class, 'add_item'])->name('item.add_item');
+    Route::post('item/store', [ItemController::class, 'store'])->name('item.store');
+    Route::get('edit_item/{item_id}', [ItemController::class, 'edit_item'])->name('item.edit_item');
+    Route::post('update_item/{item_id}', [ItemController::class, 'update_item'])->name('update_item');
+    Route::get('block_item/{item_id}', [ItemController::class, 'block_item'])->name('item.block_item');
+    Route::get('unblock_item/{item_id}', [ItemController::class, 'unblock_item'])->name('item.unblock_item');
+
                             //WeighingController
     Route::get('weighing_list', [WeighingController::class, 'weighing_list'])->name('weighing.weighing_list');
     Route::get('add_weighing', [WeighingController::class, 'add_weighing'])->name('weighing.add_weighing');
@@ -91,6 +82,15 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::post('update_weighing/{weight_scale_id}', [WeighingController::class, 'update_weighing'])->name('update_weighing');
     Route::get('block_weighing/{weight_scale_id}', [WeighingController::class, 'block_weighing'])->name('weighing.block_weighing');
     Route::get('unblock_weighing/{weight_scale_id}', [WeighingController::class, 'unblock_weighing'])->name('weighing.unblock_weighing');
+
+                            //BinController
+    Route::get('bin_list', [BinController::class, 'bin_list'])->name('bin.bin_list');
+    Route::get('add_bin', [BinController::class, 'add_bin'])->name('bin.add_bin');
+    Route::post('bin/store', [BinController::class, 'store'])->name('bin.store');
+    Route::get('edit_bin/{bin_id}', [BinController::class, 'edit_bin'])->name('bin.edit_bin');
+    Route::post('update_bin/{bin_id}', [BinController::class, 'update_bin'])->name('update_bin');
+    Route::get('block_bin/{bin_id}', [BinController::class, 'block_bin'])->name('bin.block_bin');
+    Route::get('unblock_bin/{bin_id}', [BinController::class, 'unblock_bin'])->name('bin.unblock_bin');
 
                             //StockController
     Route::get('stock_list', [StockController::class, 'stock_list'])->name('stock.stock_list');

@@ -114,53 +114,48 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
-                        <li class="nav-item menu-open">
-                            <a href="{{route('admin.dashboard')}}" class="nav-link active"><i class="nav-icon fas fa-tachometer-alt"></i>
+                     <li class="nav-item">
+                            <a href="{{route('admin.dashboard')}}" class="nav-link <?php if(in_array(request()->route()->getName(),array('admin.dashboard'))) {echo "active";} ?>"><i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>Dashboard</p>
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a href="{{route('admin.userlist')}}" class="nav-link">
+                            <a href="{{route('admin.userlist')}}" class="nav-link <?php if(in_array(request()->route()->getName(),array('admin.userlist','admin.add_user','admin.edit_user'))){echo "active";} ?>">
                                 <p>User Mangement</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('category.category_list')}}" class="nav-link">
+                            <a href="{{route('category.category_list')}}" class="nav-link <?php if(in_array(request()->route()->getName(),array('category.category_list','category.add_category','category.edit_category'))){echo "active";} ?>">
                                 <p>Category Mangement</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('plant.plant_list')}}" class="nav-link">
+                            <a href="{{route('plant.plant_list')}}" class="nav-link <?php if(in_array(request()->route()->getName(),array('plant.plant_list','plant.add_plant','plant.edit_plant'))){echo "active";} ?>">
                                 <p>Plant/Location Mangement</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('item.item_list')}}" class="nav-link">
+                            <a href="{{route('item.item_list')}}" class="nav-link <?php if(in_array(request()->route()->getName(),array('item.item_list','item.add_item','item.edit_item'))){echo "active";} ?>">
                                 <p>Item Mangement</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('weighing.weighing_list')}}" class="nav-link">
+                            <a href="{{route('weighing.weighing_list')}}" class="nav-link <?php if(in_array(request()->route()->getName(),array('weighing.weighing_list','add_weighing','edit_weighing'))){echo "active";} ?>">
                                 <p>Weighing Scale Mangement</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('bin.bin_list')}}" class="nav-link">
+                            <a href="{{route('bin.bin_list')}}" class="nav-link <?php if(in_array(request()->route()->getName(),array('bin.bin_list','bin.add_bin','bin.edit_bin'))){echo "active";} ?>">
                                 <p>Bin Mangement</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('stock.stock_list')}}" class="nav-link">
+                            <a href="{{route('stock.stock_list')}}" class="nav-link <?php if(in_array(request()->route()->getName(),array('stock.stock_list','stock.add_stock','stock.edit_stock'))){echo "active";} ?>">
                                 <p>Stock Mangement</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link"><i class="fas fa-cog"></i>
-                                <p>Settings</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="" class="nav-link <?php if(in_array(request()->route()->getName(),array(''))){echo "active";} ?>">
                                 <p>Reports</p>
                             </a>
                         </li>
