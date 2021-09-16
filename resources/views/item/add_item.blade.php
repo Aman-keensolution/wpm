@@ -25,14 +25,14 @@
                                  <input type="text" name="item_name" class="form-control" placeholder="Enter Item name">
                              </div>
                              <div class="form-group">
-                                <label for="exampleInputPassword1">Item Number</label>
+                                <label for="item_no">Item Number</label>
                                 <input type="number" name="item_no" class="form-control" placeholder="Enter Item number">
                             </div><div class="form-group">
-                                <label for="exampleInputPassword1">Item Price</label>
+                                <label for="price">Item Price</label>
                                 <input type="number" name="price" class="form-control" placeholder="Enter Item Price">
                             </div>
                              <div class="form-group">
-                                <label for="exampleInputPassword1">Item Avg Weight</label>
+                                <label for="item_avg_weight">Item Avg Weight</label>
                                 <input type="number" name="item_avg_weight" class="form-control" placeholder="Enter Weight">
                             </div>
                             <div class="form-group"><?php $u_arr=arrayUnit();?>
@@ -44,7 +44,7 @@
                             </select>
                             </div> 
                            <div class="form-group">
-                                 <label for="exampleInputPassword1">Batch Number</label>
+                                 <label for="batch_no">Batch Number</label>
                                  <input type="number" name="batch_no" class="form-control" placeholder="Enter Batch number">
                              </div>
                              <div class="form-group">
