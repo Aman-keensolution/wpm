@@ -157,13 +157,15 @@
                             <a href="{{route('weighing.weighing_list')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array('weighing.weighing_list', 'weighing.add_weighing', 'weighing.edit_weighing'))) {
                                                                                                 echo "active";
                                                                                             } ?>">
-                                <p>Weighing Scale Mangement</p>
+                                <i class="fas fa-balance-scale"></i>
+                                <p>Weighing Scale Mgmt.</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('bin.bin_list')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array('bin.bin_list', 'bin.add_bin', 'bin.edit_bin'))) {
                                                                                     echo "active";
                                                                                 } ?>">
+                                <i class="fas fa-shopping-bag"></i>
                                 <p>Bin Mangement</p>
                             </a>
                         </li>

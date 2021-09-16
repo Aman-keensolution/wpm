@@ -26,8 +26,8 @@
                      </div>
                      <!-- /.card-header -->
                      <div class="card-body">
-                         <div class="table-responsive">
-                             <table class="table table-striped table-bordered dt-responsive nowrap data-table dataTable display compact" cellspacing="0" width="100%">
+                         <div class="table-responsive">       
+                             <table class="table table-striped table-bordered dt-responsive nowrap data-table dataTable display compact" cellspacing="0">
                                  <thead>
                                      <tr>
                                          <th style="width: 10px">#</th>

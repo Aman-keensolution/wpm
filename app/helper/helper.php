@@ -81,7 +81,7 @@ use Carbon\Carbon;
           var table = $('.data-table').DataTable({
               processing: true,
               serverSide: true,
-              fixedHeader: true,
+              fixedHeader: true,responsive: true,
               \"fnRowCallback\": function( nRow, aData, iDisplayIndex ) {
                 var index = iDisplayIndex +1;
                 $('td:eq(0)',nRow).html(index);
