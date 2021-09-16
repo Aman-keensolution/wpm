@@ -16,6 +16,7 @@
                  <div class="card card-secondary">
                      <div class="card-header">
                          <h3 class="card-title">Stock list</h3>
+                         {{ request()->route()->getName()}}
                          <div class="card-tools">
                              <div class="input-group input-group-sm" style="width: 150px;">
                                  <button type="button" class="btn btn-block btn-warning">
@@ -47,7 +48,7 @@
 
                      <!-- /.card-body -->
                      <?php
-                        $rurl = route('weighing.weighing_list');
+                        $rurl = route('stock.stock_list');
                         $columns =  "{data: null, name: 'weight_scale_id'},
                                 {data: 'weight_scale_id', name: 'weight_scale_id'},
                                 {data: 'item_name', name: 'item_name'},

@@ -119,7 +119,7 @@
                                 <p>Dashboard</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item ">
                             <a href="{{route('admin.userlist')}}" class="nav-link">
                                 <p>User Mangement</p>
                             </a>
@@ -129,19 +129,6 @@
                                 <p>Category Mangement</p>
                             </a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a href="" class="nav-link">
-                                <p>Category Mangement<i class="right fas fa-angle-left"></i></p>
-                            </a>
-                            <ul class="nav nav-treeview">
-
-                                <li class="nav-item">
-                                    <a href="{{route('category.sub_category_list')}}" class="nav-link">
-                                        <p>Sub Category</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li> -->
                         <li class="nav-item">
                             <a href="{{route('plant.plant_list')}}" class="nav-link">
                                 <p>Plant/Location Mangement</p>
