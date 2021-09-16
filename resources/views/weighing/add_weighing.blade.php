@@ -20,19 +20,31 @@
                      <form action="{{route('weighing.store')}}" method="post">
                          @csrf
                          <div class="card-body">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Name</label>
+                                <input type="text" name="name" class="form-control" placeholder="Enter name">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Weighing Scale No.</label>
+                                <input type="text" name="weight_scale_no" class="form-control" placeholder="Enter Weighing Scale No.">
+                            </div>
                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Name</label>
-                                 <input type="text" name="name" class="form-control" placeholder="Enter name">
-                             </div>
-                             <div class="form-group">
-                                 <label for="role">Plant</label>
-                                 <select name="plant_id" id="plant_id" class="form-control">
-                                     @foreach( $all_plant as $plant)
-                                     <option value="{{$plant->plant_id}}">{{$plant->name}}</option>
-                                     @endforeach
-                                 </select>
-                             </div>
-                         </div>
+                                <label for="role">Plant</label>
+                                <select name="plant_id" id="plant_id" class="form-control">
+                                    @foreach( $all_plant as $plant)
+                                    <option value="{{$plant->plant_id}}">{{$plant->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="role">Assign User Name</label>
+                                <select name="user_id" id="user_id" class="form-control">
+                                    @foreach( $all_user as $user)
+                                    <option value="{{$user->user_id}}">{{$user->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                       </div>
                          <!-- /.card-body -->
 
                          <div class="card-footer">

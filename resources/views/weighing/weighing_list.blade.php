@@ -15,11 +15,11 @@
              <div class="col-md-12">
                  <div class="card card-secondary">
                      <div class="card-header">
-                         <h3 class="card-title">Weighing list</h3>
+                         <h3 class="card-title">Weighing Scale list</h3>
                          <div class="card-tools">
                              <div class="input-group input-group-sm" style="width: 150px;">
                                  <button type="button" class="btn btn-block btn-warning">
-                                     <a href="add_weighing">Add Weighing</a>
+                                     <a href="add_weighing">Add Weighing Scale</a>
                                  </button>
                              </div>
                          </div>
@@ -32,7 +32,9 @@
                                      <th style="width: 10px">#</th>
                                      <th>Id</th>
                                      <th>Name</th>
+                                     <th>Weighing Scale No.</th>
                                      <th>Plant Name</th>
+                                     <th>User Name</th>
                                      <th>Action</th>
                                  </tr>
                              </thead>
@@ -48,7 +50,9 @@
                         $columns =  "{data: null, name: 'weight_scale_id'},
                                 {data: 'weight_scale_id', name: 'weight_scale_id'},
                                 {data: 'name', name: 'name'},
+                                {data: 'weight_scale_no', name: 'weight_scale_no'},
                                 {data: 'plant_name', name: 'plant_name'},
+                                {data: 'user_name', name: 'user_name'},
                                 {data: 'action', name: 'action', orderable: true, searchable: true}";
                         echo setDataTable($rurl, $columns);
                         ?>

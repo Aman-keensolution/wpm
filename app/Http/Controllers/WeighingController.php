@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\WeightScale;
 use App\Models\Plant;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use DataTables;
 
@@ -13,7 +14,7 @@ class WeighingController extends Controller
     {
         if (session()->has('Admin_login')) {
             if ($request->ajax()) {
-                $data = WeightScale::with('plant')->get();
+                $data = WeightScale::with('plant','user')->get();
                 return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function ($row) {
@@ -32,6 +33,9 @@ class WeighingController extends Controller
                     ->addColumn('plant_name', function ($row) {
                         return $row->plant->name;
                     })
+                    ->addColumn('user_name', function ($row) {
+                        return $row->user->name;
+                    })
                     ->rawColumns(['action'])
                     ->make(true);
             }
@@ -44,8 +48,8 @@ class WeighingController extends Controller
     public function add_weighing(Request $request)
     {
         if (session()->has('Admin_login')) {
-            $all_plant = Plant::all();
-            return view('weighing.add_weighing')->with(['all_plant' => $all_plant]);
+            $all_plant = Plant::all(); $all_user = Admin::all();
+            return view('weighing.add_weighing')->with(['all_plant' => $all_plant,'all_user' => $all_user]);
         } else {
             return redirect('admin');
         }
@@ -70,9 +74,9 @@ class WeighingController extends Controller
     public function edit_weighing(Request $request)
     {
         if (session()->has('Admin_login')) {
-            $all_plant = Plant::all();
+            $all_plant = Plant::all(); $all_user = Admin::all();
             $data['WeightScaledata'] = WeightScale::find($request->weight_scale_id);
-            return view('weighing.edit_weighing', $data)->with(['all_plant' => $all_plant]);
+            return view('weighing.edit_weighing', $data)->with(['all_plant' => $all_plant,'all_user' => $all_user]);
         } else {
              //return view('admin');
         return redirect()->route('admin');

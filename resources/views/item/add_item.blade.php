@@ -18,7 +18,7 @@
                          <h3 class="card-title">Add New Item</h3>
                      </div>
                      <form action="{{route('item.store')}}" method="post">
-                         @csrf
+                         @csrf  
                          <div class="card-body">
                              <div class="form-group">
                                  <label for="exampleInputEmail1">Item Name</label>

@@ -8,7 +8,6 @@
          </div>
      </div>
  </div>
-
  <!-- <section class="content">
      <div class="container-fluid">
          <div class="row">
@@ -96,8 +95,7 @@
                  @csrf
                  <div class="card-body">
                      <div class="row">
-                         <div class="col-md-6">
-                             <div class="form-group">
+                             <div class="form-group col-md-6">
                                  <label for="role">Item</label>
                                  <select name="item_id" id="item_id" class="form-control">
                                      @foreach( $all_item as $item)
@@ -105,31 +103,7 @@
                                      @endforeach
                                  </select>
                              </div>
-                             <div class="form-group">
-                                 <label for="role">Bin</label>
-                                 <select name="bin_id" id="bin_id" class="form-control">
-                                     @foreach( $all_bin as $bin)
-                                     <option value="{{$bin->bin_id}}">{{$bin->name}}</option>
-                                     @endforeach
-                                 </select>
-                             </div>
-                             <div class="form-group">
-                                 <label for="exampleInputEmail1">Bin Weight</label>
-                                 <input type="text" name="bin_weight" class="form-control" placeholder="Enter Bin Weight">
-                             </div>
-                             <div class="form-group">
-                                 <label for="exampleInputEmail1">Batch ID</label>
-                                 <input type="text" name="batch_id" class="form-control" placeholder="Enter Batch ID">
-                             </div>
-                             <div class="form-group">
-                                 <label for="exampleInputEmail1">Net Weight</label>
-                                 <input type="text" name="net_weight" class="form-control" placeholder="Enter Net Weigh">
-                             </div>
-
-                         </div>
-
-                         <div class="col-md-6">
-                             <div class="form-group">
+                             <div class="form-group col-md-6">
                                  <label for="role">Plant</label>
                                  <select name="plant_id" id="plant_id" class="form-control">
                                      @foreach( $all_plant as $plant)
@@ -137,7 +111,15 @@
                                      @endforeach
                                  </select>
                              </div>
-                             <div class="form-group">
+                             <div class="form-group col-md-6">
+                                 <label for="role">Bin</label>
+                                 <select name="bin_id" id="bin_id" class="form-control">
+                                     @foreach( $all_bin as $bin)
+                                     <option value="{{$bin->bin_id}}">{{$bin->name}}</option>
+                                     @endforeach
+                                 </select>
+                             </div>
+                             <div class="form-group col-md-6">
                                  <label for="role">Weighing machine</label>
                                  <select name="assigned_weight_scale_id" id="assigned_weight_scale_id" class="form-control">
                                      @foreach( $all_WeightScale as $WeightScale)
@@ -145,19 +127,36 @@
                                      @endforeach
                                  </select>
                              </div>
-
-
-
-                             <div class="form-group">
-                                 <label for="exampleInputEmail1">Gross Weight</label>
-                                 <input type="text" name="total_weight" class="form-control" placeholder="Enter Total Weight">
+                             <div class="form-group col-md-6">
+                                <label for="exampleInputEmail1">Batch ID</label>
+                                <input type="text" name="batch_id" class="form-control" placeholder="Enter Batch ID">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputEmail1">Gross Weight</label>
+                                <input type="text" name="total_weight" class="form-control" placeholder="Enter Total Weight">
+                            </div>
+                            <div class="form-group col-md-6""><?php $u_arr=arrayUnit();?>
+                                <label for="unit">Gross Weight Unit</label>
+                                <select name="unit" class="form-control" placeholder="Enter Unit">
+                                    @foreach( $u_arr as $unit)
+                                    <option value="{{$unit['unit_id']}}">{{$unit['name']}}</option>
+                                 @endforeach
+                            </select>
+                            </div> 
+                             <div class="form-group col-md-6">
+                                 <label for="exampleInputEmail1">Bin Weight</label>
+                                 <input type="text" readonly name="bin_weight" class="form-control" placeholder="Calculate Bin Weight">
                              </div>
-                             <div class="form-group">
+
+                             <div class="form-group col-md-6">
+                                 <label for="exampleInputEmail1">Net Weight</label>
+                                 <input type="text" readonly name="net_weight" class="form-control" placeholder="Calculate Net Weigh">
+                             </div>
+                             <div class="form-group col-md-6">
                                  <label for="exampleInputEmail1">Quantity</label>
-                                 <input type="text" name="counted_quantity" class="form-control" placeholder="Enter Quantity">
+                                 <input type="text" readonly name="counted_quantity" class="form-control" placeholder="Calculate Quantity">
                              </div>
-                         </div>
-                     </div>
+                        </div>
                      <div class="card-footer">
                          <button type="submit" class="btn btn-primary">Submit</button>
                      </div>

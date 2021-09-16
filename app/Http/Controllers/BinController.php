@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bin;
 use App\Models\Plant;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use DataTables;
 
