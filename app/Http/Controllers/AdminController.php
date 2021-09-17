@@ -172,6 +172,46 @@ class AdminController extends Controller
         return view('forget_password');
     }
 
+    public function sendForgetPasswordMail(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required'
+        ]);
+        $user_info = Admin::rWhere('email', $request->email)->first();
+        if (!empty($user_info)) {
+            $username=$user_info->email;
+            return view('reset_password',compact('username'));
+        }
+        return redirect()->back()->with([
+            'msg' => __('Your Username or Email Is Wrong!!!'),
+            'type' => 'danger'
+        ]);
+    }
+
+    public function reset_password($username)
+    {
+        return view('reset_password');
+    }
+
+    public function adminResetPassword(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'password' => 'required|string|min:8|confirmed'
+        ]);
+        $user_info = Admin::where('name', $request->username)->first();
+        $user = Admin::findOrFail($user_info->id);
+        if (!empty($user)) {
+            $user->password = md5($request->password);
+            $user->save();
+            return redirect()->route('admin')->with(['msg' => __('Password Changed Successfully'), 'type' => 'success']);
+        }
+
+        return redirect()->back()->with(['msg' => __('Somethings Going Wrong! Please Try Again or Check Your Old Password'), 'type' => 'danger']);
+    }
+
+
+
     public function logout(Request $request)
     {
         if (session()->has('Admin_login')) {
