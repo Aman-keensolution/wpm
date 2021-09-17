@@ -101,5 +101,8 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::post('update_stock/{stock_id}', [StockController::class, 'update_stock'])->name('update_stock');
     Route::get('block_stock/{stock_id}', [StockController::class, 'block_stock'])->name('stock.block_stock');
     Route::get('unblock_stock/{stock_id}', [StockController::class, 'unblock_stock'])->name('stock.unblock_stock');
+    
+    Route::get('get_net_weight_qty/{bin_id}', [StockController::class, 'get_net_weight_qty'])->name('stock.get_net_weight_qty');
+    Route::get('get_bin_weight/{bin_id}', [StockController::class, 'get_bin_weight'])->name('stock.get_bin_weight');
 });
 

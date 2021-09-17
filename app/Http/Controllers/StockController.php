@@ -20,8 +20,14 @@ class StockController extends Controller
     {
         if (session()->has('Admin_login')) {
             if ($request->ajax()) {
-                $data = Stock::with('plant','item','bin', 'user','weightScale','unit')->get();
-              
+                if(session()->get('role')==1){
+                    $user_id = session()->get('Admin_id');
+                    $data = Stock::with('plant','item','bin', 'user','weightScale','unit')->get();
+                }
+            else{
+                $user_id = session()->get('user_id');
+                $data = Stock::where('user_id', $user_id)->with('plant','item','bin', 'user','weightScale','unit')->get();
+            }
                 return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function ($row) {
@@ -69,7 +75,7 @@ class StockController extends Controller
     public function add_stock(Request $request)
     {
         if (session()->has('Admin_login')) {
-            if($request->session()->get('role')==1){ $user_id = session()->get('Admin_id');}
+            if(session()->get('role')==1){ $user_id = session()->get('Admin_id');}
             else{$user_id = session()->get('user_id');}
             $all_plant = Plant::all();
             $all_bin = Bin::all();
@@ -85,7 +91,7 @@ class StockController extends Controller
 
     public function store(Request $request)
     {
-        if($request->session()->get('role')==1){ $user_id = session()->get('Admin_id');}
+        if(session()->get('role')==1){ $user_id = session()->get('Admin_id');}
         else{$user_id = session()->get('user_id');}
 
         $Stock = new Stock;
@@ -161,5 +167,17 @@ class StockController extends Controller
         $request->is_active = 1;
         $request->save();
         return redirect('stock_list');
+    }
+    public function get_bin_weight(Request $request,$bin_id)
+    {
+        $id = $request->input('id');
+        $data = Bin::where('bin_id', $id)->get()->first();
+        echo $data->bin_weight;
+    }
+    public function get_net_weight_qty(Request $request)
+    {
+        $id = $request->input('id');
+        $data = Bin::where('bin_id', $id)->get()->first();
+        echo $data->bin_weight;
     }
 }
