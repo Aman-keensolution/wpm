@@ -175,11 +175,11 @@ class AdminController extends Controller
     public function sendForgetPasswordMail(Request $request)
     {
         $this->validate($request, [
-            'username' => 'required|string:max:191'
+            'email' => 'required'
         ]);
-        $user_info = Admin::where('name', $request->username)->orWhere('email', $request->username)->first();
+        $user_info = Admin::rWhere('email', $request->email)->first();
         if (!empty($user_info)) {
-            $username=$user_info->name;
+            $username=$user_info->email;
             return view('reset_password',compact('username'));
         }
         return redirect()->back()->with([

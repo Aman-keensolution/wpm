@@ -26,7 +26,7 @@
                 <form action="{{route('admin.sendForgetPasswordMail')}}" method="post">
                     @csrf
                     <div class="input-group mb-3">
-                        <input type="username" class="form-control" placeholder="Username Or Email" name="username" required>
+                        <input type="email" class="form-control" placeholder="Enter Email" name="email" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
