@@ -27,7 +27,9 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::get('admin', [AdminController::class, 'index'])->name('admin');
     Route::get('/', [AdminController::class, 'index']);
     Route::get('forget_password', [AdminController::class, 'forget_password'])->name('forget_password');
-   
+    Route::post('sendForgetPasswordMail', [AdminController::class, 'sendForgetPasswordMail'])->name('admin.sendForgetPasswordMail');
+    Route::post('reset_password/{$username}', [AdminController::class, 'reset_password'])->name('admin.reset_password');
+    Route::post('adminResetPassword', [AdminController::class, 'adminResetPassword'])->name('admin.adminResetPassword');
                             //AdminController
 
     // Route::get('register', [AdminController::class, 'register']);
@@ -102,7 +104,9 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::get('block_stock/{stock_id}', [StockController::class, 'block_stock'])->name('stock.block_stock');
     Route::get('unblock_stock/{stock_id}', [StockController::class, 'unblock_stock'])->name('stock.unblock_stock');
     
-    Route::get('get_net_weight_qty/{bin_id}', [StockController::class, 'get_net_weight_qty'])->name('stock.get_net_weight_qty');
-    Route::get('get_bin_weight/{bin_id}', [StockController::class, 'get_bin_weight'])->name('stock.get_bin_weight');
+    Route::get('get_net_weight/{bin_id}', [StockController::class, 'get_net_weight'])->name('stock.get_net_weight');
+    Route::get('get_bin_weight/{id}', [StockController::class, 'get_bin_weight'])->name('stock.get_bin_weight');
+    Route::get('get_qty/{id}', [StockController::class, 'get_qty'])->name('stock.get_qty');
+
 });
 

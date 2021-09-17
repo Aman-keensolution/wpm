@@ -36,7 +36,13 @@
                              </div>
                              <div class="form-group">
                                  <label for="bin_weight">Bin Weight</label>
-                                 <input type="number" name="bin_weight" id="bin_weight" class="form-control" value="{{$bindata['bin_weight']}}" placeholder="Enter Bin Weight">
+                                 <div class="input-group mb-3">
+                                     <input type="text" name="bin_weight" value="{{$bindata['bin_weight']}}" id="bin_weight" class="form-control"  aria-label="Bin Weight">
+                                     <div class="input-group-append">
+                                         <span class="input-group-text" id="basic-addon2">Kg</span>
+                                         <input type="hidden" name="bin_weight_g" id="bin_weight_g">
+                                     </div>
+                                 </div>
                              </div>
                          </div>
                          <div class="card-footer">
