@@ -26,6 +26,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::get('admin', [AdminController::class, 'index']);
     Route::get('admin', [AdminController::class, 'index'])->name('admin');
     Route::get('/', [AdminController::class, 'index']);
+    Route::get('forget_password', [AdminController::class, 'forget_password'])->name('forget_password');
    
                             //AdminController
 

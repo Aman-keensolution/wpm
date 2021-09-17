@@ -167,6 +167,11 @@ class AdminController extends Controller
         return redirect('userlist');
     }
 
+    public function forget_password(Request $request)
+    {
+        return view('forget_password');
+    }
+
     public function logout(Request $request)
     {
         if (session()->has('Admin_login')) {
