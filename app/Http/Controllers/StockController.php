@@ -184,7 +184,9 @@ class StockController extends Controller
         $unit = Unit::where('unit_id', $unit_id)->get()->first();
 
         $net_weight= ($gross_weight*$unit->in_gram)-($bin->bin_weight*1000);
-        echo $net_weight/1000;
+        $net_w=$net_weight/1000;
+        if ($net_w < 0){echo "";}else{echo $net_w;}
+        
     }
 
     public function get_qty(Request $request,$id)
@@ -202,6 +204,23 @@ class StockController extends Controller
         
         $net_weight= ($gross_weight*$unit2->in_gram)-($bin->bin_weight*1000);
         $qty=$net_weight/$item_weight;
-        echo $qty;
+        if ($qty <= 0){echo "";}else{echo $qty;}
     }
+    public function get_stock_label(Request $request)
+    {
+        if (session()->has('Admin_login')) {
+            $all_plant = Plant::all();
+            $all_bin = Bin::all();
+            $all_item = Item::all();
+            $all_WeightScale = WeightScale::all();
+            $all_unit = Unit::all();
+            $all_user = Admin::where('role', 2)->get();
+            $data['Stockdata'] = Stock::find($request->stock_id);
+            return view('stock.get_stock_label', $data)->with(['all_plant' => $all_plant, 'all_item' => $all_item, 'all_bin' => $all_bin, 'all_user' => $all_user, 'all_WeightScale' => $all_WeightScale, 'all_unit' => $all_unit]);
+        } else {
+            //return view('admin');
+            return redirect()->route('admin');
+        }
+    }
+
 }

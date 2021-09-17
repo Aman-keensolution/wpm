@@ -20,7 +20,7 @@
                      <div class="row">
                          <div class="form-group col-md-6">
                              <label for="item_id">Item</label>
-                             <select name="item_id" id="item_id" class="form-control select2">
+                             <select name="item_id" id="item_id" class="form-control select2 ">
                                  @foreach( $all_item as $item)
                                  <option value="{{$item->item_id}}">{{$item->name}}</option>
                                  @endforeach
@@ -30,16 +30,14 @@
                              <!--Auto file-->
                              <label for="plant_id">Plant</label>
                              <!--Auto file-->
-                             <select name="plant_id" id="plant_id" class="form-control">
+                             <input type="hidden" value="{{$all_bin[0]->plant_id}}" name="plant_id" id="plant_id">
+                             @foreach( $all_plant as $plant)
+                             <?php if ($plant->plant_id == $all_bin[0]->plant_id) { ?>
+                                <input name="" id="" readonly class="form-control"  value="{{$plant->name}}" class="form-control" >
+                                <?php } ?>
+
+                             @endforeach
                                  <!--Auto file-->
-                                 @foreach( $all_plant as $plant)
-                                 <option <?php if ($plant->plant_id == $all_bin[0]->plant_id) { echo "selected";} ?>
-                                     value="{{$plant->plant_id}}">
-                                     {{$plant->name}}
-                                 </option>
-                                 <!--Auto file-->
-                                 @endforeach
-                             </select>
                          </div>
                          <div class="form-group col-md-6">
                              <label for="bin_id">Bin</label>
@@ -53,12 +51,8 @@
                              <!--Auto file-->
                              <label for="weight_scale_id">Weighing machine</label>
                              <!--Auto file-->
-                             <select name="weight_scale_id" id="weight_scale_id" class="form-control">
-                                 <!--Auto file-->
-                                 @foreach( $all_WeightScale as $WeightScale)
-                                 <option value="{{$WeightScale->weight_scale_id}}">{{$WeightScale->name}}</option>
-                                 @endforeach
-                             </select>
+                             <input type="hidden" value="{{$all_WeightScale[0]->weight_scale_id}}" name="weight_scale_id" id="weight_scale_id">
+                             <input name="" id="" readonly class="form-control"  value="{{$all_WeightScale[0]->name}}" class="form-control" >
                          </div>
                          <div class="form-group col-md-6">
                              <label for="batch_id">Batch ID</label>
@@ -117,15 +111,17 @@
                          </div>
                      </div>
                      <div class="card-footer">
-                         <button type="submit" id="submit" name="submit" class="btn btn-primary">Submit &amp;
-                             Print</button>
+                        <span class="d-inline-block submit_group" tabindex="0" data-toggle="tooltip" title="Please Enter Valid Gross Weight.">
+                        <button type="submit" id="submit" name="submit" class="btn btn-primary" disabled style="pointer-events: none;" >Submit</button>                     
+                        <button type="submit" id="submit_p" name="submit" class="btn btn-primary" disabled style="pointer-events: none;" >Submit &amp; Print</button>
+                        </span>
                      </div>
                  </div>
              </form>
          </div>
      </div>
      <script>
-         $(function () {
+         $(function () { 
              $.ajax({
                  url: "{{route('stock.get_bin_weight',0)}}",
                  data: "id=" + $('#bin_id').val(),
@@ -157,7 +153,6 @@
 
 <script>
     $(function () {
-
         $('#calculate').on("click", function () {
             unit_id=$("#unit_id").find("option:selected").val();
             
@@ -180,8 +175,22 @@
                 method: 'GET',
                 success: function (data) {
                     $('#counted_quantity').val(data);
-
-                }
+                    if(data>0){
+                        $('#submit').removeAttr('disabled');
+                        $('#submit_p').removeAttr('disabled');
+                        $('#submit').removeAttr('style');
+                        $('#submit_p').removeAttr('style');
+                        $('.submit_group').removeAttr('title');
+                        $('.submit_group').removeAttr('data-original-title');
+                        $('.submit_group').removeAttr('data-toggle');
+                   }else{
+                        $('#submit').attr('disabled','disabled');
+                        $('#submit_p').attr('disabled','disabled');
+                        $('.submit_group').attr('title',"Please Enter Valid Gross Weight.");
+                        $('.submit_group').attr('data-original-title',"Please Enter Valid Gross Weight.");
+                        $('.submit_group').attr('data-toggle',"tooltip");
+                    }
+               }
             });
         });
     });
