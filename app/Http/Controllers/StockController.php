@@ -174,10 +174,34 @@ class StockController extends Controller
         $data = Bin::where('bin_id', $id)->get()->first();
         echo $data->bin_weight;
     }
-    public function get_net_weight_qty(Request $request)
+    public function get_net_weight(Request $request,$id)
     {
-        $id = $request->input('id');
-        $data = Bin::where('bin_id', $id)->get()->first();
-        echo $data->bin_weight;
+        $bin_id = $request->input('bin_id');
+        $gross_weight = $request->input('gross_weight');
+        $unit_id = $request->input('unit_id');
+
+        $bin = Bin::where('bin_id', $bin_id)->get()->first();
+        $unit = Unit::where('unit_id', $unit_id)->get()->first();
+
+        $net_weight= ($gross_weight*$unit->in_gram)-($bin->bin_weight*1000);
+        echo $net_weight/1000;
+    }
+
+    public function get_qty(Request $request,$id)
+    {
+        $bin_id = $request->input('bin_id');
+        $gross_weight = $request->input('gross_weight');
+        $unit_id = $request->input('unit_id');
+        $item_id = $request->input('item_id');
+
+        $item = Item::where('item_id', $item_id)->with('unit')->get()->first();
+        $bin = Bin::where('bin_id', $bin_id)->get()->first();
+        $unit2 = Unit::where('unit_id', $unit_id)->get()->first();
+
+        $item_weight=$item->item_avg_weight*$item->unit->in_gram;
+        
+        $net_weight= ($gross_weight*$unit2->in_gram)-($bin->bin_weight*1000);
+        $qty=$net_weight/$item_weight;
+        echo $qty;
     }
 }
