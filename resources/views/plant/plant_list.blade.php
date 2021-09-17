@@ -30,8 +30,7 @@
                              <table class="table table-striped table-bordered dt-responsive nowrap data-table dataTable display compact" cellspacing="0" width="100%">
                                  <thead>
                                      <tr>
-                                         <th style="width: 10px">#</th>
-                                         <th>ID</th>
+                                        <th style="width: 10px">Sn.</th>                                                 
                                          <th>Plant Name</th>
                                          <th>Plant address</th>
                                          <th>Action</th>
@@ -47,7 +46,6 @@
                          <?php
                             $rurl = route('plant.plant_list');
                             $columns =  "{data: null, name: 'plant_id'},
-                                {data: 'plant_id', name: 'plant_id'},
                                 {data: 'name', name: 'name'},
                                 {data: 'plant_address', name: 'plant_address'},
                                 {data: 'action', name: 'action', orderable: true, searchable: true}";

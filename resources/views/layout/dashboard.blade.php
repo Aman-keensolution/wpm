@@ -174,7 +174,7 @@
                                                                                         echo "active";
                                                                                     } ?>">
                                 <i class="fas fa-dolly-flatbed"></i>
-                                <p>Stock Mangement</p>
+                                <p>Stock</p>
                             </a>
                         </li>
                         <li class="nav-item">

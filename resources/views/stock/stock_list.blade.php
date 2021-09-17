@@ -31,8 +31,8 @@
                              <table class="table table-striped table-bordered dt-responsive nowrap data-table dataTable display compact" cellspacing="0" width="100%">
                                  <thead>
                                      <tr>
-                                         <th style="width: 10px">#</th>
-                                         <th>Id</th>
+                                        <th style="width: 10px">Sn.</th>
+                                        <th>Date</th>
                                          <th>Item</th>
                                          <th>Bin</th>
                                          <th>Weighing machine</th>
@@ -55,7 +55,7 @@
                      <?php
                         $rurl = route('stock.stock_list');
                         $columns =  "{data: null, name: 'stock_id'},
-                                {data: 'stock_id', name: 'stock_id'},
+                                {data: 'assign_date1', name: 'assign_date1'},
                                 {data: 'item_name', name: 'item_name'},
                                 {data: 'bin_name', name: 'bin_name'},
                                 {data: 'weightScale_name', name: 'weightScale_name'},

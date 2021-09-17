@@ -29,8 +29,8 @@
                          <table class="table table-striped table-bordered dt-responsive nowrap data-table dataTable display compact"  cellspacing="0" width="100%">
                              <thead>
                                  <tr>
-                                    <th style="width: 10px">#</th>
-                                    <th>Id</th>
+                                                                      <th style="width: 10px">Sn.</th>
+                                                                                                   <th>Date</th>
                                     <th>Sub Category Name</th>
                                     <th>Parent Name</th>
                                     <th>Action</th>

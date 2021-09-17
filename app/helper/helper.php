@@ -127,3 +127,7 @@ use Carbon\Carbon;
     {
       return WeightScale::get()->toArray();
     }
+
+    function getCreatedAtAttribute($timestamp,$format = 'M d, Y') {
+    return Carbon::parse($timestamp)->format($format);
+}

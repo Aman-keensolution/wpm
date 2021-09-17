@@ -30,8 +30,7 @@
                              <table class="table table-striped table-bordered dt-responsive nowrap data-table dataTable display compact" cellspacing="0" width="100%">
                                  <thead>
                                      <tr>
-                                         <th style="width: 10px">#</th>
-                                         <th>Id</th>
+                                        <th style="width: 10px">Sn.</th>
                                          <th>Bin Name</th>
                                          <th>Plant Name</th>
                                          <th>Bin weight</th>
@@ -49,7 +48,6 @@
                          <?php
                             $rurl = route('bin.bin_list');
                             $columns =  "{data: null, name: 'bin_id'},
-                                {data: 'bin_id', name: 'bin_id'},
                                 {data: 'name', name: 'name'},
                                 {data: 'plant_name', name: 'plant_name'},
                                 {data: 'bin_weight', name: 'bin_weight'},

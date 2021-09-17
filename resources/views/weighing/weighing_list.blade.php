@@ -30,8 +30,7 @@
                              <table class="table table-striped table-bordered dt-responsive nowrap data-table dataTable display compact" cellspacing="0" width="100%">
                                  <thead>
                                      <tr>
-                                         <th style="width: 10px">#</th>
-                                         <th>Id</th>
+                                         <th style="width: 10px">Sn.</th>
                                          <th>Name</th>
                                          <th>Weighing Scale No.</th>
                                          <th>Plant Name</th>
@@ -50,7 +49,6 @@
                          <?php
                             $rurl = route('weighing.weighing_list');
                             $columns =  "{data: null, name: 'weight_scale_id'},
-                                {data: 'weight_scale_id', name: 'weight_scale_id'},
                                 {data: 'name', name: 'name'},
                                 {data: 'weight_scale_no', name: 'weight_scale_no'},
                                 {data: 'plant_name', name: 'plant_name'},

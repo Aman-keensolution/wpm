@@ -10,7 +10,7 @@ use App\Models\Bin;
 use App\Models\Admin;
 use App\Models\Unit;
 use App\Models\WeightScale;
-
+use Carbon\Carbon;
 use DataTables;
 
 
@@ -34,6 +34,10 @@ class StockController extends Controller
                           $btn = ' <span class="badge bg-secondary">Deleted</span>';
                         }
                         return $btn;
+                    }) 
+
+                    ->addColumn('assign_date1', function ($row) {
+                       return getCreatedAtAttribute(@$row->assign_date,'d/m/Y H:s A') ;
                     })
                     ->addColumn('plant_name', function ($row) {
                         return @$row->plant->name;
@@ -90,7 +94,7 @@ class StockController extends Controller
         $Stock->unit_id = $request->unit_id;
         $Stock->gross_weight = $request->gross_weight;
 
-        $Stock->assign_date = date('Y-m-d H:i:s');
+        $Stock->assign_date =Carbon::now();
         $Stock->bin_weight = 50;
         $Stock->net_weight = 100;
         $Stock->counted_quantity = 132;

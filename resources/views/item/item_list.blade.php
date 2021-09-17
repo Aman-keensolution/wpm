@@ -30,7 +30,7 @@
                              <table class="table table-striped table-bordered dt-responsive nowrap data-table dataTable display compact" cellspacing="0">
                                  <thead>
                                      <tr>
-                                         <th style="width: 10px">#</th>
+                                        <th style="width: 10px">Sn.</th>
                                          <th>Name</th>
                                          <th>Item No.</th>
                                          <th>Price</th>

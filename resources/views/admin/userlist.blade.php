@@ -31,7 +31,6 @@
                                  <thead>
                                      <tr>
                                          <th>No</th>
-                                         <th>Id</th>
                                          <th>Name</th>
                                          <th>Email</th>
                                          <th width="100px">Action</th>
@@ -46,7 +45,6 @@
                          <?php
                             $rurl = route('admin.userlist');
                             $columns = "{data: null, name: 'user_id'},
-                                        {data: 'user_id', name: 'user_id'},
                                         {data: 'name', name: 'name'},
                                         {data: 'email', name: 'email'},
                                         {data: 'action', name: 'action', orderable: true, searchable: true}";
