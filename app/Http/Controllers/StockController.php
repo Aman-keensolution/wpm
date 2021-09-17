@@ -69,12 +69,14 @@ class StockController extends Controller
     public function add_stock(Request $request)
     {
         if (session()->has('Admin_login')) {
+            if($request->session()->get('role')==1){ $user_id = session()->get('Admin_id');}
+            else{$user_id = session()->get('user_id');}
             $all_plant = Plant::all();
             $all_bin = Bin::all();
             $all_item = Item::all();
-            $all_WeightScale = WeightScale::all();
+            $all_WeightScale = WeightScale::where('user_id', $user_id)->with('plant', 'user')->get();
             $all_unit = Unit::all();
-            $all_user = Admin::where('role', 2)->get();
+            $all_user = Admin::where('user_id', $user_id)->get()->first();
             return view('stock.add_stock')->with(['all_plant' => $all_plant, 'all_item' => $all_item, 'all_bin' => $all_bin, 'all_user' => $all_user, 'all_WeightScale' => $all_WeightScale, 'all_unit' => $all_unit]);
         } else {
             return redirect('admin');
@@ -83,7 +85,9 @@ class StockController extends Controller
 
     public function store(Request $request)
     {
-        $user_id = session()->get('Admin_id');
+        if($request->session()->get('role')==1){ $user_id = session()->get('Admin_id');}
+        else{$user_id = session()->get('user_id');}
+
         $Stock = new Stock;
         $Stock->item_id = $request->item_id;
         $Stock->bin_id = $request->bin_id;

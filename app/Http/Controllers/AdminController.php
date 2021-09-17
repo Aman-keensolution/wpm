@@ -29,13 +29,17 @@ class AdminController extends Controller
         $password = md5($request->post('password'));
         $result=Admin::where(['email' =>$email,'password' =>$password])->get();
        if(isset($result['0']->user_id)){
-            $request->session()->put('Admin_login',true);
-            $request->session()->put('Admin_id',$result['0']->user_id);
-            $request->session()->put('user_id', $result['0']->user_id);
             if($result['0']->role == 1){
+                $request->session()->put('Admin_login',true);
+                $request->session()->put('role',$result['0']->role);
+                $request->session()->put('Admin_id',$result['0']->user_id);
+                
                 return redirect('dashboard');
             }else{
-                echo "hello";
+                $request->session()->put('Admin_login',true);
+                $request->session()->put('user_id', $result['0']->user_id);
+                $request->session()->put('role',$result['0']->role);
+                return redirect('dashboard');
             }
            
        }else{
