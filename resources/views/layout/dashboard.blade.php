@@ -54,33 +54,12 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Home</a>
+                    <a href="{{route('admin.dashboard')}}" class="nav-link">Home</a>
                 </li>
             </ul>
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
-                <!-- Navbar Search -->
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                        <i class="fas fa-search"></i>
-                    </a>
-                    <div class="navbar-search-block">
-                        <form class="form-inline">
-                            <div class="input-group input-group-sm">
-                                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                                <div class="input-group-append">
-                                    <button class="btn btn-navbar" type="submit">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                    <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                         <i class="fas fa-expand-arrows-alt"></i>
@@ -110,83 +89,109 @@
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
+                <?php
+                if (session()->get('role') == 1) {
+
+                ?><nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                            <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
-                        <li class="nav-item">
-                            <a href="{{route('admin.dashboard')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array('admin.dashboard'))) {
-                                                                                        echo "active";
-                                                                                    } ?>"><i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>Dashboard</p>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a href="{{route('admin.userlist')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array('admin.userlist', 'admin.add_user', 'admin.edit_user'))) {
-                                                                                        echo "active";
-                                                                                    } ?>">
-                                <i class="fas fa-user"></i>
-                                <p>User Mangement</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('category.category_list')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array('category.category_list', 'category.add_category', 'category.edit_category'))) {
-                                                                                                echo "active";
-                                                                                            } ?>">
-                                <i class="fas fa-align-justify"></i>
-                                <p>Category Mangement</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('plant.plant_list')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array('plant.plant_list', 'plant.add_plant', 'plant.edit_plant'))) {
-                                                                                        echo "active";
-                                                                                    } ?>">
-                                <i class="fas fa-search-location"></i>
-                                <p>Plant/Location Mangement</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('item.item_list')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array('item.item_list', 'item.add_item', 'item.edit_item'))) {
-                                                                                        echo "active";
-                                                                                    } ?>">
-                                <i class="fas fa-cart-arrow-down"></i>
-                                <p>Item Mangement</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('weighing.weighing_list')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array('weighing.weighing_list', 'weighing.add_weighing', 'weighing.edit_weighing'))) {
-                                                                                                echo "active";
-                                                                                            } ?>">
-                                <i class="fas fa-balance-scale"></i>
-                                <p>Weighing Scale Mgmt.</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('bin.bin_list')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array('bin.bin_list', 'bin.add_bin', 'bin.edit_bin'))) {
-                                                                                    echo "active";
-                                                                                } ?>">
-                                <i class="fas fa-shopping-bag"></i>
-                                <p>Bin Mangement</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('stock.stock_list')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array('stock.stock_list', 'stock.add_stock', 'stock.edit_stock'))) {
+                            <li class="nav-item">
+                                <a href="{{route('admin.dashboard')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array('admin.dashboard'))) {
+                                                                                            echo "active";
+                                                                                        } ?>"><i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>Dashboard</p>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a href="{{route('admin.userlist')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array('admin.userlist', 'admin.add_user', 'admin.edit_user'))) {
+                                                                                            echo "active";
+                                                                                        } ?>">
+                                    <i class="fas fa-user"></i>
+                                    <p>User Mangement</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('category.category_list')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array('category.category_list', 'category.add_category', 'category.edit_category'))) {
+                                                                                                    echo "active";
+                                                                                                } ?>">
+                                    <i class="fas fa-align-justify"></i>
+                                    <p>Category Mangement</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('plant.plant_list')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array('plant.plant_list', 'plant.add_plant', 'plant.edit_plant'))) {
+                                                                                            echo "active";
+                                                                                        } ?>">
+                                    <i class="fas fa-search-location"></i>
+                                    <p>Plant/Location Mangement</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('item.item_list')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array('item.item_list', 'item.add_item', 'item.edit_item'))) {
+                                                                                            echo "active";
+                                                                                        } ?>">
+                                    <i class="fas fa-cart-arrow-down"></i>
+                                    <p>Item Mangement</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('weighing.weighing_list')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array('weighing.weighing_list', 'weighing.add_weighing', 'weighing.edit_weighing'))) {
+                                                                                                    echo "active";
+                                                                                                } ?>">
+                                    <i class="fas fa-balance-scale"></i>
+                                    <p>Weighing Scale Mgmt.</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('bin.bin_list')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array('bin.bin_list', 'bin.add_bin', 'bin.edit_bin'))) {
                                                                                         echo "active";
                                                                                     } ?>">
-                                <i class="fas fa-dolly-flatbed"></i>
-                                <p>Stock</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="" class="nav-link <?php if (in_array(request()->route()->getName(), array(''))) {
-                                                            echo "active";
-                                                        } ?>">
-                                <i class="far fa-file"></i>
-                                <p>Reports</p>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+                                    <i class="fas fa-shopping-bag"></i>
+                                    <p>Bin Mangement</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('stock.stock_list')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array('stock.stock_list', 'stock.add_stock', 'stock.edit_stock'))) {
+                                                                                            echo "active";
+                                                                                        } ?>">
+                                    <i class="fas fa-dolly-flatbed"></i>
+                                    <p>Stock</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link <?php if (in_array(request()->route()->getName(), array(''))) {
+                                                                echo "active";
+                                                            } ?>">
+                                    <i class="far fa-file"></i>
+                                    <p>Reports</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                <?php  } else {  ?>
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                            <!-- Add icons to the links using the .nav-icon class
+                     with font-awesome or any other icon font library -->
+                            <li class="nav-item">
+                                <a href="{{route('admin.dashboard')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array('admin.dashboard'))) {
+                                                                                            echo "active";
+                                                                                        } ?>"><i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>Dashboard</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('stock.stock_list')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array('stock.stock_list', 'stock.add_stock', 'stock.edit_stock'))) {
+                                                                                            echo "active";
+                                                                                        } ?>">
+                                    <i class="fas fa-dolly-flatbed"></i>
+                                    <p>Stock</p>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </nav><?php  } ?>
                 <!-- /.sidebar-menu -->
             </div>
             <!-- /.sidebar -->

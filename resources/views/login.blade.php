@@ -25,7 +25,6 @@
         <div class="card card-secondary">
             <div class="card-body login-card-body">
                 <center><img class="logo responsive img-fluid" src="{{asset('public/images/logo.jpg')}}"></center>
-                <p class="login-box-msg"><b>Admin</b></p>
 
                 <form action="{{route('admin.auth')}}" method="post">
                     @csrf
