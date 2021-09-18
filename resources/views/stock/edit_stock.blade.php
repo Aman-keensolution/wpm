@@ -110,12 +110,14 @@
                               value="{{$Stockdata['counted_quantity']}}"  class="form-control" placeholder="Calculate Quantity">
                          </div>
                      </div>
+                      <?php if (session()->get('role') == 2) { ?>
                      <div class="card-footer">
                         <span class="d-inline-block submit_group" tabindex="0" data-toggle="tooltip" title="Please Enter Valid Gross Weight.">
                         <button type="submit" id="submit" name="submit" class="btn btn-primary" disabled style="pointer-events: none;" >Submit</button>                     
                         <button type="submit" id="submit_p" name="submit" class="btn btn-primary" disabled style="pointer-events: none;" >Submit &amp; Print</button>
                         </span>
                      </div>
+                    <?php  } ?>
                  </div>
              </form>
          </div>
