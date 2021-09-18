@@ -35,6 +35,7 @@
                                              <th style="width: 10px">Sn.</th>
                                              <th>Date</th>
                                              <th>Item</th>
+                                             <th>ERP M. Code</th>
                                              <th>Bin</th>
                                              <th>Weighing machine</th>
                                              <th>Plant</th>
@@ -58,6 +59,7 @@
                             $columns =  "{data: null, name: 'stock_id'},
                                 {data: 'assign_date1', name: 'assign_date1'},
                                 {data: 'item_name', name: 'item_name'},
+                                {data: 'item_no', name: 'item_no'},
                                 {data: 'bin_name', name: 'bin_name'},
                                 {data: 'weightScale_name', name: 'weightScale_name'},
                                 {data: 'plant_name', name: 'plant_name'},

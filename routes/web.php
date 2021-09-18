@@ -108,5 +108,6 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::get('get_net_weight/{bin_id}', [StockController::class, 'get_net_weight'])->name('stock.get_net_weight');
     Route::get('get_bin_weight/{id}', [StockController::class, 'get_bin_weight'])->name('stock.get_bin_weight');
     Route::get('get_qty/{id}', [StockController::class, 'get_qty'])->name('stock.get_qty');
+    Route::get('get_items',[StockController::class, 'get_items'])->name('stock.get_items');
 
 });

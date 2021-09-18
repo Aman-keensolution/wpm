@@ -18,28 +18,42 @@
                  @csrf
                  <div class="card-body">
                      <div class="row">
-                         <div class="form-group col-md-6">
-                             <label for="item_id">Item</label>
-                             <select name="item_id" id="item_id" class="form-control select2 ">
-                                 @foreach( $all_item as $item)
-                                 <option value="{{$item->item_id}}">{{$item->name}}</option>
-                                 @endforeach
-                             </select>
-                         </div>
-                         <div class="form-group col-md-6">
-                             <!--Auto file-->
-                             <label for="plant_id">Plant</label>
-                             <!--Auto file-->
-                             <input type="hidden" value="{{$all_bin[0]->plant_id}}" name="plant_id" id="plant_id">
-                             @foreach( $all_plant as $plant)
-                             <?php if ($plant->plant_id == $all_bin[0]->plant_id) { ?>
-                                 <input name="" id="" readonly class="form-control" value="{{$plant->name}}" class="form-control">
-                             <?php } ?>
+                        <div class="form-group col-md-4">
+                            <label for="item_id">ERP Material Code</label>
+                            <input name="item_no" id="item_no" class="form-control item_no" type="text" value="">
+                            <input name="item_id" id="item_id" class="form-control item_id" type="hidden" value="">
+                            <span class="ui_results1"></span>
 
-                             @endforeach
-                             <!--Auto file-->
-                         </div>
-                         <div class="form-group col-md-6">
+                            {{-- <select name="item_id" id="item_id" class="form-control select2 ">
+                                @foreach( $all_item as $item)
+                                <option value="{{$item->item_id}}">{{$item->name}}</option>
+                                @endforeach
+                            </select> --}}
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label for="item_id">Item</label>
+                            <input name="item_name" id="item_name" readonly value="" class="form-control item_name">
+
+                        </div>
+                        <div class="form-group col-md-6">
+                            <!--Auto file-->
+                            <label for="plant_id">Plant</label>
+                            <!--Auto file-->
+                            <input type="hidden" value="{{$all_bin[0]->plant_id}}" name="plant_id" id="plant_id">
+                            @foreach( $all_plant as $plant)
+                            <?php if ($plant->plant_id == $all_bin[0]->plant_id) { ?>
+                                <input name="" id="" readonly class="form-control" value="{{$plant->name}}" class="form-control">
+                            <?php 
+                                $l=$plant->location;
+                            }
+                            ?>
+                            @endforeach
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="plant_id">Location</label>
+                                <input name="" id="" readonly class="form-control" value="{{$l}}" class="form-control">
+                        </div>
+                         <div class="form-group col-md-3">
                              <label for="bin_id">Bin</label>
 
                              <div class="input-group mb-3">
@@ -53,18 +67,18 @@
                                  </div>
                              </div>
                          </div>
-                         <div class="form-group col-md-6">
+                         <div class="form-group col-md-3">
                              <!--Auto file-->
                              <label for="weight_scale_id">Weighing machine</label>
                              <!--Auto file-->
                              <input type="hidden" value="{{@$all_WeightScale[0]->weight_scale_id}}" name="weight_scale_id" id="weight_scale_id">
                              <input name="" id="" readonly class="form-control" value="{{@$all_WeightScale[0]->name}}" class="form-control">
                          </div>
-                         <div class="form-group col-md-6">
+                         <div class="form-group col-md-2">
                              <label for="batch_id">Batch ID</label>
                              <input type="text" name="batch_id" id="batch_id" class="form-control" placeholder="Enter Batch ID">
                          </div>
-                         <div class="form-group col-md-6">
+                         <div class="form-group col-md-4">
                              <label for="gross_weight">Gross Weight</label>
                              <div class="input-group mb-3">
                                  <input type="text" id="gross_weight" name="gross_weight" class="form-control" placeholder="Enter Total Weight" aria-label="" aria-describedby="basic-addon1">
@@ -235,5 +249,34 @@
              });
          });
      </script>
+     <script>
+        $(document).ready(function(){
+
+            $( "#item_no" ).autocomplete({
+            source: function( request, response ) {
+                // Fetch data
+                $.ajax({
+                url:"{{route('stock.get_items')}}",
+                type: 'get',
+                dataType: "json",
+                data: {
+                    search: request.term
+                },
+                success: function( data ) {
+                    response( data );
+                }
+                });
+            },
+            select: function (event, ui) {
+console.log(ui.item);
+                $('#item_id').val(ui.item.value); 
+                $('#item_name').val(ui.item.name);
+                $('#item_no').val(ui.item.label); 
+                return false;
+            }
+            });
+    
+        });
+        </script>
  </section>
  @stop

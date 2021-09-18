@@ -54,6 +54,9 @@ class StockController extends Controller
                     ->addColumn('item_name', function ($row) {
                         return @$row->item->name;
                     })
+                    ->addColumn('item_no', function ($row) {
+                        return @$row->item->item_no;
+                    })
                     ->addColumn('user_name', function ($row) {
                         return @$row->user->name;
                     })
@@ -222,5 +225,42 @@ class StockController extends Controller
             return redirect()->route('admin');
         }
     }
+    public function all_items(Request $request)
+    {
+        if (session()->has('Admin_login')) {
+            $all_plant = Plant::all();
+            $all_bin = Bin::all();
+            $all_item = Item::all();
+            $all_WeightScale = WeightScale::all();
+            $all_unit = Unit::all();
+            $all_user = Admin::where('role', 2)->get();
+            $data['Stockdata'] = Stock::find($request->stock_id);
+            return view('stock.get_stock_label', $data)->with(['all_plant' => $all_plant, 'all_item' => $all_item, 'all_bin' => $all_bin, 'all_user' => $all_user, 'all_WeightScale' => $all_WeightScale, 'all_unit' => $all_unit]);
+        } else {
+            //return view('admin');
+            return redirect()->route('admin');
+        }
+    }
+
+    public function get_items(Request $request){
+
+        $search = $request->search;
+  
+        if($search == ''){
+           $autocomplate = Item::orderby('item_no','asc')->select('item_id','item_no','name')->limit(5)->get();
+        }else{
+            $autocomplate = Item::orderby('item_no','asc')->select('item_id','item_no','name')->where('name', 'like', '%' .$search . '%')->
+            orWhere('item_no', 'like', '%' .$search . '%')->limit(5)->get();
+        }
+  
+        $response = array();
+        foreach($autocomplate as $autocomplate){
+            
+           $response[] = array("value"=>$autocomplate->item_id,"label"=>$autocomplate->item_no,"name"=>$autocomplate->name);
+        }
+  
+        echo json_encode($response);
+        exit;
+     }
 
 }
