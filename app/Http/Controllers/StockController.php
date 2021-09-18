@@ -118,8 +118,10 @@ class StockController extends Controller
         $Stock->save();
 
         if ($Stock) {
-            if($request->submit=="Submit and Print"){return redirect('add_stock'.'?id='.$Stock->stock_id."&print=1");}
-            else if($request->submit=="Submit"){return redirect('add_stock');}
+            if($request->submit=="Submit and Print")
+                {return redirect('add_stock'.'?id='.$Stock->stock_id."&print=1");}
+            else if($request->submit=="Submit")
+                {return redirect('add_stock');}
             
         } else {
             return back()->with('Fail', 'Something went wrong');
@@ -137,6 +139,22 @@ class StockController extends Controller
             $all_user = Admin::where('role', 2)->get();
             $data['Stockdata'] = Stock::find($request->stock_id);
             return view('stock.edit_stock', $data)->with(['all_plant' => $all_plant, 'all_item' => $all_item, 'all_bin' => $all_bin, 'all_user' => $all_user, 'all_WeightScale' => $all_WeightScale, 'all_unit' => $all_unit]);
+        } else {
+            //return view('admin');
+            return redirect()->route('admin');
+        }
+    }
+    public function print_stock(Request $request)
+    {
+        if (session()->has('Admin_login')) {
+            $all_plant = Plant::all();
+            $all_bin = Bin::all();
+            $all_item = Item::all();
+            $all_WeightScale = WeightScale::all();
+            $all_unit = Unit::all();
+            $all_user = Admin::where('role', 2)->get();
+            $data['Stockdata'] = Stock::find($request->stock_id);
+            return view('stock.get_stock_label', $data)->with(['all_plant' => $all_plant, 'all_item' => $all_item, 'all_bin' => $all_bin, 'all_user' => $all_user, 'all_WeightScale' => $all_WeightScale, 'all_unit' => $all_unit]);
         } else {
             //return view('admin');
             return redirect()->route('admin');
@@ -211,22 +229,6 @@ class StockController extends Controller
         $net_weight= ($gross_weight*$unit2->in_gram)-($bin->bin_weight*1000);
         $qty=$net_weight/$item_weight;
         if ($qty <= 0){echo "";}else{echo $qty;}
-    }
-    public function get_stock_label(Request $request)
-    {
-        if (session()->has('Admin_login')) {
-            $all_plant = Plant::all();
-            $all_bin = Bin::all();
-            $all_item = Item::all();
-            $all_WeightScale = WeightScale::all();
-            $all_unit = Unit::all();
-            $all_user = Admin::where('role', 2)->get();
-            $data['Stockdata'] = Stock::find($request->stock_id);
-            return view('stock.get_stock_label', $data)->with(['all_plant' => $all_plant, 'all_item' => $all_item, 'all_bin' => $all_bin, 'all_user' => $all_user, 'all_WeightScale' => $all_WeightScale, 'all_unit' => $all_unit]);
-        } else {
-            //return view('admin');
-            return redirect()->route('admin');
-        }
     }
     public function all_items(Request $request)
     {

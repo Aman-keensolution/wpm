@@ -1,6 +1,7 @@
  <!-- for user view -->
  @extends('layout.dashboard')
  @section('content')
+
  <div class="content-header">
      <div class="container-fluid">
          <div class="row mb-12">
@@ -134,6 +135,9 @@
              </form>
          </div>
      </div>
+    <?php if (isset(app('request')->input('print')) && app('request')->input('print')==1){ ?>
+        
+    <?php } ?>
      <?php $str = ' <div class="col-md-12">
          <div class="card card-secondary">
              <form action="' . route('bin.store1') . '" method="post">'
@@ -278,5 +282,7 @@ console.log(ui.item);
     
         });
         </script>
- </section>
+
+ </section>        
+
  @stop
