@@ -50,7 +50,7 @@ class WeighingController extends Controller
     {
         if (session()->has('Admin_login')) {
             $all_plant = Plant::all();
-            $all_user = Admin::all();
+            $all_user = Admin::where('role', 2)->get();
             $all_unit = Unit::all();
             return view('weighing.add_weighing')->with(['all_plant' => $all_plant,'all_user' =>$all_user, 'all_unit' => $all_unit]);
         } else {
@@ -82,7 +82,7 @@ class WeighingController extends Controller
     {
         if (session()->has('Admin_login')) {
             $all_plant = Plant::all();
-            $all_user = Admin::all();
+            $all_user = Admin::where('role', 2)->get();
             $all_unit = Unit::all();
             $data['WeightScaledata'] = WeightScale::find($request->weight_scale_id);
             return view('weighing.edit_weighing', $data)->with(['all_plant' => $all_plant,'all_user' => $all_user , 'all_unit' => $all_unit ]);
