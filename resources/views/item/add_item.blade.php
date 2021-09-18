@@ -25,8 +25,8 @@
                                  <input type="text" name="name" id="name" class="form-control" placeholder="Enter Item name">
                              </div>
                              <div class="form-group">
-                                 <label for="item_no">Item Number</label>
-                                 <input type="number" name="item_no" id="item_no" class="form-control" placeholder="Enter Item number">
+                                 <label for="item_no">ERP Material No.</label>
+                                 <input type="number" name="item_no" id="item_no" class="form-control" placeholder="Enter ERP Material No.">
                              </div>
                              <div class="form-group">
                                  <label for="price">Item Price</label>

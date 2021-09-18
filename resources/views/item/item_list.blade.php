@@ -32,7 +32,7 @@
                                      <tr>
                                         <th style="width: 10px">Sn.</th>
                                          <th>Name</th>
-                                         <th>Item No.</th>
+                                         <th>ERP Material No.</th>
                                          <th>Price</th>
                                          <th>Category</th>
                                          <th>Item wt.(Kg)</th>

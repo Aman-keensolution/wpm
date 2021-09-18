@@ -24,8 +24,8 @@
                                  <input type="text" name="name" id="name" class="form-control" value="{{$itemdata['name']}}">
                              </div>
                              <div class="form-group">
-                                 <label for="item_no">Item Number</label>
-                                 <input type="text" name="item_no" id="item_no" class="form-control" value="{{$itemdata['item_no']}}">
+                                 <label for="item_no">ERP Material No.</label>
+                                 <input type="text" name="ERP Material No." id="item_no" class="form-control" value="{{$itemdata['item_no']}}">
                              </div>
                          </div>
                          <div class="form-group">
