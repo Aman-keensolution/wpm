@@ -21,11 +21,23 @@
                          <div class="card-body">
                              <div class="form-group">
                                  <label for="name">Plant Name</label>
-                                 <input type="text" name="name" id="name" class="form-control" value="{{$plant_data['name']}}" placeholder="Enter Plant name">
+                                 <input type="text" name="name" id="name" class="form-control" value="{{$plant_data['name']}}">
                              </div>
                              <div class="form-group">
                                  <label for="plant_address">Plant address</label>
-                                 <input type="text" name="plant_address" id="plant_address" class="form-control" value="{{$plant_data['plant_address']}}" placeholder="Enter Plant address">
+                                 <input type="text" name="plant_address" id="plant_address" class="form-control" value="{{$plant_data['plant_address']}}">
+                             </div>
+                             <div class="form-group">
+                                 <label for="shot_code">Shot Code</label>
+                                 <input type="text" name="shot_code" id="short_code" maxlength="6" class="form-control" value="{{$plant_data['shot_code']}}">
+                             </div>
+                             <div class="form-group">
+                                 <label for="location">Location</label>
+                                 <input type="text" name="location" id="location" class="form-control" value="{{$plant_data['location']}}">
+                             </div>
+                             <div class="form-group">
+                                 <label for="location_shot_code">Location Code</label>
+                                 <input type="text" name="location_shot_code" id="location_short_code" class="form-control" value="{{$plant_data['location_shot_code']}}">
                              </div>
                          </div>
                          <div class="card-footer">

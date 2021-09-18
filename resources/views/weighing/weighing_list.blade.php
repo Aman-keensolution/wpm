@@ -34,6 +34,8 @@
                                          <th>Name</th>
                                          <th>Weighing Scale No.</th>
                                          <th>Plant Name</th>
+                                         <th>Shot Code</th>
+                                         <th>Capicity</th>
                                          <th>User Name</th>
                                          <th>Action</th>
                                      </tr>
@@ -43,23 +45,25 @@
                                  </tbody>
                              </table>
                          </div>
-                         </div>
+                     </div>
 
-                         <!-- /.card-body -->
-                         <?php
-                            $rurl = route('weighing.weighing_list');
-                            $columns =  "{data: null, name: 'weight_scale_id'},
+                     <!-- /.card-body -->
+                     <?php
+                        $rurl = route('weighing.weighing_list');
+                        $columns =  "{data: null, name: 'weight_scale_id'},
                                 {data: 'name', name: 'name'},
                                 {data: 'weight_scale_no', name: 'weight_scale_no'},
                                 {data: 'plant_name', name: 'plant_name'},
+                                {data: 'shot_code', name: 'shot_code'},
+                                {data: 'capicity', name: 'capicity'},
                                 {data: 'user_name', name: 'user_name'},
                                 {data: 'action', name: 'action', orderable: true, searchable: true}";
-                            echo setDataTable($rurl, $columns);
-                            ?>
-                     </div>
+                        echo setDataTable($rurl, $columns);
+                        ?>
                  </div>
              </div>
-         </div><!-- /.container-fluid -->
+         </div>
+     </div><!-- /.container-fluid -->
  </section>
 
  @stop

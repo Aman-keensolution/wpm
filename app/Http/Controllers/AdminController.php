@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\WeightScale;
 use Illuminate\Support\Str;
 use DataTables;
+use App\Mail\AdminResetEmailMail;
 
 
 class AdminController extends Controller
@@ -179,17 +180,29 @@ class AdminController extends Controller
             'email' => 'required'
         ]);
         $user_info = Admin::Where('email', $request->email)->first();
+
         if (!empty($user_info)) {
             $token_id = Str::random(30);
             $user_info->email_verify =  $token_id;
             $user_info->save();
-            $email=$user_info->email;
-            return view('reset_password',compact('email'));
+            $message = 'Here is you password reset link, If you did not request to reset your password just ignore this mail. <a class="btn" href="' . route('admin.reset_password', ['user' => $user_info->name, 'token' => $token_id]) . '">Click Reset Password</a>';
+            $data = [
+                'name' => $user_info->name,
+                'message' => $message
+            ];
+            Mail::to($user_info->email)->send(new AdminResetEmailMail($data));
+
+            return redirect()->back()->with([
+                'msg' => __('We have e-mailed your password reset link!'),
+                'type' => 'success'
+            ]);
+        }else{
+            return redirect()->back()->with([
+                'msg' => __('Your Username or Email Is Wrong!!!'),
+                'type' => 'danger'
+            ]);
         }
-        return redirect()->back()->with([
-            'msg' => __('Your Username or Email Is Wrong!!!'),
-            'type' => 'danger'
-        ]);
+     
     }
 
     public function reset_password($username)

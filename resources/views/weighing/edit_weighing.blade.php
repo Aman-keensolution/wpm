@@ -28,6 +28,22 @@
                                  <input type="text" name="weight_scale_no" id="weight_scale_no" class="form-control" value="{{$WeightScaledata['weight_scale_no']}}" placeholder="Enter Weighing Scale No.">
                              </div>
                              <div class="form-group">
+                                 <label for="shot_code">Shot Code</label>
+                                 <input type="shot_code" name="shot_code" id="shot_code" class="form-control" value="{{$WeightScaledata['shot_code']}}" placeholder="Enter shot_code">
+                             </div>
+                             <div class="form-group">
+                                 <label for="capicity">Capicity</label>
+                                 <input type="text" name="capicity" id="capicity" class="form-control" value="{{$WeightScaledata['capicity']}}">
+                             </div>
+                             <div class="form-group">
+                                 <label for="unit_id">Unit</label>
+                                 <select name="unit_id" id="unit_id" class="form-control">
+                                     @foreach( $all_unit as $unit)
+                                     <option @if($WeightScaledata->unit_id == $unit->unit_id) selected @endif value="{{$unit->unit_id}}">{{$unit->name}}</option>
+                                     @endforeach
+                                 </select>
+                             </div>
+                             <div class="form-group">
                                  <label for="plant_id">Plant name</label>
                                  <select name="plant_id" id="plant_id" class="form-control">
                                      @foreach( $all_plant as $plant)

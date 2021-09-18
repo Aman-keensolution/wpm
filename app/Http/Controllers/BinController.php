@@ -65,6 +65,7 @@ class BinController extends Controller
         $Bin->name = $request->name;
         $Bin->plant_id = $request->plant_id;
         $Bin->bin_weight = $request->bin_weight;
+        $Bin->unit_id = 2;
         $Bin->save();
         if ($Bin) {
             return redirect('bin_list');
@@ -84,9 +85,10 @@ class BinController extends Controller
         $Bin->name = $request->name;
         $Bin->plant_id = $request->plant_id;
         $Bin->bin_weight = $request->bin_weight;
+        $Bin->unit_id = 2;
         $Bin->save();
         if ($Bin) {
-            return redirect('stock_list');
+            return redirect('add_stock');
         } else {
             return back()->with('Fail', 'Something went wrong');
         }

@@ -46,4 +46,9 @@ class WeightScale extends Model
     {
         return $this->hasOne(Admin::class, 'user_id', 'user_id');
     }
+
+    public function unit()
+    {
+        return $this->hasOne(Unit::class, 'unit_id', 'unit_id');
+    }
 }

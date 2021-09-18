@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\WeightScale;
 use App\Models\Plant;
 use App\Models\Admin;
+use App\Models\Unit;
 use Illuminate\Http\Request;
 use DataTables;
 
@@ -48,8 +49,10 @@ class WeighingController extends Controller
     public function add_weighing(Request $request)
     {
         if (session()->has('Admin_login')) {
-            $all_plant = Plant::all(); $all_user = Admin::all();
-            return view('weighing.add_weighing')->with(['all_plant' => $all_plant,'all_user' => $all_user]);
+            $all_plant = Plant::all();
+            $all_user = Admin::all();
+            $all_unit = Unit::all();
+            return view('weighing.add_weighing')->with(['all_plant' => $all_plant,'all_user' =>$all_user, 'all_unit' => $all_unit]);
         } else {
             return redirect('admin');
         }
@@ -63,6 +66,9 @@ class WeighingController extends Controller
         $WeightScale->weight_scale_no = $request->weight_scale_no;
         $WeightScale->plant_id = $request->plant_id;
         $WeightScale->user_id = $user_id;
+        $WeightScale->shot_code = $request->shot_code;
+        $WeightScale->unit_id = $request->unit_id;
+        $WeightScale->capicity = $request->capicity;
 
         $WeightScale->save();
         if ($WeightScale) {
@@ -75,9 +81,11 @@ class WeighingController extends Controller
     public function edit_weighing(Request $request)
     {
         if (session()->has('Admin_login')) {
-            $all_plant = Plant::all(); $all_user = Admin::all();
+            $all_plant = Plant::all();
+            $all_user = Admin::all();
+            $all_unit = Unit::all();
             $data['WeightScaledata'] = WeightScale::find($request->weight_scale_id);
-            return view('weighing.edit_weighing', $data)->with(['all_plant' => $all_plant,'all_user' => $all_user]);
+            return view('weighing.edit_weighing', $data)->with(['all_plant' => $all_plant,'all_user' => $all_user , 'all_unit' => $all_unit ]);
         } else {
              //return view('admin');
         return redirect()->route('admin');
@@ -90,6 +98,9 @@ class WeighingController extends Controller
         $data->name = $request->name;
         $data->plant_id = $request->plant_id;
         $data->weight_scale_no = $request->weight_scale_no;
+        $data->shot_code = $request->shot_code;
+        $data->unit_id = $request->unit_id;
+        $data->capicity = $request->capicity;
         $data->save();
         return redirect('weighing_list');
     }

@@ -28,7 +28,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::get('/', [AdminController::class, 'index']);
     Route::get('forget_password', [AdminController::class, 'forget_password'])->name('forget_password');
     Route::post('sendForgetPasswordMail', [AdminController::class, 'sendForgetPasswordMail'])->name('admin.sendForgetPasswordMail');
-    Route::post('reset_password/{$username}', [AdminController::class, 'reset_password'])->name('admin.reset_password');
+    Route::post('reset_password', [AdminController::class, 'reset_password'])->name('admin.reset_password');
     Route::post('adminResetPassword', [AdminController::class, 'adminResetPassword'])->name('admin.adminResetPassword');
                             //AdminController
 

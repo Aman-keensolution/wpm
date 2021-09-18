@@ -30,9 +30,12 @@
                              <table class="table table-striped table-bordered dt-responsive nowrap data-table dataTable display compact" cellspacing="0" width="100%">
                                  <thead>
                                      <tr>
-                                        <th style="width: 10px">Sn.</th>                                                 
+                                         <th style="width: 10px">Sn.</th>
                                          <th>Plant Name</th>
                                          <th>Plant address</th>
+                                         <th>Shot Code</th>
+                                         <th>Location</th>
+                                         <th>Location Code</th>
                                          <th>Action</th>
                                      </tr>
                                  </thead>
@@ -41,21 +44,24 @@
                                  </tbody>
                              </table>
                          </div>
-                         </div>
-                         <!-- /.card-body -->
-                         <?php
-                            $rurl = route('plant.plant_list');
-                            $columns =  "{data: null, name: 'plant_id'},
+                     </div>
+                     <!-- /.card-body -->
+                     <?php
+                        $rurl = route('plant.plant_list');
+                        $columns =  "{data: null, name: 'plant_id'},
                                 {data: 'name', name: 'name'},
                                 {data: 'plant_address', name: 'plant_address'},
+                                {data: 'shot_code', name: 'shot_code'},
+                                {data: 'location', name: 'location'},
+                                {data: 'location_shot_code', name: 'location_shot_code'},
                                 {data: 'action', name: 'action', orderable: true, searchable: true}";
-                            echo setDataTable($rurl, $columns);
-                            ?>
+                        echo setDataTable($rurl, $columns);
+                        ?>
 
-                     </div>
                  </div>
              </div>
-         </div><!-- /.container-fluid -->
+         </div>
+     </div><!-- /.container-fluid -->
  </section>
 
  @stop

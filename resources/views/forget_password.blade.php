@@ -25,6 +25,15 @@
                 <p>Hello there, here you can rest you password</p>
                 <form action="{{route('admin.sendForgetPasswordMail')}}" method="post">
                     @csrf
+                    @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                            <li>{{$error}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
                     <div class="input-group mb-3">
                         <input type="email" class="form-control" placeholder="Enter Email" name="email" required>
                         <div class="input-group-append">
