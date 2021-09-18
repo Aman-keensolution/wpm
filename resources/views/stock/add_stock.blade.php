@@ -126,8 +126,8 @@
                      </div>
                      <div class="card-footer">
                          <span class="d-inline-block submit_group" tabindex="0" data-toggle="tooltip" title="Please Enter Valid Gross Weight.">
-                             <button type="submit" id="submit" name="submit" class="btn btn-primary" disabled style="pointer-events: none;">Submit</button>
-                             <button type="submit" id="submit_p" name="submit" class="btn btn-primary" disabled style="pointer-events: none;">Submit &amp; Print</button>
+                             <input type="submit" id="submit" name="submit" class="btn btn-primary" disabled style="pointer-events: none;" value="Submit">
+                             <input type="submit" id="submit_p" name="submit" class="btn btn-primary" disabled style="pointer-events: none;" value="Submit and Print">
                          </span>
                      </div>
                  </div>

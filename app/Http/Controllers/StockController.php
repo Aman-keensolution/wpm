@@ -116,8 +116,11 @@ class StockController extends Controller
         $Stock->provision2 = 1;
 
         $Stock->save();
+
         if ($Stock) {
-            return redirect('stock_list');
+            if($request->submit=="Submit and Print"){return redirect('add_stock'.'?id='.$Stock->stock_id."&print=1");}
+            else if($request->submit=="Submit"){return redirect('add_stock');}
+            
         } else {
             return back()->with('Fail', 'Something went wrong');
         }
