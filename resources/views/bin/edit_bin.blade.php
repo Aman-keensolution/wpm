@@ -35,7 +35,7 @@
                                  </select>
                              </div>
                              <div class="form-group">
-                                 <label for="bin_weight">Bin Weight</label>
+                                 <label for="bin_weight">Bin Tare Weight</label>
                                  <div class="input-group mb-3">
                                      <input type="text" name="bin_weight" value="{{$bindata['bin_weight']}}" id="bin_weight" class="form-control"  aria-label="Bin Weight">
                                      <div class="input-group-append">

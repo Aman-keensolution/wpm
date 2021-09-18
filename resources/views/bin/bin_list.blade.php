@@ -33,7 +33,7 @@
                                         <th style="width: 10px">Sn.</th>
                                          <th>Bin Name</th>
                                          <th>Plant Name</th>
-                                         <th>Bin weight</th>
+                                         <th>Bin Tare Weight</th>
                                          <th>Action</th>
                                      </tr>
                                  </thead>
