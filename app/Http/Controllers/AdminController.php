@@ -9,6 +9,7 @@ use App\Models\Item;
 use App\Models\Bin;
 use App\Models\Category;
 use App\Models\WeightScale;
+use Illuminate\Support\Str;
 use DataTables;
 
 
@@ -177,10 +178,13 @@ class AdminController extends Controller
         $this->validate($request, [
             'email' => 'required'
         ]);
-        $user_info = Admin::rWhere('email', $request->email)->first();
+        $user_info = Admin::Where('email', $request->email)->first();
         if (!empty($user_info)) {
-            $username=$user_info->email;
-            return view('reset_password',compact('username'));
+            $token_id = Str::random(30);
+            $user_info->email_verify =  $token_id;
+            $user_info->save();
+            $email=$user_info->email;
+            return view('reset_password',compact('email'));
         }
         return redirect()->back()->with([
             'msg' => __('Your Username or Email Is Wrong!!!'),
@@ -190,7 +194,7 @@ class AdminController extends Controller
 
     public function reset_password($username)
     {
-        return view('reset_password');
+        return view('email');
     }
 
     public function adminResetPassword(Request $request)

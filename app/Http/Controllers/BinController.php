@@ -73,6 +73,25 @@ class BinController extends Controller
         }
     }
 
+    public function store1(Request $request)
+    {
+        /* validation code */
+        $request->validate([
+            'name' => 'required'
+        ]);
+        /* user registeration */
+        $Bin = new Bin;
+        $Bin->name = $request->name;
+        $Bin->plant_id = $request->plant_id;
+        $Bin->bin_weight = $request->bin_weight;
+        $Bin->save();
+        if ($Bin) {
+            return redirect('stock_list');
+        } else {
+            return back()->with('Fail', 'Something went wrong');
+        }
+    }
+
     public function edit_bin(Request $request)
     {
         if (session()->has('Admin_login')) {

@@ -29,8 +29,7 @@
     <link rel="stylesheet" href="{{asset('public/assets/plugins/summernote/summernote-bs4.min.css')}}">
     <link rel="stylesheet" href="{{asset('public/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('public/assets/css/jquery.dataTables.min.css')}}">
-    <link rel="stylesheet" href="{{asset('public/assets/plugins/select2/css/select2.min.css')}}">
-    <link rel="stylesheet" href="{{asset('public/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+
     <link rel="stylesheet" href="{{asset('public/assets/css/custom2.css')}}">
     <link rel="stylesheet" href="{{asset('public/assets/css/custom.css')}}">
     <!-- jQuery -->
@@ -90,10 +89,8 @@
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar Menu -->
-                <?php
-                if (session()->get('role') == 1) {
-
-                ?><nav class="mt-2">
+                <?php if (session()->get('role') == 1) { ?>
+                    <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
@@ -157,7 +154,7 @@
                                                                                             echo "active";
                                                                                         } ?>">
                                     <i class="fas fa-dolly-flatbed"></i>
-                                    <p>Stock</p>
+                                    <p>Inventory Count</p>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -187,12 +184,13 @@
                                                                                             echo "active";
                                                                                         } ?>">
                                     <i class="fas fa-dolly-flatbed"></i>
-                                    <p>Stock</p>
+                                    <p>Inventory Count</p>
                                 </a>
                             </li>
 
                         </ul>
-                    </nav><?php  } ?>
+                    </nav>
+                <?php  } ?>
                 <!-- /.sidebar-menu -->
             </div>
             <!-- /.sidebar -->
@@ -249,7 +247,6 @@
     <!-- AdminLTE App -->
     <script src="  {{asset('public/assets/dist/js/adminlte.js')}}"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="  {{asset('public/assets/plugins/select2/js/select2.full.min.js')}}"></script>
     <script src="  {{asset('public/assets/dist/js/demo.js')}}"></script>
     <script src="{{asset('public/assets/js/jquery.validate.js')}}"></script>
     <script src="{{asset('public/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
@@ -257,14 +254,7 @@
     <script src="{{asset('public/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="  {{asset('public/assets/dist/js/pages/dashboard.js')}}"></script>
-    <script>
-        $(function () {
-            $('.select2').select2({
-                theme: 'bootstrap4'
-            });
-            $('[data-toggle="tooltip"]').tooltip();
-        })
-    </script>
+
 </body>
 
 </html>

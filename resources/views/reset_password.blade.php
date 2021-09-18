@@ -25,7 +25,7 @@
                 <form action="{{route('admin.adminResetPassword')}}" method="Post">
                     @csrf
                     <div class="input-group mb-3">
-                        <input type="name" class="form-control" readonly value="{{$username}}" name="name" required>
+                        <input type="name" class="form-control" readonly value="{{$email}}" name="name" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -43,7 +43,7 @@
 
                     <div class="row">
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary btn-block">Send Reset Password Mail</button>
+                            <button type="submit" class="btn btn-primary btn-block">Reset Password</button>
                         </div>
                     </div>
                     <div>

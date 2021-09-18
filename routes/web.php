@@ -90,6 +90,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::get('bin_list', [BinController::class, 'bin_list'])->name('bin.bin_list');
     Route::get('add_bin', [BinController::class, 'add_bin'])->name('bin.add_bin');
     Route::post('bin/store', [BinController::class, 'store'])->name('bin.store');
+    Route::post('bin/store1', [BinController::class, 'store1'])->name('bin.store1');
     Route::get('edit_bin/{bin_id}', [BinController::class, 'edit_bin'])->name('bin.edit_bin');
     Route::post('update_bin/{bin_id}', [BinController::class, 'update_bin'])->name('update_bin');
     Route::get('block_bin/{bin_id}', [BinController::class, 'block_bin'])->name('bin.block_bin');

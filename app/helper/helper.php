@@ -98,7 +98,7 @@ use Carbon\Carbon;
       </script>";
       return $str;
     }
-    function popupGray($title,$str,$id="popupGray"){
+    function popupGrey($title,$str,$id= "popupGrey"){
      $popup='<div class="modal fade" id="'.$id.'" style="display: none;" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content bg-secondary">
