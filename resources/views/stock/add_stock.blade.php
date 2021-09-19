@@ -19,41 +19,42 @@
                  @csrf
                  <div class="card-body">
                      <div class="row">
-                        <div class="form-group col-md-4">
-                            <label for="item_id">ERP Material Code</label>
-                            <input name="item_no" id="item_no" class="form-control item_no" type="text" value="">
-                            <input name="item_id" id="item_id" class="form-control item_id" type="hidden" value="">
-                            <span class="ui_results1"></span>
+                         <div class="form-group col-md-4">
+                             <label for="item_id">ERP Material Code</label>
+                             <input name="item_no" id="item_no" class="form-control item_no" type="text" value="">
+                             <input name="item_id" id="item_id" class="form-control item_id" type="hidden" value="">
+                             <span class="ui_results1"></span>
 
-                            {{-- <select name="item_id" id="item_id" class="form-control select2 ">
+                             {{-- <select name="item_id" id="item_id" class="form-control select2 ">
                                 @foreach( $all_item as $item)
                                 <option value="{{$item->item_id}}">{{$item->name}}</option>
-                                @endforeach
-                            </select> --}}
-                        </div>
-                        <div class="form-group col-md-8">
-                            <label for="item_id">Item</label>
-                            <input name="item_name" id="item_name" readonly value="" class="form-control item_name">
+                             @endforeach
+                             </select> --}}
+                         </div>
+                         <div class="form-group col-md-8">
+                             <label for="item_id">Item</label>
+                             <input name="item_name" id="item_name" readonly value="" class="form-control item_name">
 
-                        </div>
-                        <div class="form-group col-md-6">
-                            <!--Auto file-->
-                            <label for="plant_id">Plant</label>
-                            <!--Auto file-->
-                            <input type="hidden" value="{{$all_bin[0]->plant_id}}" name="plant_id" id="plant_id">
-                            @foreach( $all_plant as $plant)
-                            <?php if ($plant->plant_id == $all_bin[0]->plant_id) { ?>
-                                <input name="" id="" readonly class="form-control" value="{{$plant->name}}" class="form-control">
-                            <?php 
+                         </div>
+                         <div class="form-group col-md-6">
+                             <!--Auto file-->
+                             <label for="plant_id">Plant</label>
+                             <!--Auto file-->
+                             <input type="hidden" value="{{$all_bin[0]->plant_id}}" name="plant_id" id="plant_id">
+                             @foreach( $all_plant as $plant)
+                             <?php if ($plant->plant_id == $all_bin[0]->plant_id) { ?>
+                             <input name="" id="" readonly class="form-control" value="{{$plant->name}}"
+                                 class="form-control">
+                             <?php 
                                 $l=$plant->location;
                             }
                             ?>
-                            @endforeach
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="plant_id">Location</label>
-                                <input name="" id="" readonly class="form-control" value="{{$l}}" class="form-control">
-                        </div>
+                             @endforeach
+                         </div>
+                         <div class="form-group col-md-6">
+                             <label for="plant_id">Location</label>
+                             <input name="" id="" readonly class="form-control" value="{{$l}}" class="form-control">
+                         </div>
                          <div class="form-group col-md-3">
                              <label for="bin_id">Bin</label>
 
@@ -64,7 +65,8 @@
                                      @endforeach
                                  </select>
                                  <div class="input-group-append">
-                                     <a href="{{route('bin.add_bin')}}" class="btn btn-outline-secondary" data-toggle="modal" data-target="#popupGrey">Add Bin</a>
+                                     <a href="{{route('bin.add_bin')}}" class="btn btn-outline-secondary"
+                                         data-toggle="modal" data-target="#popupGrey">Add Bin</a>
                                  </div>
                              </div>
                          </div>
@@ -72,33 +74,40 @@
                              <!--Auto file-->
                              <label for="weight_scale_id">Weighing machine</label>
                              <!--Auto file-->
-                             <input type="hidden" value="{{@$all_WeightScale[0]->weight_scale_id}}" name="weight_scale_id" id="weight_scale_id">
-                             <input name="" id="" readonly class="form-control" value="{{@$all_WeightScale[0]->name}}" class="form-control">
+                             <input type="hidden" value="{{@$all_WeightScale[0]->weight_scale_id}}"
+                                 name="weight_scale_id" id="weight_scale_id">
+                             <input name="" id="" readonly class="form-control" value="{{@$all_WeightScale[0]->name}}"
+                                 class="form-control">
                          </div>
                          <div class="form-group col-md-2">
                              <label for="batch_id">Batch ID</label>
-                             <input type="text" name="batch_id" id="batch_id" class="form-control" placeholder="Enter Batch ID">
+                             <input type="text" name="batch_id" id="batch_id" class="form-control"
+                                 placeholder="Enter Batch ID">
                          </div>
                          <div class="form-group col-md-4">
                              <label for="gross_weight">Gross Weight</label>
                              <div class="input-group mb-3">
-                                 <input type="text" id="gross_weight" name="gross_weight" class="form-control" placeholder="Enter Total Weight" aria-label="" aria-describedby="basic-addon1">
+                                 <input type="text" id="gross_weight" name="gross_weight" class="form-control"
+                                     placeholder="Enter Total Weight" aria-label="" aria-describedby="basic-addon1">
                                  <div class="input-group-append">
-                                     <select name="unit_id" id="unit_id" class="custom-select" style="border-radius: 0;" placeholder="Enter Unit">
+                                     <select name="unit_id" id="unit_id" class="custom-select" style="border-radius: 0;"
+                                         placeholder="Enter Unit">
                                          @foreach( $all_unit as $unit)
                                          <option <?php if ($unit['unit_id'] == 2) {
                                                         echo  "selected";
                                                     } ?> value="{{$unit['unit_id']}}">{{$unit['name']}}</option>
                                          @endforeach
                                      </select>
-                                     <button class="btn btn-outline-success" type="button" name="calculate" id="calculate"><b>Calculate</b></button>
+                                     <button class="btn btn-outline-success" type="button" name="calculate"
+                                         id="calculate"><b>Calculate</b></button>
                                  </div>
                              </div>
                          </div>
                          <div class="form-group col-md-4">
                              <label for="bin_weight">Bin Weight</label>
                              <div class="input-group mb-3">
-                                 <input type="text" readonly name="bin_weight" id="bin_weight" class="form-control" placeholder="As per the Database Bin Weight" aria-label="Bin Weight">
+                                 <input type="text" readonly name="bin_weight" id="bin_weight" class="form-control"
+                                     placeholder="As per the Database Bin Weight" aria-label="Bin Weight">
                                  <div class="input-group-append">
                                      <span class="input-group-text" id="basic-addon2">Kg</span>
                                      <input type="hidden" name="bin_weight_g" id="bin_weight_g">
@@ -110,7 +119,8 @@
                              <label for="net_weight">Net Weight</label>
 
                              <div class="input-group mb-3">
-                                 <input type="text" readonly name="net_weight" id="net_weight" class="form-control" placeholder="Calculate Net Weigh">
+                                 <input type="text" readonly name="net_weight" id="net_weight" class="form-control"
+                                     placeholder="Calculate Net Weigh">
                                  <input type="hidden" name="net_weight_g" id="net_weight_g">
                                  <div class="input-group-append">
                                      <span class="input-group-text" id="basic-addon2">Kg</span>
@@ -122,23 +132,31 @@
                          </div>
                          <div class="form-group col-md-4">
                              <label for="counted_quantity">Quantity</label>
-                             <input type="text" readonly name="counted_quantity" id="counted_quantity" class="form-control" placeholder="Calculate Quantity">
+                             <input type="text" readonly name="counted_quantity" id="counted_quantity"
+                                 class="form-control" placeholder="Calculate Quantity">
+                         </div>
+                         <div class="form-group col-md-12">
+                             <label for="remark">Remark</label>
+                             <textarea name="remark" id="remark" class="form-control"
+                                 placeholder="Enter Remark"></textarea>
                          </div>
                      </div>
                      <div class="card-footer">
-                         <span class="d-inline-block submit_group" tabindex="0" data-toggle="tooltip" title="Please Enter Valid Gross Weight.">
-                             <input type="submit" id="submit" name="submit" class="btn btn-primary" disabled style="pointer-events: none;" value="Submit">
-                             <input type="submit" id="submit_p" name="submit" class="btn btn-primary" disabled style="pointer-events: none;" value="Submit and Print">
+                         <span class="d-inline-block submit_group" tabindex="0" data-toggle="tooltip"
+                             title="Please Enter Valid Gross Weight.">
+                             <input type="submit" id="submit" name="submit" class="btn btn-primary" disabled
+                                 style="pointer-events: none;" value="Submit">
+                             <input type="submit" id="submit_p" name="submit" class="btn btn-primary" disabled
+                                 style="pointer-events: none;" value="Submit and Print">
                          </span>
                      </div>
                  </div>
              </form>
          </div>
      </div>
-    <?php if (isset(app('request')->input('print')) && app('request')->input('print')==1){ ?>
-        
-    <?php } ?>
-     <?php $str = ' <div class="col-md-12">
+
+
+     <?php $str = '<div class="col-md-12">
          <div class="card card-secondary">
              <form action="' . route('bin.store1') . '" method="post">'
             . csrf_field() . '
@@ -180,26 +198,26 @@
         echo popupGrey('Add Bin', $str);
         ?>
      <script>
-         $(function() {
+         $(function () {
              $.ajax({
                  url: "{{route('stock.get_bin_weight',0)}}",
                  data: "id=" + $('#bin_id').val(),
                  dataType: "html",
                  method: 'GET',
-                 success: function(data) {
+                 success: function (data) {
                      $('#bin_weight').val(data);
                      bin_weight_g = data * 1000;
                      $('#bin_weight_g').val(bin_weight_g);
                  }
              });
-             $('#bin_id').change(function() {
+             $('#bin_id').change(function () {
                  id = $(this).val(),
                      $.ajax({
                          url: "{{route('stock.get_bin_weight',0)}}",
                          data: "id=" + id,
                          dataType: "html",
                          method: 'GET',
-                         success: function(data) {
+                         success: function (data) {
                              $('#bin_weight').val(data);
                              bin_weight_g = data * 1000;
                              $('#bin_weight_g').val(bin_weight_g);
@@ -207,11 +225,12 @@
                      });
              });
          });
+
      </script>
 
      <script>
-         $(function() {
-             $('#calculate').on("click", function() {
+         $(function () {
+             $('#calculate').on("click", function () {
                  unit_id = $("#unit_id").find("option:selected").val();
 
                  $.ajax({
@@ -220,7 +239,7 @@
                          '#gross_weight').val() + "&unit_id=" + unit_id,
                      dataType: "html",
                      method: 'GET',
-                     success: function(data) {
+                     success: function (data) {
                          $('#net_weight').val(data);
 
                      }
@@ -228,10 +247,11 @@
                  $.ajax({
                      url: "{{route('stock.get_qty',0)}}",
                      data: "bin_id=" + $('#bin_id').val() + "&gross_weight=" + $(
-                         '#gross_weight').val() + "&unit_id=" + unit_id + "&item_id=" + $('#item_id').val(),
+                         '#gross_weight').val() + "&unit_id=" + unit_id + "&item_id=" + $(
+                         '#item_id').val(),
                      dataType: "html",
                      method: 'GET',
-                     success: function(data) {
+                     success: function (data) {
                          $('#counted_quantity').val(data);
                          if (data > 0) {
                              $('#submit').removeAttr('disabled');
@@ -244,45 +264,198 @@
                          } else {
                              $('#submit').attr('disabled', 'disabled');
                              $('#submit_p').attr('disabled', 'disabled');
-                             $('.submit_group').attr('title', "Please Enter Valid Gross Weight.");
-                             $('.submit_group').attr('data-original-title', "Please Enter Valid Gross Weight.");
+                             $('.submit_group').attr('title',
+                                 "Please Enter Valid Gross Weight.");
+                             $('.submit_group').attr('data-original-title',
+                                 "Please Enter Valid Gross Weight.");
                              $('.submit_group').attr('data-toggle', "tooltip");
                          }
                      }
                  });
              });
          });
+
      </script>
      <script>
-        $(document).ready(function(){
+         $(document).ready(function () {
 
-            $( "#item_no" ).autocomplete({
-            source: function( request, response ) {
-                // Fetch data
-                $.ajax({
-                url:"{{route('stock.get_items')}}",
-                type: 'get',
-                dataType: "json",
-                data: {
-                    search: request.term
-                },
-                success: function( data ) {
-                    response( data );
-                }
-                });
-            },
-            select: function (event, ui) {
-console.log(ui.item);
-                $('#item_id').val(ui.item.value); 
-                $('#item_name').val(ui.item.name);
-                $('#item_no').val(ui.item.label); 
-                return false;
-            }
-            });
-    
-        });
-        </script>
+             $("#item_no").autocomplete({
+                 source: function (request, response) {
+                     // Fetch data
+                     $.ajax({
+                         url: "{{route('stock.get_items')}}",
+                         type: 'get',
+                         dataType: "json",
+                         data: {
+                             search: request.term
+                         },
+                         success: function (data) {
+                             response(data);
+                         }
+                     });
+                 },
+                 select: function (event, ui) {
+                     console.log(ui.item);
+                     $('#item_id').val(ui.item.value);
+                     $('#item_name').val(ui.item.name);
+                     $('#item_no').val(ui.item.label);
+                     return false;
+                 }
+             });
 
- </section>        
+         });
 
+     </script>
+
+ </section>
+ <?php if (request()->route('print')==1){ ?>
+ <script>
+     function PrintElem(elem) {
+         var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+         var a = "<?php asset('public/assets/css/print.css');?>";
+         mywindow.document.write('<html><head><link rel="stylesheet" href="' + a + '"><title>' + document.title +
+             '</title><style>@media print {.p3_text{font-size:10px;}}</style>');
+         mywindow.document.write('</head><body >');
+         mywindow.document.write(document.getElementById(elem).innerHTML);
+         mywindow.document.write('</body></html>');
+
+         mywindow.document.close(); // necessary for IE >= 10
+         mywindow.focus(); // necessary for IE >= 10*/
+
+         mywindow.print();
+         mywindow.close();
+
+         return true;
+     }
+
+     $(window).on('load', function () {
+
+         $('#stockdata_modal').modal();
+     });
+
+ </script>
+ 
+     <?php $data=$Stockdata; ?>
+     <div class="modal fade" id="stockdata_modal" style="display: none;" aria-hidden="true">
+         <div class="modal-dialog">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <h4 class="modal-title">label</h4>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">×</span>
+                     </button>
+                 </div>
+                 <div class="modal-body">
+                    <div id="page-wrap">
+                     <center>
+                         <table width="380" border="0" cellspacing="0" cellpadding="0">
+                             <tr>
+                                 <td colspan="2" class="p3_text"><span><img width="72px" height="48px" src="
+                                {{asset('public/images/bw_logo.png')}}"></span><br></td>
+                                 <td class="p3_text">&nbsp;</td>
+                                 <td class="p3_text">&nbsp;</td>
+                                 <td class="p3_text">&nbsp;</td>
+                                 <?php $shot_code=$data->plant->shortcode.$data->weightScale->shortcode.$data->plant->location_shot_code.$data->stock_id;?>
+                    <td colspan="5" class="p3_text"><b>Tag No</b> - {{$shot_code}}
+                                     <br>
+                                     {!! DNS1D::getBarcodeHTML($shot_code, "C128",1.4,22) !!}</td>
+                             </tr>
+                             <tr>
+                                 <td width="10%" class="p3_text">&nbsp;</td>
+                                 <td width="10%" class="p3_text">&nbsp;</td>
+                                 <td width="10%" class="p3_text">&nbsp;</td>
+                                 <td width="10%" class="p3_text">&nbsp;</td>
+                                 <td width="10%" class="p3_text">&nbsp;</td>
+                                 <td width="10%" class="p3_text">&nbsp;</td>
+                                 <td width="10%" class="p3_text">&nbsp;</td>
+                                 <td width="10%" class="p3_text">&nbsp;</td>
+                                 <td width="10%" class="p3_text">&nbsp;</td>
+                                 <td width="10%" class="p3_text">&nbsp;</td>
+                             </tr>
+                             <tr>
+                                 <td class="p3_text">BIN No</td>
+                                 <td colspan="3" class="p3_text">{{$data->bin->name}}</td>
+                                 <td class="p3_text">&nbsp;</td>
+                                 <td class="p3_text">&nbsp;</td>
+                                 <td class="p3_text">Date :</td>
+                                 <td colspan="3" class="p3_text">{{$data->assign_date}}</td>
+                             </tr>
+                             <tr>
+                                 <td class="p3_text">Plant:</td>
+                                 <td colspan="3" class="p3_text">{{$data->plant->name}}</td>
+                                 <td class="p3_text">&nbsp;</td>
+                                 <td class="p3_text">&nbsp;</td>
+                                 <td class="p3_text">Location:</td>
+                                 <td colspan="3" class="p3_text">{{$data->plant->location}}</td>
+                             </tr>
+                             <tr>
+                                 <td class="p3_text">ERP Code</td>
+                                 <td colspan="3" class="p3_text">{{$data->item_no}}</td>
+                                 <td class="p3_text">&nbsp;</td>
+                                 <td class="p3_text">&nbsp;</td>
+                                 <td colspan="4" class="p3_text">Weighing Scale No
+                                     <br>{{$data->weightScale->weight_scale_no}}
+                                 </td>
+                             </tr>
+                             <tr>
+                                 <td colspan="10" class="">
+                                     <table border="1" cellspacing="0" cellpadding="0" >
+                                         <tr>
+                                             <td class="p3_text">ERP Code</td>
+                                             <td colspan="2" class="p3_text">Item Name</td>
+                                             <td class="p3_text">Unit Wt.</td>
+                                             <td class="p3_text">Gross Wt.</td>
+                                             <td class="p3_text">Bin Wt.</td>
+                                             <td class="p3_text">Net Wt.</td>
+                                             <td class="p3_text">No. of PCs</td>
+                                             <td colspan="2" class="p3_text">Remarks</td>
+                                         </tr>
+                                         <tr>
+                                             <td class="p3_text">{{$data->item_no}}</td>
+                                             <td colspan="2" class="p3_text">{{$data->item->name}}</td>
+                                             <td class="p3_text">{{$data->unit->code_name}}</td>
+                                             <td class="p3_text">{{$data->gross_weight}}</td>
+                                             <td class="p3_text">{{$data->bin_weight}}</td>
+                                             <td class="p3_text">{{$data->net_weight}}</td>
+                                             <td class="p3_text">{{$data->counted_quantity}}</td>
+                                             <td colspan="2" class="p3_text">{{$data->remark}}</td>
+                                         </tr>
+                                     </table>
+                                 </td>
+                             </tr>
+                             <tr>
+                                 <td colspan="2" class="p3_text">Prepared By</td>
+                                 <td colspan="3" class="p3_text">{{$data->user->name}}</td>
+                                 <td colspan="2" class="p3_text">Checked by </td>
+                                 <td colspan="3" class="p3_text"></td>
+                             </tr>
+                             <tr>
+                                 <td colspan="2" class="p3_text">Inventory Controller</td>
+                                 <td colspan="3" class="p3_text">&nbsp;</td>
+                                 <td class="p3_text">&nbsp;</td>
+                                 <td class="p3_text">&nbsp;</td>
+                                 <td class="p3_text">&nbsp;</td>
+                                 <td class="p3_text">&nbsp;</td>
+                                 <td class="p3_text">&nbsp;</td>
+
+                             </tr>
+                         </table>
+                     </center>
+                    </div>
+                 </div>
+                 <div class="modal-footer justify-content-between">
+                     <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+                 </div>
+             </div>
+             <!-- /.modal-content -->
+         </div>
+
+         <!-- /.modal-dialog -->
+     </div>
+
+ <script>
+     PrintElem('page-wrap');
+
+ </script>
+ <?php } ?>
  @stop

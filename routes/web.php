@@ -98,10 +98,10 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
 
                             //StockController
     Route::get('stock_list', [StockController::class, 'stock_list'])->name('stock.stock_list');
-    Route::get('add_stock', [StockController::class, 'add_stock'])->name('stock.add_stock');
+    Route::get('add_stock/{stock_id}/{print}', [StockController::class, 'add_stock'])->name('stock.add_stock');
     Route::post('stock/store', [StockController::class, 'store'])->name('stock.store');
     Route::get('edit_stock/{stock_id}', [StockController::class, 'edit_stock'])->name('stock.edit_stock');
-    Route::get('print_stock/{stock_id}', [StockController::class, 'print_stock'])->name('stock.print_stock');
+    Route::post('print_stock', [StockController::class, 'print_stock'])->name('stock.print_stock');
     Route::post('update_stock/{stock_id}', [StockController::class, 'update_stock'])->name('update_stock');
     Route::get('block_stock/{stock_id}', [StockController::class, 'block_stock'])->name('stock.block_stock');
     Route::get('unblock_stock/{stock_id}', [StockController::class, 'unblock_stock'])->name('stock.unblock_stock');

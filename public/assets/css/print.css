@@ -1,0 +1,147 @@
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    #section-to-print,
+    #section-to-print * {
+        visibility: visible;
+    }
+
+    #section-to-print {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    body {
+        font-family: 'roboto', 'DejaVu Sans', sans-serif;
+    }
+
+    /** {
+      font-family: DejaVu Sans Mono, sans-serif, monospace;
+    }*/
+    #page-wrap {
+        width: 700px;
+        margin: 0 auto;
+    }
+
+    .center-justified {
+        text-align: justify;
+        margin: 0 auto;
+        width: 30em;
+    }
+
+    table.outline-table {
+        border: 1px solid #D3D3D3;
+        border-spacing: 0;
+    }
+
+    tr.border-bottom td,
+    td.border-bottom {
+        border-bottom: 1px solid #D3D3D3;
+    }
+
+    tr.border-top td,
+    td.border-top {
+        border-top: 1px solid #D3D3D3;
+    }
+
+    td.border-thin {
+        border-top: 1px;
+    }
+
+    tr.border-right td,
+    td.border-right {
+        border-right: 1px solid #D3D3D3;
+    }
+
+    tr.border-right td:last-child {
+        border-right: 0px #D3D3D3;
+    }
+
+    tr.center td,
+    td.center {
+        text-align: center;
+        vertical-align: text-top;
+    }
+
+    td.pad-left {
+        padding-left: 5px;
+    }
+
+    tr.right-center td,
+    td.right-center {
+        text-align: right;
+        padding-right: 50px;
+    }
+
+    tr.right td,
+    td.right {
+        text-align: right;
+    }
+
+    .grey {
+        background: grey;
+    }
+
+    .lw-text-font-size {
+        font-size: 12px;
+    }
+
+    div.lw-footer {
+        position: fixed;
+        width: 100%;
+        border: 0px solid #888;
+        overflow: hidden;
+        padding: 0.1cm;
+    }
+
+    div.lw-footer {
+        padding-top: 35px;
+        padding-bottom: 10px;
+        bottom: 10px;
+        left: 20px;
+        right: 20px;
+        border-top-width: 1px;
+        height: 0.5cm;
+    }
+
+    .lw-pdf-page-number {
+        text-align: left;
+        font-size: 12px;
+    }
+
+    .lw-pdf-page-number:before {
+        content: counter(page);
+    }
+
+    hr {
+        page-break-after: always;
+        border: 0;
+    }
+
+    span.lw-horizantal-line {
+        height: 30px;
+        border-style: solid;
+        border-color: #D3D3D3;
+        border-width: 1px 0 0 0;
+        /*border-radius: 20px;*/
+    }
+
+    span.lw-horizantal-line:before {
+        /* Not really supposed to work, but does */
+        display: block;
+        content: "";
+        height: 30px;
+        margin-top: -31px;
+        border-style: solid;
+        border-color: #D3D3D3;
+        border-width: 0 0 1px 0;
+        /*border-radius: 20px;*/
+    }
+    .p3_text{
+        font-size: 11pt;
+    }
+    .nav-item{display: none;}
+}

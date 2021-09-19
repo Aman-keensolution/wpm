@@ -41,7 +41,12 @@ class StockController extends Controller
                         }
                         return $btn;
                     }) 
-
+                    ->addColumn('checkbox1', function ($row) {
+                        
+                        $btn1='<input name="select_entry[]" id="select_entry_'.$row->stock_id.'" class="select_entry" value="'.$row->stock_id.'" type="checkbox">';
+                       
+                        return $btn1;
+                    }) 
                     ->addColumn('assign_date1', function ($row) {
                        return getCreatedAtAttribute(@$row->assign_date,'d/m/Y H:s A') ;
                     })
@@ -66,7 +71,7 @@ class StockController extends Controller
                     ->addColumn('unit_name', function ($row) {
                         return @$row->unit->name;
                     })
-                    ->rawColumns(['action'])
+                    ->rawColumns(['action','checkbox1'])
                     ->make(true);
             }
             return view('stock.stock_list');
@@ -86,6 +91,16 @@ class StockController extends Controller
             $all_WeightScale = WeightScale::where('user_id', $user_id)->with('plant', 'user')->get();
             $all_unit = Unit::all();
             $all_user = Admin::where('user_id', $user_id)->get()->first();
+            if (session()->has('Admin_login')) {
+                $all_plant = Plant::all();
+                $all_bin = Bin::all();
+                $all_item = Item::all();
+                $all_WeightScale = WeightScale::all();
+                $all_unit = Unit::all();
+                $all_user = Admin::where('role', 2)->get();
+                $data['Stockdata'] = Stock::where('stock_id', $request->stock_id)->with('plant', 'bin','item','weightScale','unit','user')->get()->first(); //find($request->stock_id);
+                return view('stock.add_stock', $data)->with(['all_plant' => $all_plant, 'all_item' => $all_item, 'all_bin' => $all_bin, 'all_user' => $all_user, 'all_WeightScale' => $all_WeightScale, 'all_unit' => $all_unit]);
+            }
             return view('stock.add_stock')->with(['all_plant' => $all_plant, 'all_item' => $all_item, 'all_bin' => $all_bin, 'all_user' => $all_user, 'all_WeightScale' => $all_WeightScale, 'all_unit' => $all_unit]);
         } else {
             return redirect('admin');
@@ -106,12 +121,13 @@ class StockController extends Controller
         $Stock->batch_id = $request->batch_id;
         $Stock->unit_id = $request->unit_id;
         $Stock->gross_weight = $request->gross_weight;
+        $Stock->remark = $request->remark;
 
         $Stock->assign_date =Carbon::now();
         $Stock->bin_weight = 50;
         $Stock->net_weight = 100;
         $Stock->counted_quantity = 132;
-        $Stock->remark = 1;
+        $Stock->remark = $request->remark;
         $Stock->provision1 = 1;
         $Stock->provision2 = 1;
 
@@ -119,9 +135,12 @@ class StockController extends Controller
 
         if ($Stock) {
             if($request->submit=="Submit and Print")
-                {return redirect('add_stock'.'?id='.$Stock->stock_id."&print=1");}
+                {
+                    $data['Stockdata'] = Stock::where('stock_id', $Stock->stock_id)->with('plant', 'bin','item','weightScale','unit','user')->get()->first(); 
+                    return redirect('add_stock/'.$Stock->stock_id.'/1')->with( ['data' => $data] );
+                }
             else if($request->submit=="Submit")
-                {return redirect('add_stock');}
+                {return redirect('add_stock/0/0');}
             
         } else {
             return back()->with('Fail', 'Something went wrong');
@@ -137,7 +156,7 @@ class StockController extends Controller
             $all_WeightScale = WeightScale::all();
             $all_unit = Unit::all();
             $all_user = Admin::where('role', 2)->get();
-            $data['Stockdata'] = Stock::find($request->stock_id);
+            $data['Stockdata'] = Stock::where('stock_id', $request->stock_id)->with('plant', 'bin','item','weightScale','unit','user')->get()->first(); //find($request->stock_id);
             return view('stock.edit_stock', $data)->with(['all_plant' => $all_plant, 'all_item' => $all_item, 'all_bin' => $all_bin, 'all_user' => $all_user, 'all_WeightScale' => $all_WeightScale, 'all_unit' => $all_unit]);
         } else {
             //return view('admin');
@@ -146,6 +165,7 @@ class StockController extends Controller
     }
     public function print_stock(Request $request)
     {
+        
         if (session()->has('Admin_login')) {
             $all_plant = Plant::all();
             $all_bin = Bin::all();
@@ -153,8 +173,8 @@ class StockController extends Controller
             $all_WeightScale = WeightScale::all();
             $all_unit = Unit::all();
             $all_user = Admin::where('role', 2)->get();
-            $data['Stockdata'] = Stock::find($request->stock_id);
-            return view('stock.get_stock_label', $data)->with(['all_plant' => $all_plant, 'all_item' => $all_item, 'all_bin' => $all_bin, 'all_user' => $all_user, 'all_WeightScale' => $all_WeightScale, 'all_unit' => $all_unit]);
+            $data['Stockdatas'] = Stock::whereIn('stock_id', $request->select_entry)->with('plant', 'bin','item','weightScale','unit','user')->get(); //find($request->stock_id);
+            return view('stock.pdf-report', $data);
         } else {
             //return view('admin');
             return redirect()->route('admin');
@@ -163,7 +183,7 @@ class StockController extends Controller
 
     public function update_stock(Request $request)
     {
-        $user_id = session()->get('Admin_id');
+        $user_id = session()->get('user_id');
         $data = Stock::find($request->stock_id);
         $data->item_id = $request->item_id;
         $data->bin_id = $request->bin_id;
@@ -173,6 +193,7 @@ class StockController extends Controller
         $data->batch_id = $request->batch_id;
         $data->unit_id = $request->unit_id;
         $data->gross_weight = $request->gross_weight;
+        $data->remark = $request->remark;
         $data->save();
         return redirect('stock_list');
     }

@@ -33,7 +33,7 @@
 
     <link rel="stylesheet" href="{{asset('public/assets/css/custom2.css')}}">
     <link rel="stylesheet" href="{{asset('public/assets/css/custom.css')}}">
-
+    <link rel="stylesheet" href="{{asset('public/assets/css/print.css')}}">
     <!-- jQuery -->
     <script src="  {{asset('public/assets/plugins/jquery/jquery.min.js')}}"></script>
 
