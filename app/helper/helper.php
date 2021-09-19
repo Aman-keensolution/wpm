@@ -156,3 +156,110 @@ use Carbon\Carbon;
     function getCreatedAtAttribute($timestamp,$format = 'M d, Y') {
     return Carbon::parse($timestamp)->format($format);
 }
+    function print__label_template($data) {
+      ?><center><style>.p3_text{font-size:10px;} .l_text{font-weight:800;}@media print {.p3_text{font-size:10px;} .l_text{font-weight:800;}}</style>
+      <table width="380" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+              <td colspan="2" class="p3_text"><span><img width="72px" height="48px" src="
+             <?php echo asset('public/images/bw_logo.png'); ?>"></span><br></td>
+              <td class="p3_text">&nbsp;</td>
+              <td class="p3_text">&nbsp;</td>
+              <td class="p3_text">&nbsp;</td><?php $shot_code=$data->plant->shot_code.$data->weightScale->shot_code.$data->plant->location_shot_code."s".$data->stock_id;?>
+              <td colspan="5" class="p3_text l_text"><b>Tag No</b>- <?php echo $shot_code; ?> <br>
+                  
+                  <?php echo DNS1D::getBarcodeSVG($shot_code, "C39", 1, 25, '#2A3239') ?><br></td>
+          </tr>
+          <tr>
+              <td width="10%" class="p3_text">&nbsp;</td>
+              <td width="10%" class="p3_text">&nbsp;</td>
+              <td width="10%" class="p3_text">&nbsp;</td>
+              <td width="10%" class="p3_text">&nbsp;</td>
+              <td width="10%" class="p3_text">&nbsp;</td>
+              <td width="10%" class="p3_text">&nbsp;</td>
+              <td width="10%" class="p3_text">&nbsp;</td>
+              <td width="10%" class="p3_text">&nbsp;</td>
+              <td width="10%" class="p3_text">&nbsp;</td>
+              <td width="10%" class="p3_text">&nbsp;</td>
+          </tr>
+          <tr>
+              <td class="p3_text l_text">BIN No</td>
+              <td colspan="3" class="p3_text"><?php echo $data->bin->name; ?></td>
+              <td class="p3_text">&nbsp;</td>
+              <td class="p3_text">&nbsp;</td>
+              <td class="p3_text l_text">Date :</td>
+              <td colspan="3" class="p3_text"><?php echo getCreatedAtAttribute($data->assign_date,'d-m-Y'); ?></td>
+          </tr>
+          <tr>
+              <td class="p3_text l_text">Plant:</td>
+              <td colspan="3" class="p3_text"><?php echo $data->plant->name; ?></td>
+              <td class="p3_text">&nbsp;</td>
+              <td class="p3_text">&nbsp;</td>
+              <td class="p3_text l_text">Location:</td>
+              <td colspan="3" class="p3_text"><?php echo $data->plant->location; ?></td>
+          </tr>
+          <tr>
+              <td class="p3_text l_text">ERP Code</td>
+              <td colspan="3" class="p3_text"><?php echo $data->item_no; ?></td>
+              <td class="p3_text">&nbsp;</td>
+              <td class="p3_text">&nbsp;</td>
+              <td colspan="4" class="p3_text"><span class=" l_text">Weighing Scale No-</span><?php echo $data->weightScale->weight_scale_no; ?>
+              </td>
+          </tr>
+          <tr>
+              <td colspan="10" class="">
+                  <table border="1" cellspacing="0" cellpadding="0" >
+                      <tr>
+                          <td class="p3_text l_text">ERP Code</td>
+                          <td colspan="2" class="p3_text l_text">Item Name</td>
+                          <td class="p3_text l_text">Unit Wt.</td>
+                          <td class="p3_text l_text">Gross Wt.</td>
+                          <td class="p3_text l_text">Bin Wt.</td>
+                          <td class="p3_text l_text">Net Wt.</td>
+                          <td class="p3_text l_text">No. of PCs</td>
+                          <td colspan="2" class="p3_text l_text">Remarks</td>
+                      </tr>
+                      <tr>
+                          <td class="p3_text"><?php echo $data->item_no; ?></td>
+                          <td colspan="2" class="p3_text"><?php echo $data->item->name; ?></td>
+                          <td class="p3_text"><?php echo $data->unit->code_name; ?></td>
+                          <td class="p3_text"><?php echo $data->gross_weight; ?></td>
+                          <td class="p3_text"><?php echo $data->bin_weight; ?></td>
+                          <td class="p3_text"><?php echo $data->net_weight; ?></td>
+                          <td class="p3_text"><?php echo $data->counted_quantity; ?></td>
+                          <td colspan="2" class="p3_text"><?php echo $data->remark; ?></td>
+                      </tr>
+                  </table>
+              </td>
+          </tr>
+          <tr>
+              <td width="10%" class="p3_text">&nbsp;</td>
+              <td width="10%" class="p3_text">&nbsp;</td>
+              <td width="10%" class="p3_text">&nbsp;</td>
+              <td width="10%" class="p3_text">&nbsp;</td>
+              <td width="10%" class="p3_text">&nbsp;</td>
+              <td width="10%" class="p3_text">&nbsp;</td>
+              <td width="10%" class="p3_text">&nbsp;</td>
+              <td width="10%" class="p3_text">&nbsp;</td>
+              <td width="10%" class="p3_text">&nbsp;</td>
+              <td width="10%" class="p3_text">&nbsp;</td>
+          </tr>
+          <tr>
+              <td colspan="2" class="p3_text l_text">Prepared By: </td>
+              <td colspan="3" class="p3_text"><?php echo $data->user->name; ?></td>
+              <td colspan="2" class="p3_text l_text">Checked by: </td>
+              <td colspan="3" class="p3_text"></td>
+          </tr>
+          <tr>
+              <td colspan="2" class="p3_text l_text">Inventory Controller</td>
+              <td colspan="3" class="p3_text">&nbsp;</td>
+              <td class="p3_text">&nbsp;</td>
+              <td class="p3_text">&nbsp;</td>
+              <td class="p3_text">&nbsp;</td>
+              <td class="p3_text">&nbsp;</td>
+              <td class="p3_text">&nbsp;</td>
+
+          </tr>
+      </table>
+  </center>
+  <?php
+}
