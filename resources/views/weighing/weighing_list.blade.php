@@ -33,7 +33,7 @@
                                          <th style="width: 10px">Sn.</th>
                                          <th>Name</th>
                                          <th>Weighing Scale No.</th>
-                                         <th>Plant Name</th>
+                                         <th>Plant/Location Name</th>
                                          <th>Shot Code</th>
                                          <th>Capicity</th>
                                          <th>User Name</th>

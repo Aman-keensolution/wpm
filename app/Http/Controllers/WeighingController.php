@@ -32,7 +32,7 @@ class WeighingController extends Controller
                         return $btn;
                     })
                     ->addColumn('plant_name', function ($row) {
-                        return $row->plant->name;
+                        return $row->plant->name."/".$row->plant->location;
                     })
                     ->addColumn('user_name', function ($row) {
                         return $row->user->name;

@@ -40,7 +40,7 @@
                                  <label for="plant_id">Plant</label>
                                  <select name="plant_id" id="plant_id" class="form-control">
                                      @foreach( $all_plant as $plant)
-                                     <option value="{{$plant->plant_id}}">{{$plant->name}}</option>
+                                     <option value="{{$plant->plant_id}}">{{$plant->name}}/{{$plant->location}}</option>
                                      @endforeach
                                  </select>
                              </div>
