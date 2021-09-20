@@ -111,4 +111,4 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::get('get_qty/{id}', [StockController::class, 'get_qty'])->name('stock.get_qty');
     Route::get('get_items',[StockController::class, 'get_items'])->name('stock.get_items');
 
-});
+}); 

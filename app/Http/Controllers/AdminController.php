@@ -23,35 +23,34 @@ class AdminController extends Controller
      */
     public function index()
     {
-       return view('login');
+        return view('login');
     }
-    public function register()
-    {
-        return view('register');
-    }
+    // public function register()
+    // {
+    //     return view('register');
+    // }
 
     public function auth(Request $request)
     {
-        $email= $request->post('email');
+        $email = $request->post('email');
         $password = md5($request->post('password'));
-        $result=Admin::where(['email' =>$email,'password' =>$password])->get();
-       if(isset($result['0']->user_id)){
-            if($result['0']->role == 1){
-                $request->session()->put('Admin_login',true);
-                $request->session()->put('role',$result['0']->role);
-                $request->session()->put('Admin_id',$result['0']->user_id);
+        $result = Admin::where(['email' => $email, 'password' => $password])->get();
+        if (isset($result['0']->user_id)) {
+            if ($result['0']->role == 1) {
+                $request->session()->put('Admin_login', true);
+                $request->session()->put('role', $result['0']->role);
+                $request->session()->put('Admin_id', $result['0']->user_id);
                 return redirect('dashboard');
-            }else{
-                $request->session()->put('Admin_login',true);
+            } else {
+                $request->session()->put('Admin_login', true);
                 $request->session()->put('user_id', $result['0']->user_id);
-                $request->session()->put('role',$result['0']->role);
+                $request->session()->put('role', $result['0']->role);
                 return redirect('dashboard');
             }
-           
-       }else{
-           $request->session()->flash('error','Please enter vaild login details');
-           return redirect('admin');
-       }
+        } else {
+            $request->session()->flash('error', 'Please enter vaild login details');
+            return redirect('admin');
+        }
     }
 
     public function store(Request $request)
@@ -61,7 +60,7 @@ class AdminController extends Controller
             'name' => 'required',
             'email' => 'required',
             'password' => 'required|min:3|max:10',
-            'number' =>'required|min:10|max:10'
+            'number' => 'required|min:10|max:10'
         ]);
         /* user registeration */
         $Admin = new Admin;
@@ -71,22 +70,22 @@ class AdminController extends Controller
         $Admin->password = md5($request->password);
         $Admin->save();
         if ($Admin) {
-           return redirect('admin.userlist');
-         } else {
-             return back()->with('Fail', 'Something went wrong');
-         }	
+            return redirect('admin.userlist');
+        } else {
+            return back()->with('Fail', 'Something went wrong');
+        }
     }
 
     public function edit_user(Request $request)
     {
         if (session()->has('Admin_login')) {
             $data['userinfo'] = Admin::find($request->id);
-            
-            return view('admin.edit_user',$data);
-        }else{
-             //return view('admin');
-        return redirect()->route('admin');
-        }  
+
+            return view('admin.edit_user', $data);
+        } else {
+            //return view('admin');
+            return redirect()->route('admin');
+        }
     }
 
     public function add_user(Request $request)
@@ -111,7 +110,7 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        if(session()->has('Admin_login')){
+        if (session()->has('Admin_login')) {
             $all_plant = Plant::where('is_active', 1)->count();
             $all_bin = Bin::where('is_active', 1)->count();
             $all_item = Item::where('is_active', 1)->count();
@@ -119,7 +118,7 @@ class AdminController extends Controller
             $all_category = Category::where('is_active', 1)->count();
             $all_user = Admin::where('role', 2)->count();
             return view('welcome')->with(['all_plant' => $all_plant, 'all_item' => $all_item, 'all_bin' => $all_bin, 'all_user' => $all_user, 'all_WeightScale' => $all_WeightScale, 'all_category' => $all_category]);
-        }else{
+        } else {
             return redirect('admin');
         }
     }
@@ -130,27 +129,26 @@ class AdminController extends Controller
             if ($request->ajax()) {
                 $data = Admin::select('*');
                 return Datatables::of($data)
-                        ->addIndexColumn()
-                        ->addColumn('action', function($row){
-                                $nm=route('admin.edit_user',$row->user_id);
-                               $btn = '<a href="'.$nm. '"> <span class="badge bg-primary">Edit</span></a>&nbsp;&nbsp;';
-                               if($row->is_active==1){
-                                    $nm=route('admin.block_user',$row->user_id);
-                                    $btn .= '<a href="'.$nm.'"><span class="badge bg-danger">Block</span></a>';
-                               }else{
-                                    $nm=route('admin.unblock_user',$row->user_id);    
-                                    $btn .= '<a href="'.$nm.'"><span class="badge bg-success">Unblock</span></a>';
-                                }
-                                return $btn;
-                        })
-                        ->rawColumns(['action'])
-                        ->make(true);
+                    ->addIndexColumn()
+                    ->addColumn('action', function ($row) {
+                        $nm = route('admin.edit_user', $row->user_id);
+                        $btn = '<a href="' . $nm . '"> <span class="badge bg-primary">Edit</span></a>&nbsp;&nbsp;';
+                        if ($row->is_active == 1) {
+                            $nm = route('admin.block_user', $row->user_id);
+                            $btn .= '<a href="' . $nm . '"><span class="badge bg-danger">Block</span></a>';
+                        } else {
+                            $nm = route('admin.unblock_user', $row->user_id);
+                            $btn .= '<a href="' . $nm . '"><span class="badge bg-success">Unblock</span></a>';
+                        }
+                        return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
             }
             return view('admin.userlist');
         }
-         //return view('admin');
+        //return view('admin');
         return redirect()->route('admin');
-        
     }
 
 
@@ -196,13 +194,12 @@ class AdminController extends Controller
                 'msg' => __('We have e-mailed your password reset link!'),
                 'type' => 'success'
             ]);
-        }else{
+        } else {
             return redirect()->back()->with([
                 'msg' => __('Your Username or Email Is Wrong!!!'),
                 'type' => 'danger'
             ]);
         }
-     
     }
 
     public function reset_password($username)
@@ -236,5 +233,4 @@ class AdminController extends Controller
             return redirect('admin');
         }
     }
-
 }
