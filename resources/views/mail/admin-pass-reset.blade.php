@@ -82,14 +82,14 @@
         </div>
         <div class="message-box">
             @php
-            $message = <p>Hello,</p>
+            $message = "<p>Hello,</p>
             <p>@name</p>
             <p>@message</p>
             <p>Regards</p>
-            <p>@company</p>
+            <p>@company</p>";
             $message = str_replace('@name',$data['name'],$message);
             $message = str_replace('@message',$data['message'],$message);
-            $message = str_replace('@company',Inventory Count ,$message);
+            $message = str_replace('@company','Inventory Count' ,$message);
             @endphp
             {!! $message !!}
         </div>
