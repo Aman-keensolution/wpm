@@ -206,7 +206,7 @@ class AdminController extends Controller
 
     public function reset_password($username)
     {
-        return view('email');
+        return view('reset_password');
     }
 
     public function adminResetPassword(Request $request)

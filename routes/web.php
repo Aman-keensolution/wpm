@@ -7,6 +7,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\PlantController;
 use App\Http\Controllers\WeighingController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\ReportController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -111,4 +112,6 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::get('get_qty/{id}', [StockController::class, 'get_qty'])->name('stock.get_qty');
     Route::get('get_items',[StockController::class, 'get_items'])->name('stock.get_items');
 
+                //ReportController
+    Route::get('report_list', [ReportController::class, 'report_list'])->name('report.report_list');
 }); 
