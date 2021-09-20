@@ -157,7 +157,7 @@ use Carbon\Carbon;
     return Carbon::parse($timestamp)->format($format);
 }
     function print__label_template($data) {
-      ?><center><style>.p3_text{font-size:10px;} .l_text{font-weight:800;}@media print {.p3_text{font-size:10px;} .l_text{font-weight:800;}}</style>
+      ?><center><style>.p3_text{font-size:10px;} .item_tbl{border-collapse: collapse;} .item_tbl td{border: 1px solid #cccccc;} .l_text{font-weight:800;}@media print {.p3_text{font-size:10px;} .item_tbl{border-collapse: collapse;} .item_tbl td{border: 1px solid #cccccc;} .l_text{font-weight:800;}}</style>
       <table width="380" border="0" cellspacing="0" cellpadding="0">
           <tr>
               <td colspan="2" class="p3_text"><span><img width="72px" height="48px" src="
@@ -207,7 +207,7 @@ use Carbon\Carbon;
           </tr>
           <tr>
               <td colspan="10" class="">
-                  <table border="1" cellspacing="0" cellpadding="0" >
+                  <table border="1" cellspacing="0" cellpadding="0" class="item_tbl">
                       <tr>
                           <td class="p3_text l_text">ERP Code</td>
                           <td colspan="2" class="p3_text l_text">Item Name</td>
