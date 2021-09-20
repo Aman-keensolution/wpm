@@ -18,15 +18,15 @@
                             @csrf
                          <div class="card-header">
                              <h3 class="card-title">Inventory Count list</h3>
-                                <?php if (session()->get('role') == 2) { ?>
+                                
                              <div class="card-tools">
                                 <div >
-                                    <a class="btn btn-warning" href="add_stock/0/0">Add New</a>
+                                    <?php if (session()->get('role') == 2) { ?><a class="btn btn-warning" href="add_stock/0/0">Add New</a><?php } ?>
                                 
                                     <button name="print_stock" id="print_stock" type="submit" disabled class="btn btn-warning">Print Stock Labels</button>
                                  </div>
                              </div>
-                               <?php } ?>
+                               
                          </div>
                          <!-- /.card-header -->
                          <div class="card-body">
