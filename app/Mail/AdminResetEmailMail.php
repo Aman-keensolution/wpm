@@ -28,7 +28,7 @@ class AdminResetEmailMail extends Mailable
      */
     public function build()
     {
-        return $this->from(get_static_option('site_global_email'), get_static_option('site_'.get_default_language().'_title'))
+        return $this->from('aman@keensolution.com','Inventory Count System')
             ->subject('Reset Your Password')
             ->view('mail.admin-pass-reset');
     }

@@ -11,7 +11,9 @@ use App\Models\Category;
 use App\Models\WeightScale;
 use Illuminate\Support\Str;
 use DataTables;
+use Mail;
 use App\Mail\AdminResetEmailMail;
+
 
 
 class AdminController extends Controller
