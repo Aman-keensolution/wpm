@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="{{asset('public/assets/plugins/select2/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('public/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
     <!-- iCheck -->
+      <!-- daterange picker -->
+    <link rel="stylesheet" href="{{asset('public/assets/css/dataTables.dateTime.min.css')}}">
     <link rel="stylesheet" href="{{asset('public/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
 
     <!-- JQVMap -->
@@ -34,6 +36,7 @@
     <link rel="stylesheet" href="{{asset('public/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('public/assets/css/jquery.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{asset('public/assets/plugins/jquery-ui/jquery-ui.min.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
 
     <link rel="stylesheet" href="{{asset('public/assets/css/custom2.css')}}">
     <link rel="stylesheet" href="{{asset('public/assets/css/custom.css')}}">
@@ -242,7 +245,8 @@
     <!-- jQuery Knob Chart -->
     <script src="  {{asset('public/assets/plugins/jquery-knob/jquery.knob.min.js')}}"></script>
     <!-- daterangepicker -->
-    <script src="  {{asset('public/assets/plugins/moment/moment.min.js')}}"></script>
+    <script src="{{asset('public/assets/plugins/moment/moment.min.js')}}"></script>
+    <script src="{{asset('public/assets/js/dataTables.dateTime.min.js')}}"></script>
     <script src="  {{asset('public/assets/plugins/daterangepicker/daterangepicker.js')}}"></script>
     <!-- Tempusdominus Bootstrap 4 -->
     <script src="  {{asset('public/assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
@@ -258,6 +262,13 @@
     <script src="{{asset('public/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
 
     <script src="{{asset('public/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('public/assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('public/assets/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('public/assets/plugins/jszip/jszip.js')}}"></script>
+    <script src="{{asset('public/assets/plugins/pdfmake/pdfmake.min.js')}}"></script>
+    <script src="{{asset('public/assets/plugins/pdfmake/vfs_fonts.js')}}"></script>
+    <script src="{{asset('public/assets/js/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('public/assets/js/buttons.print.min.js')}}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="  {{asset('public/assets/dist/js/pages/dashboard.js')}}"></script>
 

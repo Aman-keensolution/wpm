@@ -98,6 +98,63 @@ use Carbon\Carbon;
       </script>";
       return $str;
     }
+      function setDataTable_repo($rurl,$columns){ ?>
+        <script type="text/javascript">
+        $(document).ready(function() {
+          // Create date inputs
+          minDate = new DateTime($('#min'), {
+              format: 'YYYY-MM-DD'
+          });
+          maxDate = new DateTime($('#max'), {
+              format: 'YYYY-MM-DD'
+          });
+ 
+          
+          var table = $('.data-table').DataTable({
+              processing: true,
+              serverSide: true,
+              fixedHeader: true,
+              responsive: true,
+              "fnRowCallback": function( nRow, aData, iDisplayIndex ) {
+                var index = iDisplayIndex +1;
+                $('td:eq(0)',nRow).html(index);
+                return nRow; 
+              },
+              "dom": '<"top"fB>rt<"bottom"ilp><"clear">',
+              ajax:{
+                url:'<?php echo $rurl ?>',
+                data:function(data){
+                    // Read values
+                    var min = $('#min').val();
+                    var max = $('#max').val();
+                    var plant_id = $('#plant_id').val();
+                    var bin_id = $('#bin_id').val();
+                    var weight_scale_id = $('#weight_scale_id').val();
+                    var item_id = $('#item_id').val();
+
+                    // Append to data
+                    data.min = min;
+                    data.max = max;
+                    data.plant_id = plant_id;
+                    data.bin_id = bin_id;
+                    data.weight_scale_id = weight_scale_id;
+                    data.item_id = item_id;
+                    
+                },
+              } ,
+              columns: [<?php echo $columns ?>],
+              buttons: [
+                  'copy', 'csv', 'excel', 'pdf', 'print'
+              ]
+          });
+        $('#filter').on('click', function () {
+              table.draw();
+          });
+$(".dt-buttons button").addClass('btn btn-success')
+          
+        });
+      </script><?php
+    }
     function popupGrey($title,$str,$id= "popupGrey"){
      $popup='<div class="modal fade" id="'.$id.'" style="display: none;" aria-hidden="true">
         <div class="modal-dialog">
