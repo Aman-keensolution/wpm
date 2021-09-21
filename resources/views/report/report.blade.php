@@ -107,7 +107,11 @@
                                          <th>Plant/Location</th>
                                          <th>User</th>
                                          <th>Assign Date</th>
-                                     </tr>
+                                         <th>Gross Weight</th>
+                                         <th>Bin Weight</th>
+                                         <th>Net Weight</th>
+                                         <th>Quantity</th>
+                                    </tr>
                                  </thead>
                                  <tbody>
 
@@ -118,6 +122,7 @@
 
                      <!-- /.card-body -->
                      <?php
+                        $report_name ="Inventory Count";
                         $rurl = route('report.report_list');
                         $columns =  "{data: 'item_name', name: 'item_name'},
                                 {data: 'item_no', name: 'item_no'},
@@ -125,9 +130,13 @@
                                 {data: 'weightScale_name', name: 'weightScale_name'},
                                 {data: 'plant_name', name: 'plant_name'},
                                 {data: 'user_name', name: 'user_name'},
+                                {data: 'gross_weightu', name: 'gross_weightu'},
+                                {data: 'bin_weightu', name: 'bin_weightu'},
+                                {data: 'net_weightu', name: 'net_weightu'},
+                                {data: 'counted_quantity', name: 'counted_quantity'},
                                 {data: 'assign_date', name: 'assign_date'},
                                ";
-                        echo setDataTable_repo($rurl, $columns);
+                        echo setDataTable_repo($rurl, $columns,$report_name);
                         ?>
                  </div>
              </div>

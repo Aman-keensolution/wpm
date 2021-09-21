@@ -98,8 +98,9 @@ use Carbon\Carbon;
       </script>";
       return $str;
     }
-      function setDataTable_repo($rurl,$columns){ ?>
+      function setDataTable_repo($rurl,$columns,$report_name="Report"){ ?>
         <script type="text/javascript">
+          var dynamicVariable = '<?php echo $report_name."-".time();?>';
         $(document).ready(function() {
           // Create date inputs
           minDate = new DateTime($('#min'), {
@@ -144,13 +145,34 @@ use Carbon\Carbon;
               } ,
               columns: [<?php echo $columns ?>],
               buttons: [
-                  'copy', 'csv', 'excel', 'pdf', 'print'
+                {
+                    extend: 'excelHtml5',
+                    title: dynamicVariable,
+                    
+                },
+                {
+                    extend: 'copy',
+                    title: dynamicVariable
+                }, 
+                {
+                    extend: 'csv',
+                    title: dynamicVariable
+                }, 
+                {
+                    extend: 'pdf',
+                    title: dynamicVariable
+                },
+                {
+                    extend: 'print',
+                    title: dynamicVariable
+                } 
+                  //'copy', 'csv', 'excel', 'pdf', 'print'
               ]
           });
         $('#filter').on('click', function () {
               table.draw();
           });
-$(".dt-buttons button").addClass('btn btn-success')
+        $(".dt-buttons button").addClass('btn btn-success')
           
         });
       </script><?php

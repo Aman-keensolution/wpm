@@ -63,6 +63,15 @@ class ReportController extends Controller
                     ->addColumn('user_name', function ($row) {
                         return @$row->user->name;
                     })
+                    ->addColumn('gross_weightu', function ($row) {
+                        return @$row->gross_weight."Kg";
+                    })
+                    ->addColumn('bin_weightu', function ($row) {
+                        return @$row->bin_weight."Kg";
+                    })
+                    ->addColumn('net_weightu', function ($row) {
+                        return @$row->net_weight."Kg";
+                    })
                     ->rawColumns(['plant_name'])
                     ->make(true);
             }
