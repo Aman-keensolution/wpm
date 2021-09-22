@@ -319,6 +319,34 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
           {
             return Carbon::parse($timestamp)->format($format);
           }
+
+          function print_js(){
+            ?>
+          <script>
+          function PrintElem(elem) {
+              var mywindow = window.open('', 'PRINT');
+              var a = "<?php asset('public/assets/css/print.css');?>";
+              mywindow.document.write('<html><head><link rel="stylesheet" href="' + a + '"><title>' + document.title +
+                  '</title><style>@media print {.p3_text{font-size:10px;}}</style>');
+              mywindow.document.write('</head><body >');
+              mywindow.document.write(document.getElementById(elem).innerHTML);
+              mywindow.document.write('</body></html>');
+              mywindow.document.close(); // necessary for IE >= 10
+              mywindow.focus(); // necessary for IE >= 10*/
+     
+              mywindow.print();
+              mywindow.close();
+     
+              return true;
+          }
+     
+          PrintElem("page_print");
+     
+      </script>
+            <?php
+          }
+
+          
           function print__label_template($data)
           {
             ?>
@@ -338,6 +366,11 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
                 -o-transform: rotate(-90deg);
                 /* IE */
                 -ms-transform: rotate(-90deg);
+                border: 1px dotted #aaaaaa;
+                 padding:2px;
+                 width: 576px;
+                 height: 384px;
+                 margin-top: 100px;
             }
 
         @page {
@@ -361,11 +394,39 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
         }
 
         @media print {
-         
-            @page {
-              size: 4in 6in landscape;
+          body * {
+              visibility: hidden;
+          }
+
+          #section-to-print,
+          #section-to-print * {
+              visibility: visible;
+          }
+
+          #section-to-print {
+              position: absolute;
+              left: 0;
+              top: 0;
+          }
+
+            @page 
+            {
+                margin: 0mm;  /* this affects the margin in the printer settings */
             }
 
+            html
+            {
+                background-color: #FFFFFF; 
+                margin: 0px;  /* this affects the margin on the html before sending to printer */
+            }
+
+            body
+            {
+                border: dotted 1px #000 ;
+                
+                height: 243mm;
+                width: 162mm;
+            }
             .div_print {
               /* Browsers not below */
               transform: rotate(-90deg);
@@ -379,6 +440,9 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
                 -ms-transform: rotate(-90deg);
                 border: 1px dotted #aaaaaa;
                  padding:2px;
+                 width: 576px;
+                 height: 384px;
+                 margin-top: 100px;
             }
             .p3_text {
                 font-size: 14px;
@@ -399,7 +463,7 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
 
     </style>
     <div>
-        <table class="div_print" id="div_print"  width="572px" border="0" cellspacing="0" cellpadding="0">
+        <table class="div_print" id="div_print"   border="0" cellspacing="0" cellpadding="0">
         <tr>
                 <td width="10%" class="p3_text">&nbsp;</td>
                 <td width="10%" class="p3_text">&nbsp;</td>
@@ -430,10 +494,9 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
                 <td class="p3_text">&nbsp;</td>
                 <td class="p3_text">&nbsp;</td>
                 <td class="p3_text">&nbsp;</td>
-                <?php $shot_code = $data->plant->shot_code . $data->weightScale->shot_code . $data->plant->location_shot_code . "s" . $data->stock_id; ?>
-                <td colspan="5" class="p3_text l_text"><b>Tag No</b>- <?php echo $shot_code; ?> <br>
-
-                    <?php echo DNS1D::getBarcodeSVG($shot_code, "C39", 1, 25, '#2A3239') ?><br></td>
+                <?php $short_code = $data->plant->short_code . $data->weightScale->short_code . $data->plant->location_short_code . "s" . $data->stock_id; ?>
+                <td colspan="5" class="p3_text l_text"><b>Tag No</b>- <?php echo $short_code; ?> <br>
+                    <?php echo DNS1D::getBarcodeSVG($short_code, "C39", 1, 25, '#2A3239') ?><br></td>
             </tr>
             <tr>
                 <td width="10%" class="p3_text">&nbsp;</td>
@@ -453,7 +516,9 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
                 <td class="p3_text">&nbsp;</td>
                 <td class="p3_text">&nbsp;</td>
                 <td class="p3_text l_text">Date :</td>
-                <td colspan="3" class="p3_text"><?php echo getCreatedAtAttribute($data->assign_date, 'd-m-Y'); ?></td>
+                <td colspan="3" class="p3_text">
+                  <?php echo getCreatedAtAttribute($data->assign_date, 'd-m-Y'); ?>
+                </td>
             </tr>
             <tr>
                 <td width="10%" class="p3_text">&nbsp;</td>
@@ -568,29 +633,3 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
 <?php
           }
 
-        function print_js(){
-          ?>
-        <script>
-        function PrintElem(elem) {
-            var mywindow = window.open('', 'PRINT', 'height=600,width=400');
-            var a = "<?php asset('public/assets/css/print.css');?>";
-            mywindow.document.write('<html><head><link rel="stylesheet" href="' + a + '"><title>' + document.title +
-                '</title><style>@media print {.p3_text{font-size:10px;}}</style>');
-            mywindow.document.write('</head><body >');
-            mywindow.document.write(document.getElementById(elem).innerHTML);
-            mywindow.document.write('</body></html>');
-   
-            mywindow.document.close(); // necessary for IE >= 10
-            mywindow.focus(); // necessary for IE >= 10*/
-   
-            mywindow.print();
-            mywindow.close();
-   
-            return true;
-        }
-   
-        PrintElem("page_print");
-   
-    </script>
-          <?php
-        }

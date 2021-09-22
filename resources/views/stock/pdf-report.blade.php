@@ -28,5 +28,5 @@
      </div>
 
  </section>
- <?php echo print_js();?>
+ <?php echo print_js('page_print');?>
  @stop

@@ -1,26 +1,10 @@
-@media print {
-    body * {
-        visibility: hidden;
-    }
+/* @media print {
 
-    #section-to-print,
-    #section-to-print * {
-        visibility: visible;
-    }
-
-    #section-to-print {
-        position: absolute;
-        left: 0;
-        top: 0;
-    }
 
     body {
         font-family: 'roboto', 'DejaVu Sans', sans-serif;
     }
 
-    /** {
-      font-family: DejaVu Sans Mono, sans-serif, monospace;
-    }*/
     #page-wrap {
         width: 700px;
         margin: 0 auto;
@@ -126,11 +110,9 @@
         border-style: solid;
         border-color: #D3D3D3;
         border-width: 1px 0 0 0;
-        /*border-radius: 20px;*/
     }
 
     span.lw-horizantal-line:before {
-        /* Not really supposed to work, but does */
         display: block;
         content: "";
         height: 30px;
@@ -138,10 +120,9 @@
         border-style: solid;
         border-color: #D3D3D3;
         border-width: 0 0 1px 0;
-        /*border-radius: 20px;*/
     }
     .p3_text{
         font-size: 11pt;
     }
     .nav-item{display: none;}
-}
+} */

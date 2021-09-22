@@ -66,7 +66,7 @@ class WeighingController extends Controller
         $WeightScale->weight_scale_no = $request->weight_scale_no;
         $WeightScale->plant_id = $request->plant_id;
         $WeightScale->user_id = $user_id;
-        $WeightScale->shot_code = $request->shot_code;
+        $WeightScale->short_code = $request->short_code;
         $WeightScale->unit_id = $request->unit_id;
         $WeightScale->capicity = $request->capicity;
 
@@ -98,7 +98,7 @@ class WeighingController extends Controller
         $data->name = $request->name;
         $data->plant_id = $request->plant_id;
         $data->weight_scale_no = $request->weight_scale_no;
-        $data->shot_code = $request->shot_code;
+        $data->short_code = $request->short_code;
         $data->unit_id = $request->unit_id;
         $data->capicity = $request->capicity;
         $data->save();

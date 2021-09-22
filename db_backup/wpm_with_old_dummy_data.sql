@@ -103,9 +103,9 @@ DROP TABLE IF EXISTS `plant_master`;
 CREATE TABLE `plant_master` (
   `plant_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
-  `shot_code` varchar(10) DEFAULT NULL,
+  `short_code` varchar(10) DEFAULT NULL,
   `location` varchar(50) DEFAULT NULL,
-  `location_shot_code` varchar(5) DEFAULT NULL,
+  `location_short_code` varchar(5) DEFAULT NULL,
   `plant_address` varchar(200) NOT NULL,
   `is_active` tinyint(3) unsigned DEFAULT 1 COMMENT '1=active',
   `created_by` int(10) unsigned DEFAULT NULL,
@@ -115,7 +115,7 @@ CREATE TABLE `plant_master` (
   PRIMARY KEY (`plant_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `plant_master` (`plant_id`, `name`, `shot_code`, `location`, `location_shot_code`, `plant_address`, `is_active`, `created_by`, `created_at`, `updated_at`, `updated_by`) VALUES
+INSERT INTO `plant_master` (`plant_id`, `name`, `short_code`, `location`, `location_short_code`, `plant_address`, `is_active`, `created_by`, `created_at`, `updated_at`, `updated_by`) VALUES
 (2,	'plant1',	'p1',	'loc1',	'l1',	'dhan trident 202',	1,	NULL,	'2021-09-14 01:39:26',	'2021-09-14 06:06:58',	NULL),
 (3,	'plant2',	'p2',	'loc2',	'l2',	'dhan trident',	1,	NULL,	'2021-09-14 01:41:54',	'2021-09-14 02:23:04',	NULL),
 (4,	'plant3',	'p3',	'loc3',	'l3',	'dhan trident',	1,	NULL,	'2021-09-14 01:42:17',	'2021-09-14 02:23:17',	NULL);
@@ -195,7 +195,7 @@ DROP TABLE IF EXISTS `weight_scale_master`;
 CREATE TABLE `weight_scale_master` (
   `weight_scale_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
-  `shot_code` varchar(10) DEFAULT NULL,
+  `short_code` varchar(10) DEFAULT NULL,
   `weight_scale_no` varchar(100) NOT NULL,
   `capicity` decimal(8,2) DEFAULT NULL,
   `unit_id` int(5) DEFAULT NULL,
@@ -210,7 +210,7 @@ CREATE TABLE `weight_scale_master` (
   KEY `unit_id` (`unit_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `weight_scale_master` (`weight_scale_id`, `name`, `shot_code`, `weight_scale_no`, `capicity`, `unit_id`, `plant_id`, `user_id`, `is_active`, `created_by`, `created_at`, `updated_at`, `updated_by`) VALUES
+INSERT INTO `weight_scale_master` (`weight_scale_id`, `name`, `short_code`, `weight_scale_no`, `capicity`, `unit_id`, `plant_id`, `user_id`, `is_active`, `created_by`, `created_at`, `updated_at`, `updated_by`) VALUES
 (2,	'new weighing',	'ws1',	'123456',	NULL,	NULL,	2,	2,	1,	NULL,	'2021-09-16 05:18:00',	'2021-09-16 05:18:00',	NULL);
 
 -- 2021-09-19 16:30:04
