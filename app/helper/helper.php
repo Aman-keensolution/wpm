@@ -351,20 +351,12 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
           {
             ?>
     <style>
-        div#page_print {
-        /* position: relative; */
-        margin-top: 85px;
-    }
-    .div_print {
-              /* Browsers not below */
+        div#page_print {margin-top: 85px;}
+    .div_print {  
               transform: rotate(-90deg);
-                /* Safari */
                 -webkit-transform: rotate(-90deg);
-                /* Firefox */
                 -moz-transform: rotate(-90deg);
-                /* Opera */
                 -o-transform: rotate(-90deg);
-                /* IE */
                 -ms-transform: rotate(-90deg);
                 border: 1px dotted #aaaaaa;
                  padding:2px;
@@ -372,71 +364,19 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
                  height: 384px;
                  margin-top: 100px;
             }
-
-        @page {
-            size: 6in 4in landscape;
-        }
-
-        .p3_text {
-            font-size: 14px;
-        }
-
-        .item_tbl {
-            border-collapse: collapse;
-        }
-
-        .item_tbl td {
-            border: 1px solid #cccccc;
-        }
-
-        .l_text {
-            font-weight: 800;
-        }
-
+        .p3_text {font-size: 14px;}
+        .item_tbl {border-collapse: collapse;}
+        .item_tbl td {border: 1px solid #cccccc;}
+        .l_text {font-weight: 800;}
         @media print {
-          body * {
-              visibility: hidden;
-          }
-
-          #section-to-print,
-          #section-to-print * {
-              visibility: visible;
-          }
-
-          #section-to-print {
-              position: absolute;
-              left: 0;
-              top: 0;
-          }
-
-            @page 
-            {
-                margin: 0mm;  /* this affects the margin in the printer settings */
-            }
-
-            html
-            {
-                background-color: #FFFFFF; 
-                margin: 0px;  /* this affects the margin on the html before sending to printer */
-            }
-
-            body
-            {
-                border: dotted 1px #000 ;
-                
-                height: 243mm;
-                width: 162mm;
-            }
+            @page{margin: 0mm;}
+            html{background-color: #FFFFFF;margin: 0px; }
+            body{border: dotted 1px #000 ;height: 243mm;width: 162mm;}
             .div_print {
-              /* Browsers not below */
               transform: rotate(-90deg);
-                /* Safari */
                 -webkit-transform: rotate(-90deg);
-                /* Firefox */
                 -moz-transform: rotate(-90deg);
-                /* Opera */
                 -o-transform: rotate(-90deg);
-                /* IE */
                 -ms-transform: rotate(-90deg);
                 border: 1px dotted #aaaaaa;
                  padding:2px;
@@ -444,21 +384,10 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
                  height: 384px;
                  margin-top: 100px;
             }
-            .p3_text {
-                font-size: 14px;
-            }
-
-            .item_tbl {
-                border-collapse: collapse;
-            }
-
-            .item_tbl td {
-                border: 1px solid #cccccc;
-            }
-
-            .l_text {
-                font-weight: 800;
-            }
+            .p3_text {font-size: 14px;}
+            .item_tbl {border-collapse: collapse;}
+            .item_tbl td {border: 1px solid #cccccc;}
+            .l_text {font-weight: 800;}
         }
 
     </style>
@@ -511,9 +440,9 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
                 <td width="10%" class="p3_text">&nbsp;</td>
             </tr>
             <tr>
-                <td class="p3_text l_text">BIN No</td>
+                <td class="p3_text">&nbsp;</td><td class="p3_text l_text">BIN No</td>
                 <td colspan="3" class="p3_text"><?php echo $data->bin->name; ?></td>
-                <td class="p3_text">&nbsp;</td>
+                
                 <td class="p3_text">&nbsp;</td>
                 <td class="p3_text l_text">Date :</td>
                 <td colspan="3" class="p3_text">
@@ -533,9 +462,9 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
                 <td width="10%" class="p3_text">&nbsp;</td>
             </tr>
             <tr>
-                <td class="p3_text l_text">Plant:</td>
+                 <td class="p3_text">&nbsp;</td><td class="p3_text l_text">Plant:</td>
                 <td colspan="3" class="p3_text"><?php echo $data->plant->name; ?></td>
-                <td class="p3_text">&nbsp;</td>
+               
                 <td class="p3_text">&nbsp;</td>
                 <td class="p3_text l_text">Location:</td>
                 <td colspan="3" class="p3_text"><?php echo $data->plant->location; ?></td>
@@ -553,9 +482,9 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
                 <td width="10%" class="p3_text">&nbsp;</td>
             </tr>
             <tr>
-                <td class="p3_text l_text">ERP Code</td>
+                <td class="p3_text">&nbsp;</td><td class="p3_text l_text">ERP Code</td>
                 <td colspan="3" class="p3_text"><?php echo $data->item_no; ?></td>
-                <td class="p3_text">&nbsp;</td>
+                
                 <td class="p3_text">&nbsp;</td>
                 <td colspan="4" class="p3_text"><span class=" l_text">Weighing Scale
                         No-</span><?php echo $data->weightScale->weight_scale_no; ?>
@@ -577,24 +506,25 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
                 <td colspan="10" class="">
                     <table border="1" cellspacing="0" cellpadding="0" class="item_tbl">
                         <tr>
-                            <td class="p3_text l_text">ERP Code</td>
-                            <td colspan="2" class="p3_text l_text">Item Name</td>
-                            <td class="p3_text l_text">Unit Wt.</td>
-                            <td class="p3_text l_text">Gross Wt.</td>
-                            <td class="p3_text l_text">Bin Wt.</td>
-                            <td class="p3_text l_text">Net Wt.</td>
-                            <td class="p3_text l_text">No. of PCs</td>
-                            <td colspan="2" class="p3_text l_text">Remarks</td>
+                        
+                        <td class="p3_text l_text">&nbsp;ERP Code</td>
+                            <td colspan="2" class="p3_text l_text">&nbsp;Item Name</td>
+                            <td class="p3_text l_text">&nbsp;Unit Wt.</td>
+                            <td class="p3_text l_text">&nbsp;Gross Wt.</td>
+                            <td class="p3_text l_text">&nbsp;Bin Wt.</td>
+                            <td class="p3_text l_text">&nbsp;Net Wt.</td>
+                            <td class="p3_text l_text">&nbsp;No. of PCs</td>
+                            <td colspan="2" class="p3_text l_text">&nbsp;Remarks</td>
                         </tr>
                         <tr>
-                            <td class="p3_text"><?php echo $data->item_no; ?></td>
-                            <td colspan="2" class="p3_text"><?php echo $data->item->name; ?></td>
-                            <td class="p3_text"><?php echo $data->unit->code_name; ?></td>
-                            <td class="p3_text"><?php echo $data->gross_weight; ?></td>
-                            <td class="p3_text"><?php echo $data->bin_weight; ?></td>
-                            <td class="p3_text"><?php echo $data->net_weight; ?></td>
-                            <td class="p3_text"><?php echo $data->counted_quantity; ?></td>
-                            <td colspan="2" class="p3_text"><?php echo $data->remark; ?></td>
+                            <td class="p3_text">&nbsp;<?php echo $data->item_no; ?></td>
+                            <td colspan="2" class="p3_text">&nbsp;<?php echo $data->item->name; ?></td>
+                            <td class="p3_text">&nbsp;<?php echo $data->unit->code_name; ?></td>
+                            <td class="p3_text">&nbsp;<?php echo $data->gross_weight; ?></td>
+                            <td class="p3_text">&nbsp;<?php echo $data->bin_weight; ?></td>
+                            <td class="p3_text">&nbsp;<?php echo $data->net_weight; ?></td>
+                            <td class="p3_text">&nbsp;<?php echo $data->counted_quantity; ?></td>
+                            <td colspan="2" class="p3_text">&nbsp;<?php echo $data->remark; ?></td>
                         </tr>
                     </table>
                 </td>
@@ -612,14 +542,14 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
                 <td width="10%" class="p3_text">&nbsp;</td>
             </tr>
             <tr>
-                <td colspan="2" class="p3_text l_text">Prepared By: </td>
-                <td colspan="3" class="p3_text"><?php echo $data->user->name; ?></td>
-                <td colspan="2" class="p3_text l_text">Checked by: </td>
+                <td colspan="2" class="p3_text l_text">&nbsp;Prepared By: </td>
+                <td colspan="3" class="p3_text">&nbsp;<?php echo $data->user->name; ?></td>
+                <td colspan="2" class="p3_text l_text">&nbsp;Checked by: </td>
                 <td colspan="3" class="p3_text"></td>
             </tr>
             <tr>
-                <td colspan="2" class="p3_text l_text">Inventory Controller</td>
-                <td colspan="3" class="p3_text">&nbsp;</td>
+                <td colspan="2" class="p3_text l_text">&nbsp;Inventory Controller</td>
+                <td colspan="3" class="p3_text">&nbsp;&nbsp;</td>
                 <td class="p3_text">&nbsp;</td>
                 <td class="p3_text">&nbsp;</td>
                 <td class="p3_text">&nbsp;</td>
