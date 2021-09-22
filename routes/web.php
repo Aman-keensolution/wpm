@@ -114,4 +114,5 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
 
                 //ReportController
     Route::get('report_list', [ReportController::class, 'report_list'])->name('report.report_list');
+    Route::get('report_list_user', [ReportController::class, 'report_list_user'])->name('report.report_list_user');
 }); 

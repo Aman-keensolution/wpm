@@ -145,7 +145,7 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
 
                 },
             },
-            columns: [ < ? php echo $columns ? > ],
+            columns: [ <?php echo $columns ?> ],
             buttons: [{
                     extend: 'excelHtml5',
                     title: dynamicVariable,
@@ -225,7 +225,7 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
 
                 },
             },
-            columns: [ < ? php echo $columns ? > ],
+            columns: [ <?php echo $columns ?> ],
             buttons: [{
                     extend: 'excelHtml5',
                     title: dynamicVariable,
