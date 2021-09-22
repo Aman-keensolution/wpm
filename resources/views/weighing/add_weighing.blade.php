@@ -29,8 +29,8 @@
                                  <input type="text" name="weight_scale_no" class="form-control" placeholder="Enter Weighing Scale No.">
                              </div>
                              <div class="form-group">
-                                 <label for="shot_code">Shot Code No.</label>
-                                 <input type="text" name="shot_code" class="form-control" placeholder="Enter Shot Code No.">
+                                 <label for="short_code">Short Code No.</label>
+                                 <input type="text" name="short_code" class="form-control" placeholder="Enter Short Code No.">
                              </div>
                              <div class="form-group">
                                  <label for="capicity">Capicity</label>

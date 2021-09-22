@@ -28,8 +28,8 @@
                                  <input type="text" name="weight_scale_no" id="weight_scale_no" class="form-control" value="{{$WeightScaledata['weight_scale_no']}}" placeholder="Enter Weighing Scale No.">
                              </div>
                              <div class="form-group">
-                                 <label for="shot_code">Shot Code</label>
-                                 <input type="shot_code" name="shot_code" id="shot_code" class="form-control" value="{{$WeightScaledata['shot_code']}}" placeholder="Enter shot_code">
+                                 <label for="short_code">Short Code</label>
+                                 <input type="short_code" name="short_code" id="short_code" class="form-control" value="{{$WeightScaledata['short_code']}}" placeholder="Enter short_code">
                              </div>
                              <div class="form-group">
                                  <label for="capicity">Capicity</label>

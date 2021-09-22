@@ -33,7 +33,7 @@
                                          <th style="width: 10px">Sn.</th>
                                          <th>Plant Name</th>
                                          <th>Plant address</th>
-                                         <th>Shot Code</th>
+                                         <th>Short Code</th>
                                          <th>Location</th>
                                          <th>Location Code</th>
                                          <th>Action</th>
@@ -51,9 +51,9 @@
                         $columns =  "{data: null, name: 'plant_id'},
                                 {data: 'name', name: 'name'},
                                 {data: 'plant_address', name: 'plant_address'},
-                                {data: 'shot_code', name: 'shot_code'},
+                                {data: 'short_code', name: 'short_code'},
                                 {data: 'location', name: 'location'},
-                                {data: 'location_shot_code', name: 'location_shot_code'},
+                                {data: 'location_short_code', name: 'location_short_code'},
                                 {data: 'action', name: 'action', orderable: true, searchable: true}";
                         echo setDataTable($rurl, $columns);
                         ?>

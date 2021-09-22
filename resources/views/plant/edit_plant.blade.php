@@ -28,16 +28,16 @@
                                  <input type="text" name="plant_address" id="plant_address" class="form-control" value="{{$plant_data['plant_address']}}">
                              </div>
                              <div class="form-group">
-                                 <label for="shot_code">Shot Code</label>
-                                 <input type="text" name="shot_code" id="short_code" maxlength="6" class="form-control" value="{{$plant_data['shot_code']}}">
+                                 <label for="short_code">Short Code</label>
+                                 <input type="text" name="short_code" id="short_code" maxlength="6" class="form-control" value="{{$plant_data['short_code']}}">
                              </div>
                              <div class="form-group">
                                  <label for="location">Location</label>
                                  <input type="text" name="location" id="location" class="form-control" value="{{$plant_data['location']}}">
                              </div>
                              <div class="form-group">
-                                 <label for="location_shot_code">Location Code</label>
-                                 <input type="text" name="location_shot_code" id="location_short_code" class="form-control" value="{{$plant_data['location_shot_code']}}">
+                                 <label for="location_short_code">Location Code</label>
+                                 <input type="text" name="location_short_code" id="location_short_code" class="form-control" value="{{$plant_data['location_short_code']}}">
                              </div>
                          </div>
                          <div class="card-footer">

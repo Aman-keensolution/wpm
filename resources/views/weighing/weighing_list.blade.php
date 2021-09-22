@@ -34,7 +34,7 @@
                                          <th>Name</th>
                                          <th>Weighing Scale No.</th>
                                          <th>Plant/Location Name</th>
-                                         <th>Shot Code</th>
+                                         <th>Short Code</th>
                                          <th>Capicity</th>
                                          <th>User Name</th>
                                          <th>Action</th>
@@ -54,7 +54,7 @@
                                 {data: 'name', name: 'name'},
                                 {data: 'weight_scale_no', name: 'weight_scale_no'},
                                 {data: 'plant_name', name: 'plant_name'},
-                                {data: 'shot_code', name: 'shot_code'},
+                                {data: 'short_code', name: 'short_code'},
                                 {data: 'capicity', name: 'capicity'},
                                 {data: 'user_name', name: 'user_name'},
                                 {data: 'action', name: 'action', orderable: true, searchable: true}";
