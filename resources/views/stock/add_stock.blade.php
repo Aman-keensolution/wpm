@@ -53,7 +53,7 @@
                          </div>
                          <div class="form-group col-md-6">
                              <label for="plant_id">Location</label>
-                             <input name="" id="" readonly class="form-control" value="{{$l}}" class="form-control">
+                             <input name="" id="" readonly class="form-control" value="{{ $l ?? '' }}" class="form-control">
                          </div>
                          <div class="form-group col-md-3">
                              <label for="bin_id">Bin</label>

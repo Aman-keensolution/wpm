@@ -10,15 +10,21 @@ use DataTables;
 
 class ItemController extends Controller
 {
+    // name: 'item_id'},
+    // {data: 'name', name: 'name'},
+    // {data: 'item_no', name: 'item_no'},
+    // {data: 'price', name: 'price'},
+    // {data: 'item_avg_weight', name: 'item_avg_weight'},
+    // {data: 'batch_no', name: 'batch_no'},
     public function item_list(Request $request)
     {
         if (session()->has('Admin_login')) {
             if ($request->ajax()) {
-                $data = Item::with('plant','category')->get();
+                $data = Item::select('item_id', 'name', 'item_no', 'item_avg_weight','is_active')->get();
+                
                 return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function ($row) {
-
                         $nm = route('item.edit_item', $row->item_id);
                         $btn = '<a href="' . $nm . '"> <span class="badge bg-primary">Edit</span></a>&nbsp;&nbsp;';
                         if ($row->is_active == 1) {
@@ -30,12 +36,7 @@ class ItemController extends Controller
                         }
                         return $btn;
                     })
-                    ->addColumn('plant_name', function ($row) {
-                        return $row->plant->name;
-                    })
-                    ->addColumn('category_name', function ($row) {
-                        return $row->category->name;
-                    })
+                   
                     ->rawColumns(['action'])
                     ->make(true);
             }
