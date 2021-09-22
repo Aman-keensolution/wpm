@@ -9,33 +9,24 @@
      </div>
  </div>
  <section class="content">
-    <div id="page-wrap">
-        <?php foreach($Stockdatas as $data){?>
-            {{print__label_template($data)}}
-        <hr>
-        <?php }?>
-       </div>
-    </section>
-    <script>
-        function PrintElem(elem) {
-            var mywindow = window.open('', 'PRINT', 'height=400,width=600');
-            var a = "<?php asset('public/assets/css/print.css');?>";
-            mywindow.document.write('<html><head><link rel="stylesheet" href="' + a + '"><title>' + document.title +
-                '</title><style>@media print {.p3_text{font-size:10px;}}</style>');
-            mywindow.document.write('</head><body >');
-            mywindow.document.write(document.getElementById(elem).innerHTML);
-            mywindow.document.write('</body></html>');
-   
-            mywindow.document.close(); // necessary for IE >= 10
-            mywindow.focus(); // necessary for IE >= 10*/
-   
-            mywindow.print();
-            mywindow.close();
-   
-            return true;
-        }
-   
-        PrintElem("page-wrap");
-   
-    </script>
-@stop
+     <div class="container-fluid">
+         <div class="row ">
+             <div class="col-md-12 main-content">
+             <div id="page_print">
+                 <?php foreach($Stockdatas as $data){?>
+                 {{print__label_template($data)}}
+                 <div class="clear-fix"></div>
+                 
+                 <div class="clear-fix"></div>
+
+                 <?php }?>
+             </div>
+             <div class="clear-fix"></div>
+
+            </div>
+        </div>
+     </div>
+
+ </section>
+ <?php echo print_js();?>
+ @stop

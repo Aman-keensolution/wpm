@@ -99,7 +99,6 @@
                                  cellspacing="0" width="100%">
                                  <thead>
                                      <tr>
-                                        
                                          <th>Item</th>
                                          <th>ERP M. Code</th>
                                          <th>Bin</th>

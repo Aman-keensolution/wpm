@@ -50,3 +50,7 @@ footer.main-footer {
 input.select_entry {
     margin-left: 30%;
 }
+
+.main-content {
+    min-height: 700px;
+}

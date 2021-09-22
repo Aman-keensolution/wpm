@@ -321,8 +321,12 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
           }
           function print__label_template($data)
           {
-            ?><center>
+            ?>
     <style>
+        div#page_print {
+        /* position: relative; */
+        margin-top: 85px;
+    }
     .div_print {
               /* Browsers not below */
               transform: rotate(-90deg);
@@ -337,7 +341,7 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
             }
 
         @page {
-            size: 4in 6in landscape;
+            size: 6in 4in landscape;
         }
 
         .p3_text {
@@ -373,6 +377,8 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
                 -o-transform: rotate(-90deg);
                 /* IE */
                 -ms-transform: rotate(-90deg);
+                border: 1px dotted #aaaaaa;
+                 padding:2px;
             }
             .p3_text {
                 font-size: 14px;
@@ -392,8 +398,8 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
         }
 
     </style>
-    <div class="div_print" style="width: 576px; height:384px; display: block;border: 1px dotted #aaaaaa; padding:2px;">
-        <table width="572px" border="0" cellspacing="0" cellpadding="0">
+    <div>
+        <table class="div_print" id="div_print"  width="572px" border="0" cellspacing="0" cellpadding="0">
         <tr>
                 <td width="10%" class="p3_text">&nbsp;</td>
                 <td width="10%" class="p3_text">&nbsp;</td>
@@ -559,6 +565,32 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
         </table>
 
     </div>
-</center>
 <?php
           }
+
+        function print_js(){
+          ?>
+        <script>
+        function PrintElem(elem) {
+            var mywindow = window.open('', 'PRINT', 'height=600,width=400');
+            var a = "<?php asset('public/assets/css/print.css');?>";
+            mywindow.document.write('<html><head><link rel="stylesheet" href="' + a + '"><title>' + document.title +
+                '</title><style>@media print {.p3_text{font-size:10px;}}</style>');
+            mywindow.document.write('</head><body >');
+            mywindow.document.write(document.getElementById(elem).innerHTML);
+            mywindow.document.write('</body></html>');
+   
+            mywindow.document.close(); // necessary for IE >= 10
+            mywindow.focus(); // necessary for IE >= 10*/
+   
+            mywindow.print();
+            mywindow.close();
+   
+            return true;
+        }
+   
+        PrintElem("page_print");
+   
+    </script>
+          <?php
+        }
