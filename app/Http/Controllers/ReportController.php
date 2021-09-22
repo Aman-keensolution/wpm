@@ -69,6 +69,9 @@ class ReportController extends Controller
                     ->addColumn('bin_weightu', function ($row) {
                         return @$row->bin_weight."Kg";
                     })
+                    ->addColumn('assign_date1', function ($row) {
+                        return getCreatedAtAttribute(@$row->assign_date, 'd/m/Y H:s A');
+                    })
                     ->addColumn('net_weightu', function ($row) {
                         return @$row->net_weight."Kg";
                     })

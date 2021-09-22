@@ -129,11 +129,12 @@
                                 {data: 'weightScale_name', name: 'weightScale_name'},
                                 {data: 'plant_name', name: 'plant_name'},
                                 {data: 'user_name', name: 'user_name'},
+                                {data: 'assign_date1', name: 'assign_date1'},
                                 {data: 'gross_weightu', name: 'gross_weightu'},
                                 {data: 'bin_weightu', name: 'bin_weightu'},
                                 {data: 'net_weightu', name: 'net_weightu'},
                                 {data: 'counted_quantity', name: 'counted_quantity'},
-                                {data: 'assign_date', name: 'assign_date'},
+                              
                                ";
                         echo setDataTable_repo($rurl, $columns,$report_name);
                         ?>
