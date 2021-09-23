@@ -16,33 +16,22 @@ class ItemController extends Controller
     // {data: 'price', name: 'price'},
     // {data: 'item_avg_weight', name: 'item_avg_weight'},
     // {data: 'batch_no', name: 'batch_no'},
+
     public function item_list(Request $request)
     {
         if (session()->has('Admin_login')) {
-            if ($request->ajax()) {
-                $data = Item::select('item_id', 'name', 'item_no', 'item_avg_weight','is_active')->get();
-                
-                return Datatables::of($data)
-                    ->addIndexColumn()
-                    ->addColumn('action', function ($row) {
-                        $nm = route('item.edit_item', $row->item_id);
-                        $btn = '<a href="' . $nm . '"> <span class="badge bg-primary">Edit</span></a>&nbsp;&nbsp;';
-                        if ($row->is_active == 1) {
-                            $nm = route('item.block_item', $row->item_id);
-                            $btn .= '<a href="' . $nm . '"><span class="badge bg-danger">Block</span></a>';
-                        } else {
-                            $nm = route('item.unblock_item', $row->item_id);
-                            $btn .= '<a href="' . $nm . '"><span class="badge bg-success">Unblock</span></a>';
-                        }
-                        return $btn;
-                    })
-                   
-                    ->rawColumns(['action'])
-                    ->make(true);
-            }
-            return view('item.item_list');
+            $data = Item::select('*')->where('is_active', 1)->paginate(20);
+            return view('item.item_list', compact('data'));
         }
-         //return view('admin');
+        return redirect()->route('admin');
+    }
+
+    public function select_item_list(Request $request)
+    {
+        if (session()->has('Admin_login')) {
+            $data = Item::select('*')->where('is_active', 1)->where('item_id', @$request->item_id)->paginate(20);
+            return view('item.item_list', compact('data'));
+        }
         return redirect()->route('admin');
     }
 
@@ -121,4 +110,26 @@ class ItemController extends Controller
         $request->save();
         return redirect('item_list');
     }
+
+    public function get_items(Request $request)
+    {
+
+        $search = $request->search;
+
+        if ($search == '') {
+            $autocomplate = Item::orderby('item_no', 'asc')->select('item_id', 'item_no', 'name')->where('is_active', '=', 1)->limit(5)->get();
+        } else {
+            $autocomplate = Item::orderby('item_no', 'asc')->select('item_id', 'item_no', 'name')->where('name', 'like', '%' . $search . '%')->orWhere('item_id', 'like', '%' . $search . '%')->orWhere('item_no', 'like', '%' . $search . '%')->where('is_active', '=', 1)->limit(5)->get();
+        }
+
+        $response = array();
+        foreach ($autocomplate as $autocomplate) {
+
+            $response[] = array("value" => $autocomplate->item_id, "label" => $autocomplate->item_no, "name" => $autocomplate->name , "price" => $autocomplate->price, "item_avg_weight" => $autocomplate->item_avg_weight, "part_no" => $autocomplate->part_no, "is_active" => $autocomplate->is_active,);
+        }
+
+        echo json_encode($response);
+        exit;
+    }
+
 }
