@@ -269,25 +269,17 @@ class StockController extends Controller
     }
 
     public function get_items(Request $request){
-
         $search = $request->search;
-  
         if($search == ''){
            $autocomplate = Item::orderby('item_no','asc')->select('item_id','item_no','name')->where('is_active', '=', 1)->limit(5)->get();
         }else{
             $autocomplate = Item::orderby('item_no','asc')->select('item_id','item_no','name')->where('name', 'like', '%' .$search . '%')->
-<<<<<<< HEAD
             orWhere('item_no', 'like', '%' .$search . '%')->orWhere('name', 'like', '%' .$search . '%')->limit(5)->get();
-=======
-            orWhere('item_no', 'like', '%' .$search . '%')->where('is_active', '=', 1)->limit(5)->get();
->>>>>>> 01de52a889b25e495ed72860389d0215f81493c3
         }
-  
         $response = array();
         foreach($autocomplate as $autocomplate){
            $response[] = array("value"=>$autocomplate->item_id,"label"=>$autocomplate->item_no."-".$autocomplate->name,"name"=>$autocomplate->name);
         }
-  
         echo json_encode($response);
         exit;
      }
