@@ -483,7 +483,7 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
             </tr>
             <tr>
                 <td class="p3_text">&nbsp;</td><td class="p3_text l_text">ERP Code</td>
-                <td colspan="3" class="p3_text"><?php echo $data->item_no; ?></td>
+                <td colspan="3" class="p3_text"><?php echo $data->item->item_no; ?></td>
                 
                 <td class="p3_text">&nbsp;</td>
                 <td colspan="4" class="p3_text"><span class=" l_text">Weighing Scale
@@ -517,7 +517,7 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
                             <td colspan="2" class="p3_text l_text">&nbsp;Remarks</td>
                         </tr>
                         <tr>
-                            <td class="p3_text">&nbsp;<?php echo $data->item_no; ?></td>
+                            <td class="p3_text">&nbsp;<?php echo $data->item->item_no; ?></td>
                             <td colspan="2" class="p3_text">&nbsp;<?php echo $data->item->name; ?></td>
                             <td class="p3_text">&nbsp;<?php echo $data->unit->code_name; ?></td>
                             <td class="p3_text">&nbsp;<?php echo $data->gross_weight; ?></td>
