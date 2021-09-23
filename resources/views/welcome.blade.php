@@ -36,7 +36,7 @@
                                                     <p>User</p>
                                                 </div>
                                                 <div class="icon">
-                                                    <i class="ion ion-bag"></i>
+                                                    <i class="db_icon fas fa-users"></i>
                                                 </div>
                                                 <a href="{{route('admin.userlist')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                             </div>
@@ -50,7 +50,7 @@
                                                     <p>Category</p>
                                                 </div>
                                                 <div class="icon">
-                                                    <i class="ion ion-stats-bars"></i>
+                                                    <i class="db_icon fa fa-shopping-bag"></i>
                                                 </div>
                                                 <a href="{{route('category.category_list')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                             </div>
@@ -63,9 +63,9 @@
                                                     <p>Item</p>
                                                 </div>
                                                 <div class="icon">
-                                                    <i class="ion ion-pie-graph"></i>
+                                                    <i class="db_icon fa fa-box-open"></i>
                                                 </div>
-                                                <a href="{{route('item.item_list')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                                <a href="{{route('item.item_list')}}" class="small-box-footer">More info <i class=" fas fa-arrow-circle-right"></i></a>
                                             </div>
                                         </div>
                                         <div class="col-md-3 col-3">
@@ -76,7 +76,7 @@
                                                     <p>Weighing</p>
                                                 </div>
                                                 <div class="icon">
-                                                    <i class="ion ion-bag"></i>
+                                                    <i class="db_icon fa fa-balance-scale"></i>
                                                 </div>
                                                 <a href="{{route('weighing.weighing_list')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                             </div>
@@ -87,10 +87,10 @@
                                             <div class="small-box bg-outline-secondary">
                                                 <div class="inner">
                                                     <h3>3</h3>
-                                                    <p>Plant</p>
+                                                    <p>Plant<br><br></p>
                                                 </div>
                                                 <div class="icon">
-                                                    <i class="ion ion-person-add"></i>
+                                                    <i class="db_icon fa fa-home"></i>
                                                 </div>
                                                 <a href="{{route('plant.plant_list')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                             </div>
@@ -104,7 +104,7 @@
                                                     <p>Plant-BWL<br> Locations</p>
                                                 </div>
                                                 <div class="icon">
-                                                    <i class="ion ion-person-add"></i>
+                                                    <i class="db_icon fa fa-map-marker-alt"></i>
                                                 </div>
                                                 <a href="{{route('plant.plant_list')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                             </div>
@@ -120,7 +120,7 @@
                                                     </p>
                                                 </div>
                                                 <div class="icon">
-                                                    <i class="ion ion-person-add"></i>
+                                                    <i class="db_icon fa fa-map-marker-alt"></i>
                                                 </div>
                                                 <a href="{{route('plant.plant_list')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                             </div>
@@ -134,7 +134,7 @@
                                                     <p>Plant-FBD<br> Locations</p>
                                                 </div>
                                                 <div class="icon">
-                                                    <i class="ion ion-person-add"></i>
+                                                    <i class="db_icon fa fa-map-marker-alt"></i>
                                                 </div>
                                                 <a href="{{route('plant.plant_list')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                             </div>

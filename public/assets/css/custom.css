@@ -54,3 +54,7 @@ input.select_entry {
 .main-content {
     min-height: 700px;
 }
+
+.db_icon:before {
+    font-size: 0.8em;
+}
