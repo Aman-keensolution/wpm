@@ -23,7 +23,7 @@
                                 <div >
                                     <?php if (session()->get('role') == 2) { ?><a class="btn btn-warning" href="add_stock/0/0">Add New</a><?php } ?>
                                 
-                                    <button name="print_stock" id="print_stock" type="submit" disabled class="btn btn-warning">Print Stock Labels</button>
+                                    <button name="print_stock" id="print_stock" type="submit" class="btn btn-warning">Print Stock Labels</button>
                                  </div>
                              </div>
                                
@@ -80,27 +80,9 @@
          </div><!-- /.container-fluid -->
          <script>
             $(document).ready(function () {
-                $('#select_entry_all').click(function(event) {   
-                    if(this.checked) {
-                        // Iterate each checkbox
-                        $('.select_entry').each(function() {
-                            this.checked = true;
-                                         
-                        });
-                    } else {
-                        $('.select_entry').each(function() {
-                            this.checked = false; 
-                                        
-                        });
-                    }
-                });
-                $('input[type=checkbox]').on('change',function(){
-                    if( $(this).is(':checked') ){
-                    $('#print_stock').removeAttr('disabled');
-                    }else{
-                    $('#print_stock').attr('disabled','disabled');
-                    }
-                });
+
+                
+                
             });
          </script>
      </section>

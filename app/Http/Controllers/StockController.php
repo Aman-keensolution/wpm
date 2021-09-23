@@ -164,20 +164,21 @@ class StockController extends Controller
     }
     public function print_stock(Request $request)
     {
-        
-        if (session()->has('Admin_login')) {
-            $all_plant = Plant::all();
-            $all_bin = Bin::all();
-            $all_item = Item::all();
-            $all_WeightScale = WeightScale::all();
-            $all_unit = Unit::all();
-            $all_user = Admin::where('role', 2)->get();
-            $data['Stockdatas'] = Stock::whereIn('stock_id', $request->select_entry)->with('plant', 'bin','item','weightScale','unit','user')->get(); //find($request->stock_id);
-            return view('stock.pdf-report', $data);
-        } else {
-            //return view('admin');
-            return redirect()->route('admin');
-        }
+        if($request->select_entry){
+            if (session()->has('Admin_login')) {
+                $all_plant = Plant::all();
+                $all_bin = Bin::all();
+                $all_item = Item::all();
+                $all_WeightScale = WeightScale::all();
+                $all_unit = Unit::all();
+                $all_user = Admin::where('role', 2)->get();
+                $data['Stockdatas'] = Stock::whereIn('stock_id', $request->select_entry)->with('plant', 'bin','item','weightScale','unit','user')->get(); //find($request->stock_id);
+                return view('stock.pdf-report', $data);
+            } else {
+                //return view('admin');
+                return redirect()->route('admin');
+            }
+        }else{return redirect()->route('stock.stock_list');}
     }
 
     public function update_stock(Request $request)
@@ -193,6 +194,11 @@ class StockController extends Controller
         $data->unit_id = $request->unit_id;
         $data->gross_weight = $request->gross_weight;
         $data->remark = $request->remark;
+        $data->bin_weight = $request->bin_weight;
+        $data->net_weight = $request->net_weight;
+        $data->counted_quantity = $request->counted_quantity;
+        $data->provision1 = 1;
+        $data->provision2 = 1;
         $data->save();
         return redirect('stock_list');
     }

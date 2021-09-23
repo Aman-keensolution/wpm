@@ -53,6 +53,7 @@
                              <!--Auto file-->
                              <label for="weight_scale_id">Weighing machine</label>
                              <!--Auto file-->
+                             <input type="hidden" value="{{$Stockdata->user_id}}" name="user_id" id="user_id">
                              <input type="hidden" value="{{$Stockdata->weight_scale_id}}" name="weight_scale_id" id="weight_scale_id">
                              <input name="" id="" readonly class="form-control" value="{{$all_WeightScale[0]->name}}" class="form-control">
                          </div>
