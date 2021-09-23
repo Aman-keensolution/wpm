@@ -27,7 +27,7 @@
                              <div class="form-group">
                                  <label for="plant_id">Plant name</label>
                                  <?php $p_arr = arrayPlant(); ?>
-                                 <select name="plant_id" id="plant_id" class="form-control">
+                                 <select name="plant_id[]" id="plant_id" multiple class="form-control select2 ">
                                      @foreach( $p_arr as $plant)
                                      <option value="{{$plant['plant_id']}}">{{$plant['name']}}/{{$plant['location']}}</option>
                                      @endforeach

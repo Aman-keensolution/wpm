@@ -30,10 +30,7 @@ class BinController extends Controller
                             }
                             return $btn;
                         })
-                        ->addColumn('plant_name', function($row){
-                             return @$row->plant->name . "/" . @$row->plant->location;
-                            
-                        })
+                    
                         ->rawColumns(['action'])
                         ->make(true);
             }
@@ -63,7 +60,7 @@ class BinController extends Controller
         /* user registeration */
         $Bin = new Bin;
         $Bin->name = $request->name;
-        $Bin->plant_id = $request->plant_id;
+        $Bin->plant_id = implode(",", $request->plant_id);
         $Bin->bin_weight = $request->bin_weight;
         $Bin->unit_id = 2;
         $Bin->save();
@@ -83,7 +80,7 @@ class BinController extends Controller
         /* user registeration */
         $Bin = new Bin;
         $Bin->name = $request->name;
-        $Bin->plant_id = $request->plant_id;
+        $Bin->plant_id = implode(",", $request->plant_id);
         $Bin->bin_weight = $request->bin_weight;
         $Bin->unit_id = 2;
         $Bin->save();
@@ -109,7 +106,7 @@ class BinController extends Controller
     {
         $data = Bin::find($request->bin_id);
         $data->name = $request->name;
-        $data->plant_id = $request->plant_id;
+        $data->plant_id = implode(",", $request->plant_id);
         $data->bin_weight = $request->bin_weight;
         $data->save();
         return redirect('bin_list');

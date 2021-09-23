@@ -40,15 +40,14 @@
                              <!--Auto file-->
                              <label for="plant_id">Plant</label>
                              <!--Auto file-->
-                             <input type="hidden" value="{{$all_bin[0]->plant_id}}" name="plant_id" id="plant_id">
+                             <input type="hidden" value="{{$all_WeightScale[0]->plant->plant_id}}" name="plant_id" id="plant_id">
                              @foreach( $all_plant as $plant)
-                             <?php if ($plant->plant_id == $all_bin[0]->plant_id) { ?>
-                             <input name="" id="" readonly class="form-control" value="{{$plant->name}}"
-                                 class="form-control">
-                             <?php 
-                                $l=$plant->location;
-                            }
-                            ?>
+                             <?php if ($plant->plant_id == $all_WeightScale[0]->plant->plant_id) { ?>
+                                 <input name="" id="" readonly class="form-control" value="{{$plant->name}}" class="form-control">
+                             <?php
+                                    $l = $plant->location;
+                                }
+                                ?>
                              @endforeach
                          </div>
                          <div class="form-group col-md-6">
@@ -60,13 +59,17 @@
 
                              <div class="input-group mb-3">
                                  <select name="bin_id" id="bin_id" class="form-control select2">
-                                     @foreach( $all_bin as $bin)
-                                     <option value="{{$bin->bin_id}}">{{$bin->name}}</option>
+                                     @foreach( $all_bin as $bin) 
+                                     <?php 
+                                    $p_id= explode(",", $bin->plant_id);
+                                    if(in_array($all_WeightScale[0]->plant->plant_id,$p_id)){ ?>
+                                        <option value="{{$bin->bin_id}}">{{$bin->name}}</option>
+                                    <?php } ?>
+                                     
                                      @endforeach
                                  </select>
                                  <div class="input-group-append">
-                                     <a href="{{route('bin.add_bin')}}" class="btn btn-outline-secondary"
-                                         data-toggle="modal" data-target="#popupGrey">Add Bin</a>
+                                     <a href="{{route('bin.add_bin')}}" class="btn btn-outline-secondary" data-toggle="modal" data-target="#popupGrey">Add Bin</a>
                                  </div>
                              </div>
                          </div>
@@ -74,40 +77,33 @@
                              <!--Auto file-->
                              <label for="weight_scale_id">Weighing machine</label>
                              <!--Auto file-->
-                             <input type="hidden" value="{{@$all_WeightScale[0]->weight_scale_id}}"
-                                 name="weight_scale_id" id="weight_scale_id">
-                             <input name="" id="" readonly class="form-control" value="{{@$all_WeightScale[0]->name}}"
-                                 class="form-control">
+                             <input type="hidden" value="{{@$all_WeightScale[0]->weight_scale_id}}" name="weight_scale_id" id="weight_scale_id">
+                             <input name="" id="" readonly class="form-control" value="{{@$all_WeightScale[0]->name}}" class="form-control">
                          </div>
                          <div class="form-group col-md-2">
                              <label for="batch_id">Batch ID</label>
-                             <input type="text" name="batch_id" id="batch_id" class="form-control"
-                                 placeholder="Enter Batch ID">
+                             <input type="text" name="batch_id" id="batch_id" class="form-control" placeholder="Enter Batch ID">
                          </div>
                          <div class="form-group col-md-4">
                              <label for="gross_weight">Gross Weight</label>
                              <div class="input-group mb-3">
-                                 <input type="text" id="gross_weight" name="gross_weight" class="form-control"
-                                     placeholder="Enter Total Weight" aria-label="" aria-describedby="basic-addon1">
+                                 <input type="text" id="gross_weight" name="gross_weight" class="form-control" placeholder="Enter Total Weight" aria-label="" aria-describedby="basic-addon1">
                                  <div class="input-group-append">
-                                     <select name="unit_id" id="unit_id" class="custom-select" style="border-radius: 0;"
-                                         placeholder="Enter Unit">
+                                     <select name="unit_id" id="unit_id" class="custom-select" style="border-radius: 0;" placeholder="Enter Unit">
                                          @foreach( $all_unit as $unit)
                                          <option <?php if ($unit['unit_id'] == 2) {
                                                         echo  "selected";
                                                     } ?> value="{{$unit['unit_id']}}">{{$unit['name']}}</option>
                                          @endforeach
                                      </select>
-                                     <button class="btn btn-outline-success" type="button" name="calculate"
-                                         id="calculate"><b>Calculate</b></button>
+                                     <button class="btn btn-outline-success" type="button" name="calculate" id="calculate"><b>Calculate</b></button>
                                  </div>
                              </div>
                          </div>
                          <div class="form-group col-md-4">
                              <label for="bin_weight">Bin Weight</label>
                              <div class="input-group mb-3">
-                                 <input type="text" readonly name="bin_weight" id="bin_weight" class="form-control"
-                                     placeholder="As per the Database Bin Weight" aria-label="Bin Weight">
+                                 <input type="text" readonly name="bin_weight" id="bin_weight" class="form-control" placeholder="As per the Database Bin Weight" aria-label="Bin Weight">
                                  <div class="input-group-append">
                                      <span class="input-group-text" id="basic-addon2">Kg</span>
                                      <input type="hidden" name="bin_weight_g" id="bin_weight_g">
@@ -119,8 +115,7 @@
                              <label for="net_weight">Net Weight</label>
 
                              <div class="input-group mb-3">
-                                 <input type="text" readonly name="net_weight" id="net_weight" class="form-control"
-                                     placeholder="Calculate Net Weigh">
+                                 <input type="text" readonly name="net_weight" id="net_weight" class="form-control" placeholder="Calculate Net Weigh">
                                  <input type="hidden" name="net_weight_g" id="net_weight_g">
                                  <div class="input-group-append">
                                      <span class="input-group-text" id="basic-addon2">Kg</span>
@@ -132,22 +127,17 @@
                          </div>
                          <div class="form-group col-md-4">
                              <label for="counted_quantity">Quantity</label>
-                             <input type="text" readonly name="counted_quantity" id="counted_quantity"
-                                 class="form-control" placeholder="Calculate Quantity">
+                             <input type="text" readonly name="counted_quantity" id="counted_quantity" class="form-control" placeholder="Calculate Quantity">
                          </div>
                          <div class="form-group col-md-12">
                              <label for="remark">Remark</label>
-                             <textarea name="remark" id="remark" class="form-control"
-                                 placeholder="Enter Remark"></textarea>
+                             <textarea name="remark" id="remark" class="form-control" placeholder="Enter Remark"></textarea>
                          </div>
                      </div>
                      <div class="card-footer">
-                         <span class="d-inline-block submit_group" tabindex="0" data-toggle="tooltip"
-                             title="Please Enter Valid Gross Weight.">
-                             <input type="submit" id="submit" name="submit" class="btn btn-primary" disabled
-                                 style="pointer-events: none;" value="Submit">
-                             <input type="submit" id="submit_p" name="submit" class="btn btn-primary" disabled
-                                 style="pointer-events: none;" value="Submit and Print">
+                         <span class="d-inline-block submit_group" tabindex="0" data-toggle="tooltip" title="Please Enter Valid Gross Weight.">
+                             <input type="submit" id="submit" name="submit" class="btn btn-primary" disabled style="pointer-events: none;" value="Submit">
+                             <input type="submit" id="submit_p" name="submit" class="btn btn-primary" disabled style="pointer-events: none;" value="Submit and Print">
                          </span>
                      </div>
                  </div>
@@ -169,7 +159,7 @@
                          <label for="plant_id">Plant name</label>
                          
                          <select name="plant_id" id="plant_id" class="form-control">';
-                         $p_arr = arrayPlant(); 
+        $p_arr = arrayPlant();
         foreach ($p_arr as $plant) {
             $str .= ' <option value="' . $plant['plant_id'] . '">' . $plant['name'] . '</option>';
         }
@@ -198,26 +188,26 @@
         echo popupGrey('Add Bin', $str);
         ?>
      <script>
-         $(function () {
+         $(function() {
              $.ajax({
                  url: "{{route('stock.get_bin_weight',0)}}",
                  data: "id=" + $('#bin_id').val(),
                  dataType: "html",
                  method: 'GET',
-                 success: function (data) {
+                 success: function(data) {
                      $('#bin_weight').val(data);
                      bin_weight_g = data * 1000;
                      $('#bin_weight_g').val(bin_weight_g);
                  }
              });
-             $('#bin_id').change(function () {
+             $('#bin_id').change(function() {
                  id = $(this).val(),
                      $.ajax({
                          url: "{{route('stock.get_bin_weight',0)}}",
                          data: "id=" + id,
                          dataType: "html",
                          method: 'GET',
-                         success: function (data) {
+                         success: function(data) {
                              $('#bin_weight').val(data);
                              bin_weight_g = data * 1000;
                              $('#bin_weight_g').val(bin_weight_g);
@@ -225,12 +215,11 @@
                      });
              });
          });
-
      </script>
 
      <script>
-         $(function () {
-             $('#calculate').on("click", function () {
+         $(function() {
+             $('#calculate').on("click", function() {
                  unit_id = $("#unit_id").find("option:selected").val();
 
                  $.ajax({
@@ -239,7 +228,7 @@
                          '#gross_weight').val() + "&unit_id=" + unit_id,
                      dataType: "html",
                      method: 'GET',
-                     success: function (data) {
+                     success: function(data) {
                          $('#net_weight').val(data);
 
                      }
@@ -251,7 +240,7 @@
                          '#item_id').val(),
                      dataType: "html",
                      method: 'GET',
-                     success: function (data) {
+                     success: function(data) {
                          $('#counted_quantity').val(data);
                          if (data > 0) {
                              $('#submit').removeAttr('disabled');
@@ -274,13 +263,12 @@
                  });
              });
          });
-
      </script>
      <script>
-         $(document).ready(function () {
+         $(document).ready(function() {
 
              $("#item_no").autocomplete({
-                 source: function (request, response) {
+                 source: function(request, response) {
                      // Fetch data
                      $.ajax({
                          url: "{{route('stock.get_items')}}",
@@ -289,12 +277,12 @@
                          data: {
                              search: request.term
                          },
-                         success: function (data) {
+                         success: function(data) {
                              response(data);
                          }
                      });
                  },
-                 select: function (event, ui) {
+                 select: function(event, ui) {
                      console.log(ui.item);
                      $('#item_id').val(ui.item.value);
                      $('#item_name').val(ui.item.name);
@@ -304,65 +292,62 @@
              });
 
          });
-
      </script>
 
  </section>
- <?php if (request()->route('print')==1){ ?>
- <script>
-     function PrintElem(elem) {
-         var mywindow = window.open('', 'PRINT', 'height=400,width=600');
-         var a = "<?php asset('public/assets/css/print.css');?>";
-         mywindow.document.write('<html><head><link rel="stylesheet" href="' + a + '"><title>' + document.title +
-             '</title><style>@media print {.p3_text{font-size:10px;}}</style>');
-         mywindow.document.write('</head><body >');
-         mywindow.document.write(document.getElementById(elem).innerHTML);
-         mywindow.document.write('</body></html>');
+ <?php if (request()->route('print') == 1) { ?>
+     <script>
+         function PrintElem(elem) {
+             var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+             var a = "<?php asset('public/assets/css/print.css'); ?>";
+             mywindow.document.write('<html><head><link rel="stylesheet" href="' + a + '"><title>' + document.title +
+                 '</title><style>@media print {.p3_text{font-size:10px;}}</style>');
+             mywindow.document.write('</head><body >');
+             mywindow.document.write(document.getElementById(elem).innerHTML);
+             mywindow.document.write('</body></html>');
 
-         mywindow.document.close(); // necessary for IE >= 10
-         mywindow.focus(); // necessary for IE >= 10*/
+             mywindow.document.close(); // necessary for IE >= 10
+             mywindow.focus(); // necessary for IE >= 10*/
 
-         mywindow.print();
-         mywindow.close();
+             mywindow.print();
+             mywindow.close();
 
-         return true;
-     }
+             return true;
+         }
 
-     $(window).on('load', function () {
+         $(window).on('load', function() {
 
-         $('#stockdata_modal').modal();
-     });
+             $('#stockdata_modal').modal();
+         });
+     </script>
 
- </script>
-
- <?php $data=$Stockdata; ?>
- <div class="modal fade" id="stockdata_modal" style="display: none;" aria-hidden="true">
-     <div class="modal-dialog">
-         <div class="modal-content">
-             <div class="modal-header">
-                 <h4 class="modal-title">label</h4>
-                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true">×</span>
-                 </button>
-             </div>
-             <div class="modal-body">
-                 <div id="page-wrap">
-                    {{print__label_template($data)}}
+     <?php $data = $Stockdata; ?>
+     <div class="modal fade" id="stockdata_modal" style="display: none;" aria-hidden="true">
+         <div class="modal-dialog">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <h4 class="modal-title">label</h4>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">×</span>
+                     </button>
+                 </div>
+                 <div class="modal-body">
+                     <div id="page-wrap">
+                         {{print__label_template($data)}}
+                     </div>
+                 </div>
+                 <div class="modal-footer justify-content-between">
+                     <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
                  </div>
              </div>
-             <div class="modal-footer justify-content-between">
-                 <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
-             </div>
+             <!-- /.modal-content -->
          </div>
-         <!-- /.modal-content -->
+
+         <!-- /.modal-dialog -->
      </div>
 
-     <!-- /.modal-dialog -->
- </div>
-
- <script>
-     PrintElem('page-wrap');
-
- </script>
+     <script>
+         PrintElem('page-wrap');
+     </script>
  <?php } ?>
  @stop

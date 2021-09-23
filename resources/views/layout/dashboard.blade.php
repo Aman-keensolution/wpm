@@ -196,14 +196,14 @@
                                     <p>Inventory Count</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="{{route('report.report_list_user')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array(''))) {
                                                                                                     echo "active";
                                                                                                 } ?>">
                                     <i class="far fa-file"></i>
                                     <p>Reports</p>
                                 </a>
-                            </li>
+                            </li> -->
                         </ul>
                     </nav>
                 <?php  } ?>

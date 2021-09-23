@@ -26,7 +26,7 @@
                              </div>
                              <div class="form-group">
                                  <label for="exampleInputEmail1">Email address</label>
-                                 <input type="email" name="email" id="email" class="form-control" value="{{$userinfo['email']}}" placeholder="Enter email">
+                                 <input type="email"  readonly id="email" class="form-control" value="{{$userinfo['email']}}" placeholder="Enter email">
                              </div>
                              <div class="form-group">
                                  <label for="exampleInputPassword1">Mobile</label>

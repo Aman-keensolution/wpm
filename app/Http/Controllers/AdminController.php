@@ -60,7 +60,7 @@ class AdminController extends Controller
         /* validation code */
         $request->validate([
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'required|string|email|unique:user_master',
             'password' => 'required|min:3|max:10',
             'mobile' => 'required|min:10|max:10'
         ]);
@@ -72,7 +72,7 @@ class AdminController extends Controller
         $Admin->password = md5($request->password);
         $Admin->save();
         if ($Admin) {
-            return redirect('admin.userlist');
+            return redirect('userlist');
         } else {
             return back()->with('Fail', 'Something went wrong');
         }
@@ -101,11 +101,13 @@ class AdminController extends Controller
 
     public function update_user(Request $request)
     {
-        $data = Admin::find($request->user_id);
+        $request->validate([
+            'name' => 'required',
+            'mobile' => 'required|min:10|max:10'
+        ]);
+        $data = Admin::find($request->id);
         $data->name = $request->name;
-        $data->email = $request->email;
         $data->mobile = $request->mobile;
-        $data->password = $request->password;
         $data->save();
         return redirect('userlist');
     }
@@ -114,12 +116,13 @@ class AdminController extends Controller
     {
         if (session()->has('Admin_login')) {
             $all_plant = Plant::where('is_active', 1)->count();
+            $all_location = Plant::select('location')->where('is_active', 1)->count();
             $all_bin = Bin::where('is_active', 1)->count();
             $all_item = Item::where('is_active', 1)->count();
             $all_WeightScale = WeightScale::where('is_active', 1)->count();
             $all_category = Category::where('is_active', 1)->count();
             $all_user = Admin::where('role', 2)->count();
-            return view('welcome')->with(['all_plant' => $all_plant, 'all_item' => $all_item, 'all_bin' => $all_bin, 'all_user' => $all_user, 'all_WeightScale' => $all_WeightScale, 'all_category' => $all_category]);
+            return view('welcome')->with(['all_plant' => $all_plant, 'all_item' => $all_item, 'all_bin' => $all_bin, 'all_user' => $all_user, 'all_WeightScale' => $all_WeightScale, 'all_category' =>$all_category, 'all_location' => $all_location]);
         } else {
             return redirect('admin');
         }

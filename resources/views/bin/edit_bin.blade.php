@@ -26,9 +26,10 @@
                              <div class="form-group">
                                  <label for="plant_id">Plant Name</label>
                                  <?php $p_arr = arrayPlant(); ?>
-                                 <select name="plant_id" id="plant_id" class="form-control" placeholder="Enter Plant Name">
-                                     <?php foreach ($p_arr as $p) { ?>
-                                         <option value="{{$p['plant_id']}}" <?php if ($p['plant_id'] == $bindata['plant_id']) {
+                                 <select name="plant_id[]" id="plant_id" class="form-control select2" multiple placeholder="Enter Plant Name">
+                                 <?php $p_id= explode(",",$bindata['plant_id']);
+                                foreach ($p_arr as $p) { ?>
+                                         <option value="{{$p['plant_id']}}" <?php if (in_array($p['plant_id'] , $p_id)) {
                                                                                 echo "selected";
                                                                             } ?>>{{$p['name']}}/{{$p['location']}}</option>
                                      <?php } ?>
