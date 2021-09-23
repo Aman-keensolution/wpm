@@ -28,7 +28,7 @@
                                 <div class="container-fluid">
                                     <!-- Small boxes (Stat box) -->
                                     <div class="row">
-                                        <div class="col-md-4 col-6">
+                                        <div class="col-md-3 col-3">
                                             <!-- small box -->
                                             <div class="small-box bg-info">
                                                 <div class="inner">
@@ -42,7 +42,7 @@
                                             </div>
                                         </div>
                                         <!-- ./col -->
-                                        <div class="col-md-4 col-6">
+                                        <div class="col-md-3 col-3">
                                             <!-- small box -->
                                             <div class="small-box bg-success">
                                                 <div class="inner">
@@ -55,36 +55,7 @@
                                                 <a href="{{route('category.category_list')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                             </div>
                                         </div>
-                                        <!-- ./col -->
-                                        <div class="col-md-4 col-6">
-                                            <!-- small box -->
-                                            <div class="small-box bg-warning">
-                                                <div class="inner">
-                                                    <h3>{{$all_plant}}</h3>
-                                                    <p>Plant</p>
-                                                </div>
-                                                <div class="icon">
-                                                    <i class="ion ion-person-add"></i>
-                                                </div>
-                                                <a href="{{route('plant.plant_list')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4 col-6">
-                                            <!-- small box -->
-                                            <div class="small-box bg-warning">
-                                                <div class="inner">
-                                                    <h3>{{$all_location}}</h3>
-                                                    <p>Location</p>
-                                                </div>
-                                                <div class="icon">
-                                                    <i class="ion ion-person-add"></i>
-                                                </div>
-                                                <a href="{{route('plant.plant_list')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4 col-6">
+                                        <div class="col-md-3 col-3">
                                             <!-- small box -->
                                             <div class="small-box bg-danger">
                                                 <div class="inner">
@@ -97,7 +68,7 @@
                                                 <a href="{{route('item.item_list')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                             </div>
                                         </div>
-                                        <div class="col-md-4 col-6">
+                                        <div class="col-md-3 col-3">
                                             <!-- small box -->
                                             <div class="small-box bg-info">
                                                 <div class="inner">
@@ -110,8 +81,80 @@
                                                 <a href="{{route('weighing.weighing_list')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                             </div>
                                         </div>
+
+                                        <div class="col-md-3 col-3">
+                                            <!-- small box -->
+                                            <div class="small-box bg-warning">
+                                                <div class="inner">
+                                                    <h3>3</h3>
+                                                    <p>Plant</p>
+                                                </div>
+                                                <div class="icon">
+                                                    <i class="ion ion-person-add"></i>
+                                                </div>
+                                                <a href="{{route('plant.plant_list')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                            </div>
+                                        </div>
                                         <!-- ./col -->
-                                        <div class="col-md-4 col-6">
+                                        <div class="col-md-3 col-3">
+                                            <!-- small box -->
+                                            <div class="small-box bg-warning">
+                                                <div class="inner">
+                                                    <h3>{{$all_plant_bwl}}</h3>
+                                                    <p>Plant-BWL</p>
+                                                </div>
+                                                <div class="icon">
+                                                    <i class="ion ion-person-add"></i>
+                                                </div>
+                                                <a href="{{route('plant.plant_list')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3 col-3">
+                                            <!-- small box -->
+                                            <div class="small-box bg-warning">
+                                                <div class="inner">
+                                                    <h3>{{$all_plant_sbd}}</h3>
+                                                    <p>Plant-SBD</p>
+                                                </div>
+                                                <div class="icon">
+                                                    <i class="ion ion-person-add"></i>
+                                                </div>
+                                                <a href="{{route('plant.plant_list')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3 col-3">
+                                            <!-- small box -->
+                                            <div class="small-box bg-warning">
+                                                <div class="inner">
+                                                    <h3>{{$all_plant_fbd}}</h3>
+                                                    <p>Plant-FBD</p>
+                                                </div>
+                                                <div class="icon">
+                                                    <i class="ion ion-person-add"></i>
+                                                </div>
+                                                <a href="{{route('plant.plant_list')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                            </div>
+                                        </div>
+
+                                        {{-- <div class="col-md-3 col-3">
+                                            <!-- small box -->
+                                            <div class="small-box bg-warning">
+                                                <div class="inner">
+                                                    <h3>{{$all_location}}</h3>
+                                                    <p>Location</p>
+                                                </div>
+                                                <div class="icon">
+                                                    <i class="ion ion-person-add"></i>
+                                                </div>
+                                                <a href="{{route('plant.plant_list')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                            </div>
+                                        </div> --}}
+
+                                      
+                                        <!-- ./col -->
+                                        {{-- <div class="col-md-3 col-3">
                                             <!-- small box -->
                                             <div class="small-box bg-success">
                                                 <div class="inner">
@@ -123,7 +166,7 @@
                                                 </div>
                                                 <a href="{{route('bin.bin_list')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </section>

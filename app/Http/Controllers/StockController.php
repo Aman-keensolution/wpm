@@ -250,7 +250,8 @@ class StockController extends Controller
         $bin = Bin::where('bin_id', $bin_id)->get()->first();
         $unit2 = Unit::where('unit_id', $unit_id)->get()->first();
 
-        $item_weight=$item->item_avg_weight*$item->unit->in_gram;
+        if($item->item_avg_weight!=0){$item_weight=$item->item_avg_weight*$item->unit->in_gram;}
+        else{$item_weight=1000;}
         
         $net_weight= ($gross_weight*$unit2->in_gram)-($bin->bin_weight*1000);
         $qty=$net_weight/$item_weight;

@@ -115,14 +115,17 @@ class AdminController extends Controller
     public function dashboard()
     {
         if (session()->has('Admin_login')) {
-            $all_plant = Plant::where('is_active', 1)->count();
+            // $all_plant = Plant::where('is_active', 1)->count();
+            $all_plant_bwl = Plant::where('short_code','BWL')->count();
+            $all_plant_sbd = Plant::where('short_code','SBD')->count();
+            $all_plant_fbd = Plant::where('short_code','FBD')->count();
             $all_location = Plant::select('location')->where('is_active', 1)->count();
             $all_bin = Bin::where('is_active', 1)->count();
             $all_item = Item::where('is_active', 1)->count();
             $all_WeightScale = WeightScale::where('is_active', 1)->count();
             $all_category = Category::where('is_active', 1)->count();
             $all_user = Admin::where('role', 2)->count();
-            return view('welcome')->with(['all_plant' => $all_plant, 'all_item' => $all_item, 'all_bin' => $all_bin, 'all_user' => $all_user, 'all_WeightScale' => $all_WeightScale, 'all_category' =>$all_category, 'all_location' => $all_location]);
+            return view('welcome')->with(['all_plant_bwl' => $all_plant_bwl, 'all_plant_sbd' => $all_plant_sbd,'all_plant_fbd' => $all_plant_fbd, 'all_item' => $all_item, 'all_bin' => $all_bin, 'all_user' => $all_user, 'all_WeightScale' => $all_WeightScale, 'all_category' =>$all_category, 'all_location' => $all_location]);
         } else {
             return redirect('admin');
         }
