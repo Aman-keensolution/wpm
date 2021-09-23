@@ -60,12 +60,12 @@ class WeighingController extends Controller
 
     public function store(Request $request)
     {
-        $user_id= session()->get('Admin_id');
+       
         $WeightScale = new WeightScale;
         $WeightScale->name = $request->name;
         $WeightScale->weight_scale_no = $request->weight_scale_no;
         $WeightScale->plant_id = $request->plant_id;
-        $WeightScale->user_id = $user_id;
+        $WeightScale->user_id  = $request->user_id;
         $WeightScale->short_code = $request->short_code;
         $WeightScale->unit_id = $request->unit_id;
         $WeightScale->capicity = $request->capicity;
@@ -100,6 +100,7 @@ class WeighingController extends Controller
         $data->weight_scale_no = $request->weight_scale_no;
         $data->short_code = $request->short_code;
         $data->unit_id = $request->unit_id;
+        $data->user_id = $request->user_id;
         $data->capicity = $request->capicity;
         $data->save();
         return redirect('weighing_list');

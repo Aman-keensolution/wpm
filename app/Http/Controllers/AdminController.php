@@ -62,13 +62,13 @@ class AdminController extends Controller
             'name' => 'required',
             'email' => 'required',
             'password' => 'required|min:3|max:10',
-            'number' => 'required|min:10|max:10'
+            'mobile' => 'required|min:10|max:10'
         ]);
         /* user registeration */
         $Admin = new Admin;
         $Admin->name = $request->name;
         $Admin->email = $request->email;
-        $Admin->number = $request->number;
+        $Admin->mobile = $request->mobile;
         $Admin->password = md5($request->password);
         $Admin->save();
         if ($Admin) {
@@ -104,7 +104,7 @@ class AdminController extends Controller
         $data = Admin::find($request->user_id);
         $data->name = $request->name;
         $data->email = $request->email;
-        $data->number = $request->number;
+        $data->mobile = $request->mobile;
         $data->password = $request->password;
         $data->save();
         return redirect('userlist');
