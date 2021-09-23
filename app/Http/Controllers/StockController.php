@@ -124,10 +124,9 @@ class StockController extends Controller
         $Stock->remark = $request->remark;
 
         $Stock->assign_date =Carbon::now();
-        $Stock->bin_weight = 50;
-        $Stock->net_weight = 100;
-        $Stock->counted_quantity = 132;
-        $Stock->remark = $request->remark;
+        $Stock->bin_weight = $request->bin_weight;
+        $Stock->net_weight = $request->net_weight;
+        $Stock->counted_quantity = $request->counted_quantity;
         $Stock->provision1 = 1;
         $Stock->provision2 = 1;
 
@@ -188,7 +187,7 @@ class StockController extends Controller
         $data->item_id = $request->item_id;
         $data->bin_id = $request->bin_id;
         $data->plant_id = $request->plant_id;
-        $data->user_id = $user_id;
+        $data->user_id = $request->user_id;
         $data->weight_scale_id = $request->weight_scale_id;
         $data->batch_id = $request->batch_id;
         $data->unit_id = $request->unit_id;

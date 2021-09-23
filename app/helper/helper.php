@@ -372,7 +372,7 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
             div#page_print {margin-top: 0px;} 
             @page{margin: 0mm;}
             html{background-color: #FFFFFF;margin: 0px; }
-            body{border: dotted 1px #000 ;height: 243mm;width: 162mm;}
+            body{border: dotted 0px #000 ;height: 142mm;width: 101mm;}
             .div_print {
               transform: rotate(-90deg);
                 -webkit-transform: rotate(-90deg);
@@ -380,10 +380,13 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
                 -o-transform: rotate(-90deg);
                 -ms-transform: rotate(-90deg);
                 border: 1px dotted #aaaaaa;
-                 padding:2px;
-                 width: 576px;
-                 height: 384px;
-                 margin-top: 100px;
+                padding:7px;
+                width: 142mm;
+                height: 101mm;
+                margin-top: 90px;
+                margin-left: -100px;
+                margin-bottom: 10px;
+
             }
             .p3_text {font-size: 14px;}
             .item_tbl {border-collapse: collapse;}
@@ -505,7 +508,7 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
             </tr>
             <tr>
                 <td colspan="10" class="">
-                    <table border="1" cellspacing="0" cellpadding="0" class="item_tbl">
+                    <table border="1" cellspacing="0" cellpadding="0" class="item_tbl" style="margin-right: 10px;">
                         <tr>
                         
                         <td class="p3_text l_text">&nbsp;ERP Code</td>
