@@ -71,6 +71,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
 
     //ItemController
     Route::get('item_list', [ItemController::class, 'item_list'])->name('item.item_list');
+    Route::get('select_item_list', [ItemController::class, 'select_item_list'])->name('item.select_item_list');
     Route::get('add_item', [ItemController::class, 'add_item'])->name('item.add_item');
     Route::post('item/store', [ItemController::class, 'store'])->name('item.store');
     Route::get('edit_item/{item_id}', [ItemController::class, 'edit_item'])->name('item.edit_item');
