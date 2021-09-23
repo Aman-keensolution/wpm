@@ -72,6 +72,20 @@
 
                                         <div class="col-md-4 col-6">
                                             <!-- small box -->
+                                            <div class="small-box bg-warning">
+                                                <div class="inner">
+                                                    <h3>{{$all_location}}</h3>
+                                                    <p>Location</p>
+                                                </div>
+                                                <div class="icon">
+                                                    <i class="ion ion-person-add"></i>
+                                                </div>
+                                                <a href="{{route('plant.plant_list')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 col-6">
+                                            <!-- small box -->
                                             <div class="small-box bg-danger">
                                                 <div class="inner">
                                                     <h3>{{$all_item}}</h3>

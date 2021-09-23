@@ -85,19 +85,19 @@ class StockController extends Controller
         if (session()->has('Admin_login')) {
             if(session()->get('role')==1){ $user_id = session()->get('Admin_id');}
             else{$user_id = session()->get('user_id');}
-            $all_plant = Plant::all();
+            $all_plant = Plant::where('is_active', 1)->get();
             $all_bin = Bin::where('is_active', 1)->get();
-            $all_item = Item::all();
-            $all_WeightScale = WeightScale::where('user_id', $user_id)->with('plant', 'user')->get();
+            $all_item = Item::where('is_active', 1)->get();
+            $all_WeightScale = WeightScale::where('user_id', $user_id)->where('is_active', 1)->with('plant', 'user')->get();
             $all_unit = Unit::all();
-            $all_user = Admin::where('user_id', $user_id)->get()->first();
+            $all_user = Admin::where('user_id', $user_id)->where('is_active', 1)->get()->first();
             if (session()->has('Admin_login')) {
-                $all_plant = Plant::all();
+                $all_plant = Plant::where('is_active', 1)->get();
                 $all_bin = Bin::where('is_active', 1)->get();
-                $all_item = Item::all();
-                $all_WeightScale = WeightScale::all();
+                $all_item = Item::where('is_active', 1)->get();
+                $all_WeightScale = WeightScale::where('is_active', 1)->get();
                 $all_unit = Unit::all();
-                $all_user = Admin::where('role', 2)->get();
+                $all_user = Admin::where('role', 2)->where('is_active', 1)->get();
                 $data['Stockdata'] = Stock::where('stock_id', $request->stock_id)->with('plant', 'bin','item','weightScale','unit','user')->get()->first(); //find($request->stock_id);
                 return view('stock.add_stock', $data)->with(['all_plant' => $all_plant, 'all_item' => $all_item, 'all_bin' => $all_bin, 'all_user' => $all_user, 'all_WeightScale' => $all_WeightScale, 'all_unit' => $all_unit]);
             }
@@ -150,12 +150,12 @@ class StockController extends Controller
     public function edit_stock(Request $request)
     {
         if (session()->has('Admin_login')) {
-            $all_plant = Plant::all();
-            $all_bin = Bin::all();
-            $all_item = Item::all();
-            $all_WeightScale = WeightScale::all();
+            $all_plant = Plant::where('is_active', 1)->get();
+            $all_bin = Bin::where('is_active', 1)->get();
+            $all_item = Item::where('is_active', 1)->get();
+            $all_WeightScale = WeightScale::where('is_active', 1)->get();
             $all_unit = Unit::all();
-            $all_user = Admin::where('role', 2)->get();
+            $all_user = Admin::where('role', 2)->where('is_active', 1)->get();
             $data['Stockdata'] = Stock::where('stock_id', $request->stock_id)->with('plant', 'bin','item','weightScale','unit','user')->get()->first(); //find($request->stock_id);
             return view('stock.edit_stock', $data)->with(['all_plant' => $all_plant, 'all_item' => $all_item, 'all_bin' => $all_bin, 'all_user' => $all_user, 'all_WeightScale' => $all_WeightScale, 'all_unit' => $all_unit]);
         } else {
