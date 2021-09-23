@@ -30,7 +30,7 @@
                                     <div class="row">
                                         <div class="col-md-3 col-3">
                                             <!-- small box -->
-                                            <div class="small-box bg-info">
+                                            <div class="small-box bg-outline-secondary">
                                                 <div class="inner">
                                                     <h3>{{$all_user}}</h3>
                                                     <p>User</p>
@@ -44,7 +44,7 @@
                                         <!-- ./col -->
                                         <div class="col-md-3 col-3">
                                             <!-- small box -->
-                                            <div class="small-box bg-success">
+                                            <div class="small-box bg-outline-secondary">
                                                 <div class="inner">
                                                     <h3>{{$all_category}}</h3>
                                                     <p>Category</p>
@@ -57,7 +57,7 @@
                                         </div>
                                         <div class="col-md-3 col-3">
                                             <!-- small box -->
-                                            <div class="small-box bg-danger">
+                                            <div class="small-box bg-outline-secondary">
                                                 <div class="inner">
                                                     <h3>{{$all_item}}</h3>
                                                     <p>Item</p>
@@ -70,7 +70,7 @@
                                         </div>
                                         <div class="col-md-3 col-3">
                                             <!-- small box -->
-                                            <div class="small-box bg-info">
+                                            <div class="small-box bg-outline-secondary">
                                                 <div class="inner">
                                                     <h3>{{$all_WeightScale}}</h3>
                                                     <p>Weighing</p>
@@ -84,7 +84,7 @@
 
                                         <div class="col-md-3 col-3">
                                             <!-- small box -->
-                                            <div class="small-box bg-warning">
+                                            <div class="small-box bg-outline-secondary">
                                                 <div class="inner">
                                                     <h3>3</h3>
                                                     <p>Plant</p>
@@ -98,10 +98,10 @@
                                         <!-- ./col -->
                                         <div class="col-md-3 col-3">
                                             <!-- small box -->
-                                            <div class="small-box bg-warning">
+                                            <div class="small-box bg-outline-secondary">
                                                 <div class="inner">
                                                     <h3>{{$all_plant_bwl}}</h3>
-                                                    <p>Plant-BWL</p>
+                                                    <p>Plant-BWL<br> Locations</p>
                                                 </div>
                                                 <div class="icon">
                                                     <i class="ion ion-person-add"></i>
@@ -112,10 +112,12 @@
 
                                         <div class="col-md-3 col-3">
                                             <!-- small box -->
-                                            <div class="small-box bg-warning">
+                                            <div class="small-box bg-outline-secondary">
                                                 <div class="inner">
                                                     <h3>{{$all_plant_sbd}}</h3>
-                                                    <p>Plant-SBD</p>
+                                                    <p>Plant-SBD 
+                                                        <br> Locations
+                                                    </p>
                                                 </div>
                                                 <div class="icon">
                                                     <i class="ion ion-person-add"></i>
@@ -126,10 +128,10 @@
 
                                         <div class="col-md-3 col-3">
                                             <!-- small box -->
-                                            <div class="small-box bg-warning">
+                                            <div class="small-box bg-outline-secondary">
                                                 <div class="inner">
                                                     <h3>{{$all_plant_fbd}}</h3>
-                                                    <p>Plant-FBD</p>
+                                                    <p>Plant-FBD<br> Locations</p>
                                                 </div>
                                                 <div class="icon">
                                                     <i class="ion ion-person-add"></i>
