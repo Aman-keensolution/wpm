@@ -30,14 +30,14 @@
                                      <?php foreach ($p_arr as $p) { ?>
                                          <option value="{{$p['plant_id']}}" <?php if ($p['plant_id'] == $bindata['plant_id']) {
                                                                                 echo "selected";
-                                                                            } ?>>{{$p['name']}}</option>
+                                                                            } ?>>{{$p['name']}}/{{$p['location']}}</option>
                                      <?php } ?>
                                  </select>
                              </div>
                              <div class="form-group">
                                  <label for="bin_weight">Bin Tare Weight</label>
                                  <div class="input-group mb-3">
-                                     <input type="text" name="bin_weight" value="{{$bindata['bin_weight']}}" id="bin_weight" class="form-control"  aria-label="Bin Weight">
+                                     <input type="text" name="bin_weight" value="{{$bindata['bin_weight']}}" id="bin_weight" class="form-control" aria-label="Bin Weight">
                                      <div class="input-group-append">
                                          <span class="input-group-text" id="basic-addon2">Kg</span>
                                          <input type="hidden" name="bin_weight_g" id="bin_weight_g">

@@ -34,7 +34,7 @@
                              </div>
                              <div class="form-group">
                                  <label for="number">Mobile</label>
-                                 <input type="number" name="number" id="number" class="form-control" placeholder="Enter number">
+                                 <input type="number" name="mobile" id="mobile" class="form-control" placeholder="Enter mobile no">
                              </div>
                          </div>
                          <!-- /.card-body -->

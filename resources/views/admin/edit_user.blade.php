@@ -30,7 +30,7 @@
                              </div>
                              <div class="form-group">
                                  <label for="exampleInputPassword1">Mobile</label>
-                                 <input type="number" name="number" id="number" class="form-control" value="{{$userinfo['number']}}" placeholder="Enter number">
+                                 <input type="number" name="mobile" id="mobile" class="form-control" value="{{$userinfo['mobile']}}" placeholder="Enter mobile no">
                              </div>
                          </div>
                          <div class="card-footer">

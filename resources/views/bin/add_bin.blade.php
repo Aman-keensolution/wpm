@@ -29,7 +29,7 @@
                                  <?php $p_arr = arrayPlant(); ?>
                                  <select name="plant_id" id="plant_id" class="form-control">
                                      @foreach( $p_arr as $plant)
-                                     <option value="{{$plant['plant_id']}}">{{$plant['name']}}</option>
+                                     <option value="{{$plant['plant_id']}}">{{$plant['name']}}/{{$plant['location']}}</option>
                                      @endforeach
                                  </select>
                              </div>
