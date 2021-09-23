@@ -369,6 +369,7 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
         .item_tbl td {border: 1px solid #cccccc;}
         .l_text {font-weight: 800;}
         @media print {
+            div#page_print {margin-top: 0px;} 
             @page{margin: 0mm;}
             html{background-color: #FFFFFF;margin: 0px; }
             body{border: dotted 1px #000 ;height: 243mm;width: 162mm;}

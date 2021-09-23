@@ -33,9 +33,7 @@
                                         <th style="width: 10px">Sn.</th>
                                          <th>Name</th>
                                          <th>ERP Material No.</th>
-                                        
                                          <th>Item wt.(Kg)</th>
-                                        
                                          <th>Action</th>
                                      </tr>
                                  </thead>

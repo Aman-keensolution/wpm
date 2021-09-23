@@ -279,13 +279,12 @@ class StockController extends Controller
            $autocomplate = Item::orderby('item_no','asc')->select('item_id','item_no','name')->limit(5)->get();
         }else{
             $autocomplate = Item::orderby('item_no','asc')->select('item_id','item_no','name')->where('name', 'like', '%' .$search . '%')->
-            orWhere('item_no', 'like', '%' .$search . '%')->limit(5)->get();
+            orWhere('item_no', 'like', '%' .$search . '%')->orWhere('name', 'like', '%' .$search . '%')->limit(5)->get();
         }
   
         $response = array();
         foreach($autocomplate as $autocomplate){
-            
-           $response[] = array("value"=>$autocomplate->item_id,"label"=>$autocomplate->item_no,"name"=>$autocomplate->name);
+           $response[] = array("value"=>$autocomplate->item_id,"label"=>$autocomplate->item_no."-".$autocomplate->name,"name"=>$autocomplate->name);
         }
   
         echo json_encode($response);
