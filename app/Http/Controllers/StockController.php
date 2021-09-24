@@ -277,10 +277,10 @@ class StockController extends Controller
     public function get_items(Request $request){
         $search = $request->search;
         if($search == ''){
-           $autocomplate = Item::orderby('item_no','asc')->select('item_id','item_no','name')->where('is_active', '=', 1)->limit(5)->get();
+           $autocomplate = Item::orderby('item_no','asc')->select('item_id','item_no','name')->where('is_active', '=', 1)->limit(10)->get();
         }else{
             $autocomplate = Item::orderby('item_no','asc')->select('item_id','item_no','name')->where('name', 'like', '%' .$search . '%')->
-            orWhere('item_no', 'like', '%' .$search . '%')->orWhere('name', 'like', '%' .$search . '%')->limit(5)->get();
+            orWhere('item_no', 'like', '%' .$search . '%')->orWhere('name', 'like', '%' .$search . '%')->limit(10)->get();
         }
         $response = array();
         foreach($autocomplate as $autocomplate){
