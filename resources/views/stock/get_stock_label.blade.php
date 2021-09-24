@@ -14,6 +14,16 @@
              <div class="card-header">
                  <h3 class="card-title">Update Stock</h3>
              </div>
+             @if ($errors->any())
+             <div class="alert alert-danger">
+                 <ul>
+                     @foreach ($errors->all() as $error)
+                         <li>{{ $error }}</li>
+                     @endforeach
+                 </ul>
+             </div>
+         @endif
+
              <form action="{{route('update_stock',$Stockdata['stock_id'])}}" method="post">
                  @csrf
                  <div class="card-body">

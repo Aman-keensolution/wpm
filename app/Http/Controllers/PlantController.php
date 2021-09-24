@@ -53,17 +53,18 @@ class PlantController extends Controller
         /* validation code */
         $request->validate([
             'name' => 'required',
-            'short_code'=> 'required|min:5|max:6'
+            'short_code'=> 'required|max:6'
         ]);
         /* user registeration */
         $Plant = new Plant;
         $Plant->name = $request->name;
-        $Plant->cityplant = $request->cityplant;
+        $Plant->cityplant_id = $request->cityplant_id;
         $Plant->plant_address = $request->plant_address;
         $Plant->short_code = $request->short_code;
         $Plant->location = $request->location;
         $Plant->location_short_code = $request->location_short_code;
         $Plant->save();
+        
         if ($Plant) {
             return redirect('plant_list');
         } else {
@@ -87,7 +88,7 @@ class PlantController extends Controller
     {
         $data = Plant::find($request->plant_id);
         $data->name = $request->name;
-        $data->cityplant = $request->cityplant;
+        $data->cityplant_id = $request->cityplant_id;
         $data->plant_address = $request->plant_address;
         $data->short_code = $request->short_code;
         $data->location = $request->location;

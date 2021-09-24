@@ -296,6 +296,7 @@
             $('.select2').select2()
         });
     </script>
+    <script src="{{asset('public/assets/js/custom.js')}}"></script>
 
 </body>
 
