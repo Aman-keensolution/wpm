@@ -10,12 +10,6 @@ use DataTables;
 
 class ItemController extends Controller
 {
-    // name: 'item_id'},
-    // {data: 'name', name: 'name'},
-    // {data: 'item_no', name: 'item_no'},
-    // {data: 'price', name: 'price'},
-    // {data: 'item_avg_weight', name: 'item_avg_weight'},
-    // {data: 'batch_no', name: 'batch_no'},
 
     public function item_list(Request $request)
     {

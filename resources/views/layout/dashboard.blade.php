@@ -177,6 +177,14 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a href="{{route('report.report_list1')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array(''))) {
+                                                                                                echo "active";
+                                                                                            } ?>">
+                                    <i class="far fa-file"></i>
+                                    <p>Reports-1</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{route('report.report_list_user')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array(''))) {
                                                                                                     echo "active";
                                                                                                 } ?>">

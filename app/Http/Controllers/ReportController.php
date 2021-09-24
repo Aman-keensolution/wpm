@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Bin;
 use App\Models\Plant;
+use App\Models\CityPlant;
 use App\Models\WeightScale;
 use App\Models\Stock;
 use DataTables;
@@ -16,96 +17,250 @@ class ReportController extends Controller
     public function report_list(Request $request)
     {
          if (session()->has('Admin_login')) {
-            if ($request->ajax()) {
-                if (session()->get('role') == 1) {
-                    $user_id = session()->get('Admin_id');
-                    // Date filter                   
-
-                    $data = Stock::with('plant', 'item', 'bin', 'user', 'weightScale', 'unit');
-                                   } else {
-                    $user_id = session()->get('user_id');
-                    $data = Stock::where('user_id', $user_id)->with('plant', 'item', 'bin', 'user', 'weightScale', 'unit');
-                }
-                if($request->input('min') != '' && $request->input('max') != ''){
-                    $data->whereBetween('assign_date', [$request->input('min'), $request->input('max')]);
-                } 
-                if($request->input('plant_id') != ''){
-                    $data->whereIn('plant_id', $request->plant_id);
-                } 
-                if($request->input('item_id') != '' ){
-                    $data->where('item_id', $request->input('item_id'));
-                } 
-                if($request->input('bin_id') != ''){
-                    $data->where('bin_id',$request->input('bin_id'));
-                }
-                if($request->input('weightScale_id') != ''){
-                    $data->where('weightScale_id', $request->input('weightScale_id'));
-                } 
-                
-                $data->get();
-                return Datatables::of($data)
-                    ->addIndexColumn()
-                    ->addColumn('plant_name', function ($row) {
-                        return "<div title='".@$row->plant->plant_id."'>".@$row->plant->name."/".@$row->plant->location."</div>";
-                    })
-                    ->addColumn('item_name', function ($row) {
-                        return @$row->item->name;
-                    })
-                    ->addColumn('item_no', function ($row) {
-                        return @$row->item->item_no;
-                    })
-                    ->addColumn('bin_name', function ($row) {
-                        return @$row->bin->name;
-                    })
-                    ->addColumn('weightScale_name', function ($row) {
-                        return @$row->weightScale->name;
-                    })
-                    ->addColumn('user_name', function ($row) {
-                        return @$row->user->name;
-                    })
-                    ->addColumn('gross_weightu', function ($row) {
-                        return @$row->gross_weight."Kg";
-                    })
-                    ->addColumn('bin_weightu', function ($row) {
-                        return @$row->bin_weight."Kg";
-                    })
-                    ->addColumn('assign_date1', function ($row) {
-                        return getCreatedAtAttribute(@$row->assign_date, 'd/m/Y H:s A');
-                    })
-                    ->addColumn('net_weightu', function ($row) {
-                        return @$row->net_weight."Kg";
-                    })
-                    ->rawColumns(['plant_name'])
-                    ->make(true);
-            }
             $all_bin = Bin::all();
-            $all_plant = Plant::all();
+            $all_plant = CityPlant::all();
             $all_item = Item::all();
             $all_WeightScale = WeightScale::all();
-            return view('report.report')->with(['all_bin' => $all_bin, 'all_WeightScale' => $all_WeightScale, 'all_item' => $all_item, 'all_plant' => $all_plant,]);
+            $query = Stock::with('plant', 'item', 'bin', 'user', 'weightScale', 'unit')->where('is_active', 1);
+
+            if ($request->input('min') != '' && $request->input('max') != '') {
+                $query->whereBetween('assign_date', [$request->input('min'), $request->input('max')]);
+            }
+            if ($request->input('plant_id') != '') {
+                $query->whereIn('plant_id', $request->plant_id);
+            }
+            if ($request->input('item_id') != '') {
+                $query->where('item_id', $request->input('item_id'));
+            }
+            if ($request->input('bin_id') != '') {
+                $query->where('bin_id', $request->input('bin_id'));
+            }
+            if ($request->input('weightScale_id') != '') {
+                $query->where('weightScale_id', $request->input('weightScale_id'));
+            }
+
+            $data= $query->get();
+            
+            return view('report.report', compact('data'))->with(['all_bin' => $all_bin, 'all_WeightScale' => $all_WeightScale, 'all_item' => $all_item, 'all_plant' => $all_plant]);
         }
-        //return view('admin');
+        return redirect()->route('admin');
+    }
+
+    public function report_list1(Request $request)
+    {
+        if (session()->has('Admin_login')) {
+            $all_bin = Bin::all();
+            $all_plant = CityPlant::all();
+            $all_item = Item::all();
+            $all_WeightScale = WeightScale::all();
+            $query = Stock::with('plant', 'item', 'bin')->where('is_active', 1);
+
+            if ($request->input('min') != '' && $request->input('max') != '') {
+                $query->whereBetween('assign_date', [$request->input('min'), $request->input('max')]);
+            }
+            if ($request->input('plant_id') != '') {
+                $query->whereIn('plant_id', $request->plant_id);
+            }
+            if ($request->input('item_id') != '') {
+                $query->where('item_id', $request->input('item_id'));
+            }
+            $data = $query->get();
+
+            return view('report.report1', compact('data'))->with(['all_item' => $all_item, 'all_bin' => $all_bin, 'all_plant' => $all_plant]);
+        }
         return redirect()->route('admin');
     }
 
     public function report_list_user(Request $request)
     {
         if (session()->has('Admin_login')) {
-            $all_bin = Bin::all();
-            $all_plant = Plant::all();
-            $all_item = Item::all();
-            $all_WeightScale = WeightScale::all();
-            $data = Stock::select('*')->where('is_active', 1)->paginate(20);
-            return view('report.report_list_user', compact('data'))->with(['all_bin' => $all_bin, 'all_WeightScale' => $all_WeightScale, 'all_item' => $all_item, 'all_plant' => $all_plant,]);
+            $all_plant = CityPlant::all();
+            $query =  Stock::select('*')->with('item')->where('is_active', 1);
+
+            if ($request->input('min') != '' && $request->input('max') != '') {
+                $query->whereBetween('assign_date', [$request->input('min'), $request->input('max')]);
+            }
+            if ($request->input('item_id') != '') {
+                $query->where('item_id', $request->input('item_id'));
+            }
+            $data = $query->get();
+            return view('report.report_list_user', compact('data'))->with(['all_plant' => $all_plant]);
         }
-        //return view('admin');
         return redirect()->route('admin');
     }
-    // public function report_list(Request $request)
-    // {
-    //     $all_bin = Bin::all();
-    //     $all_WeightScale = WeightScale::all();
-    //     $data['report_data'] =Stock::with('bin', 'weightScale')->get(); //find($request->stock_id);
-    //     return view('report.report', $data)->with(['all_bin' => $all_bin,'all_WeightScale' => $all_WeightScale,]);
-    // }
+
+    public function exportCsv(Request $request)
+    {
+        $fileName = 'Report.csv';
+        if (session()->get('role') == 1) {
+            $user_id = session()->get('Admin_id');
+         
+            $query = Stock::with('plant', 'item', 'bin', 'user', 'weightScale', 'unit')->where('is_active', 1);
+
+            if ($request->input('min') != '' && $request->input('max') != '') {
+                $query->whereBetween('assign_date', [$request->input('min'), $request->input('max')]);
+            }
+            if ($request->input('plant_id') != '') {
+                $query->whereIn('plant_id', $request->plant_id);
+            }
+            if ($request->input('item_id') != '') {
+                $query->where('item_id', $request->input('item_id'));
+            }
+            if ($request->input('bin_id') != '') {
+                $query->where('bin_id', $request->input('bin_id'));
+            }
+            if ($request->input('weight_scale_id') != '') {
+                $query->where('weight_scale_id', $request->input('weight_scale_id'));
+            }
+            $tasks = $query->get();
+        } else {
+            $user_id = session()->get('user_id');
+            $query= Stock::where('user_id', $user_id)->with('plant', 'item', 'bin', 'user', 'weightScale', 'unit')->where('is_active', 1)->get();
+            $tasks = $query->get();
+        }
+        $headers = array(
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        );
+
+        $columns = array('Item', 'ERP M. Code', 'Bin', 'Weighing machine', 'Plant/Location', 'User', 'Assign Date', 'Gross Weight', 'Bin Weight', 'Net Weight', 'Quantity',);
+
+        $callback = function () use ($tasks, $columns) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($tasks as $task) {
+                     $assign_date1 = $task->assign_date;
+
+                $row['Item']  = $task->item['name'];
+                $row['ERP M. Code']    = $task->item['item_no'];
+                $row['Bin']    = $task->bin['name'];
+                $row['Weighing machine']  = $task->weightScale['name'];
+                $row['Plant/Location']  = $task->plant['name'];
+                $row['User']  = $task->user['name'];
+                $row['Assign Date']  = getCreatedAtAttribute($assign_date1);
+                $row['Gross Weight']  = $task->gross_weight;
+                $row['Bin Weight']  = $task->bin_weight;
+                $row['Net Weight']  = $task->net_weight;
+                $row['Quantity']  = $task->counted_quantity;
+            
+                fputcsv($file, array($row['Item'], $row['ERP M. Code'], $row['Bin'], $row['Weighing machine'], $row['Plant/Location'], $row['User'], $row['Assign Date'], $row['Gross Weight'], $row['Bin Weight'], $row['Net Weight'], $row['Quantity']));
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
+    public function exportCsv1(Request $request)
+    {
+        $fileName = 'Report.csv';
+        if (session()->get('role') == 1) {
+            $user_id = session()->get('Admin_id');
+            $query =  Stock::with('plant', 'item')->where('is_active', 1);
+
+            if ($request->input('min') != '' && $request->input('max') != '') {
+                $query->whereBetween('assign_date', [$request->input('min'), $request->input('max')]);
+            }
+            if ($request->input('plant_id') != '') {
+                $query->whereIn('plant_id', $request->plant_id);
+            }
+            if ($request->input('item_id') != '') {
+                $query->where('item_id', $request->input('item_id'));
+            }
+            $tasks = $query->get();
+        } else {
+
+            $user_id = session()->get('user_id');
+            $query = Stock::where('user_id', $user_id)->with('plant', 'item')->where('is_active', 1);
+            $tasks = $query->get();
+        }
+
+        $headers = array(
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        );
+
+        $columns = array( 'ERP M. Code', 'ITEM DESCRIPTION', 'Plant', 'Location', 'Quantity', 'AMOUNT');
+
+        $callback = function () use ($tasks, $columns) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($tasks as $task) {
+    
+                $row['ERP M. Code']    = $task->item['item_no'];
+                $row['ITEM DESCRIPTION']  = $task->item['name'];
+                $row['Plant']  = $task->plant['name'];
+                $row['Location']  = $task->plant['location'];
+                $row['Quantity']  = $task->counted_quantity;
+                $row['AMOUNT']    = $task->item['price'];
+            
+  
+                fputcsv($file, array( $row['ERP M. Code'], $row['ITEM DESCRIPTION'], $row['Plant'], $row['Location'], $row['Quantity'], $row['AMOUNT'],));
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
+    public function exportCsv_user(Request $request)
+    {
+        $fileName = 'Report.csv';
+        if (session()->get('role') == 1) {
+            $user_id = session()->get('Admin_id');
+            $query = Stock::with('item')->where('is_active', 1);
+
+            if ($request->input('min') != '' && $request->input('max') != '') {
+                $query->whereBetween('assign_date', [$request->input('min'), $request->input('max')]);
+            }
+            if ($request->input('item_id') != '') {
+                $query->where('item_id', $request->input('item_id'));
+            }
+            $tasks = $query->get();
+        } else {
+            $user_id = session()->get('user_id');
+            $query = Stock::where('user_id', $user_id)->with('item')->where('is_active', 1);
+            $tasks = $query->get();
+        }
+    
+        $headers = array(
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        );
+
+        $columns = array('Item', 'ERP M. Code','Quantity',);
+
+        $callback = function () use ($tasks, $columns) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($tasks as $task) {
+                $assign_date1 = $task->assign_date;
+
+                $row['Item']  = $task->item['name'];
+                $row['ERP M. Code']    = $task->item['item_no'];
+                $row['Quantity']  = $task->counted_quantity;
+
+                fputcsv($file, array($row['Item'], $row['ERP M. Code'] , $row['Quantity']));
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
 }
