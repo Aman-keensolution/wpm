@@ -51,13 +51,13 @@
                                      <input type="button" id="filter" name="filter" class="btn btn-secondary" value="Filter">
                                  </div>
                                  <div class="button1 col-md-1">
-                                     <button data-href="{{route('export-tasks_user')}}" id="export" class="btn btn-success" onclick="exportTasks(event.target);">CSV</button>
+                                     <span data-href="{{route('export-tasks_user')}}" id="export" class="btn btn-success " onclick="exportTasks(event.target);">CSV</span>
                                  </div>
                              </div>
                      </form>
                      <hr>
                      <div class="card-body">
-                        
+
                          <div class="table-responsive">
                              <table class="table table-striped table-bordered dt-responsive nowrap data-table dataTable display compact" cellspacing="0" width="100%">
                                  <thead>

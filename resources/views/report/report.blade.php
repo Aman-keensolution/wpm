@@ -89,7 +89,7 @@
                                      <input type="submit" id="filter" name="filter" class="btn btn-secondary" value="Filter">
                                  </div>
                                  <div class="button1 col-md-1">
-                                     <button data-href="{{route('export-tasks')}}" id="export" class="btn btn-success" onclick="exportTasks(event.target);">CSV</button>
+                                     <span data-href="{{route('export-tasks')}}" id="export" class="btn btn-success " onclick="exportTasks(event.target);">CSV</span>
                                  </div>
                              </div>
                          </div>
@@ -145,14 +145,13 @@
      </div><!-- /.container-fluid -->
      <script>
          function exportTasks(_this) {
-             
-             var weightScale_id = document.getElementById('weightScale_id').value;
+             var weight_scale_id = document.getElementById('weight_scale_id').value;
              var bin_id = document.getElementById('bin_id').value;
              var item_id = document.getElementById('item_id').value;
              var plant_id = document.getElementById('plant_id').value;
              var min = document.getElementById('min').value;
              var max = document.getElementById('max').value;
-             let _url = $(_this).data('href') + "?item_id=" + item_id + "&plant_id=" + plant_id + "&min=" + min + "&max=" + max + "&bin_id=" + bin_id + "&weightScale_id=" + weightScale_id;
+             let _url = $(_this).data('href') + "?item_id=" + item_id + "&plant_id=" + plant_id + "&min=" + min + "&max=" + max + "&bin_id=" + bin_id + "&weight_scale_id=" + weight_scale_id;
              window.location.href = _url;
          }
      </script>

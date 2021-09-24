@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Bin;
-use App\Models\Plant;
 use App\Models\CityPlant;
 use App\Models\WeightScale;
 use App\Models\Stock;
@@ -35,8 +34,8 @@ class ReportController extends Controller
             if ($request->input('bin_id') != '') {
                 $query->where('bin_id', $request->input('bin_id'));
             }
-            if ($request->input('weightScale_id') != '') {
-                $query->where('weightScale_id', $request->input('weightScale_id'));
+            if ($request->input('weight_scale_id') != '') {
+                $query->where('weight_scale_id', $request->input('weight_scale_id'));
             }
 
             $data= $query->get();
@@ -49,10 +48,8 @@ class ReportController extends Controller
     public function report_list1(Request $request)
     {
         if (session()->has('Admin_login')) {
-            $all_bin = Bin::all();
             $all_plant = CityPlant::all();
             $all_item = Item::all();
-            $all_WeightScale = WeightScale::all();
             $query = Stock::with('plant', 'item', 'bin')->where('is_active', 1);
 
             if ($request->input('min') != '' && $request->input('max') != '') {

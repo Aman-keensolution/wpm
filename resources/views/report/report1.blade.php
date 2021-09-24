@@ -38,7 +38,7 @@
                                              <label for="item_id">Item</label>
                                              <input type="text" name="table_search" id="table_search" class="form-control float-right" placeholder="Item">
                                              <input type="hidden" name="item_id" id="item_id">
-                                         </div>
+                                        </div>
                                          <div class="form-group col-md-3">
                                              <label for="plant_id">Plant</label>
                                              <div class="8-group mb-3">
@@ -54,17 +54,17 @@
                                      </div>
                                  </div>
                                  <div class="button1 col-md-1">
-                                    <input type="submit" id="filter" name="filter" class="btn btn-secondary" value="Filter">
+                                     <input type="submit" id="filter" name="filter" class="btn btn-secondary" value="Filter">
                                  </div>
                                  <div class="button1 col-md-1">
-                                     <button data-href="{{route('export-tasks1')}}" id="export" class="btn btn-success" onclick="exportTasks(event.target);">CSV</button>
+                                     <span data-href="{{route('export-tasks1')}}" id="export" class="btn btn-success" onclick="exportTasks(event.target);">CSV</span>
                                  </div>
                              </div>
                          </div>
                      </form>
                      <hr>
                      <div class="card-body">
-                         
+                    
                          <div class="table-responsive">
                              <table class="table table-striped table-bordered dt-responsive nowrap data-table dataTable display compact" cellspacing="0" width="100%">
                                  <thead>
