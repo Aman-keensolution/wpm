@@ -115,5 +115,11 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
 
                 //ReportController
     Route::get('report_list', [ReportController::class, 'report_list'])->name('report.report_list');
+    Route::get('report_list1', [ReportController::class, 'report_list1'])->name('report.report_list1');
     Route::get('report_list_user', [ReportController::class, 'report_list_user'])->name('report.report_list_user');
+
 }); 
+    Route::get('/export-tasks', [ReportController::class, 'exportCsv'])->name('export-tasks');
+    Route::get('/export-tasks1', [ReportController::class, 'exportCsv1'])->name('export-tasks1');
+    Route::get('/export-tasks_user', [ReportController::class, 'exportCsv_user'])->name('export-tasks_user');
+
