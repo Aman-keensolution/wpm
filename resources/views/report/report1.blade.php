@@ -19,6 +19,15 @@
                          <h3 class="card-title">Report</h3>
                      </div>
                      <!-- /.card-header -->
+                     @if ($errors->any())
+                     <div class="alert alert-danger">
+                         <ul>
+                             @foreach ($errors->all() as $error)
+                                 <li>{{ $error }}</li>
+                             @endforeach
+                         </ul>
+                     </div>
+                 @endif
                      <form action="{{route('report.report_list1')}}" method="get">
                          @csrf
                          <div class="card-body">
