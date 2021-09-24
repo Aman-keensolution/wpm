@@ -21,8 +21,13 @@
                          @csrf
                          <div class="card-body">
                              <div class="form-group">
-                                 <label for="name">Plant Name</label>
-                                 <input type="text" name="name" id="name" class="form-control" placeholder="Enter Plant name">
+                                 <label for="cityplant_id">Plant Name</label>
+                                 <select name="cityplant_id" id="cityplant_id" class="form-control" placeholder="Enter Plant name">
+                                    @foreach( $all_cityplant as $cityplant)
+                                    <option value="{{$cityplant->cityplant_id}}">{{$cityplant->name}}</option>
+                                    @endforeach
+                                 </select>
+                                 <input type="hidden" name="name" id="name" class="form-control" placeholder="Enter Plant name">
                              </div>
                              <div class="form-group">
                                  <label for="plant_address">Plant address</label>
@@ -51,6 +56,18 @@
              </div>
          </div>
      </div>
+     <script>
+          $(document).ready(function() {
+            var selectedText = $("#cityplant_id option:selected").text();
+                
+                $("#name").val(selectedText);
+                
+            $("#cityplant_id").on("change", function() {
+                var selectedText = $("#cityplant_id option:selected").text();
+                
+                $("#name").val(selectedText);})
+          });
+     </script>
  </section>
 
  @stop

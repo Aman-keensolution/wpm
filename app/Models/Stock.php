@@ -47,7 +47,10 @@ class Stock extends Model
     {
         return $this->hasOne(Plant::class, 'plant_id', 'plant_id');
     }
-
+    public function cityplant()
+    {
+        return $this->hasOne(Plant::class, 'cityplant_id', 'cityplant_id');
+    }
     public function bin()
     {
         return $this->hasOne(Bin::class, 'bin_id', 'bin_id');

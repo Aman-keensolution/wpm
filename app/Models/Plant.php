@@ -20,6 +20,8 @@ class Plant extends Model
     protected $fillable = [
         "name",
         "plant_address",
+        "cityplant_id",
+        
         "is_active"
     ];
 
@@ -43,4 +45,8 @@ class Plant extends Model
     // {
     //     return $this->hasOne(UserInfo::class, 'user_id', 'user_id');
     // }
+    public function cityplant()
+    {
+        return $this->hasOne(Plant::class, 'cityplant_id', 'cityplant_id');
+    }
 }

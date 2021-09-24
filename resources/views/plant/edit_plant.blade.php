@@ -21,7 +21,13 @@
                          <div class="card-body">
                              <div class="form-group">
                                  <label for="name">Plant Name</label>
-                                 <input type="text" name="name" id="name" class="form-control" value="{{$plant_data['name']}}">
+                                 <label for="cityplant_id">Plant Name</label>
+                                 <select name="cityplant_id" id="cityplant_id" class="form-control" placeholder="Enter Plant name">
+                                    @foreach( $all_cityplant as $cityplant)
+                                    <option @if($plant_data->cityplant_id == $cityplant->cityplant_id) selected @endif value="{{$cityplant->cityplant_id}}">{{$cityplant->name}}</option>
+                                    @endforeach
+                                 </select>
+                                 <input type="hidden" name="name" id="name" class="form-control" value="{{$plant_data['name']}} placeholder="Enter Plant name">
                              </div>
                              <div class="form-group">
                                  <label for="plant_address">Plant address</label>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Plant;
+use App\Models\CityPlant;
 use Illuminate\Http\Request;
 use DataTables;
 
@@ -40,7 +41,8 @@ class PlantController extends Controller
     public function add_plant(Request $request)
     {
         if (session()->has('Admin_login')) {
-            return view('plant.add_plant');
+            $all_cityplant = CityPlant::all();
+            return view('plant.add_plant')->with(['all_cityplant' => $all_cityplant]);
         } else {
             return redirect('admin');
         }
@@ -56,6 +58,7 @@ class PlantController extends Controller
         /* user registeration */
         $Plant = new Plant;
         $Plant->name = $request->name;
+        $Plant->cityplant = $request->cityplant;
         $Plant->plant_address = $request->plant_address;
         $Plant->short_code = $request->short_code;
         $Plant->location = $request->location;
@@ -71,8 +74,9 @@ class PlantController extends Controller
     public function edit_plant(Request $request)
     {
         if (session()->has('Admin_login')) {
+            $all_cityplant = CityPlant::all();
             $data['plant_data'] = Plant::find($request->plant_id);
-            return view('plant.edit_plant', $data);
+            return view('plant.edit_plant', $data)->with(['all_cityplant' => $all_cityplant]);
         } else {
              //return view('admin');
         return redirect()->route('admin');
@@ -83,6 +87,7 @@ class PlantController extends Controller
     {
         $data = Plant::find($request->plant_id);
         $data->name = $request->name;
+        $data->cityplant = $request->cityplant;
         $data->plant_address = $request->plant_address;
         $data->short_code = $request->short_code;
         $data->location = $request->location;

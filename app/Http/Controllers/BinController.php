@@ -18,7 +18,6 @@ class BinController extends Controller
                 return Datatables::of($data)
                         ->addIndexColumn()
                         ->addColumn('action', function($row){
-                            
                             $nm=route('bin.edit_bin',$row->bin_id);
                            $btn = '<a href="'.$nm. '"> <span class="badge bg-primary">Edit</span></a>&nbsp;&nbsp;' ;
                            if($row->is_active==1){
@@ -85,7 +84,7 @@ class BinController extends Controller
         $Bin->unit_id = 2;
         $Bin->save();
         if ($Bin) {
-            return redirect('add_stock');
+            return redirect('add_stock/0/0');
         } else {
             return back()->with('Fail', 'Something went wrong');
         }

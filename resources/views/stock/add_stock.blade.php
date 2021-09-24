@@ -157,11 +157,10 @@
                      </div>
                      <div class="form-group">
                          <label for="plant_id">Plant name</label>
-                         
-                         <select name="plant_id" id="plant_id" class="form-control">';
+                         <select name="plant_id[]" id="plant_id" multiple  class="form-control select2">';
         $p_arr = arrayPlant();
         foreach ($p_arr as $plant) {
-            $str .= ' <option value="' . $plant['plant_id'] . '">' . $plant['name'] . '</option>';
+            $str .= ' <option value="' . $plant['plant_id'] . '">' . $plant['name']."/".$plant['location'] . '</option>';
         }
         $str .= '  </select>
                      </div>

@@ -4,12 +4,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Bin extends Model
+class CityPlant extends Model
 {
     use HasFactory;
 
-    protected $table = 'bin_master';
-    protected $primaryKey = 'bin_id';
+    protected $table = 'cityplant_master';
+    protected $primaryKey = 'cityplant_id';
     public $timestamps = true;
     
     /**
@@ -19,7 +19,8 @@ class Bin extends Model
      */
     protected $fillable = [
         "name",
-        "bin_weight",
+        "address ",
+        "short_code ",
         "is_active"
     ];
 
@@ -39,12 +40,8 @@ class Bin extends Model
     protected $casts = [
     ];
 
-     public function plant()
-    {
-         return $this->hasOne(Plant::class, 'plant_id', 'plant_id');
-    }
-    public function cityplant()
-    {
-        return $this->hasOne(Plant::class, 'cityplant_id', 'cityplant_id');
-    }
+    // public function category()
+    // {
+    //     return $this->hasOne(UserInfo::class, 'user_id', 'user_id');
+    // }
 }

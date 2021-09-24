@@ -52,6 +52,10 @@ class Item extends Model
     {
         return $this->hasOne(Plant::class, 'plant_id', 'plant_id');
     }
+    public function cityplant()
+    {
+        return $this->hasOne(Plant::class, 'cityplant_id', 'cityplant_id');
+    }
     public function unit()
     {
         return $this->hasOne(Unit::class, 'unit_id', 'unit_id');
