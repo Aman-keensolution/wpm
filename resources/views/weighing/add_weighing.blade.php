@@ -47,10 +47,10 @@
                                  <input type="text" name="capicity" class="form-control" placeholder="Enter Capicity">
                              </div>
                              <div class="form-group">
-                                 <label for="plant_id">Plant</label>
-                                 <select name="plant_id" id="plant_id" class="form-control">
-                                     @foreach( $all_plant as $plant)
-                                     <option value="{{$plant->plant_id}}">{{$plant->name}}/{{$plant->location}}</option>
+                                 <label for="cityplant_id">Plant</label>
+                                 <select name="cityplant_id" id="cityplant_id" class="form-control">
+                                     @foreach( $all_cityplant as $cityplant)
+                                     <option value="{{$cityplant->cityplant_id}}">{{$cityplant->name}}</option>
                                      @endforeach
                                  </select>
                              </div>

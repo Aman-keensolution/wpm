@@ -9,6 +9,7 @@ use App\Models\Bin;
 use App\Models\Category;
 use App\Models\Item;
 use App\Models\Plant;
+use App\Models\CityPlant;
 use App\Models\WeightScale;
 use App\Models\Unit;
 use App\Models\Stock;
@@ -305,6 +306,10 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
           function arrayPlant()
           {
             return Plant::get()->toArray();
+          }
+          function arrayCityPlant()
+          {
+            return CityPlant::get()->toArray();
           }
           function arrayUnit()
           {
