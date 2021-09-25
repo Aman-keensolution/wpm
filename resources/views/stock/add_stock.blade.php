@@ -155,8 +155,6 @@
              </form>
          </div>
      </div>
-
-
      <?php $str = '<div class="col-md-12">
          <div class="card card-secondary">
              <form action="' . route('bin.store1') . '" method="post">'
@@ -302,11 +300,19 @@
                      return false;
                  }
              });
+         });
+            </script>
+     <script>
+         $(document).ready(function() {
              var json='<?php echo html_entity_decode(session()->get('user_wc_loc_json'), ENT_QUOTES, 'UTF-8')?>';
             var obj = JSON.parse(json);
+           
+                $("#location_name").val(obj.plant[0].location);//-----------------------------
+                $("#plant_id").val(obj.plant[0].plant_id);//-----------------------------
             
             $("#weight_scale_id").on("change", function() {
-                var nos = $("#weight_scale_id option:selected").attr("data-nos")
+                var nos = $("#weight_scale_id option:selected").attr("data-nos");
+                 console.log(obj);
                 $("#location_name").val(obj.plant[nos].location);//-----------------------------
                 $("#plant_id").val(obj.plant[nos].plant_id);//-----------------------------
                 

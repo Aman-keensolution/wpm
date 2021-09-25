@@ -33,7 +33,7 @@ class ItemController extends Controller
     public function add_item(Request $request)
     {
         if (session()->has('Admin_login')) {
-            $all_cityplant = Plant::all();
+            $all_cityplant = CityPlant::all();
             $all_category = Category::all();
             return view('item.add_item')->with(['all_cityplant' =>$all_cityplant, 'all_category' => $all_category]);
         } else {

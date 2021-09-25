@@ -43,7 +43,7 @@ class StockController extends Controller
                         return $btn;
                     }) 
                     ->addColumn('code', function ($row) {
-                        $sc = @$row->plant->short_code.@$row->weightScale->short_code.@$row->plant->location_short_code."s".@$row->stock_id;
+                        $sc = @$row->plant->short_code.@$row->weightScale->short_code.@$row->plant->location_short_code."S".@$row->stock_id;
                         return $sc;
                     }) 
                     ->addColumn('checkbox1', function ($row) {
