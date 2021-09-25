@@ -48,8 +48,10 @@ class ReportController extends Controller
     public function report_list1(Request $request)
     {
         if (session()->has('Admin_login')) {
+            $all_bin = Bin::all();
             $all_plant = CityPlant::all();
             $all_item = Item::all();
+
             $query = Stock::with('plant', 'item', 'bin')->where('is_active', 1);
 
             if ($request->input('min') != '' && $request->input('max') != '') {
