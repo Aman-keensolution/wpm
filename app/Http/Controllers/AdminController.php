@@ -47,6 +47,8 @@ class AdminController extends Controller
                 $request->session()->put('Admin_login', true);
                 $request->session()->put('user_id', $result['0']->user_id);
                 $request->session()->put('role', $result['0']->role);
+                $request->session()->put('user_wc_loc', arrayCurrentUser($result['0']->user_id));
+                $request->session()->put('user_wc_loc_json', json_encode(arrayCurrentUser($result['0']->user_id)));
                 return redirect('dashboard');
             }
         } else {
@@ -107,6 +109,7 @@ class AdminController extends Controller
         ]);
         $data = Admin::find($request->id);
         $data->name = $request->name;
+        $data->password = md5($request->password);
         $data->mobile = $request->mobile;
         $data->save();
         return redirect('userlist');

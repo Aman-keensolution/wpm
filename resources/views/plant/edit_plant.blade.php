@@ -35,6 +35,7 @@
                                  <select name="cityplant_id" id="cityplant_id" class="form-control" placeholder="Enter Plant name">
                                     @foreach( $all_cityplant as $cityplant)
                                     <option @if($plant_data->cityplant_id == $cityplant->cityplant_id) selected @endif value="{{$cityplant->cityplant_id}}">{{$cityplant->name}}</option>
+                                    <?php $sbd[$cityplant->cityplant_id]['sc'] = $cityplant->short_code; ?>
                                     @endforeach
                                  </select>
                                  <input type="hidden" name="name" id="name" class="form-control" value="{{$plant_data['name']}} placeholder="Enter Plant name">
@@ -67,9 +68,11 @@
      <script>
      $(document).ready(function() {
               
-        var json='{"1":{"sc":"BWL"},"2":{"sc":"SBD"},"3":{"sc":"FBD"}}';
-        var obj = JSON.parse(json);      
-        var selectedText = $("#cityplant_id option:selected").text();
+        var json='<?php echo html_entity_decode(json_encode($sbd), ENT_QUOTES, 'UTF-8')?>';
+              
+            //var json='{"1":{"sc":"BWL"},"2":{"sc":"SBD"},"3":{"sc":"FBD"}}';
+            var obj = JSON.parse(json);
+            var selectedText = $("#cityplant_id option:selected").text();
         v=$("#cityplant_id").val();
             $("#name").val(selectedText);
             

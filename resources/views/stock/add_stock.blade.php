@@ -1,7 +1,10 @@
  <!-- for user view -->
  @extends('layout.dashboard')
  @section('content')
-
+ <?php  
+ $wc_loc=session()->get('user_wc_loc');
+ //dd($wc_loc);
+ ?>
  <div class="content-header">
      <div class="container-fluid">
          <div class="row mb-12">
@@ -24,7 +27,6 @@
                  </ul>
              </div>
          @endif
-
              <form action="{{route('stock.store')}}" method="post">
                  @csrf
                  <div class="card-body">
@@ -34,35 +36,46 @@
                              <input name="item_no" id="item_no" class="form-control item_no" type="text" value="">
                              <input name="item_id" id="item_id" class="form-control item_id" type="hidden" value="">
                              <span class="ui_results1"></span>
-
-                             {{-- <select name="item_id" id="item_id" class="form-control select2 ">
-                                @foreach( $all_item as $item)
-                                <option value="{{$item->item_id}}">{{$item->name}}</option>
-                             @endforeach
-                             </select> --}}
                          </div>
                          <div class="form-group col-md-8">
-                             <label for="item_id">Item</label>
-                             <input name="item_name" id="item_name" readonly value="" class="form-control item_name">
-
+                            <label for="item_id">Item</label>
+                            <div class="input-group">
+                                <input name="item_name" id="item_name" readonly value="" class="form-control item_name">
+                                <input name="item_avg_weight" id="item_avg_weight" readonly value="" class="form-control item_name">
+                                <div class="input-group-append">
+                                  <span class="input-group-text" id="">Kg.</span>
+                                </div>
+                              </div>
                          </div>
+                         <?php
+                            //dd(session()->get('user_wc_loc'));
+                         ?>
                          <div class="form-group col-md-6">
                              <!--Auto file-->
                              <label for="plant_id">Plant</label>
                              <!--Auto file-->
-                             <input type="hidden" value="{{$all_WeightScale[0]->plant->plant_id}}" name="plant_id" id="plant_id">
-                             @foreach( $all_plant as $plant)
-                             <?php if ($plant->plant_id == $all_WeightScale[0]->plant->plant_id) { ?>
-                                 <input name="" id="" readonly class="form-control" value="{{$plant->name}}" class="form-control">
-                             <?php
-                                    $l = $plant->location;
-                                }
-                                ?>
-                             @endforeach
+                            
+                             <input type="hidden" value="{{$wc_loc['plant'][0]['cityplant_id']}}" name="cityplant_id" id="cityplant_id">
+                             <input name="" id="" readonly class="form-control" value="{{$wc_loc['plant'][0]['plant']}}" class="form-control">
                          </div>
-                         <div class="form-group col-md-6">
-                             <label for="plant_id">Location</label>
-                             <input name="" id="" readonly class="form-control" value="{{ $l ?? '' }}" class="form-control">
+                         <div class="form-group col-md-3">
+                            <!--Auto file-->
+                            <label for="weight_scale_id">Weighing machine</label>
+                            
+                            <select name="weight_scale_id" id="weight_scale_id" class="form-control">
+                                <option value="">Select</option>
+                                <?php $i= 0;?>
+                                @foreach( $wc_loc['WeightScale'] as $wc) 
+                                <option data-nos="{{$i}}" value="{{$wc['weight_scale_id']}}">{{$wc['name']}}</option>
+                                <?php $i++;?>
+                                @endforeach
+                            </select>
+
+                        </div>
+                         <div class="form-group col-md-3">
+                             <label for="plant_id">Location</label> 
+                             <input name="location_name" id="location_name" readonly value="" class="form-control" >
+                             <input name="plant_id" id="plant_id" value="" type="hidden" class="form-control">
                          </div>
                          <div class="form-group col-md-3">
                              <label for="bin_id">Bin</label>
@@ -70,12 +83,7 @@
                              <div class="input-group mb-3">
                                  <select name="bin_id" id="bin_id" class="form-control select2">
                                      @foreach( $all_bin as $bin) 
-                                     <?php 
-                                    $p_id= explode(",", $bin->plant_id);
-                                    if(in_array($all_WeightScale[0]->plant->plant_id,$p_id)){ ?>
                                         <option value="{{$bin->bin_id}}">{{$bin->name}}</option>
-                                    <?php } ?>
-                                     
                                      @endforeach
                                  </select>
                                  <div class="input-group-append">
@@ -83,18 +91,11 @@
                                  </div>
                              </div>
                          </div>
-                         <div class="form-group col-md-3">
-                             <!--Auto file-->
-                             <label for="weight_scale_id">Weighing machine</label>
-                             <!--Auto file-->
-                             <input type="hidden" value="{{@$all_WeightScale[0]->weight_scale_id}}" name="weight_scale_id" id="weight_scale_id">
-                             <input name="" id="" readonly class="form-control" value="{{@$all_WeightScale[0]->name}}" class="form-control">
-                         </div>
                          <div class="form-group col-md-2">
                              <label for="batch_id">Batch ID</label>
                              <input type="text" name="batch_id" id="batch_id" class="form-control" placeholder="Enter Batch ID">
                          </div>
-                         <div class="form-group col-md-4">
+                         <div class="form-group col-md-7">
                              <label for="gross_weight">Gross Weight</label>
                              <div class="input-group mb-3">
                                  <input type="text" id="gross_weight" name="gross_weight" class="form-control" placeholder="Enter Total Weight" aria-label="" aria-describedby="basic-addon1">
@@ -296,10 +297,21 @@
                      $('#item_id').val(ui.item.value);
                      $('#item_name').val(ui.item.name);
                      $('#item_no').val(ui.item.label);
+                     $('#item_avg_weight').val(ui.item.item_avg_weight);
+
                      return false;
                  }
              });
-
+             var json='<?php echo html_entity_decode(session()->get('user_wc_loc_json'), ENT_QUOTES, 'UTF-8')?>';
+            var obj = JSON.parse(json);
+            
+            $("#weight_scale_id").on("change", function() {
+                var nos = $("#weight_scale_id option:selected").attr("data-nos")
+                $("#location_name").val(obj.plant[nos].location);//-----------------------------
+                $("#plant_id").val(obj.plant[nos].plant_id);//-----------------------------
+                
+                
+            });
          });
      </script>
 

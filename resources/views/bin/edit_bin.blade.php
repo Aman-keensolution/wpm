@@ -36,10 +36,10 @@
                              <div class="form-group">
                                  <label for="cityplant_id">Plant Name</label>
                                  <?php $p_arr = arrayCityPlant(); ?>
-                                 <select name="cityplant_id[]" id="cityplant_id" class="form-control select2" multiple placeholder="Enter Plant Name">
-                                 <?php $p_id= explode(",",$bindata['cityplant_id']);
+                                 <select name="cityplant_id" id="cityplant_id" class="form-control select2"  placeholder="Enter Plant Name">
+                                 <?php
                                 foreach ($p_arr as $p) { ?>
-                                         <option value="{{$p['cityplant_id']}}" <?php if (in_array($p['cityplant_id'] , $p_id)) {
+                                         <option value="{{$p['cityplant_id']}}" <?php if ($p['cityplant_id'] == $bindata['cityplant_id']) {
                                                                                 echo "selected";
                                                                             } ?>>{{$p['name']}}</option>
                                      <?php } ?>

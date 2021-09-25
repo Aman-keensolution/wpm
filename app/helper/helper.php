@@ -291,6 +291,30 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
           {
             return Admin::get()->toArray();
           }
+          function arrayCurrentUser($user_id)
+          {
+            $WeightScales=  WeightScale::where('user_id',$user_id)->with('plant')->get()->toArray();
+            foreach($WeightScales as $k=>$wc)
+            {
+              $data['WeightScale'][$k]['weight_scale_id']=$wc['weight_scale_id'];
+              $data['WeightScale'][$k]['name']=$wc['name'];
+              $data['WeightScale'][$k]['short_code']=$wc['short_code'];
+              $ps[]=$wc['plant'];
+            }
+            foreach($ps as $k =>$p)
+            {
+              $data['plant'][$k]['plant_id']=$p['plant_id'];
+              $data['plant'][$k]['cityplant_id']=$p['cityplant_id'];
+              $data['plant'][$k]['plant']=$p['name'];
+              $data['plant'][$k]['location_short_code']=$p['location_short_code'];
+              $data['plant'][$k]['short_code']=$p['short_code'];
+              $data['plant'][$k]['location']=$p['location'];
+            }
+            
+            return $data;
+          }
+
+          
           function arrayBin()
           {
             return Bin::get()->toArray();
@@ -350,8 +374,6 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
       </script>
             <?php
           }
-
-          
           function print__label_template($data)
           {
             ?>

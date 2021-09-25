@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bin;
-use App\Models\cityplant;
-use App\Models\plant;
+use App\Models\Plant;
+use App\Models\CityPlant;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use DataTables;
@@ -18,6 +18,9 @@ class BinController extends Controller
                 $data = Bin::with('cityplant')->get();
                 return Datatables::of($data)
                         ->addIndexColumn()
+                        ->addColumn('plant_name', function($row){
+                            return @$row->cityplant->name;
+                        })
                         ->addColumn('action', function($row){
                             $nm=route('bin.edit_bin',$row->bin_id);
                            $btn = '<a href="'.$nm. '"> <span class="badge bg-primary">Edit</span></a>&nbsp;&nbsp;' ;

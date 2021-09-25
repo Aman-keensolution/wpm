@@ -41,7 +41,7 @@
                                  <thead>
                                      <tr>
                                         <th style="width: 10px">Sn.</th>
-                                         <th>Bin Name</th>
+                                        <th>Bin Name</th><th>Plant</th>
                                       
                                          <th>Bin Tare Weight</th>
                                          <th>Action</th>
@@ -58,7 +58,8 @@
                          <?php
                             $rurl = route('bin.bin_list');
                             $columns =  "{data: null, name: 'bin_id'},
-                                {data: 'name', name: 'name'},
+                            {data: 'name', name: 'name'}, 
+                            {data: 'plant_name', name: 'plant_name'},
                             
                                 {data: 'bin_weight', name: 'bin_weight'},
                                 {data: 'action', name: 'action', orderable: true, searchable: true}";

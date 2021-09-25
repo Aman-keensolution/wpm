@@ -23,11 +23,11 @@ class StockController extends Controller
             if ($request->ajax()) {
                 if(session()->get('role')==1){
                     $user_id = session()->get('Admin_id');
-                    $data = Stock::with('cityplant','item','bin', 'user','weightScale','unit')->get();
+                    $data = Stock::with('cityplant','plant','item','bin', 'user','weightScale','unit')->get();
                 }
             else{
                 $user_id = session()->get('user_id');
-                $data = Stock::where('user_id', $user_id)->with('cityplant','item','bin', 'user','weightScale','unit')->get();
+                $data = Stock::where('user_id', $user_id)->with('cityplant','plant','item','bin', 'user','weightScale','unit')->get();
             }
                 return Datatables::of($data)
                     ->addIndexColumn()
@@ -91,22 +91,24 @@ class StockController extends Controller
             if(session()->get('role')==1){ $user_id = session()->get('Admin_id');}
             else{$user_id = session()->get('user_id');}
             $all_cityplant = CityPlant::where('is_active', 1)->get();
+            $all_plant = Plant::where('is_active', 1)->get();
             $all_bin = Bin::where('is_active', 1)->get();
             $all_item = Item::where('is_active', 1)->get();
             $all_WeightScale = WeightScale::where('user_id', $user_id)->where('is_active', 1)->with('cityplant', 'user')->get();
             $all_unit = Unit::all();
             $all_user = Admin::where('user_id', $user_id)->where('is_active', 1)->get()->first();
-            if (session()->has('Admin_login')) {
+            if ($request->stock_id!=0) {
+                
                 $all_cityplant = CityPlant::where('is_active', 1)->get();
+                $all_plant = Plant::where('is_active', 1)->get();
                 $all_bin = Bin::where('is_active', 1)->get();
                 $all_item = Item::where('is_active', 1)->get();
                 $all_WeightScale = WeightScale::where('is_active', 1)->get();
                 $all_unit = Unit::all();
-                $all_user = Admin::where('role', 2)->where('is_active', 1)->get();
-                $data['Stockdata'] = Stock::where('stock_id', $request->stock_id)->with('cityplant', 'bin','item','weightScale','unit','user')->get()->first(); //find($request->stock_id);
-                return view('stock.add_stock', $data)->with(['all_cityplant' => $all_cityplant, 'all_item' => $all_item, 'all_bin' => $all_bin, 'all_user' => $all_user, 'all_WeightScale' => $all_WeightScale, 'all_unit' => $all_unit]);
-            }
-            return view('stock.add_stock')->with(['all_cityplant' => $all_cityplant, 'all_item' => $all_item, 'all_bin' => $all_bin, 'all_user' => $all_user, 'all_WeightScale' => $all_WeightScale, 'all_unit' => $all_unit]);
+                $data['Stockdata'] = Stock::where('stock_id', $request->stock_id)->with('cityplant','plant', 'bin','item','weightScale','unit')->get()->first(); 
+                return view('stock.add_stock', $data)->with(['all_cityplant' => $all_cityplant, 'all_plant' => $all_plant, 'all_item' => $all_item, 'all_bin' => $all_bin, 'all_WeightScale' => $all_WeightScale, 'all_unit' => $all_unit]);
+            } 
+            return view('stock.add_stock')->with(['all_plant' => $all_plant, 'all_cityplant' => $all_cityplant ,'all_item' => $all_item, 'all_bin' => $all_bin, 'all_WeightScale' => $all_WeightScale, 'all_unit' => $all_unit]);
         } else {
             return redirect('admin');
         }
@@ -121,6 +123,7 @@ class StockController extends Controller
         $Stock->item_id = $request->item_id;
         $Stock->bin_id = $request->bin_id;
         $Stock->cityplant_id = $request->cityplant_id;
+        $Stock->plant_id = $request->plant_id;
         $Stock->user_id = $user_id;
         $Stock->weight_scale_id =$request->weight_scale_id;
         $Stock->batch_id = $request->batch_id;
@@ -140,7 +143,7 @@ class StockController extends Controller
         if ($Stock) {
             if($request->submit=="Submit and Print")
                 {
-                    $data['Stockdata'] = Stock::where('stock_id', $Stock->stock_id)->with('cityplant', 'bin','item','weightScale','unit','user')->get()->first(); 
+                    $data['Stockdata'] = Stock::where('stock_id', $Stock->stock_id)->with('cityplant','plant', 'bin','item','weightScale','unit','user')->get()->first(); 
                     return redirect('add_stock/'.$Stock->stock_id.'/1')->with( ['data' => $data] );
                 }
             else if($request->submit=="Submit")
@@ -155,13 +158,14 @@ class StockController extends Controller
     {
         if (session()->has('Admin_login')) {
             $all_cityplant = CityPlant::where('is_active', 1)->get();
+            $all_plant = Plant::where('is_active', 1)->get();
             $all_bin = Bin::where('is_active', 1)->get();
             $all_item = Item::where('is_active', 1)->get();
             $all_WeightScale = WeightScale::where('is_active', 1)->get();
             $all_unit = Unit::all();
             $all_user = Admin::where('role', 2)->where('is_active', 1)->get();
-            $data['Stockdata'] = Stock::where('stock_id', $request->stock_id)->with('cityplant', 'bin','item','weightScale','unit','user')->get()->first(); //find($request->stock_id);
-            return view('stock.edit_stock', $data)->with(['all_cityplant' => $all_cityplant, 'all_item' => $all_item, 'all_bin' => $all_bin, 'all_user' => $all_user, 'all_WeightScale' => $all_WeightScale, 'all_unit' => $all_unit]);
+            $data['Stockdata'] = Stock::where('stock_id', $request->stock_id)->with('plant','cityplant', 'bin','item','weightScale','unit','user')->get()->first(); //find($request->stock_id);
+            return view('stock.edit_stock', $data)->with(['all_plant' => $all_plant, 'all_cityplant' => $all_cityplant, 'all_item' => $all_item, 'all_bin' => $all_bin, 'all_user' => $all_user, 'all_WeightScale' => $all_WeightScale, 'all_unit' => $all_unit]);
         } else {
             //return view('admin');
             return redirect()->route('admin');
@@ -172,12 +176,13 @@ class StockController extends Controller
         if($request->select_entry){
             if (session()->has('Admin_login')) {
                 $all_cityplant = CityPlant::all();
+                $all_plant = Plant::all();
                 $all_bin = Bin::all();
                 $all_item = Item::all();
                 $all_WeightScale = WeightScale::all();
                 $all_unit = Unit::all();
                 $all_user = Admin::where('role', 2)->get();
-                $data['Stockdatas'] = Stock::whereIn('stock_id', $request->select_entry)->with('cityplant', 'bin','item','weightScale','unit','user')->get(); //find($request->stock_id);
+                $data['Stockdatas'] = Stock::whereIn('stock_id', $request->select_entry)->with('plant', 'cityplant', 'bin','item','weightScale','unit','user')->get(); //find($request->stock_id);
                 return view('stock.pdf-report', $data);
             } else {
                 //return view('admin');
@@ -193,6 +198,7 @@ class StockController extends Controller
         $data->item_id = $request->item_id;
         $data->bin_id = $request->bin_id;
         $data->cityplant_id = $request->cityplant_id;
+        $data->plant_id = $request->plant_id;
         $data->user_id = $request->user_id;
         $data->weight_scale_id = $request->weight_scale_id;
         $data->batch_id = $request->batch_id;
@@ -282,14 +288,14 @@ class StockController extends Controller
     public function get_items(Request $request){
         $search = $request->search;
         if($search == ''){
-           $autocomplate = Item::orderby('item_no','asc')->select('item_id','item_no','name')->where('is_active', '=', 1)->limit(10)->get();
+           $autocomplate = Item::orderby('item_no','asc')->select('item_id','item_no','item_avg_weight','name')->where('is_active', '=', 1)->limit(10)->get();
         }else{
-            $autocomplate = Item::orderby('item_no','asc')->select('item_id','item_no','name')->where('name', 'like', '%' .$search . '%')->
+            $autocomplate = Item::orderby('item_no','asc')->select('item_id','item_no','item_avg_weight','name')->where('name', 'like', '%' .$search . '%')->
             orWhere('item_no', 'like', '%' .$search . '%')->orWhere('name', 'like', '%' .$search . '%')->limit(10)->get();
         }
         $response = array();
         foreach($autocomplate as $autocomplate){
-           $response[] = array("value"=>$autocomplate->item_id,"label"=>$autocomplate->item_no."-".$autocomplate->name,"name"=>$autocomplate->name);
+           $response[] = array("value"=>$autocomplate->item_id,"label"=>$autocomplate->item_no."-".$autocomplate->name,"name"=>$autocomplate->name,"item_avg_weight"=>$autocomplate->item_avg_weight);
         }
         echo json_encode($response);
         exit;

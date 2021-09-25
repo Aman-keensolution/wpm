@@ -37,9 +37,9 @@
                              <div class="form-group">
                                  <label for="cityplant_id">plant name</label>
                                  <?php $p_arr = arrayCityPlant(); ?>
-                                 <select name="cityplant_id[]" id="cityplant_id" multiple class="form-control select2 ">
+                                 <select name="cityplant_id" id="cityplant_id" class="form-control select2 ">
                                      @foreach( $p_arr as $cityplant)
-                                     <option value="{{$cityplant['cityplant_id']}}">{{$cityplant['name']}}}}</option>
+                                     <option value="{{$cityplant['cityplant_id']}}">{{$cityplant['name']}}</option>
                                      @endforeach
                                  </select>
                              </div>
