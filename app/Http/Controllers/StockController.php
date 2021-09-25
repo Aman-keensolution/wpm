@@ -42,6 +42,10 @@ class StockController extends Controller
                         }
                         return $btn;
                     }) 
+                    ->addColumn('code', function ($row) {
+                        $sc = @$row->plant->short_code.@$row->weightScale->short_code.@$row->plant->location_short_code."s".@$row->stock_id;
+                        return $sc;
+                    }) 
                     ->addColumn('checkbox1', function ($row) {
                         
                         $btn1='<input name="select_entry[]" id="select_entry_'.$row->stock_id.'" class="select_entry" value="'.$row->stock_id.'" type="checkbox">';
@@ -72,7 +76,7 @@ class StockController extends Controller
                     ->addColumn('unit_name', function ($row) {
                         return @$row->unit->name;
                     })
-                    ->rawColumns(['action','checkbox1'])
+                    ->rawColumns(['action','checkbox1','code'])
                     ->make(true);
             }
             return view('stock.stock_list');

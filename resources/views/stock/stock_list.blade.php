@@ -8,7 +8,6 @@
          </div>
      </div>
  </div>
-
      <section class="content">
          <div class="container-fluid">
              <div class="row">
@@ -45,7 +44,7 @@
                                      <thead>
                                          <tr>
                                              <th style="width: 10px">Sn.</th>
-                                             <th>Date</th>
+                                             <th>Date</th><th>Code</th>
                                              <th><input name="select_entry_all" id="select_entry_all" class="select_entry_all" value="" type="checkbox"></th>
                                              <th>Item</th>
                                              <th>ERP M. Code</th>
@@ -71,6 +70,7 @@
                             $rurl = route('stock.stock_list');
                             $columns =  "{data: null, name: 'stock_id'},
                                 {data: 'assign_date1', name: 'assign_date1'},
+                                {data: 'code', name: 'code'},
                                 {data: 'checkbox1', name: 'checkbox1', orderable: false, searchable: false},
                                 {data: 'item_name', name: 'item_name'},
                                 {data: 'item_no', name: 'item_no'},
