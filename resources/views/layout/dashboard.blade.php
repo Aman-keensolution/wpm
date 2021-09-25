@@ -192,6 +192,14 @@
                                     <p>Inventory Upload Format</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{route('report.barcode')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array(''))) {
+                                                                                            echo "active";
+                                                                                        } ?>">
+                                    <i class="far fa-file"></i>
+                                    <p>Barcode</p>
+                                </a>
+                            </li>
                         </ul>
                     </nav>
                 <?php  } else {  ?>

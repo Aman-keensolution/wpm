@@ -22,11 +22,11 @@
                      <div class="alert alert-danger">
                          <ul>
                              @foreach ($errors->all() as $error)
-                                 <li>{{ $error }}</li>
+                             <li>{{ $error }}</li>
                              @endforeach
                          </ul>
                      </div>
-                 @endif
+                     @endif
 
                      <!-- /.card-header -->
                      <form action="{{route('report.report_list')}}" method="get">
@@ -48,19 +48,19 @@
                                              <label for="item_id">Item</label>
                                              <input type="text" name="table_search" id="table_search" class="form-control float-right" placeholder="Item">
                                              <input type="hidden" name="item_id" id="item_id">
-                                             <!-- <div class="input-group mb-3">
+                                             <!--<div class="input-group mb-3">
                                                  <select name="item_id" id="item_id" class="form-control select2">
                                                      <option value="">Select</option>
                                                      @foreach( $all_item as $item)
                                                      <option value="{{$item->item_id}}">{{$item->name}}</option>
                                                      @endforeach
                                                  </select>
-                                             </div> -->
+                                            </div> -->
                                          </div>
                                          <div class="form-group col-md-2">
-                                             <label for="plant_id">Plant</label>
+                                             <label for="cityplant_id">Plant</label>
                                              <div class="8-group mb-3">
-                                                 <select name="plant_id" id="plant_id" class="form-control">
+                                                 <select name="cityplant_id" id="cityplant_id" class="form-control">
                                                      <option value="">Select</option>
                                                      @foreach( $all_plant as $plant)
                                                      <option value="{{$plant->cityplant_id}}">{{$plant->name}}</option>
@@ -128,17 +128,17 @@
                                      @foreach($data as $report)
                                      <?php $assign_date1 = $report['assign_date']; ?>
                                      <tr>
-                                         <td>{{$report->item['name']}}</td>
-                                         <td>{{$report->item['item_no']}} </td>
-                                         <td>{{$report->bin['name']}} </td>
-                                         <td>{{$report->weightScale['name']}} </td>
-                                         <td>{{$report->plant['name']}} </td>
-                                         <td>{{$report->user['name']}} </td>
-                                         <td>{{getCreatedAtAttribute($assign_date1)}} </td>
-                                         <td>{{$report['gross_weight']}} </td>
-                                         <td>{{$report['bin_weight']}} </td>
-                                         <td>{{$report['net_weight']}} </td>
-                                         <td>{{$report['counted_quantity']}} </td>
+                                         <td>{{@$report->item['name']}}</td>
+                                         <td>{{@$report->item['item_no']}} </td>
+                                         <td>{{@$report->bin['name']}} </td>
+                                         <td>{{@$report->weightScale['name']}} </td>
+                                         <td>{{@$report->plant['name']}} </td>
+                                         <td>{{@$report->user['name']}} </td>
+                                         <td>{{@getCreatedAtAttribute($assign_date1)}} </td>
+                                         <td>{{@$report['gross_weight']}} </td>
+                                         <td>{{@$report['bin_weight']}} </td>
+                                         <td>{{@$report['net_weight']}} </td>
+                                         <td>{{@$report['counted_quantity']}} </td>
                                      </tr>
                                      @endforeach
                                  </tbody>
@@ -146,7 +146,9 @@
                              </table>
                          </div>
                      </div>
-
+                     <div class="d-flex justify-content-center">
+                         {!! $data->links() !!}
+                     </div>
                      <!-- /.card-body -->
 
                  </div>
@@ -158,10 +160,11 @@
              var weight_scale_id = document.getElementById('weight_scale_id').value;
              var bin_id = document.getElementById('bin_id').value;
              var item_id = document.getElementById('item_id').value;
-             var plant_id = document.getElementById('plant_id').value;
+             alert(item_id);
+             var cityplant_id = document.getElementById('cityplant_id').value;
              var min = document.getElementById('min').value;
              var max = document.getElementById('max').value;
-             let _url = $(_this).data('href') + "?item_id=" + item_id + "&plant_id=" + plant_id + "&min=" + min + "&max=" + max + "&bin_id=" + bin_id + "&weight_scale_id=" + weight_scale_id;
+             let _url = $(_this).data('href') + "?item_id=" + item_id + "&cityplant_id=" + cityplant_id + "&min=" + min + "&max=" + max + "&bin_id=" + bin_id + "&weight_scale_id=" + weight_scale_id;
              window.location.href = _url;
          }
      </script>

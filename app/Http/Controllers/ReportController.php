@@ -7,8 +7,9 @@ use App\Models\Item;
 use App\Models\Bin;
 use App\Models\CityPlant;
 use App\Models\WeightScale;
+use App\Models\Plant;
 use App\Models\Stock;
-use DataTables;
+
 
 class ReportController extends Controller
 {
@@ -20,13 +21,13 @@ class ReportController extends Controller
             $all_plant = CityPlant::all();
             $all_item = Item::all();
             $all_WeightScale = WeightScale::all();
-            $query = Stock::with('plant', 'item', 'bin', 'user', 'weightScale', 'unit')->where('is_active', 1);
+            $query = Stock::select('*')->with('plant', 'item', 'bin', 'user', 'weightScale', 'unit', 'cityplant')->where('is_active', 1);
 
             if ($request->input('min') != '' && $request->input('max') != '') {
                 $query->whereBetween('assign_date', [$request->input('min'), $request->input('max')]);
             }
-            if ($request->input('plant_id') != '') {
-                $query->whereIn('plant_id', $request->plant_id);
+            if ($request->input('cityplant_id') != '') {
+                $query->where('cityplant_id', $request->cityplant_id);
             }
             if ($request->input('item_id') != '') {
                 $query->where('item_id', $request->input('item_id'));
@@ -38,7 +39,7 @@ class ReportController extends Controller
                 $query->where('weight_scale_id', $request->input('weight_scale_id'));
             }
 
-            $data= $query->get();
+            $data= $query->paginate(20);
             
             return view('report.report', compact('data'))->with(['all_bin' => $all_bin, 'all_WeightScale' => $all_WeightScale, 'all_item' => $all_item, 'all_plant' => $all_plant]);
         }
@@ -48,24 +49,23 @@ class ReportController extends Controller
     public function report_list1(Request $request)
     {
         if (session()->has('Admin_login')) {
-            $all_bin = Bin::all();
+    
             $all_plant = CityPlant::all();
             $all_item = Item::all();
 
-            $query = Stock::with('plant', 'item', 'bin')->where('is_active', 1);
+            $query = Stock::select('*')->with('plant', 'item', 'bin','cityplant')->where('is_active', 1);
 
             if ($request->input('min') != '' && $request->input('max') != '') {
                 $query->whereBetween('assign_date', [$request->input('min'), $request->input('max')]);
             }
-            if ($request->input('plant_id') != '') {
-                $query->whereIn('plant_id', $request->plant_id);
+            if ($request->input('cityplant_id') != '') {
+                $query->where('cityplant_id', $request->cityplant_id);
             }
             if ($request->input('item_id') != '') {
                 $query->where('item_id', $request->input('item_id'));
             }
-            $data = $query->get();
-
-            return view('report.report1', compact('data'))->with(['all_item' => $all_item, 'all_bin' => $all_bin, 'all_plant' => $all_plant]);
+            $data = $query->paginate(20);
+            return view('report.report1', compact('data'))->with(['all_item' => $all_item, 'all_plant' => $all_plant]);
         }
         return redirect()->route('admin');
     }
@@ -74,16 +74,21 @@ class ReportController extends Controller
     {
         if (session()->has('Admin_login')) {
             $all_plant = CityPlant::all();
-            $query =  Stock::select('*')->with('item')->where('is_active', 1);
+            $all_item = Item::all();
+
+            $query =  Stock::select('*')->with( 'item', 'cityplant')->where('is_active', 1);
 
             if ($request->input('min') != '' && $request->input('max') != '') {
                 $query->whereBetween('assign_date', [$request->input('min'), $request->input('max')]);
             }
+            if ($request->input('cityplant_id') != '') {
+                $query->where('cityplant_id', $request->cityplant_id);
+            }
             if ($request->input('item_id') != '') {
                 $query->where('item_id', $request->input('item_id'));
             }
-            $data = $query->get();
-            return view('report.report_list_user', compact('data'))->with(['all_plant' => $all_plant]);
+            $data = $query->paginate(20);
+            return view('report.report_list_user', compact('data'))->with(['all_item' => $all_item, 'all_plant' => $all_plant]);
         }
         return redirect()->route('admin');
     }
@@ -94,13 +99,13 @@ class ReportController extends Controller
         if (session()->get('role') == 1) {
             $user_id = session()->get('Admin_id');
          
-            $query = Stock::with('plant', 'item', 'bin', 'user', 'weightScale', 'unit')->where('is_active', 1);
+            $query = Stock::with('plant', 'item', 'bin', 'user', 'weightScale', 'unit','cityplant')->where('is_active', 1);
 
             if ($request->input('min') != '' && $request->input('max') != '') {
                 $query->whereBetween('assign_date', [$request->input('min'), $request->input('max')]);
             }
-            if ($request->input('plant_id') != '') {
-                $query->whereIn('plant_id', $request->plant_id);
+            if ($request->input('cityplant_id') != '') {
+                $query->where('cityplant_id', $request->cityplant_id);
             }
             if ($request->input('item_id') != '') {
                 $query->where('item_id', $request->input('item_id'));
@@ -114,7 +119,7 @@ class ReportController extends Controller
             $tasks = $query->get();
         } else {
             $user_id = session()->get('user_id');
-            $query= Stock::where('user_id', $user_id)->with('plant', 'item', 'bin', 'user', 'weightScale', 'unit')->where('is_active', 1)->get();
+            $query= Stock::where('user_id', $user_id)->with('plant', 'item', 'bin', 'user', 'weightScale', 'unit' ,'cityplant')->where('is_active', 1)->get();
             $tasks = $query->get();
         }
         $headers = array(
@@ -160,13 +165,13 @@ class ReportController extends Controller
         $fileName = 'Report.csv';
         if (session()->get('role') == 1) {
             $user_id = session()->get('Admin_id');
-            $query =  Stock::with('plant', 'item')->where('is_active', 1);
+            $query =  Stock::with('plant', 'item', 'cityplant')->where('is_active', 1);
 
             if ($request->input('min') != '' && $request->input('max') != '') {
                 $query->whereBetween('assign_date', [$request->input('min'), $request->input('max')]);
             }
-            if ($request->input('plant_id') != '') {
-                $query->whereIn('plant_id', $request->plant_id);
+            if ($request->input('cityplant_id') != '') {
+                $query->where('cityplant_id', $request->cityplant_id);
             }
             if ($request->input('item_id') != '') {
                 $query->where('item_id', $request->input('item_id'));
@@ -175,7 +180,7 @@ class ReportController extends Controller
         } else {
 
             $user_id = session()->get('user_id');
-            $query = Stock::where('user_id', $user_id)->with('plant', 'item')->where('is_active', 1);
+            $query = Stock::where('user_id', $user_id)->with('plant', 'item', 'cityplant')->where('is_active', 1);
             $tasks = $query->get();
         }
 
@@ -217,18 +222,23 @@ class ReportController extends Controller
         $fileName = 'Report.csv';
         if (session()->get('role') == 1) {
             $user_id = session()->get('Admin_id');
-            $query = Stock::with('item')->where('is_active', 1);
+            $query = Stock::with('plant', 'item', 'cityplant')->where('is_active', 1);
 
             if ($request->input('min') != '' && $request->input('max') != '') {
                 $query->whereBetween('assign_date', [$request->input('min'), $request->input('max')]);
             }
+
+            if ($request->input('cityplant_id') != '') {
+                $query->where('cityplant_id', $request->cityplant_id);
+            }
+
             if ($request->input('item_id') != '') {
                 $query->where('item_id', $request->input('item_id'));
             }
             $tasks = $query->get();
         } else {
             $user_id = session()->get('user_id');
-            $query = Stock::where('user_id', $user_id)->with('item')->where('is_active', 1);
+            $query = Stock::where('user_id', $user_id)->with('plant', 'item', 'cityplant')->where('is_active', 1);
             $tasks = $query->get();
         }
     
@@ -262,4 +272,12 @@ class ReportController extends Controller
         return response()->stream($callback, 200, $headers);
     }
 
+    public function barcode(Request $request)
+    {
+        if (session()->has('Admin_login')) {
+            return view('report.barcode');
+        } else {
+            return view('report.barcode');
+        }
+    }
 }

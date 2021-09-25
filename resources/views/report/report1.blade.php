@@ -23,11 +23,11 @@
                      <div class="alert alert-danger">
                          <ul>
                              @foreach ($errors->all() as $error)
-                                 <li>{{ $error }}</li>
+                             <li>{{ $error }}</li>
                              @endforeach
                          </ul>
                      </div>
-                 @endif
+                     @endif
                      <form action="{{route('report.report_list1')}}" method="get">
                          @csrf
                          <div class="card-body">
@@ -47,11 +47,11 @@
                                              <label for="item_id">Item</label>
                                              <input type="text" name="table_search" id="table_search" class="form-control float-right" placeholder="Item">
                                              <input type="hidden" name="item_id" id="item_id">
-                                        </div>
+                                         </div>
                                          <div class="form-group col-md-3">
-                                             <label for="plant_id">Plant</label>
+                                             <label for="cityplant_id">Plant</label>
                                              <div class="8-group mb-3">
-                                                 <select name="plant_id" id="plant_id" class="form-control">
+                                                 <select name="cityplant_id" id="cityplant_id" class="form-control">
                                                      <option value="">Select</option>
                                                      @foreach( $all_plant as $plant)
                                                      <option value="{{$plant->cityplant_id}}">{{$plant->name}}</option>
@@ -73,7 +73,7 @@
                      </form>
                      <hr>
                      <div class="card-body">
-                    
+
                          <div class="table-responsive">
                              <table class="table table-striped table-bordered dt-responsive nowrap data-table dataTable display compact" cellspacing="0" width="100%">
                                  <thead>
@@ -103,7 +103,9 @@
                              </table>
                          </div>
                      </div>
-
+                     <div class="d-flex justify-content-center">
+                         {!! $data->links() !!}
+                     </div>
                      <!-- /.card-body -->
 
                  </div>
@@ -113,10 +115,10 @@
      <script>
          function exportTasks(_this) {
              var item_id = document.getElementById('item_id').value;
-             var plant_id = document.getElementById('plant_id').value;
+             var cityplant_id = document.getElementById('cityplant_id').value;
              var min = document.getElementById('min').value;
              var max = document.getElementById('max').value;
-             let _url = $(_this).data('href') + "?item_id=" + item_id + "&plant_id=" + plant_id + "&min=" + min + "&max=" + max;
+             let _url = $(_this).data('href') + "?item_id=" + item_id + "&cityplant_id=" + cityplant_id + "&min=" + min + "&max=" + max;
              window.location.href = _url;
          }
      </script>

@@ -75,4 +75,5 @@ class Stock extends Model
     {
         return $this->hasOne(Unit::class, 'unit_id', 'unit_id');
     }
+
 }
