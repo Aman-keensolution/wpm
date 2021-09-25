@@ -53,8 +53,6 @@
                          <div class="form-group col-md-6">
                              <!--Auto file-->
                              <label for="plant_id">Plant</label>
-                             <!--Auto file-->
-                            
                              <input type="hidden" value="{{$wc_loc['plant'][0]['cityplant_id']}}" name="cityplant_id" id="cityplant_id">
                              <input name="" id="" readonly class="form-control" value="{{$wc_loc['plant'][0]['plant']}}" class="form-control">
                          </div>

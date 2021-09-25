@@ -88,20 +88,21 @@ class StockController extends Controller
     public function add_stock(Request $request)
     {
         if (session()->has('Admin_login')) {
+            $wc_loc=session()->get('user_wc_loc');
+            if(is_array($wc_loc)){
             if(session()->get('role')==1){ $user_id = session()->get('Admin_id');}
             else{$user_id = session()->get('user_id');}
             $all_cityplant = CityPlant::where('is_active', 1)->get();
             $all_plant = Plant::where('is_active', 1)->get();
-            $all_bin = Bin::where('is_active', 1)->get();
+            $all_bin = Bin::where(['is_active'=> 1,'cityplant_id'=>$wc_loc['plant'][0]['cityplant_id'] ])->get();
             $all_item = Item::where('is_active', 1)->get();
             $all_WeightScale = WeightScale::where('user_id', $user_id)->where('is_active', 1)->with('cityplant', 'user')->get();
             $all_unit = Unit::all();
             $all_user = Admin::where('user_id', $user_id)->where('is_active', 1)->get()->first();
             if ($request->stock_id!=0) {
-                
                 $all_cityplant = CityPlant::where('is_active', 1)->get();
                 $all_plant = Plant::where('is_active', 1)->get();
-                $all_bin = Bin::where('is_active', 1)->get();
+                $all_bin = Bin::where(['is_active'=> 1,'cityplant_id'=>$wc_loc['plant'][0]['cityplant_id'] ])->get();
                 $all_item = Item::where('is_active', 1)->get();
                 $all_WeightScale = WeightScale::where('is_active', 1)->get();
                 $all_unit = Unit::all();
@@ -109,7 +110,8 @@ class StockController extends Controller
                 return view('stock.add_stock', $data)->with(['all_cityplant' => $all_cityplant, 'all_plant' => $all_plant, 'all_item' => $all_item, 'all_bin' => $all_bin, 'all_WeightScale' => $all_WeightScale, 'all_unit' => $all_unit]);
             } 
             return view('stock.add_stock')->with(['all_plant' => $all_plant, 'all_cityplant' => $all_cityplant ,'all_item' => $all_item, 'all_bin' => $all_bin, 'all_WeightScale' => $all_WeightScale, 'all_unit' => $all_unit]);
-        } else {
+       }else { return back()->with('Fail', 'Something went wrong');} 
+    } else {
             return redirect('admin');
         }
     }
@@ -157,15 +159,18 @@ class StockController extends Controller
     public function edit_stock(Request $request)
     {
         if (session()->has('Admin_login')) {
+            $wc_loc=session()->get('user_wc_loc');
+            if(is_array($wc_loc)){
             $all_cityplant = CityPlant::where('is_active', 1)->get();
             $all_plant = Plant::where('is_active', 1)->get();
-            $all_bin = Bin::where('is_active', 1)->get();
+            $all_bin = Bin::where(['is_active'=> 1,'cityplant_id'=>$wc_loc['plant'][0]['cityplant_id'] ])->get();
             $all_item = Item::where('is_active', 1)->get();
             $all_WeightScale = WeightScale::where('is_active', 1)->get();
             $all_unit = Unit::all();
             $all_user = Admin::where('role', 2)->where('is_active', 1)->get();
             $data['Stockdata'] = Stock::where('stock_id', $request->stock_id)->with('plant','cityplant', 'bin','item','weightScale','unit','user')->get()->first(); //find($request->stock_id);
             return view('stock.edit_stock', $data)->with(['all_plant' => $all_plant, 'all_cityplant' => $all_cityplant, 'all_item' => $all_item, 'all_bin' => $all_bin, 'all_user' => $all_user, 'all_WeightScale' => $all_WeightScale, 'all_unit' => $all_unit]);
+        }else{ return back()->with('Fail', 'Something went wrong');}
         } else {
             //return view('admin');
             return redirect()->route('admin');
@@ -256,6 +261,7 @@ class StockController extends Controller
         $gross_weight = $request->input('gross_weight');
         $unit_id = $request->input('unit_id');
         $item_id = $request->input('item_id');
+        
 
         $item = Item::where('item_id', $item_id)->with('unit')->get()->first();
         $bin = Bin::where('bin_id', $bin_id)->get()->first();
