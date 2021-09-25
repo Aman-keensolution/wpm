@@ -54,13 +54,21 @@
                                  </select>
                              </div>
                              <div class="form-group">
-                                 <label for="cityplant_id">Plant name</label>
-                                 <select name="cityplant_id" id="cityplant_id" class="form-control">
-                                     @foreach( $all_cityplant as $cityplant)
-                                     <option @if($WeightScaledata->cityplant_id == $cityplant->cityplant_id) selected @endif value="{{$cityplant->cityplant_id}}">{{$cityplant->name}}</option>
-                                     @endforeach
-                                 </select>
-                             </div>
+                                <label for="cityplant_id">Plant name</label>
+                                <select name="cityplant_id" id="cityplant_id" class="form-control">
+                                    @foreach( $all_cityplant as $cityplant)
+                                    <option @if($WeightScaledata->cityplant_id == $cityplant->cityplant_id) selected @endif value="{{$cityplant->cityplant_id}}">{{$cityplant->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="plant_id">Location name</label>
+                                <select name="plant_id" id="plant_id" class="form-control">
+                                    @foreach( $all_plant as $plant)
+                                    <option @if($WeightScaledata->plant_id == $plant->plant_id) selected @endif value="{{$plant->plant_id}}">{{$plant->location}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                              <div class="form-group">
                                  <label for="user_id">Assign User Name</label>
                                  <select name="user_id" id="user_id" class="form-control">
@@ -78,5 +86,25 @@
              </div>
          </div>
      </div>
+     <script>
+        $('#cityplant_id').on('change', function () {
+      var cityplant_id = this.value;
+      $("#plant_id").html('');
+      $.ajax({
+          url: "{{route('weighing.get_plant')}}",
+          type: "GET",
+          data: {
+              cityplant_id: cityplant_id,
+             },
+          dataType: 'json',
+          success: function (res) {
+              $('#plant_id').html('<option value="">Select Location</option>');
+              $.each(res.plant, function (key, value) {
+                  $("#plant_id").append('<option value="' + value.cityplant_id + '">' + value.location + '</option>');
+              });
+          }
+      });
+  });
+   </script>
  </section>
  @stop
