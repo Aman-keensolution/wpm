@@ -36,6 +36,7 @@
                         <div class="form-group col-md-4">
                             <label for="item_id">ERP Material Code</label>
                             <input name="item_no" id="item_no" value="{{$Stockdata->item_no}}" class="form-control item_no" type="text" value="">
+                            <input name="erp_mc" id="erp_mc" class="form-control item_no" type="hidden" value="">
                             <input name="item_id" id="item_id" value="{{$Stockdata->item_id}}" type="hidden" value="">
                             <span class="ui_results1"></span>
                         </div>
@@ -249,9 +250,22 @@
                 },
                 select: function (event, ui) {
     
-                    $('#item_id').val(ui.item.value); 
-                    $('#item_name').val(ui.item.name);
-                    $('#item_no').val(ui.item.label); 
+                    console.log(ui.item);
+                     $('#item_id').val(ui.item.value);
+                     $('#erp_mc').val(ui.item.erp_mc);
+                     $('#item_name').val(ui.item.name);
+                     $('#item_no').val(ui.item.label);
+                     $('#item_avg_weight').val(ui.item.item_avg_weight); 
+                     var erp_mc =ui.item.erp_mc;
+                     var item_weight =ui.item.item_avg_weight;
+                     
+                     if((parseInt(erp_mc)=>71000000 && parseInt(erp_mc) <= 74999999)||(parseInt(erp_mc)=>10000000 && parseInt(erp_mc) <= 10999999)
+                     ){
+                        $("select#unit_id option[value=4]).attr('selected','selected');
+                     }
+                     else if((parseInt(erp_mc)=>20000000 && parseInt(erp_mc) <= 50999999)){
+                        $("select#unit_id option[value=2]").attr('selected','selected'); 
+                     }
                     return false;
                 }
                 });

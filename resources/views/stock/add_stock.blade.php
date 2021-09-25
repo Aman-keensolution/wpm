@@ -34,6 +34,7 @@
                          <div class="form-group col-md-4">
                              <label for="item_id">ERP Material Code</label>
                              <input name="item_no" id="item_no" class="form-control item_no" type="text" value="">
+                             <input name="erp_mc" id="erp_mc" class="form-control item_no" type="hidden" value="">
                              <input name="item_id" id="item_id" class="form-control item_id" type="hidden" value="">
                              <span class="ui_results1"></span>
                          </div>
@@ -291,6 +292,7 @@
                  select: function(event, ui) {
                      console.log(ui.item);
                      $('#item_id').val(ui.item.value);
+                     $('#erp_mc').val(ui.item.erp_mc);
                      $('#item_name').val(ui.item.name);
                      $('#item_no').val(ui.item.label);
                      $('#item_avg_weight').val(ui.item.item_avg_weight);

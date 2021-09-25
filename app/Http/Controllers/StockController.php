@@ -261,7 +261,7 @@ class StockController extends Controller
         $gross_weight = $request->input('gross_weight');
         $unit_id = $request->input('unit_id');
         $item_id = $request->input('item_id');
-        
+
 
         $item = Item::where('item_id', $item_id)->with('unit')->get()->first();
         $bin = Bin::where('bin_id', $bin_id)->get()->first();
@@ -301,7 +301,7 @@ class StockController extends Controller
         }
         $response = array();
         foreach($autocomplate as $autocomplate){
-           $response[] = array("value"=>$autocomplate->item_id,"label"=>$autocomplate->item_no."-".$autocomplate->name,"name"=>$autocomplate->name,"item_avg_weight"=>$autocomplate->item_avg_weight);
+           $response[] = array("value"=>$autocomplate->item_id,"label"=>$autocomplate->item_no."-".$autocomplate->name,"name"=>$autocomplate->name,"item_avg_weight"=>$autocomplate->item_avg_weight,"erp_mc"=>$autocomplate->item_no);
         }
         echo json_encode($response);
         exit;
