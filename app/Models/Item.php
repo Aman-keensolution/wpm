@@ -23,7 +23,7 @@ class Item extends Model
         "cat_id",
         "item_avg_weight",
         "batch_no",
-        "Plant_id",
+        "cityplant_id",
         "manfactring_date",
         "is_active"
     ];

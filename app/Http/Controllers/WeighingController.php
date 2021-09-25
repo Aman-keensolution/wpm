@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\WeightScale;
 use App\Models\Plant;
+use App\Models\CityPlant;
 use App\Models\Admin;
 use App\Models\Unit;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class WeighingController extends Controller
     {
         if (session()->has('Admin_login')) {
             if ($request->ajax()) {
-                $data = WeightScale::with('plant','user')->get();
+                $data = WeightScale::with('cityplant','user')->get();
                 return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function ($row) {
@@ -32,8 +33,9 @@ class WeighingController extends Controller
                         return $btn;
                     })
                     ->addColumn('plant_name', function ($row) {
-                        return @$row->plant->name."/".@$row->plant->location;
+                        return @$row->cityplant->name."/".@$row->plant->location;
                     })
+                    
                     ->addColumn('user_name', function ($row) {
                         return @$row->user->name;
                     })
@@ -49,10 +51,11 @@ class WeighingController extends Controller
     public function add_weighing(Request $request)
     {
         if (session()->has('Admin_login')) {
+            $all_cityplant = CityPlant::all();
             $all_plant = Plant::all();
             $all_user = Admin::where('role', 2)->get();
             $all_unit = Unit::all();
-            return view('weighing.add_weighing')->with(['all_plant' => $all_plant,'all_user' =>$all_user, 'all_unit' => $all_unit]);
+            return view('weighing.add_weighing')->with(['all_plant' => $all_plant,'all_cityplant' => $all_cityplant,'all_user' =>$all_user, 'all_unit' => $all_unit]);
         } else {
             return redirect('admin');
         }
@@ -64,6 +67,7 @@ class WeighingController extends Controller
         $WeightScale = new WeightScale;
         $WeightScale->name = $request->name;
         $WeightScale->weight_scale_no = $request->weight_scale_no;
+        $WeightScale->cityplant_id = $request->cityplant_id;
         $WeightScale->plant_id = $request->plant_id;
         $WeightScale->user_id  = $request->user_id;
         $WeightScale->short_code = $request->short_code;
@@ -81,11 +85,12 @@ class WeighingController extends Controller
     public function edit_weighing(Request $request)
     {
         if (session()->has('Admin_login')) {
+            $all_cityplant = CityPlant::all();
             $all_plant = Plant::all();
             $all_user = Admin::where('role', 2)->get();
             $all_unit = Unit::all();
             $data['WeightScaledata'] = WeightScale::find($request->weight_scale_id);
-            return view('weighing.edit_weighing', $data)->with(['all_plant' => $all_plant,'all_user' => $all_user , 'all_unit' => $all_unit ]);
+            return view('weighing.edit_weighing', $data)->with(['all_plant' => $all_plant,'all_cityplant' => $all_cityplant,'all_user' => $all_user , 'all_unit' => $all_unit ]);
         } else {
              //return view('admin');
         return redirect()->route('admin');
@@ -96,6 +101,7 @@ class WeighingController extends Controller
     {
         $data = WeightScale::find($request->weight_scale_id);
         $data->name = $request->name;
+        $data->cityplant_id = $request->cityplant_id;
         $data->plant_id = $request->plant_id;
         $data->weight_scale_no = $request->weight_scale_no;
         $data->short_code = $request->short_code;
@@ -121,4 +127,9 @@ class WeighingController extends Controller
         $request->save();
         return redirect('weighing_list');
     }
+
+    public function get_plant(Request $request){
+        $data['plant'] = Plant::where("cityplant_id",$request->cityplant_id)->get(["location", "cityplant_id"]);
+        return response()->json($data);        
+     }
 }

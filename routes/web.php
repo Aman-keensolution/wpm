@@ -87,6 +87,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::post('update_weighing/{weight_scale_id}', [WeighingController::class, 'update_weighing'])->name('update_weighing');
     Route::get('block_weighing/{weight_scale_id}', [WeighingController::class, 'block_weighing'])->name('weighing.block_weighing');
     Route::get('unblock_weighing/{weight_scale_id}', [WeighingController::class, 'unblock_weighing'])->name('weighing.unblock_weighing');
+    Route::get('get_plant',[WeighingController::class, 'get_plant'])->name('weighing.get_plant');
 
                             //BinController
     Route::get('bin_list', [BinController::class, 'bin_list'])->name('bin.bin_list');

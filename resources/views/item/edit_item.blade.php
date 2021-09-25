@@ -16,6 +16,16 @@
                      <div class="card-header">
                          <h3 class="card-title">Update Item</h3>
                      </div>
+                     @if ($errors->any())
+                     <div class="alert alert-danger">
+                         <ul>
+                             @foreach ($errors->all() as $error)
+                                 <li>{{ $error }}</li>
+                             @endforeach
+                         </ul>
+                     </div>
+                 @endif
+
                      <form action="{{route('update_item',$itemdata['item_id'])}}" method="post">
                          @csrf
                          <div class="card-body">
@@ -63,11 +73,11 @@
                                  <input type="text" name="batch_no" id="batch_no" class="form-control" value="{{$itemdata['batch_no']}}">
                              </div>
                              <div class="form-group">
-                                 <label for="plant_id">Plant name</label>
-                                 <select name="plant_id" id="plant_id" class="form-control">
-                                     @foreach( $all_plant as $plant)
-                                     <option @if($itemdata->plant_id == $plant->plant_id) selected @endif
-                                         value="{{$plant->plant_id}}">{{$plant->name}}/{{$plant['location']}}</option>
+                                 <label for="cityplant_id">Plant name</label>
+                                 <select name="cityplant_id" id="cityplant_id" class="form-control">
+                                     @foreach( $all_cityplant as $cityplant)
+                                     <option @if($itemdata->cityplant_id == $cityplant->cityplant_id) selected @endif
+                                         value="{{$cityplant->cityplant_id}}">{{$cityplant->name}}</option>
                                      @endforeach
                                  </select>
                              </div>

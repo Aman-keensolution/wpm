@@ -17,6 +17,16 @@
                      <div class="card-header">
                          <h3 class="card-title">Add New bin</h3>
                      </div>
+                     @if ($errors->any())
+                     <div class="alert alert-danger">
+                         <ul>
+                             @foreach ($errors->all() as $error)
+                                 <li>{{ $error }}</li>
+                             @endforeach
+                         </ul>
+                     </div>
+                     @endif
+
                      <form action="{{route('bin.store')}}" method="post">
                          @csrf
                          <div class="card-body">
@@ -25,11 +35,11 @@
                                  <input type="text" name="name" id="name" class="form-control" placeholder="Bin name">
                              </div>
                              <div class="form-group">
-                                 <label for="plant_id">Plant name</label>
-                                 <?php $p_arr = arrayPlant(); ?>
-                                 <select name="plant_id[]" id="plant_id" multiple class="form-control select2 ">
-                                     @foreach( $p_arr as $plant)
-                                     <option value="{{$plant['plant_id']}}">{{$plant['name']}}/{{$plant['location']}}</option>
+                                 <label for="cityplant_id">plant name</label>
+                                 <?php $p_arr = arrayCityPlant(); ?>
+                                 <select name="cityplant_id[]" id="cityplant_id" multiple class="form-control select2 ">
+                                     @foreach( $p_arr as $cityplant)
+                                     <option value="{{$cityplant['cityplant_id']}}">{{$cityplant['name']}}}}</option>
                                      @endforeach
                                  </select>
                              </div>

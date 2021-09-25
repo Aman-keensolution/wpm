@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use App\Models\Plant;
+use App\Models\CityPlant;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use DataTables;
@@ -32,9 +33,9 @@ class ItemController extends Controller
     public function add_item(Request $request)
     {
         if (session()->has('Admin_login')) {
-            $all_plant = Plant::all();
+            $all_cityplant = Plant::all();
             $all_category = Category::all();
-            return view('item.add_item')->with(['all_plant' =>$all_plant, 'all_category' => $all_category]);
+            return view('item.add_item')->with(['all_cityplant' =>$all_cityplant, 'all_category' => $all_category]);
         } else {
             return redirect('admin');
         }
@@ -50,7 +51,7 @@ class ItemController extends Controller
         $Item->unit_id = $request->unit_id;
         $Item->batch_no = $request->batch_no;
         $Item->cat_id = $request->cat_id;
-        $Item->plant_id = $request->plant_id;
+        $Item->cityplant_id = $request->cityplant_id;
         $Item->manfactring_date = $request->manfactring_date;
         $Item->save();
         if ($Item) {
@@ -64,9 +65,9 @@ class ItemController extends Controller
     {
         if (session()->has('Admin_login')) {
             $all_category = Category::all();
-            $all_plant = Plant::all();
+            $all_cityplant = CityPlant::all();
             $data['itemdata'] = Item::find($request->item_id);
-            return view('item.edit_item', $data)->with(['all_category' => $all_category, 'all_plant' => $all_plant]);
+            return view('item.edit_item', $data)->with(['all_category' => $all_category, 'all_cityplant' => $all_cityplant]);
         } else {
              //return view('admin');
         return redirect()->route('admin');
@@ -83,7 +84,7 @@ class ItemController extends Controller
         $data->batch_no = $request->batch_no;
         $data->unit_id = $request->unit_id;
         $data->cat_id = $request->cat_id;
-        $data->plant_id = $request->plant_id;
+        $data->cityplant_id = $request->cityplant_id;
         $data->manfactring_date = $request->manfactring_date;
         $data->save();
         return redirect('item_list');

@@ -17,6 +17,16 @@
                      <div class="card-header">
                          <h3 class="card-title">Add New Plant</h3>
                      </div>
+                     @if ($errors->any())
+                     <div class="alert alert-danger">
+                         <ul>
+                             @foreach ($errors->all() as $error)
+                                 <li>{{ $error }}</li>
+                             @endforeach
+                         </ul>
+                     </div>
+                 @endif
+
                      <form action="{{route('plant.store')}}" method="post">
                          @csrf
                          <div class="card-body">
@@ -25,6 +35,8 @@
                                  <select name="cityplant_id" id="cityplant_id" class="form-control" placeholder="Enter Plant name">
                                     @foreach( $all_cityplant as $cityplant)
                                     <option value="{{$cityplant->cityplant_id}}">{{$cityplant->name}}</option>
+                                    <?php $sbd[$cityplant->cityplant_id]['sc'] = $cityplant->short_code; ?>
+                                    <?php //$sbd[$cityplant->cityplant_id]['id'] = $cityplant->cityplant_id; ?>
                                     @endforeach
                                  </select>
                                  <input type="hidden" name="name" id="name" class="form-control" placeholder="Enter Plant name">
@@ -35,7 +47,7 @@
                              </div>
                              <div class="form-group">
                                  <label for="short_code">Short Code</label>
-                                 <input type="text" name="short_code" id="short_code" maxlength="6" class="form-control" placeholder="Enter Short Code">
+                                 <input readonly type="text" name="short_code" id="short_code" maxlength="6" class="form-control" placeholder="Enter Short Code">
                              </div>
                              <div class="form-group">
                                  <label for="location">Location</label>
@@ -57,16 +69,26 @@
          </div>
      </div>
      <script>
+     
           $(document).ready(function() {
+              
+            var json='{"1":{"sc":"BWL"},"2":{"sc":"SBD"},"3":{"sc":"FBD"}}';
+            var obj = JSON.parse(json);      
             var selectedText = $("#cityplant_id option:selected").text();
-                
+            v=$("#cityplant_id").val();
                 $("#name").val(selectedText);
                 
+                $("#short_code").val(obj[1].sc);//-----------------------------
+
             $("#cityplant_id").on("change", function() {
                 var selectedText = $("#cityplant_id option:selected").text();
+                v=$("#cityplant_id").val();
                 
-                $("#name").val(selectedText);})
-          });
+                $("#short_code").val(obj[v].sc);//-----------------------------
+                $("#name").val(selectedText);
+                
+            });
+        });
      </script>
  </section>
 

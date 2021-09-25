@@ -25,6 +25,16 @@
                          </div>
                      </div>
                      <!-- /.card-header -->
+                     @if ($errors->any())
+                     <div class="alert alert-danger">
+                         <ul>
+                             @foreach ($errors->all() as $error)
+                                 <li>{{ $error }}</li>
+                             @endforeach
+                         </ul>
+                     </div>
+                 @endif
+
                      <div class="card-body">
                          <div class="table-responsive">
                              <table class="table table-striped table-bordered dt-responsive nowrap data-table dataTable display compact" cellspacing="0" width="100%">
@@ -33,7 +43,7 @@
                                          <th style="width: 10px">Sn.</th>
                                          <th>Name</th>
                                          <th>Weighing Scale No.</th>
-                                         <th>Plant/Location Name</th>
+                                         <th>Plant/Location</th>
                                          <th>Short Code</th>
                                          <th>Capicity</th>
                                          <th>User Name</th>
@@ -41,8 +51,7 @@
                                      </tr>
                                  </thead>
                                  <tbody>
-
-                                 </tbody>
+                                </tbody>
                              </table>
                          </div>
                      </div>

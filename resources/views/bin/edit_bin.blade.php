@@ -16,6 +16,16 @@
                      <div class="card-header">
                          <h3 class="card-title">Update bin</h3>
                      </div>
+                     @if ($errors->any())
+                     <div class="alert alert-danger">
+                         <ul>
+                             @foreach ($errors->all() as $error)
+                                 <li>{{ $error }}</li>
+                             @endforeach
+                         </ul>
+                     </div>
+                 @endif
+
                      <form action="{{route('update_bin',$bindata['bin_id'])}}" method="post">
                          @csrf
                          <div class="card-body">
@@ -24,14 +34,14 @@
                                  <input type="text" name="name" id="name" class="form-control" value="{{$bindata['name']}}" placeholder="Enter Bin name">
                              </div>
                              <div class="form-group">
-                                 <label for="plant_id">Plant Name</label>
-                                 <?php $p_arr = arrayPlant(); ?>
-                                 <select name="plant_id[]" id="plant_id" class="form-control select2" multiple placeholder="Enter Plant Name">
-                                 <?php $p_id= explode(",",$bindata['plant_id']);
+                                 <label for="cityplant_id">Plant Name</label>
+                                 <?php $p_arr = arrayCityPlant(); ?>
+                                 <select name="cityplant_id[]" id="cityplant_id" class="form-control select2" multiple placeholder="Enter Plant Name">
+                                 <?php $p_id= explode(",",$bindata['cityplant_id']);
                                 foreach ($p_arr as $p) { ?>
-                                         <option value="{{$p['plant_id']}}" <?php if (in_array($p['plant_id'] , $p_id)) {
+                                         <option value="{{$p['cityplant_id']}}" <?php if (in_array($p['cityplant_id'] , $p_id)) {
                                                                                 echo "selected";
-                                                                            } ?>>{{$p['name']}}/{{$p['location']}}</option>
+                                                                            } ?>>{{$p['name']}}</option>
                                      <?php } ?>
                                  </select>
                              </div>
