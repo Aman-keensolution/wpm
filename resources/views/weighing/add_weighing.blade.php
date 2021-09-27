@@ -100,7 +100,7 @@
                     success: function (res) {
                         $('#plant_id').html('<option value="">Select Location</option>');
                         $.each(res.plant, function (key, value) {
-                            $("#plant_id").append('<option value="' + value.cityplant_id + '">' + value.location + '</option>');
+                            $("#plant_id").append('<option value="' + value.plant_id + '">' + value.location + '</option>');
                         });
                     }
                 });

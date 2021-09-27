@@ -230,55 +230,73 @@
              });
          });
      </script>
-          <script>
-            $(document).ready(function(){
-    
-                $( "#item_no" ).autocomplete({
-                source: function( request, response ) {
+     <script>
+        $(document).ready(function() {
+
+            $("#item_no").autocomplete({
+                source: function(request, response) {
                     // Fetch data
                     $.ajax({
-                    url:"{{route('stock.get_items')}}",
-                    type: 'get',
-                    dataType: "json",
-                    data: {
-                        search: request.term
-                    },
-                    success: function( data ) {
-                        response( data );
-                    }
+                        url: "{{route('stock.get_items')}}",
+                        type: 'get',
+                        dataType: "json",
+                        data: {
+                            search: request.term
+                        },
+                        success: function(data) {
+                            response(data);
+                        }
                     });
                 },
-                select: function (event, ui) {
-    
-                    console.log(ui.item);
-                     $('#item_id').val(ui.item.value);
-                     $('#erp_mc').val(ui.item.erp_mc);
-                     $('#item_name').val(ui.item.name);
-                     $('#item_no').val(ui.item.label);
-                     $('#item_avg_weight').val(ui.item.item_avg_weight); 
-                     var erp_mc =ui.item.erp_mc;
-                     var item_weight =ui.item.item_avg_weight;
-                     
-                     if((parseInt(erp_mc)=>71000000 && parseInt(erp_mc) <= 74999999)||(parseInt(erp_mc)=>10000000 && parseInt(erp_mc) <= 10999999)
-                     ){
-                        $("select#unit_id option[value=4]).attr('selected','selected');
-                     }
-                     else if((parseInt(erp_mc)=>20000000 && parseInt(erp_mc) <= 50999999)){
-                        $("select#unit_id option[value=2]").attr('selected','selected'); 
-                     }
+                select: function(event, ui) {
+                    $('#item_id').val(ui.item.value);
+                    $('#erp_mc').val(ui.item.erp_mc);
+                    $('#item_name').val(ui.item.name);
+                    $('#item_no').val(ui.item.label);
+                    $('#item_avg_weight1').val(ui.item.item_avg_weight);
+                    $('#item_avg_weight').val(ui.item.item_avg_weight);
+                    var erp_mc =ui.item.erp_mc;
+                    var item_weight =ui.item.item_avg_weight;
+                   if (($('#erp_mc').val() >= 71000000 && $('#erp_mc').val() <= 74999999)
+                   || ($('#erp_mc').val() >= 10000000 && $('#erp_mc').val() <= 10999999)
+                   || ($('#erp_mc').val() >= 90000000 && $('#erp_mc').val() <= 90999999)) {
+                       console.log("here7-9");
+                       $('#unit_id option[value=2]').attr('selected', 'selected');
+                       $('#unit_id option[value=1]').removeAttr('selected', 'selected');
+                       $('#unit_id option[value=3]').removeAttr('selected', 'selected');
+                       $('#unit_id option[value=4]').removeAttr('selected', 'selected');
+
+
+                   } else if ($('#erp_mc').val() >= 20000000 && $('#erp_mc').val() <= 50999999) {
+                       console.log("here2-5");
+                       $('#unit_id option[value=4]').attr('selected', 'selected');
+                       $('#unit_id option[value=1]').removeAttr('selected', 'selected');
+                       $('#unit_id option[value=2]').removeAttr('selected', 'selected');
+                       $('#unit_id option[value=3]').removeAttr('selected', 'selected');
+                   }
+                   if($('#item_avg_weight1').val()<= 0 ){$('#item_avg_weight').val(1) }
                     return false;
-                }
-                });
-                var json='<?php echo html_entity_decode(session()->get('user_wc_loc_json'), ENT_QUOTES, 'UTF-8')?>';
-                var obj = JSON.parse(json);
-                $("#location_name").val(obj.plant[0].location);
-                $("#plant_id").val(obj.plant[0].plant_id);
-                $("#weight_scale_id").on("change", function() {
-                    var nos = $("#weight_scale_id option:selected").attr("data-nos")
-                    $("#location_name").val(obj.plant[nos].location);
-                    $("#plant_id").val(obj.plant[nos].plant_id);
-                });
-            });
-            </script>
+               }
+           });
+       });
+</script>
+<script>
+        $(document).ready(function() {
+            var json='<?php echo html_entity_decode(session()->get('user_wc_loc_json'), ENT_QUOTES, 'UTF-8')?>';
+           var obj = JSON.parse(json);
+          
+               $("#location_name").val(obj.plant[0].location);//-----------------------------
+               $("#plant_id").val(obj.plant[0].plant_id);//-----------------------------
+           
+           $("#weight_scale_id").on("change", function() {
+               var nos = $("#weight_scale_id option:selected").attr("data-nos");
+                console.log(obj);
+               $("#location_name").val(obj.plant[nos].location);//-----------------------------
+               $("#plant_id").val(obj.plant[nos].plant_id);//-----------------------------
+               
+               
+           });
+        });
+    </script>
  </section>
  @stop

@@ -304,12 +304,12 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
               }
               foreach(@$ps as $k =>$p)
               {
-                $data['plant'][$k]['plant_id']=$p['plant_id'];
-                $data['plant'][$k]['cityplant_id']=$p['cityplant_id'];
-                $data['plant'][$k]['plant']=$p['name'];
-                $data['plant'][$k]['location_short_code']=$p['location_short_code'];
-                $data['plant'][$k]['short_code']=$p['short_code'];
-                $data['plant'][$k]['location']=$p['location'];
+                $data['plant'][$k]['plant_id']=@$p['plant_id'];
+                $data['plant'][$k]['cityplant_id']=@$p['cityplant_id'];
+                $data['plant'][$k]['plant']=@$p['name'];
+                $data['plant'][$k]['location_short_code']=@$p['location_short_code'];
+                $data['plant'][$k]['short_code']=@$p['short_code'];
+                $data['plant'][$k]['location']=@$p['location'];
               }
               
               return $data;

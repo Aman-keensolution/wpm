@@ -87,7 +87,9 @@ class StockController extends Controller
 
     public function add_stock(Request $request)
     {
+
         if (session()->has('Admin_login')) {
+            
             $wc_loc=session()->get('user_wc_loc');
             if(is_array($wc_loc)){
             if(session()->get('role')==1){ $user_id = session()->get('Admin_id');}
@@ -118,6 +120,15 @@ class StockController extends Controller
 
     public function store(Request $request)
     {
+                /* validation code */
+                $request->validate([
+                    'item_id' => 'required',
+                    'bin_id' => 'required',
+                    'cityplant_id' => 'required',
+                    'plant_id' => 'required',
+                    'gross_weight' => 'required',
+                    //'mobile' => 'required|min:10|max:10'
+                ]);
         if(session()->get('role')==1){ $user_id = session()->get('Admin_id');}
         else{$user_id = session()->get('user_id');}
 

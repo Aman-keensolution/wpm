@@ -42,7 +42,8 @@
                             <label for="item_id">Item</label>
                             <div class="input-group">
                                 <input name="item_name" id="item_name" readonly value="" class="form-control item_name">
-                                <input name="item_avg_weight" id="item_avg_weight" readonly value="" class="form-control item_name">
+                                <input name="item_avg_weight1" id="item_avg_weight1" readonly value="" class="form-control item_name">
+                                <input name="item_avg_weight" id="item_avg_weight" type="hidden" readonly value="" class="form-control item_name">
                                 <div class="input-group-append">
                                   <span class="input-group-text" id="">Kg.</span>
                                 </div>
@@ -132,8 +133,6 @@
                                      <input type="hidden" name="bin_weight_g" id="bin_weight_g">
                                  </div>
                              </div>
-
-
                          </div>
                          <div class="form-group col-md-4">
                              <label for="counted_quantity">Quantity</label>
@@ -290,19 +289,38 @@
                      });
                  },
                  select: function(event, ui) {
-                     console.log(ui.item);
                      $('#item_id').val(ui.item.value);
                      $('#erp_mc').val(ui.item.erp_mc);
                      $('#item_name').val(ui.item.name);
                      $('#item_no').val(ui.item.label);
+                     $('#item_avg_weight1').val(ui.item.item_avg_weight);
                      $('#item_avg_weight').val(ui.item.item_avg_weight);
+                     var erp_mc =ui.item.erp_mc;
+                     var item_weight =ui.item.item_avg_weight;
+                    if (($('#erp_mc').val() >= 71000000 && $('#erp_mc').val() <= 74999999)
+                    || ($('#erp_mc').val() >= 10000000 && $('#erp_mc').val() <= 10999999)
+                    || ($('#erp_mc').val() >= 90000000 && $('#erp_mc').val() <= 90999999)) {
+                        console.log("here7-9");
+                        $('#unit_id option[value=2]').attr('selected', 'selected');
+                        $('#unit_id option[value=1]').removeAttr('selected', 'selected');
+                        $('#unit_id option[value=3]').removeAttr('selected', 'selected');
+                        $('#unit_id option[value=4]').removeAttr('selected', 'selected');
 
+
+                    } else if ($('#erp_mc').val() >= 20000000 && $('#erp_mc').val() <= 50999999) {
+                        console.log("here2-5");
+                        $('#unit_id option[value=4]').attr('selected', 'selected');
+                        $('#unit_id option[value=1]').removeAttr('selected', 'selected');
+                        $('#unit_id option[value=2]').removeAttr('selected', 'selected');
+                        $('#unit_id option[value=3]').removeAttr('selected', 'selected');
+                    }
+                    if($('#item_avg_weight1').val()<= 0 ){$('#item_avg_weight').val(1) }
                      return false;
-                 }
-             });
-         });
-            </script>
-     <script>
+                }
+            });
+        });
+</script>
+<script>
          $(document).ready(function() {
              var json='<?php echo html_entity_decode(session()->get('user_wc_loc_json'), ENT_QUOTES, 'UTF-8')?>';
             var obj = JSON.parse(json);
