@@ -42,63 +42,63 @@
 
                                      <div class="form-group col-md-4">
                                          <label for="date">Inventory Count Date</label>
-                                         <input type="text" id="assign_date" placeholder="Inventory Count Date" class="form-control">
+                                         <input type="text" id="assign_date" readonly placeholder="Inventory Count Date" class="form-control">
                                      </div>
                                      <div class="form-group col-md-4">
                                          <label for="item_name">Item Name</label>
-                                         <input type="text" name="item_name" id="item_name" class="form-control float-right" placeholder="Item Name">
+                                         <input type="text" name="item_name" readonly id="item_name" class="form-control float-right" placeholder="Item Name">
                                      </div>
                                      <div class="form-group col-md-4">
                                          <label for="item_code">ERP Code</label>
-                                         <input type="text" name="item_code" id="item_code" class="form-control float-right" placeholder="ERP Code">
+                                         <input type="text" name="item_code" readonly id="item_code" class="form-control float-right" placeholder="ERP Code">
                                      </div>
                                      <div class="form-group col-md-4">
                                          <label for="bin_name">Bin Number/Name </label>
-                                         <input type="text" name="bin_name" id="bin_name" class="form-control float-right" placeholder="Bin Number/Name">
+                                         <input type="text" name="bin_name" readonly id="bin_name" class="form-control float-right" placeholder="Bin Number/Name">
                                      </div>
                                      <div class="form-group col-md-4">
                                          <label for="plant_name">Plant Name </label>
-                                         <input type="text" name="plant_name" id="plant_name" class="form-control float-right" placeholder="Plant Name ">
+                                         <input type="text" name="plant_name" readonly id="plant_name" class="form-control float-right" placeholder="Plant Name ">
                                      </div>
                                      <div class="form-group col-md-4">
                                          <label for="location">Plant Location</label>
-                                         <input type="text" name="location" id="location" class="form-control float-right" placeholder="Plant Location">
+                                         <input type="text" name="location" readonly id="location" class="form-control float-right" placeholder="Plant Location">
                                      </div>
                                      <div class="form-group col-md-4">
                                          <label for="batch_id">Batch Id </label>
-                                         <input type="text" name="batch_id" id="batch_id" class="form-control float-right" placeholder="Batch Id">
+                                         <input type="text" name="batch_id" readonly id="batch_id" class="form-control float-right" placeholder="Batch Id">
                                      </div>
                                      <div class="form-group col-md-4">
                                          <label for="user_name">User Name </label>
-                                         <input type="text" name="user_name" id="user_name" class="form-control float-right" placeholder="User Name">
+                                         <input type="text" name="user_name" readonly id="user_name" class="form-control float-right" placeholder="User Name">
                                      </div>
                                      <div class="form-group col-md-4">
                                          <label for="weight_scale_id">Weighing Machine Id / Name</label>
-                                         <input type="text" name="weight_scale_id" id="weight_scale_id" class="form-control float-right" placeholder="Weighing Machine Id / Name">
+                                         <input type="text" name="weight_scale_id" readonly id="weight_scale_id" class="form-control float-right" placeholder="Weighing Machine Id / Name">
                                      </div>
                                      <div class="form-group col-md-4">
                                          <label for="gross_weight">Gross Weight</label>
-                                         <input type="text" name="gross_weight" id="gross_weight" class="form-control float-right" placeholder="Gross Weight">
+                                         <input type="text" name="gross_weight" readonly id="gross_weight" class="form-control float-right" placeholder="Gross Weight">
                                      </div>
                                      <div class="form-group col-md-4">
                                          <label for="bin_weight">Bin Weight </label>
-                                         <input type="text" name="bin_weight" id="bin_weight" class="form-control float-right" placeholder="Bin Weight ">
+                                         <input type="text" name="bin_weight" readonly id="bin_weight" class="form-control float-right" placeholder="Bin Weight ">
                                      </div>
                                      <div class="form-group col-md-4">
                                          <label for="net_weight">Net Weight</label>
-                                         <input type="text" name="net_weight" id="net_weight" class="form-control float-right" placeholder="Net Weight">
+                                         <input type="text" name="net_weight" readonly id="net_weight" class="form-control float-right" placeholder="Net Weight">
                                      </div>
                                      <div class="form-group col-md-4">
                                          <label for="counted_quantity">Total Quantity</label>
-                                         <input type="text" name="counted_quantity" id="counted_quantity" class="form-control float-right" placeholder="Total Quantity">
+                                         <input type="text" name="counted_quantity" readonly id="counted_quantity" class="form-control float-right" placeholder="Total Quantity">
                                      </div>
                                      <div class="form-group col-md-4">
                                          <label for="price">Per Item Price </label>
-                                         <input type="text" name="price" id="price" class="form-control float-right" placeholder="Per Item Price ">
+                                         <input type="text" name="price" id="price" readonly class="form-control float-right" placeholder="Per Item Price ">
                                      </div>
                                      <div class="form-group col-md-4">
                                          <label for="price">Total Price</label>
-                                         <input type="text" name="price" id="price" class="form-control float-right" placeholder="Total Price">
+                                         <input type="text" name="price" id="price" readonly class="form-control float-right" placeholder="Total Price">
                                      </div>
 
                                  </div>
