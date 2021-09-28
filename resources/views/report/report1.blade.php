@@ -63,7 +63,8 @@
                                      </div>
                                  </div>
                                  <div class="button1 col-md-1">
-                                     <input type="submit" id="filter" name="filter" class="btn btn-secondary" value="Filter">
+                                     <!-- <input type="submit" id="filter" name="filter" class="btn btn-secondary" value="Filter"> -->
+                                     <span data-href="{{route('report.report_list1')}}" id="export" class="btn btn-secondary" onclick="filter(event.target);">Filter</span>
                                  </div>
                                  <div class="button1 col-md-1">
                                      <span data-href="{{route('export-tasks1')}}" id="export" class="btn btn-success" onclick="exportTasks(event.target);">CSV</span>
@@ -113,6 +114,15 @@
          </div>
      </div><!-- /.container-fluid -->
      <script>
+         function filter(_this) {
+             var item_id = document.getElementById('item_id').value;
+             var cityplant_id = document.getElementById('cityplant_id').value;
+             var min = document.getElementById('min').value;
+             var max = document.getElementById('max').value;
+             let _url = $(_this).data('href') + "?item_id=" + item_id + "&cityplant_id=" + cityplant_id + "&min=" + min + "&max=" + max;
+             window.location.href = _url;
+         }
+
          function exportTasks(_this) {
              var item_id = document.getElementById('item_id').value;
              var cityplant_id = document.getElementById('cityplant_id').value;

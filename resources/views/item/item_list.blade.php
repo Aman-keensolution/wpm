@@ -28,11 +28,11 @@
                      <div class="alert alert-danger">
                          <ul>
                              @foreach ($errors->all() as $error)
-                                 <li>{{ $error }}</li>
+                             <li>{{ $error }}</li>
                              @endforeach
                          </ul>
                      </div>
-                 @endif
+                     @endif
 
 
                      <!-- /.card-header -->
@@ -75,12 +75,12 @@
                                          <td>{{$item['item_avg_weight']}} </td>
                                          <td>{{$item['part_no']}} </td>
                                          <td>
-                                             <a href=" {{ route('item.edit_item', $item->item_id)}}"><span class="badge bg-primary">Edit</span>|
-                                                 @if($item['is_active']==1)
-                                                 <a href="{{ route('item.block_item', $item->item_id)}}"><span class="badge bg-danger">Block</span></a>
-                                                 @else
-                                                 <a href="{{ route('item.unblock_item', $item->item_id)}}"><span class="badge bg-success">Unblock</span></a>
-                                                 @endif
+                                             <a href=" {{ route('item.edit_item', $item->item_id)}}"><span class="badge bg-primary">Edit</span></a>|
+                                             @if($item['is_active']==1)
+                                             <a href="{{ route('item.block_item', $item->item_id)}}"><span class="badge bg-danger">Block</span></a>
+                                             @else
+                                             <a href="{{ route('item.unblock_item', $item->item_id)}}"><span class="badge bg-success">Unblock</span></a>
+                                             @endif
                                          </td>
                                      </tr>
                                      @endforeach

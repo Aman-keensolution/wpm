@@ -29,48 +29,49 @@
                      @endif
 
                      <!-- /.card-header -->
-                     <form action="{{route('report.report_list_user')}}" method="get">
-                         @csrf
-                         <div class="card-body">
-                             <div class="row">
-                                 <div class="col-md-10">
-                                     <div class="row">
-                                         <div class="form-group col-md-3">
-                                             <label for="date">Date - From</label>
-                                             <input type="date" id="min" class="form-control min datepicker hasDatepicker" value="">
-                                         </div>
-                                         <div class="form-group col-md-3">
-                                             <label for="date">Date - To</label>
-                                             <input type="date" id="max" value="" class="form-control max datepicker hasDatepicker">
-                                         </div>
-                                         <div class="form-group col-md-3">
-                                             <label for="item_id">Item</label>
-                                             <input type="text" name="table_search" id="table_search" class="form-control float-right" placeholder="Item">
-                                             <input type="hidden" name="item_id" id="item_id">
-                                         </div>
-                                         <div class="form-group col-md-3">
-                                             <label for="plant_id">Plant</label>
-                                             <div class="input-group mb-3">
-                                                 <select name="cityplant_id" id="cityplant_id" class="form-control">
-                                                     <option value="">Select</option>
-                                                     @foreach( $all_plant as $plant)
-                                                     <option value="{{$plant->cityplant_id}}">{{$plant->name}}
-                                                     </option>
-                                                     @endforeach
-                                                 </select>
-                                             </div>
+                     <!-- <form action="{{route('report.report_list_user')}}" method="get"> -->
+                     @csrf
+                     <div class="card-body">
+                         <div class="row">
+                             <div class="col-md-10">
+                                 <div class="row">
+                                     <div class="form-group col-md-3">
+                                         <label for="date">Date - From</label>
+                                         <input type="date" id="min" class="form-control min datepicker hasDatepicker" value="">
+                                     </div>
+                                     <div class="form-group col-md-3">
+                                         <label for="date">Date - To</label>
+                                         <input type="date" id="max" value="" class="form-control max datepicker hasDatepicker">
+                                     </div>
+                                     <div class="form-group col-md-3">
+                                         <label for="item_id">Item</label>
+                                         <input type="text" name="table_search" id="table_search" class="form-control float-right" placeholder="Item">
+                                         <input type="hidden" name="item_id" id="item_id">
+                                     </div>
+                                     <div class="form-group col-md-3">
+                                         <label for="plant_id">Plant</label>
+                                         <div class="input-group mb-3">
+                                             <select name="cityplant_id" id="cityplant_id" class="form-control">
+                                                 <option value="">Select</option>
+                                                 @foreach( $all_plant as $plant)
+                                                 <option value="{{$plant->cityplant_id}}">{{$plant->name}}
+                                                 </option>
+                                                 @endforeach
+                                             </select>
                                          </div>
                                      </div>
                                  </div>
-                                 <div class="button1 col-md-1">
-                                     <input type="submit" id="filter" name="filter" class="btn btn-secondary" value="Filter">
-                                 </div>
-                                 <div class="button1 col-md-1">
-                                     <span data-href="{{route('export-tasks_user')}}" id="export" class="btn btn-success " onclick="exportTasks(event.target);">CSV</span>
-                                 </div>
+                             </div>
+                             <div class="button1 col-md-1">
+                                 <!-- <input type="submit" id="filter" name="filter" class="btn btn-secondary" value="Filter"> -->
+                                 <span data-href="{{route('report.report_list_user')}}" id="export" class="btn btn-secondary" onclick="filter(event.target);">Filter</span>
+                             </div>
+                             <div class="button1 col-md-1">
+                                 <span data-href="{{route('export-tasks_user')}}" id="export" class="btn btn-success " onclick="exportTasks(event.target);">CSV</span>
                              </div>
                          </div>
-                     </form>
+                     </div>
+                     <!-- </form> -->
                      <hr>
                      <div class="card-body">
 
@@ -105,6 +106,15 @@
          </div>
      </div><!-- /.container-fluid -->
      <script>
+         function filter(_this) {
+             var item_id = document.getElementById('item_id').value;
+             var cityplant_id = document.getElementById('cityplant_id').value;
+             var min = document.getElementById('min').value;
+             var max = document.getElementById('max').value;
+             let _url = $(_this).data('href') + "?item_id=" + item_id + "&cityplant_id=" + cityplant_id + "&min=" + min + "&max=" + max;
+             window.location.href = _url;
+         }
+
          function exportTasks(_this) {
              var item_id = document.getElementById('item_id').value;
              var cityplant_id = document.getElementById('cityplant_id').value;

@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Bin;
 use App\Models\CityPlant;
 use App\Models\WeightScale;
 use App\Models\Plant;
 use App\Models\Stock;
+use Illuminate\Http\Request;
+
 use Redirect, Response;
 
 

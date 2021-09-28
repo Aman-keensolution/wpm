@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
+use Redirect, Response;
 use App\Models\Stock;
 use App\Models\Plant;
 use App\Models\CityPlant;
@@ -19,71 +21,45 @@ class StockController extends Controller
 {
     public function stock_list(Request $request)
     {
+       
         if (session()->has('Admin_login')) {
-            if ($request->ajax()) {
+            
                 if(session()->get('role')==1){
+               
                     $user_id = session()->get('Admin_id');
-                    $data = Stock::with('cityplant','plant','item','bin', 'user','weightScale','unit')->get();
+                    $query = Stock::select('*')->with('plant', 'item', 'bin', 'user', 'weightScale', 'unit', 'cityplant')->where('is_active', 1);
+                //  dd($request);
+                    if ($request->input('min') != '' && $request->input('max') != '') {
+                        $query->whereBetween('assign_date', [$request->input('min'), $request->input('max')]);
+                    }
                 }
             else{
-                $user_id = session()->get('user_id');
-                $data = Stock::where('user_id', $user_id)->with('cityplant','plant','item','bin', 'user','weightScale','unit')->get();
-            }
-                return Datatables::of($data)
-                    ->addIndexColumn()
-                    ->addColumn('action', function ($row) {
-                        if ($row->is_active == 1) {
-                        $nm = route('stock.edit_stock', $row->stock_id);
-                        $btn = '<a href="' . $nm . '"> <span class="badge bg-primary">Edit</span></a>&nbsp;&nbsp;';
-                            $nm = route('stock.block_stock', $row->stock_id);
-                            $btn .= '<a href="' . $nm . '"><span class="badge bg-danger">Delete</span></a>';
-                        }else{
-                          $btn = ' <span class="badge bg-secondary">Deleted</span>';
-                        }
-                        return $btn;
-                    }) 
-                    ->addColumn('code', function ($row) {
-                        $sc = @$row->plant->short_code.@$row->weightScale->short_code.@$row->plant->location_short_code."S".@$row->stock_id;
-                        return $sc;
-                    }) 
-                    ->addColumn('checkbox1', function ($row) {
-                        
-                        $btn1='<input name="select_entry[]" id="select_entry_'.$row->stock_id.'" class="select_entry" value="'.$row->stock_id.'" type="checkbox">';
-                       
-                        return $btn1;
-                    }) 
-                    ->addColumn('assign_date1', function ($row) {
-                       return getCreatedAtAttribute(@$row->assign_date,'d/m/Y H:s A') ;
-                    })
-                    ->addColumn('plant_name', function ($row) {
-                        return @$row->cityplant->name;
-                    })
-                    ->addColumn('bin_name', function ($row) {
-                        return @$row->bin->name;
-                    })
-                    ->addColumn('item_name', function ($row) {
-                        return @$row->item->name;
-                    })
-                    ->addColumn('item_no', function ($row) {
-                        return @$row->item->item_no;
-                    })
-                    ->addColumn('user_name', function ($row) {
-                        return @$row->user->name;
-                    })
-                    ->addColumn('weightScale_name', function ($row) {
-                        return @$row->weightScale->name;
-                    })
-                    ->addColumn('unit_name', function ($row) {
-                        return @$row->unit->name;
-                    })
-                    ->rawColumns(['action','checkbox1','code'])
-                    ->make(true);
-            }
-            return view('stock.stock_list');
+                    $user_id = session()->get('user_id');
+                    $query = Stock::select('*')->where('user_id', $user_id)->with('cityplant','plant','item','bin', 'user','weightScale','unit');
+                    if ($request->input('min') != '' && $request->input('max') != '') {
+                        $query->whereBetween('assign_date', [$request->input('min'), $request->input('max')]);
+                    }
+                }
+                    $data = $query->paginate(20);
+                    return view('stock.stock_list', compact('data'));
         }
-        //return view('admin');
         return redirect()->route('admin');
     }
+
+    // public function select_stock_list(Request $request)
+    // {
+    //     if (session()->has('Admin_login')) {
+    //         if (session()->get('role') == 1) {
+    //             $user_id = session()->get('Admin_id');
+    //             $data = Stock::with('cityplant', 'plant', 'item', 'bin', 'user', 'weightScale', 'unit')->where('is_active', 1)->where('item_id', @$request->item_id)->paginate(20);
+    //         } else {
+    //             $user_id = session()->get('user_id');
+    //             $data = Stock::where('user_id', $user_id)->with('cityplant', 'plant', 'item', 'bin', 'user', 'weightScale', 'unit')->where('is_active', 1)->where('item_id', @$request->item_id)->paginate(20);
+    //         }
+    //         return view('stock.stock_list', compact('data'));
+    //     }
+    //     return redirect()->route('admin');
+    // }
 
     public function add_stock(Request $request)
     {
@@ -169,12 +145,18 @@ class StockController extends Controller
 
     public function edit_stock(Request $request)
     {
+        
         if (session()->has('Admin_login')) {
             $wc_loc=session()->get('user_wc_loc');
-            if(is_array($wc_loc)){
+          
+            if(is_array($wc_loc)||session()->get('role')==1){
             $all_cityplant = CityPlant::where('is_active', 1)->get();
             $all_plant = Plant::where('is_active', 1)->get();
-            $all_bin = Bin::where(['is_active'=> 1,'cityplant_id'=>$wc_loc['plant'][0]['cityplant_id'] ])->get();
+            if(session()->get('role')==2){
+                    $all_bin = Bin::where(['is_active' => 1, 'cityplant_id' => $wc_loc['plant'][0]['cityplant_id']])->get();
+            }else{
+                    $all_bin = Bin::where(['is_active' => 1])->get();
+            }
             $all_item = Item::where('is_active', 1)->get();
             $all_WeightScale = WeightScale::where('is_active', 1)->get();
             $all_unit = Unit::all();
