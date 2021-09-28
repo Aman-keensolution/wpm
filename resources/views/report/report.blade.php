@@ -81,7 +81,7 @@
                                      </div>
 
                                      <div class="form-group col-md-2">
-                                         <label for="weight_scale_id">Weighing Scale</label>
+                                         <label for="weight_scale_id">W. Scale</label>
                                          <div class="input-group mb-3">
                                              <select name="weight_scale_id" id="weight_scale_id" class="form-control select2">
                                                  <option value="">Select</option>

@@ -170,7 +170,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('report.report_list')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array(''))) {
+                                <a href="{{route('report.report_list')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array('report.report_list'))) {
                                                                                                 echo "active";
                                                                                             } ?>">
                                     <i class="far fa-file"></i>
@@ -178,7 +178,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('report.report_list1')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array(''))) {
+                                <a href="{{route('report.report_list1')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array('report.report_list1'))) {
                                                                                                 echo "active";
                                                                                             } ?>">
                                     <i class="far fa-file"></i>
@@ -186,7 +186,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('report.report_list_user')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array(''))) {
+                                <a href="{{route('report.report_list_user')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array('report.report_list_user'))) {
                                                                                                     echo "active";
                                                                                                 } ?>">
                                     <i class="far fa-file"></i>
@@ -194,7 +194,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('report.barcode')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array(''))) {
+                                <a href="{{route('report.barcode')}}" class="nav-link <?php if (in_array(request()->route()->getName(), array('report.barcode'))) {
                                                                                             echo "active";
                                                                                         } ?>">
                                     <i class="far fa-file"></i>
