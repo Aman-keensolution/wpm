@@ -129,7 +129,7 @@ class WeighingController extends Controller
     }
 
     public function get_plant(Request $request){
-        $data['plant'] = Plant::where("cityplant_id",$request->cityplant_id)->get(["location", "cityplant_id"]);
+        $data['plant'] = Plant::where("cityplant_id",$request->cityplant_id)->get(["location", "plant_id"]);
         return response()->json($data);        
      }
 }

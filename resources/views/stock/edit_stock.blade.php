@@ -98,7 +98,7 @@
                         </div>
                         <div class="form-group col-md-2">
                             <label for="batch_id">Batch ID</label>
-                            <input type="text" value={{$Stockdata->batch_id}} name="batch_id" id="batch_id" class="form-control" placeholder="Enter Batch ID">
+                            <input type="text" value="{{$Stockdata->batch_id}}" name="batch_id" id="batch_id" class="form-control" placeholder="Enter Batch ID">
                         </div>
                         <div class="form-group col-md-7">
                             <label for="gross_weight">Gross Weight</label>
@@ -258,21 +258,63 @@
                     var erp_mc =ui.item.erp_mc;
                     var item_weight =ui.item.item_avg_weight;
                    if (($('#erp_mc').val() >= 71000000 && $('#erp_mc').val() <= 74999999)
-                   || ($('#erp_mc').val() >= 10000000 && $('#erp_mc').val() <= 10999999)
-                   || ($('#erp_mc').val() >= 90000000 && $('#erp_mc').val() <= 90999999)) {
-                       console.log("here7-9");
-                       $('#unit_id option[value=2]').attr('selected', 'selected');
+                   || ($('#erp_mc').val() >= 10000000 && $('#erp_mc').val() <= 19999999)) {
+                       
+                       $('#unit_id option[value=2]').attr('selected', 'selected');//kg
                        $('#unit_id option[value=1]').removeAttr('selected', 'selected');
                        $('#unit_id option[value=3]').removeAttr('selected', 'selected');
-                       $('#unit_id option[value=4]').removeAttr('selected', 'selected');
+                       $('#unit_id option[value=4]').removeAttr('selected', 'selected');//nos
+                       $('#bin_id option[value=0]').remove();
+                           $('#bin_id').removeAttr('readonly');
+                           $('#gross_weight').removeAttr('readonly');
+                           $('#unit_id').removeAttr('readonly');
+                           $('#submit').attr('disabled', 'disabled');
+                            $('#submit_p').attr('disabled', 'disabled');
+                            $('.submit_group').attr('title',"Please Enter Valid Gross Weight.");
+                            $('.submit_group').attr('data-original-title',"Please Enter Valid Gross Weight.");
+                            $('.submit_group').attr('data-toggle', "tooltip");
+                           $('#counted_quantity').attr('readonly', true);
 
 
-                   } else if ($('#erp_mc').val() >= 20000000 && $('#erp_mc').val() <= 50999999) {
+                   }else if($('#erp_mc').val() >= 90000000 && $('#erp_mc').val() <= 99999999)
+                       {
+                           console.log("here7-9");
+                           $('#unit_id option[value=4]').attr('selected', 'selected');//nos
+                           $('#unit_id option[value=1]').removeAttr('selected', 'selected');
+                           $('#unit_id option[value=2]').removeAttr('selected', 'selected');//kg
+                           $('#unit_id option[value=3]').removeAttr('selected', 'selected');
+                           $('#bin_id').append('<option selected value="0">Not Needed</option>');
+                           $('#bin_id').attr('readonly', true);
+                           $('#gross_weight').attr('readonly', true);
+                           $('#unit_id').attr('readonly', true);
+                           $('#gross_weight').val(0);
+                           $('#submit').removeAttr('disabled');
+                            $('#submit_p').removeAttr('disabled');
+                            $('#submit').removeAttr('style');
+                            $('#submit_p').removeAttr('style');
+                            $('.submit_group').removeAttr('title');
+                            $('.submit_group').removeAttr('data-original-title');
+                            $('.submit_group').removeAttr('data-toggle');
+                           $('#counted_quantity').removeAttr('readonly');
+                           
+
+                   } else if ($('#erp_mc').val() >= 20000000 && $('#erp_mc').val() <= 59999999) {
                        console.log("here2-5");
-                       $('#unit_id option[value=4]').attr('selected', 'selected');
+                       $('#unit_id option[value=4]').attr('selected', 'selected');//nos
                        $('#unit_id option[value=1]').removeAttr('selected', 'selected');
-                       $('#unit_id option[value=2]').removeAttr('selected', 'selected');
+                       $('#unit_id option[value=2]').removeAttr('selected', 'selected');//kg
                        $('#unit_id option[value=3]').removeAttr('selected', 'selected');
+                           $('#bin_id option[value=0]').remove();
+                           $('#bin_id').removeAttr('readonly');
+                           $('#gross_weight').removeAttr('readonly');
+                           $('#unit_id').removeAttr('readonly');
+                           $('#submit').attr('disabled', 'disabled');
+                            $('#submit_p').attr('disabled', 'disabled');
+                            $('.submit_group').attr('title',"Please Enter Valid Gross Weight.");
+                            $('.submit_group').attr('data-original-title',"Please Enter Valid Gross Weight.");
+                            $('.submit_group').attr('data-toggle', "tooltip");
+                           $('#counted_quantity').attr('readonly', true);
+
                    }
                    if($('#item_avg_weight1').val()<= 0 ){$('#item_avg_weight').val(1) }
                     return false;

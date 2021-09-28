@@ -58,7 +58,7 @@
                             <div class="form-group">
                                 <label for="plant_id">Location</label>
                                 <select name="plant_id" id="plant_id" class="form-control">
-                                    <option value="">Select</option>                                   
+                                    <option value="0">Select</option>                                   
                                 </select>
                             </div>
                              <div class="form-group">
