@@ -39,7 +39,7 @@
                      <div class="card-body">
                          <div class="card-tools">
                              <form method="get" action="{{route('item.select_item_list')}}">
-                                 <div class="input-group input-group-sm" style="width: 150px;">
+                                 <div class="input-group input-group-sm" style="width: 200px;">
                                      <input type="text" name="table_search" id="table_search" class="form-control float-right" placeholder="Search">
                                      <input type="hidden" name="item_id" id="item_id">
                                      <div class="input-group-append">

@@ -9,6 +9,7 @@ use App\Models\CityPlant;
 use App\Models\WeightScale;
 use App\Models\Plant;
 use App\Models\Stock;
+use Redirect, Response;
 
 
 class ReportController extends Controller
@@ -279,5 +280,13 @@ class ReportController extends Controller
         } else {
             return view('report.barcode');
         }
+    }
+
+    public function barcodedata(Request $request)
+    {
+        $id = $request->id1;
+        $where = array('stock_id' => $id);
+        $data = stock::where($where)->with('plant', 'item', 'bin', 'user', 'weightScale', 'unit', 'cityplant')->first();
+        return response()->json($data);
     }
 }

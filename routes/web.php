@@ -120,7 +120,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::get('report_list_user', [ReportController::class, 'report_list_user'])->name('report.report_list_user');
 
     Route::get('barcode', [ReportController::class, 'barcode'])->name('report.barcode');
-
+    Route::post('barcodedata', [ReportController::class, 'barcodedata'])->name('report.barcodedata');
 
 
 }); 
