@@ -458,9 +458,9 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
                 <td class="p3_text">&nbsp;</td>
                 <td class="p3_text">&nbsp;</td>
                 <td class="p3_text">&nbsp;</td>
-                <?php $short_code = $data->plant->short_code . $data->weightScale->short_code . $data->plant->location_short_code . "s" . $data->stock_id; ?>
-                <td colspan="5" class="p3_text l_text"><b>Tag No</b>- <?php echo $short_code; ?> <br>
-                    <?php echo DNS1D::getBarcodeSVG($short_code, "C39", 1, 25, '#2A3239') ?><br></td>
+                <?php $short_code = @$data->plant->short_code . @$data->weightScale->short_code . @$data->plant->location_short_code . "S" . @$data->stock_id; ?>
+                <td colspan="5" class="p3_text l_text"><b>Tag No</b>- <?php echo @$short_code; ?> <br>
+                    <?php echo DNS1D::getBarcodeSVG(@$short_code, "C39", 1, 25, '#2A3239') ?><br></td>
             </tr>
             <tr>
                 <td width="10%" class="p3_text">&nbsp;</td>
@@ -476,12 +476,12 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
             </tr>
             <tr>
                 <td class="p3_text">&nbsp;</td><td class="p3_text l_text">BIN No</td>
-                <td colspan="3" class="p3_text"><?php echo $data->bin->name; ?></td>
+                <td colspan="3" class="p3_text"><?php echo @$data->bin->name; ?></td>
                 
                 <td class="p3_text">&nbsp;</td>
                 <td class="p3_text l_text">Date :</td>
                 <td colspan="3" class="p3_text">
-                  <?php echo getCreatedAtAttribute($data->assign_date, 'd-m-Y'); ?>
+                  <?php echo getCreatedAtAttribute(@$data->assign_date, 'd-m-Y'); ?>
                 </td>
             </tr>
             <tr>
@@ -498,11 +498,11 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
             </tr>
             <tr>
                  <td class="p3_text">&nbsp;</td><td class="p3_text l_text">Plant:</td>
-                <td colspan="3" class="p3_text"><?php echo $data->plant->name; ?></td>
+                <td colspan="3" class="p3_text"><?php echo @$data->plant->name; ?></td>
                
                 <td class="p3_text">&nbsp;</td>
                 <td class="p3_text l_text">Location:</td>
-                <td colspan="3" class="p3_text"><?php echo $data->plant->location; ?></td>
+                <td colspan="3" class="p3_text"><?php echo @$data->plant->location; ?></td>
             </tr>
             <tr>
                 <td width="10%" class="p3_text">&nbsp;</td>
@@ -518,11 +518,11 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
             </tr>
             <tr>
                 <td class="p3_text">&nbsp;</td><td class="p3_text l_text">ERP Code</td>
-                <td colspan="3" class="p3_text"><?php echo $data->item->item_no; ?></td>
+                <td colspan="3" class="p3_text"><?php echo @$data->item->item_no; ?></td>
                 
                 <td class="p3_text">&nbsp;</td>
                 <td colspan="4" class="p3_text"><span class=" l_text">Weighing Scale
-                        No-</span><?php echo $data->weightScale->weight_scale_no; ?>
+                        No-</span><?php echo @$data->weightScale->weight_scale_no; ?>
                 </td>
             </tr>
             <tr>
@@ -552,14 +552,14 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
                             <td colspan="2" class="p3_text l_text">&nbsp;Remarks</td>
                         </tr>
                         <tr>
-                            <td class="p3_text">&nbsp;<?php echo $data->item->item_no; ?></td>
-                            <td colspan="2" class="p3_text">&nbsp;<?php echo $data->item->name; ?></td>
-                            <td class="p3_text">&nbsp;<?php echo $data->unit->code_name; ?></td>
-                            <td class="p3_text">&nbsp;<?php echo $data->gross_weight; ?></td>
-                            <td class="p3_text">&nbsp;<?php echo $data->bin_weight; ?></td>
-                            <td class="p3_text">&nbsp;<?php echo $data->net_weight; ?></td>
-                            <td class="p3_text">&nbsp;<?php echo $data->counted_quantity; ?></td>
-                            <td colspan="2" class="p3_text">&nbsp;<?php echo $data->remark; ?></td>
+                            <td class="p3_text">&nbsp;<?php echo @$data->item->item_no; ?></td>
+                            <td colspan="2" class="p3_text">&nbsp;<?php echo @$data->item->name; ?></td>
+                            <td class="p3_text">&nbsp;<?php echo @$data->unit->code_name; ?></td>
+                            <td class="p3_text">&nbsp;<?php echo @$data->gross_weight; ?></td>
+                            <td class="p3_text">&nbsp;<?php echo @$data->bin_weight; ?></td>
+                            <td class="p3_text">&nbsp;<?php echo @$data->net_weight; ?></td>
+                            <td class="p3_text">&nbsp;<?php echo @$data->counted_quantity; ?></td>
+                            <td colspan="2" class="p3_text">&nbsp;<?php echo @$data->remark; ?></td>
                         </tr>
                     </table>
                 </td>
@@ -578,7 +578,7 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
             </tr>
             <tr>
                 <td colspan="2" class="p3_text l_text">&nbsp;Prepared By: </td>
-                <td colspan="3" class="p3_text">&nbsp;<?php echo $data->user->name; ?></td>
+                <td colspan="3" class="p3_text">&nbsp;<?php echo @$data->user->name; ?></td>
                 <td colspan="2" class="p3_text l_text">&nbsp;Checked by: </td>
                 <td colspan="3" class="p3_text"></td>
             </tr>
