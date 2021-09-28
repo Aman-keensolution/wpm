@@ -28,7 +28,7 @@
                          </ul>
                      </div>
                      @endif
-                     <form action="{{route('report.report_list1')}}" method="get">
+                     <!-- <form action="{{route('report.report_list1')}}" method="get"> -->
                          @csrf
                          <div class="card-body">
                              <div class="row">
@@ -71,7 +71,7 @@
                                  </div>
                              </div>
                          </div>
-                     </form>
+                     <!-- </form> -->
                      <hr>
                      <div class="card-body">
 
