@@ -59,7 +59,7 @@
                             <!--Auto file-->
                            
                             <input type="hidden" value="{{$Stockdata->cityplant_id}}" name="cityplant_id" id="cityplant_id">
-                            <input name="" id="" readonly class="form-control" value="{{$wc_loc['plant'][0]['plant']}}" class="form-control">
+                            <input name="" id="" readonly class="form-control" value="{{@$wc_loc['plant'][0]['plant']}}" class="form-control">
                         </div>
                         <div class="form-group col-md-3">
                            <!--Auto file-->
@@ -68,8 +68,8 @@
                            <select name="weight_scale_id" id="weight_scale_id" class="form-control">
                                <option value="">Select</option>
                                <?php $i= 0;?>
-                               @foreach( $wc_loc['WeightScale'] as $wc) 
-                               <option <?php if($Stockdata->weight_scale_id==$wc['weight_scale_id']){echo "selected";}?> data-nos="{{$i}}" value="{{$wc['weight_scale_id']}}">{{$wc['name']}}</option>
+                               @foreach( @$wc_loc['WeightScale'] as $wc) 
+                               <option <?php if($Stockdata->weight_scale_id==@$wc['weight_scale_id']){echo "selected";}?> data-nos="{{$i}}" value="{{@$wc['weight_scale_id']}}">{{@$wc['name']}}</option>
                                <?php $i++;?>
                                @endforeach
                            </select>
