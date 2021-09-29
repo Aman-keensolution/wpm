@@ -85,9 +85,9 @@ class StockController extends Controller
                 $all_WeightScale = WeightScale::where('is_active', 1)->get();
                 $all_unit = Unit::all();
                 $data['Stockdata'] = Stock::where('stock_id', $request->stock_id)->with('cityplant','plant', 'bin','item','weightScale','unit')->get()->first(); 
-                return view('stock.add_stock', $data)->with(['all_cityplant' => $all_cityplant, 'all_plant' => $all_plant, 'all_item' => $all_item, 'all_bin' => $all_bin, 'all_WeightScale' => $all_WeightScale, 'all_unit' => $all_unit]);
+                return view('stock.add_stock', $data)->with(['all_cityplant' => $all_cityplant, 'all_plant' => $all_plant, 'all_item' => $all_item, 'all_bin' => $all_bin, 'all_WeightScale' => $all_WeightScale, 'all_unit' => $all_unit, 'all_user' => $all_user]);
             } 
-            return view('stock.add_stock')->with(['all_plant' => $all_plant, 'all_cityplant' => $all_cityplant ,'all_item' => $all_item, 'all_bin' => $all_bin, 'all_WeightScale' => $all_WeightScale, 'all_unit' => $all_unit]);
+            return view('stock.add_stock')->with(['all_plant' => $all_plant, 'all_cityplant' => $all_cityplant ,'all_item' => $all_item, 'all_bin' => $all_bin, 'all_WeightScale' => $all_WeightScale, 'all_unit' => $all_unit, 'all_user' => $all_user]);
        }else { return back()->with('Fail', 'Something went wrong');} 
     } else {
             return redirect('admin');

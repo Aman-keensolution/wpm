@@ -132,7 +132,7 @@ class ReportController extends Controller
             "Expires"             => "0"
         );
 
-        $columns = array('Item', 'ERP M. Code', 'Bin', 'Weighing machine', 'Plant/Location', 'User', 'Assign Date', 'Gross Weight', 'Bin Weight', 'Net Weight', 'Quantity',);
+        $columns = array('Item', 'ERP M. Code', 'Bin', 'Weighing machine', 'Plant/Location', 'Location code', 'User', 'Assign Date', 'Gross Weight', 'Bin Weight', 'Net Weight', 'Quantity',);
 
         $callback = function () use ($tasks, $columns) {
             $file = fopen('php://output', 'w');
@@ -146,6 +146,7 @@ class ReportController extends Controller
                 $row['Bin']    = $task->bin['name'];
                 $row['Weighing machine']  = $task->weightScale['name'];
                 $row['Plant/Location']  = $task->plant['name'];
+                $row['Location code']  = $task->plant['location_short_code'];
                 $row['User']  = $task->user['name'];
                 $row['Assign Date']  = getCreatedAtAttribute($assign_date1);
                 $row['Gross Weight']  = $task->gross_weight;
@@ -153,7 +154,7 @@ class ReportController extends Controller
                 $row['Net Weight']  = $task->net_weight;
                 $row['Quantity']  = $task->counted_quantity;
             
-                fputcsv($file, array($row['Item'], $row['ERP M. Code'], $row['Bin'], $row['Weighing machine'], $row['Plant/Location'], $row['User'], $row['Assign Date'], $row['Gross Weight'], $row['Bin Weight'], $row['Net Weight'], $row['Quantity']));
+                fputcsv($file, array($row['Item'], $row['ERP M. Code'], $row['Bin'], $row['Weighing machine'], $row['Plant/Location'], $row['Location code'], $row['User'], $row['Assign Date'], $row['Gross Weight'], $row['Bin Weight'], $row['Net Weight'], $row['Quantity']));
             }
 
             fclose($file);
@@ -194,7 +195,7 @@ class ReportController extends Controller
             "Expires"             => "0"
         );
 
-        $columns = array( 'ERP M. Code', 'ITEM DESCRIPTION', 'Plant', 'Location', 'Quantity', 'AMOUNT');
+        $columns = array( 'ERP M. Code', 'ITEM DESCRIPTION', 'Plant', 'Location', 'Location code', 'Quantity', 'AMOUNT');
 
         $callback = function () use ($tasks, $columns) {
             $file = fopen('php://output', 'w');
@@ -206,11 +207,12 @@ class ReportController extends Controller
                 $row['ITEM DESCRIPTION']  = $task->item['name'];
                 $row['Plant']  = $task->plant['name'];
                 $row['Location']  = $task->plant['location'];
+                $row['Location code']  = $task->plant['location_short_code'];
                 $row['Quantity']  = $task->counted_quantity;
                 $row['AMOUNT']    = $task->item['price'];
             
   
-                fputcsv($file, array( $row['ERP M. Code'], $row['ITEM DESCRIPTION'], $row['Plant'], $row['Location'], $row['Quantity'], $row['AMOUNT'],));
+                fputcsv($file, array( $row['ERP M. Code'], $row['ITEM DESCRIPTION'], $row['Plant'], $row['Location'], $row['Location code'], $row['Quantity'], $row['AMOUNT'],));
             }
 
             fclose($file);
@@ -252,7 +254,7 @@ class ReportController extends Controller
             "Expires"             => "0"
         );
 
-        $columns = array('Item', 'ERP M. Code','Quantity',);
+        $columns = array('Item', 'ERP M. Code','Quantity', 'Location code');
 
         $callback = function () use ($tasks, $columns) {
             $file = fopen('php://output', 'w');
@@ -264,8 +266,9 @@ class ReportController extends Controller
                 $row['Item']  = $task->item['name'];
                 $row['ERP M. Code']    = $task->item['item_no'];
                 $row['Quantity']  = $task->counted_quantity;
+                $row['Location code']  = $task->plant['location_short_code'];
 
-                fputcsv($file, array($row['Item'], $row['ERP M. Code'] , $row['Quantity']));
+                fputcsv($file, array($row['Item'], $row['ERP M. Code'] , $row['Quantity'] , $row['Location code']));
             }
 
             fclose($file);

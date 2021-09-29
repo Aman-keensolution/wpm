@@ -117,6 +117,7 @@
                                          <th>Bin</th>
                                          <th>Weighing machine</th>
                                          <th>Plant/Location</th>
+                                         <th>LOCATION CODE</th>
                                          <th>User</th>
                                          <th>Assign Date</th>
                                          <th>Gross Weight</th>
@@ -127,13 +128,14 @@
                                  </thead>
                                  <tbody>
                                      @foreach($data as $report)
-                                     <?php $assign_date1 = $report['assign_date']; ?>
+                                     <?php @$assign_date1 = $report['assign_date']; ?>
                                      <tr>
                                          <td>{{@$report->item['name']}}</td>
                                          <td>{{@$report->item['item_no']}} </td>
                                          <td>{{@$report->bin['name']}} </td>
                                          <td>{{@$report->weightScale['name']}} </td>
                                          <td>{{@$report->plant['name']}} </td>
+                                         <td>{{@$report->plant['location_short_code']}} </td>
                                          <td>{{@$report->user['name']}} </td>
                                          <td>{{@getCreatedAtAttribute($assign_date1)}} </td>
                                          <td>{{@$report['gross_weight']}} </td>

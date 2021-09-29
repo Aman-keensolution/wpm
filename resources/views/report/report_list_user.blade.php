@@ -82,6 +82,7 @@
                                          <th>Sno.</th>
                                          <th>ERP M. Code</th>
                                          <th>Quantity</th>
+                                         <th>LOCATION CODE</th>
                                      </tr>
                                  </thead>
                                  <tbody>
@@ -89,9 +90,10 @@
                                      @foreach($data as $report)
                                      @php($i++)
                                      <tr>
-                                         <td>{{$i}}</td>
-                                         <td>{{$report->item['item_no']}} </td>
-                                         <td>{{$report['counted_quantity']}} </td>
+                                         <td>{{@$i}}</td>
+                                         <td>{{@$report->item['item_no']}} </td>
+                                         <td>{{@$report['counted_quantity']}} </td>
+                                         <td>{{@$report->plant['location_short_code']}} </td>
                                      </tr>
                                      @endforeach
                                  </tbody>
