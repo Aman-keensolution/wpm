@@ -93,24 +93,24 @@
                                             $code = @$list->plant->short_code . @$list->weightScale->short_code . @$list->plant->location_short_code . "S" . @$list->stock_id; ?>
                                          <tr>
                                              <td>{{$i}} </td>
-                                             <td>{{getCreatedAtAttribute($assign_date1)}} </td>
+                                             <td>{{getCreatedAtAttribute($assign_date1,'d-m-Y h:i A')}} </td>
                                              <td>{{$code}} </td>
-                                             <td> <input type="checkbox" name="select_entry[]" id="select_entry_<?php echo $list->stock_id ?>" class="select_entry" value="<?php echo $list->stock_id ?>"></td>
-                                             <td>{{$list->item['name']}}</td>
-                                             <td>{{$list->item['item_no']}}</td>
-                                             <td>{{$list->bin['name']}} </td>
-                                             <td>{{$list->weightScale['name']}} </td>
-                                             <td>{{$list->plant['name']}} </td>
-                                             <td>{{$list->user['name']}} </td>
-                                             <td>{{$list['gross_weight']}} </td>
-                                             <td>{{$list['batch_id']}} </td>
-                                             <td>{{$list->unit['name']}} </td>
+                                             <td> <input type="checkbox" name="select_entry[]" id="select_entry_<?php echo @$list->stock_id ?>" class="select_entry" value="<?php echo @$list->stock_id ?>"></td>
+                                             <td>{{@$list->item['name']}}</td>
+                                             <td>{{@$list->item['item_no']}}</td>
+                                             <td>{{@$list->bin['name']}} </td>
+                                             <td>{{@$list->weightScale['name']}} </td>
+                                             <td>{{@$list->plant['name']}} </td>
+                                             <td>{{@$list->user['name']}} </td>
+                                             <td>{{@$list['gross_weight']}} </td>
+                                             <td>{{@$list['batch_id']}} </td>
+                                             <td>{{@$list->unit['name']}} </td>
                                              <td>
-                                                 <?php if (session()->get('role') == 2) { ?> <a href="{{route('stock.edit_stock', $list->stock_id)}}"><span class="badge bg-primary">Edit</span></a>|<?php } ?>
+                                                 {{-- <?php if (session()->get('role') == 2) { ?> <a href="{{route('stock.edit_stock', $list->stock_id)}}"><span class="badge bg-primary">Edit</span></a>|<?php } ?> --}}
                                                      @if($list['is_active']==1)
-                                                     <a href="{{ route('stock.block_stock', $list->stock_id)}}"><span class="badge bg-danger">Block</span></a>
+                                                     <a href="{{ route('stock.block_stock', $list->stock_id)}}"><span class="badge bg-danger">Delete</span></a>
                                                      @else
-                                                     <a href="{{ route('stock.unblock_stock', $list->stock_id)}}"><span class="badge bg-success">Unblock</span></a>
+                                                     <span class="badge bg-success">Deleted</span>
                                                      @endif
                                              </td>
                                          </tr>

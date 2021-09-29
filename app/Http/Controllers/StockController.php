@@ -298,6 +298,20 @@ class StockController extends Controller
         }
         echo json_encode($response);
         exit;
+    }
+
+    public function get_bin_status(Request $request){
+        $bid = $request->bid;
+        $rows=Stock::select('bin_id')->where(['is_active'=>1,'bin_id'=>$bid])->whereDate('created_at', '>', Carbon::now()->subMinutes(1440))->first();
+        $response = array();
+        if(in_array($bid,array(0,72,73,74))){
+            $response = array("status"=>1,"message"=>"Bin Available");
+        }
+        else if($rows){
+                $response = array("status"=>0,"message"=>"Bin Not Available");
+        }else{$response = array("status"=>1,"message"=>"Bin Available");}
+        echo json_encode($response);
+        exit;
      }
 
 }

@@ -113,17 +113,16 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::get('get_bin_weight/{id}', [StockController::class, 'get_bin_weight'])->name('stock.get_bin_weight');
     Route::get('get_qty/{id}', [StockController::class, 'get_qty'])->name('stock.get_qty');
     Route::get('get_items',[StockController::class, 'get_items'])->name('stock.get_items');
+    Route::get('get_bin_status',[StockController::class, 'get_bin_status'])->name('stock.get_bin_status');
 
-                //ReportController
     Route::get('report_list', [ReportController::class, 'report_list'])->name('report.report_list');
     Route::get('report_list1', [ReportController::class, 'report_list1'])->name('report.report_list1');
     Route::get('report_list_user', [ReportController::class, 'report_list_user'])->name('report.report_list_user');
-
     Route::get('barcode', [ReportController::class, 'barcode'])->name('report.barcode');
     Route::post('barcodedata', [ReportController::class, 'barcodedata'])->name('report.barcodedata');
 
-
 }); 
+
     Route::get('/export-tasks', [ReportController::class, 'exportCsv'])->name('export-tasks');
     Route::get('/export-tasks1', [ReportController::class, 'exportCsv1'])->name('export-tasks1');
     Route::get('/export-tasks_user', [ReportController::class, 'exportCsv_user'])->name('export-tasks_user');

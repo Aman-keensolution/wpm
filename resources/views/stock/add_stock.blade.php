@@ -79,10 +79,9 @@
                          </div>
                          <div class="form-group col-md-3">
                              <label for="bin_id">Bin</label>
-
                              <div class="input-group mb-3">
                                  <select name="bin_id" id="bin_id" class="form-control select2">
-                                     @foreach( $all_bin as $bin) 
+                                     @foreach( $all_bin as $bin)
                                         <option value="{{$bin->bin_id}}">{{$bin->name}}</option>
                                      @endforeach
                                  </select>
@@ -164,10 +163,10 @@
                      </div>
                      <div class="form-group">
                          <label for="plant_id">Plant name</label>
-                         <select name="plant_id[]" id="plant_id" multiple  class="form-control select2">';
-        $p_arr = arrayPlant();
+                         <select name="cityplant_id" id="cityplant_id"  class="form-control select2">';
+        $p_arr = arrayCityPlant();
         foreach ($p_arr as $plant) {
-            $str .= ' <option value="' . $plant['plant_id'] . '">' . $plant['name']."/".$plant['location'] . '</option>';
+            $str .= ' <option value="' . $plant['cityplant_id'] . '">' . $plant['name']. '</option>';
         }
         $str .= '  </select>
                      </div>
@@ -272,7 +271,7 @@
      </script>
      <script>
          $(document).ready(function() {
-
+            $('#calculate'). prop('disabled', true); 
              $("#item_no").autocomplete({
                  source: function(request, response) {
                      // Fetch data
@@ -308,8 +307,8 @@
                             $('#bin_id').removeAttr('readonly');
                             $('#gross_weight').removeAttr('readonly');
                             $('#unit_id').removeAttr('readonly');
-                            $('#submit').attr('disabled', 'disabled');
-                             $('#submit_p').attr('disabled', 'disabled');
+                            $('#submit').prop('disabled', true); 
+                            $('#submit_p').prop('disabled', true); 
                              $('.submit_group').attr('title',"Please Enter Valid Gross Weight.");
                              $('.submit_group').attr('data-original-title',"Please Enter Valid Gross Weight.");
                              $('.submit_group').attr('data-toggle', "tooltip");
@@ -328,13 +327,13 @@
                             $('#gross_weight').attr('readonly', true);
                             $('#unit_id').attr('readonly', true);
                             $('#gross_weight').val(0);
-                            $('#submit').removeAttr('disabled');
-                             $('#submit_p').removeAttr('disabled');
-                             $('#submit').removeAttr('style');
-                             $('#submit_p').removeAttr('style');
-                             $('.submit_group').removeAttr('title');
-                             $('.submit_group').removeAttr('data-original-title');
-                             $('.submit_group').removeAttr('data-toggle');
+                            $('#submit').prop('disabled', false); 
+                            $('#submit_p').prop('disabled', false); 
+                            $('#submit').removeAttr('style');
+                            $('#submit_p').removeAttr('style');
+                            $('.submit_group').removeAttr('title');
+                            $('.submit_group').removeAttr('data-original-title');
+                            $('.submit_group').removeAttr('data-toggle');
                             $('#counted_quantity').removeAttr('readonly');
                             
 
@@ -344,22 +343,42 @@
                         $('#unit_id option[value=1]').removeAttr('selected', 'selected');
                         $('#unit_id option[value=2]').removeAttr('selected', 'selected');//kg
                         $('#unit_id option[value=3]').removeAttr('selected', 'selected');
-                            $('#bin_id option[value=0]').remove();
-                            $('#bin_id').removeAttr('readonly');
-                            $('#gross_weight').removeAttr('readonly');
-                            $('#unit_id').removeAttr('readonly');
-                            $('#submit').attr('disabled', 'disabled');
-                             $('#submit_p').attr('disabled', 'disabled');
-                             $('.submit_group').attr('title',"Please Enter Valid Gross Weight.");
-                             $('.submit_group').attr('data-original-title',"Please Enter Valid Gross Weight.");
-                             $('.submit_group').attr('data-toggle', "tooltip");
-                            $('#counted_quantity').attr('readonly', true);
-
+                        $('#bin_id option[value=0]').remove();
+                        $('#bin_id').removeAttr('readonly');
+                        $('#gross_weight').removeAttr('readonly');
+                        $('#unit_id').removeAttr('readonly');
+                        $('#submit').prop('disabled', true); 
+                        $('#submit_p').prop('disabled', true); 
+                        $('.submit_group').attr('title',"Please Enter Valid Gross Weight.");
+                        $('.submit_group').attr('data-original-title',"Please Enter Valid Gross Weight.");
+                        $('.submit_group').attr('data-toggle', "tooltip");
+                        $('#counted_quantity').attr('readonly', true);
                     }
                     if($('#item_avg_weight1').val()<= 0 ){$('#item_avg_weight').val(1) }
                      return false;
                 }
             });
+             $('#bin_id').on("change", function() {
+                bin_id = $("#bin_id").find("option:selected").val();
+
+                $.ajax({
+                    url: "{{route('stock.get_bin_status')}}",
+                    data: "bid=" + bin_id,
+                    dataType: "html",
+                    method: 'GET',
+                    success: function(data) {
+                        var json = JSON.parse(data);
+                        alert(json.message);
+                        if(json.status==1)
+                        {
+                            $('#calculate').prop('disabled', false);
+                        }else{
+                            $('#calculate').prop('disabled', true); 
+                        }
+                    }
+                });
+             });
+            
         });
 </script>
 <script>
