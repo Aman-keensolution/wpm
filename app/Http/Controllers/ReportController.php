@@ -23,7 +23,7 @@ class ReportController extends Controller
             $all_plant = CityPlant::all();
             $all_item = Item::all();
             $all_WeightScale = WeightScale::all();
-            $query = Stock::select('*')->with('plant', 'item', 'bin', 'user', 'weightScale', 'unit', 'cityplant')->where('is_active', 1);
+            $query = Stock::select('*')->with('plant', 'item', 'bin', 'user', 'weightScale', 'unit', 'cityplant')->orderBy('stock_id', 'desc')->where('is_active', 1);
 
             if ($request->input('min') != '' && $request->input('max') != '') {
                 $query->whereBetween('assign_date', [$request->input('min'), $request->input('max')]);
@@ -55,7 +55,7 @@ class ReportController extends Controller
             $all_plant = CityPlant::all();
             $all_item = Item::all();
 
-            $query = Stock::select('*')->with('plant', 'item', 'bin','cityplant')->where('is_active', 1);
+            $query = Stock::select('*')->with('plant', 'item', 'bin','cityplant')->orderBy('stock_id', 'desc')->where('is_active', 1);
 
             if ($request->input('min') != '' && $request->input('max') != '') {
                 $query->whereBetween('assign_date', [$request->input('min'), $request->input('max')]);
@@ -78,7 +78,7 @@ class ReportController extends Controller
             $all_plant = CityPlant::all();
             $all_item = Item::all();
 
-            $query =  Stock::select('*')->with( 'item', 'cityplant')->where('is_active', 1);
+            $query =  Stock::select('*')->with( 'item', 'cityplant')->orderBy('stock_id', 'desc')->where('is_active', 1);
 
             if ($request->input('min') != '' && $request->input('max') != '') {
                 $query->whereBetween('assign_date', [$request->input('min'), $request->input('max')]);
@@ -101,7 +101,7 @@ class ReportController extends Controller
         if (session()->get('role') == 1) {
             $user_id = session()->get('Admin_id');
          
-            $query = Stock::with('plant', 'item', 'bin', 'user', 'weightScale', 'unit','cityplant')->where('is_active', 1);
+            $query = Stock::with('plant', 'item', 'bin', 'user', 'weightScale', 'unit','cityplant')->orderBy('stock_id', 'desc')->where('is_active', 1);
 
             if ($request->input('min') != '' && $request->input('max') != '') {
                 $query->whereBetween('assign_date', [$request->input('min'), $request->input('max')]);
@@ -121,7 +121,7 @@ class ReportController extends Controller
             $tasks = $query->get();
         } else {
             $user_id = session()->get('user_id');
-            $query= Stock::where('user_id', $user_id)->with('plant', 'item', 'bin', 'user', 'weightScale', 'unit' ,'cityplant')->where('is_active', 1)->get();
+            $query= Stock::where('user_id', $user_id)->with('plant', 'item', 'bin', 'user', 'weightScale', 'unit' ,'cityplant')->orderBy('stock_id', 'desc')->where('is_active', 1)->get();
             $tasks = $query->get();
         }
         $headers = array(
@@ -139,20 +139,20 @@ class ReportController extends Controller
             fputcsv($file, $columns);
 
             foreach ($tasks as $task) {
-                     $assign_date1 = $task->assign_date;
+                     $assign_date1 = @$task->assign_date;
 
-                $row['Item']  = $task->item['name'];
-                $row['ERP M. Code']    = $task->item['item_no'];
-                $row['Bin']    = $task->bin['name'];
-                $row['Weighing machine']  = $task->weightScale['name'];
-                $row['Plant/Location']  = $task->plant['name'];
-                $row['Location code']  = $task->plant['location_short_code'];
-                $row['User']  = $task->user['name'];
-                $row['Assign Date']  = getCreatedAtAttribute($assign_date1);
-                $row['Gross Weight']  = $task->gross_weight;
-                $row['Bin Weight']  = $task->bin_weight;
-                $row['Net Weight']  = $task->net_weight;
-                $row['Quantity']  = $task->counted_quantity;
+                $row['Item']  = @$task->item['name'];
+                $row['ERP M. Code']    = @$task->item['item_no'];
+                $row['Bin']    = @$task->bin['name'];
+                $row['Weighing machine']  = @$task->weightScale['name'];
+                $row['Plant/Location']  = @$task->plant['name'];
+                $row['Location code']  = @$task->plant['location_short_code'];
+                $row['User']  = @$task->user['name'];
+                $row['Assign Date']  = getCreatedAtAttribute($assign_date1, 'd-m-Y h:i A');
+                $row['Gross Weight']  = @$task->gross_weight;
+                $row['Bin Weight']  = @$task->bin_weight;
+                $row['Net Weight']  = @$task->net_weight;
+                $row['Quantity']  = @$task->counted_quantity;
             
                 fputcsv($file, array($row['Item'], $row['ERP M. Code'], $row['Bin'], $row['Weighing machine'], $row['Plant/Location'], $row['Location code'], $row['User'], $row['Assign Date'], $row['Gross Weight'], $row['Bin Weight'], $row['Net Weight'], $row['Quantity']));
             }
@@ -168,7 +168,7 @@ class ReportController extends Controller
         $fileName = 'Report.csv';
         if (session()->get('role') == 1) {
             $user_id = session()->get('Admin_id');
-            $query =  Stock::with('plant', 'item', 'cityplant')->where('is_active', 1);
+            $query =  Stock::with('plant', 'item', 'cityplant')->orderBy('stock_id', 'desc')->where('is_active', 1);
 
             if ($request->input('min') != '' && $request->input('max') != '') {
                 $query->whereBetween('assign_date', [$request->input('min'), $request->input('max')]);
@@ -183,7 +183,7 @@ class ReportController extends Controller
         } else {
 
             $user_id = session()->get('user_id');
-            $query = Stock::where('user_id', $user_id)->with('plant', 'item', 'cityplant')->where('is_active', 1);
+            $query = Stock::where('user_id', $user_id)->with('plant', 'item', 'cityplant')->orderBy('stock_id', 'desc')->where('is_active', 1);
             $tasks = $query->get();
         }
 
@@ -203,13 +203,13 @@ class ReportController extends Controller
 
             foreach ($tasks as $task) {
     
-                $row['ERP M. Code']    = $task->item['item_no'];
-                $row['ITEM DESCRIPTION']  = $task->item['name'];
-                $row['Plant']  = $task->plant['name'];
-                $row['Location']  = $task->plant['location'];
-                $row['Location code']  = $task->plant['location_short_code'];
-                $row['Quantity']  = $task->counted_quantity;
-                $row['AMOUNT']    = $task->item['price'];
+                $row['ERP M. Code']    = @$task->item['item_no'];
+                $row['ITEM DESCRIPTION']  = @$task->item['name'];
+                $row['Plant']  = @$task->plant['name'];
+                $row['Location']  = @$task->plant['location'];
+                $row['Location code']  = @$task->plant['location_short_code'];
+                $row['Quantity']  = @$task->counted_quantity;
+                $row['AMOUNT']    = @$task->item['price'];
             
   
                 fputcsv($file, array( $row['ERP M. Code'], $row['ITEM DESCRIPTION'], $row['Plant'], $row['Location'], $row['Location code'], $row['Quantity'], $row['AMOUNT'],));
@@ -226,7 +226,7 @@ class ReportController extends Controller
         $fileName = 'Report.csv';
         if (session()->get('role') == 1) {
             $user_id = session()->get('Admin_id');
-            $query = Stock::with('plant', 'item', 'cityplant')->where('is_active', 1);
+            $query = Stock::with('plant', 'item', 'cityplant')->orderBy('stock_id', 'desc')->where('is_active', 1);
 
             if ($request->input('min') != '' && $request->input('max') != '') {
                 $query->whereBetween('assign_date', [$request->input('min'), $request->input('max')]);
@@ -242,7 +242,7 @@ class ReportController extends Controller
             $tasks = $query->get();
         } else {
             $user_id = session()->get('user_id');
-            $query = Stock::where('user_id', $user_id)->with('plant', 'item', 'cityplant')->where('is_active', 1);
+            $query = Stock::where('user_id', $user_id)->with('plant', 'item', 'cityplant')->orderBy('stock_id', 'desc')->where('is_active', 1);
             $tasks = $query->get();
         }
     
@@ -261,12 +261,12 @@ class ReportController extends Controller
             fputcsv($file, $columns);
 
             foreach ($tasks as $task) {
-                $assign_date1 = $task->assign_date;
+                $assign_date1 = @$task->assign_date;
 
-                $row['Item']  = $task->item['name'];
-                $row['ERP M. Code']    = $task->item['item_no'];
-                $row['Quantity']  = $task->counted_quantity;
-                $row['Location code']  = $task->plant['location_short_code'];
+                $row['Item']  = @$task->item['name'];
+                $row['ERP M. Code']    = @$task->item['item_no'];
+                $row['Quantity']  = @$task->counted_quantity;
+                $row['Location code']  = @$task->plant['location_short_code'];
 
                 fputcsv($file, array($row['Item'], $row['ERP M. Code'] , $row['Quantity'] , $row['Location code']));
             }

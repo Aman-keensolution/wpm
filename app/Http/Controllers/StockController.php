@@ -23,25 +23,53 @@ class StockController extends Controller
     {
        
         if (session()->has('Admin_login')) {
-            
+            $all_bin = Bin::all();
+            $all_plant = CityPlant::all();
+            $all_item = Item::all();
+            $all_WeightScale = WeightScale::all();
                 if(session()->get('role')==1){
-               
+           
                     $user_id = session()->get('Admin_id');
-                    $query = Stock::select('*')->with('plant', 'item', 'bin', 'user', 'weightScale', 'unit', 'cityplant')->where('is_active', 1);
-                //  dd($request);
+                    $query = Stock::select('*')->with('plant', 'item', 'bin', 'user', 'weightScale', 'unit', 'cityplant')->orderBy('stock_id', 'desc')->where('is_active', 1);
+            
                     if ($request->input('min') != '' && $request->input('max') != '') {
                         $query->whereBetween('assign_date', [$request->input('min'), $request->input('max')]);
                     }
+                    if ($request->input('cityplant_id') != '') {
+                        $query->where('cityplant_id', $request->cityplant_id);
+                    }
+                    if ($request->input('item_id') != '') {
+                        $query->where('item_id', $request->input('item_id'));
+                    }
+                    if ($request->input('bin_id') != '') {
+                        $query->where('bin_id', $request->input('bin_id'));
+                    }
+                    if ($request->input('weight_scale_id') != '') {
+                        $query->where('weight_scale_id', $request->input('weight_scale_id'));
+                    }
+
                 }
             else{
                     $user_id = session()->get('user_id');
-                    $query = Stock::select('*')->where('user_id', $user_id)->with('cityplant','plant','item','bin', 'user','weightScale','unit');
+                    $query = Stock::select('*')->where('user_id', $user_id)->with('cityplant','plant','item','bin', 'user','weightScale','unit')->orderBy('stock_id', 'desc')->where('is_active', 1);
                     if ($request->input('min') != '' && $request->input('max') != '') {
                         $query->whereBetween('assign_date', [$request->input('min'), $request->input('max')]);
                     }
+                    if ($request->input('cityplant_id') != '') {
+                        $query->where('cityplant_id', $request->cityplant_id);
+                    }
+                    if ($request->input('item_id') != '') {
+                        $query->where('item_id', $request->input('item_id'));
+                    }
+                    if ($request->input('bin_id') != '') {
+                        $query->where('bin_id', $request->input('bin_id'));
+                    }
+                    if ($request->input('weight_scale_id') != '') {
+                        $query->where('weight_scale_id', $request->input('weight_scale_id'));
+                    }
                 }
                     $data = $query->paginate(20);
-                    return view('stock.stock_list', compact('data'));
+                    return view('stock.stock_list', compact('data'))->with(['all_bin' => $all_bin, 'all_WeightScale' => $all_WeightScale, 'all_item' => $all_item, 'all_plant' => $all_plant]);
         }
         return redirect()->route('admin');
     }
@@ -173,14 +201,7 @@ class StockController extends Controller
     {
         if($request->select_entry){
             if (session()->has('Admin_login')) {
-                $all_cityplant = CityPlant::all();
-                $all_plant = Plant::all();
-                $all_bin = Bin::all();
-                $all_item = Item::all();
-                $all_WeightScale = WeightScale::all();
-                $all_unit = Unit::all();
-                $all_user = Admin::where('role', 2)->get();
-                $data['Stockdatas'] = Stock::whereIn('stock_id', $request->select_entry)->with('plant', 'cityplant', 'bin','item','weightScale','unit','user')->get(); //find($request->stock_id);
+                $data['Stockdatas'] = Stock::whereIn('stock_id', $request->select_entry)->with('plant', 'cityplant', 'bin','item','weightScale','unit','user')->orderBy('stock_id', 'desc')->get(); //find($request->stock_id);
                 return view('stock.pdf-report', $data);
             } else {
                 //return view('admin');

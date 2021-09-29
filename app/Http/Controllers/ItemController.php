@@ -15,7 +15,7 @@ class ItemController extends Controller
     public function item_list(Request $request)
     {
         if (session()->has('Admin_login')) {
-            $data = Item::select('*')->where('is_active', 1)->paginate(20);
+            $data = Item::select('*')->orderBy('item_id', 'desc')->where('is_active', 1)->paginate(20);
             return view('item.item_list', compact('data'));
         }
         return redirect()->route('admin');

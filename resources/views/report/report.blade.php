@@ -137,7 +137,7 @@
                                          <td>{{@$report->plant['name']}} </td>
                                          <td>{{@$report->plant['location_short_code']}} </td>
                                          <td>{{@$report->user['name']}} </td>
-                                         <td>{{@getCreatedAtAttribute($assign_date1)}} </td>
+                                         <td>{{@getCreatedAtAttribute($assign_date1,'d-m-Y h:i A')}} </td>
                                          <td>{{@$report['gross_weight']}} </td>
                                          <td>{{@$report['bin_weight']}} </td>
                                          <td>{{@$report['net_weight']}} </td>
