@@ -250,15 +250,15 @@ class StockController extends Controller
     }
     public function get_bin_weight(Request $request,$bin_id)
     {
-        $id = $request->input('id');
+        $id = @$request->input('id');
         $data = Bin::where('bin_id', $id)->get()->first();
         echo $data->bin_weight;
     }
     public function get_net_weight(Request $request,$id)
     {
-        $bin_id = $request->input('bin_id');
-        $gross_weight = $request->input('gross_weight');
-        $unit_id = $request->input('unit_id');
+        $bin_id = @$request->input('bin_id');
+        $gross_weight = @$request->input('gross_weight');
+        $unit_id = @$request->input('unit_id');
 
         $bin = Bin::where('bin_id', $bin_id)->get()->first();
         $unit = Unit::where('unit_id', $unit_id)->get()->first();
@@ -271,10 +271,10 @@ class StockController extends Controller
 
     public function get_qty(Request $request,$id)
     {
-        $bin_id = $request->input('bin_id');
-        $gross_weight = $request->input('gross_weight');
-        $unit_id = $request->input('unit_id');
-        $item_id = $request->input('item_id');
+        $bin_id = @$request->input('bin_id');
+        $gross_weight = @$request->input('gross_weight');
+        $unit_id = @$request->input('unit_id');
+        $item_id = @$request->input('item_id');
 
 
         $item = Item::where('item_id', $item_id)->with('unit')->get()->first();
@@ -322,7 +322,7 @@ class StockController extends Controller
     }
 
     public function get_bin_status(Request $request){
-        $bid = $request->bid;
+        $bid = @$request->bid;
         $rows=Stock::select('bin_id')->where(['is_active'=>1,'bin_id'=>$bid])->whereDate('created_at', '>', Carbon::now()->subMinutes(1440))->first();
         $response = array();
         if(in_array($bid,array(0,72,73,74))){
