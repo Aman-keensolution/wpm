@@ -35,11 +35,11 @@
                              <div class="col-md-10">
                                  <div class="row">
 
-                                     <div class="form-group col-md-3">
+                                     <div class="form-group col-md-2">
                                          <label for="date">Start - Date</label>
                                          <input type="date" id="min" class="form-control min datepicker hasDatepicker" value="min">
                                      </div>
-                                     <div class="form-group col-md-3">
+                                     <div class="form-group col-md-2">
                                          <label for="date">End - Date </label>
                                          <input type="date" id="max" value="max" class="form-control max datepicker hasDatepicker">
                                      </div>
@@ -49,6 +49,11 @@
                                          <input type="hidden" name="item_id" id="item_id">
                                      </div>
                                      <div class="form-group col-md-3">
+                                         <label for="plant_id">Location</label>
+                                         <input type="text" name="table_location" id="table_location" class="form-control float-right" placeholder="Location">
+                                         <input type="hidden" name="plant_id" id="plant_id">
+                                     </div>
+                                     <div class="form-group col-md-2">
                                          <label for="cityplant_id">Plant</label>
                                          <div class="input-group mb-3">
                                              <select name="cityplant_id" id="cityplant_id" class="form-control select2">
@@ -119,18 +124,20 @@
          function filter(_this) {
              var item_id = document.getElementById('item_id').value;
              var cityplant_id = document.getElementById('cityplant_id').value;
+             var plant_id = document.getElementById('plant_id').value;
              var min = document.getElementById('min').value;
              var max = document.getElementById('max').value;
-             let _url = $(_this).data('href') + "?item_id=" + item_id + "&cityplant_id=" + cityplant_id + "&min=" + min + "&max=" + max;
+             let _url = $(_this).data('href') + "?item_id=" + item_id + "&plant_id=" + plant_id + "&cityplant_id=" + cityplant_id + "&min=" + min + "&max=" + max;
              window.location.href = _url;
          }
 
          function exportTasks(_this) {
              var item_id = document.getElementById('item_id').value;
              var cityplant_id = document.getElementById('cityplant_id').value;
+             var plant_id = document.getElementById('plant_id').value;
              var min = document.getElementById('min').value;
              var max = document.getElementById('max').value;
-             let _url = $(_this).data('href') + "?item_id=" + item_id + "&cityplant_id=" + cityplant_id + "&min=" + min + "&max=" + max;
+             let _url = $(_this).data('href') + "?item_id=" + item_id + "&plant_id=" + plant_id + "&cityplant_id=" + cityplant_id + "&min=" + min + "&max=" + max;
              window.location.href = _url;
          }
      </script>
@@ -156,6 +163,34 @@
                      console.log(ui.item);
                      $('#item_id').val(ui.item.value);
                      $('#table_search').val(ui.item.label);
+                     return false;
+                 }
+             });
+
+         });
+
+
+         $(document).ready(function() {
+
+             $("#table_location").autocomplete({
+                 source: function(request, response) {
+                     // Fetch data
+                     $.ajax({
+                         url: "{{route('report.get_location')}}",
+                         type: 'get',
+                         dataType: "json",
+                         data: {
+                             search: request.term
+                         },
+                         success: function(data) {
+                             response(data);
+                         }
+                     });
+                 },
+                 select: function(event, ui) {
+                     console.log(ui.item);
+                     $('#plant_id').val(ui.item.value);
+                     $('#table_location').val(ui.item.label);
                      return false;
                  }
              });

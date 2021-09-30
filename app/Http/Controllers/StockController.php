@@ -321,6 +321,8 @@ class StockController extends Controller
         exit;
     }
 
+
+
     public function get_bin_status(Request $request){
         $bid = @$request->bid;
         $rows=Stock::select('bin_id')->where(['is_active'=>1,'bin_id'=>$bid])->whereDate('created_at', '>', Carbon::now()->subMinutes(1440))->first();
