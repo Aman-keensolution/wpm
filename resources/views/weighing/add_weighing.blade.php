@@ -21,11 +21,11 @@
                      <div class="alert alert-danger">
                          <ul>
                              @foreach ($errors->all() as $error)
-                                 <li>{{ $error }}</li>
+                             <li>{{ $error }}</li>
                              @endforeach
                          </ul>
                      </div>
-                 @endif
+                     @endif
 
                      <form action="{{route('weighing.store')}}" method="post">
                          @csrf
@@ -47,23 +47,23 @@
                                  <input type="text" name="capicity" class="form-control" placeholder="Enter Capicity">
                              </div>
                              <div class="form-group">
-                                <label for="cityplant_id">Plant</label>
-                                <select name="cityplant_id" id="cityplant_id" class="form-control">
-                                    <option value="">Select</option>
-                                    @foreach( $all_cityplant as $cityplant)
-                                    <option value="{{$cityplant->cityplant_id}}">{{$cityplant->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="plant_id">Location</label>
-                                <select name="plant_id" id="plant_id" class="form-control">
-                                    <option value="0">Select</option>                                   
-                                </select>
-                            </div>
+                                 <label for="cityplant_id">Plant</label>
+                                 <select name="cityplant_id" id="cityplant_id" class="form-control select2">
+                                     <option value="0">Select</option>
+                                     @foreach( $all_cityplant as $cityplant)
+                                     <option value="{{$cityplant->cityplant_id}}">{{$cityplant->name}}</option>
+                                     @endforeach
+                                 </select>
+                             </div>
+                             <div class="form-group">
+                                 <label for="plant_id">Location</label>
+                                 <select name="plant_id" id="plant_id" class="form-control select2">
+                                     <option value="0">Select</option>
+                                 </select>
+                             </div>
                              <div class="form-group">
                                  <label for="unit_id">Unit</label>
-                                 <select name="unit_id" id="unit_id" class="form-control">
+                                 <select name="unit_id" id="unit_id" class="form-control select2">
                                      @foreach( $all_unit as $unit)
                                      <option value="{{$unit->unit_id}}">{{$unit->name}}</option>
                                      @endforeach
@@ -71,7 +71,7 @@
                              </div>
                              <div class="form-group">
                                  <label for="user_id">Assign User Name</label>
-                                 <select name="user_id" id="user_id" class="form-control">
+                                 <select name="user_id" id="user_id" class="form-control select2">
                                      @foreach( $all_user as $user)
                                      <option value="{{$user->user_id}}">{{$user->name}}</option>
                                      @endforeach
@@ -87,24 +87,24 @@
                  </div>
              </div>
              <script>
-                  $('#cityplant_id').on('change', function () {
-                var cityplant_id = this.value;
-                $("#plant_id").html('');
-                $.ajax({
-                    url: "{{route('weighing.get_plant')}}",
-                    type: "GET",
-                    data: {
-                        cityplant_id: cityplant_id,
-                       },
-                    dataType: 'json',
-                    success: function (res) {
-                        $('#plant_id').html('<option value="">Select Location</option>');
-                        $.each(res.plant, function (key, value) {
-                            $("#plant_id").append('<option value="' + value.plant_id + '">' + value.location + '</option>');
-                        });
-                    }
-                });
-            });
+                 $('#cityplant_id').on('change', function() {
+                     var cityplant_id = this.value;
+                     $("#plant_id").html('');
+                     $.ajax({
+                         url: "{{route('weighing.get_plant')}}",
+                         type: "GET",
+                         data: {
+                             cityplant_id: cityplant_id,
+                         },
+                         dataType: 'json',
+                         success: function(res) {
+                             $('#plant_id').html('<option value="">Select Location</option>');
+                             $.each(res.plant, function(key, value) {
+                                 $("#plant_id").append('<option value="' + value.plant_id + '">' + value.location + '</option>');
+                             });
+                         }
+                     });
+                 });
              </script>
          </div>
      </div>

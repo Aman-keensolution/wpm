@@ -20,11 +20,11 @@
                      <div class="alert alert-danger">
                          <ul>
                              @foreach ($errors->all() as $error)
-                                 <li>{{ $error }}</li>
+                             <li>{{ $error }}</li>
                              @endforeach
                          </ul>
                      </div>
-                 @endif
+                     @endif
 
                      <form action="{{route('update_item',$itemdata['item_id'])}}" method="post">
                          @csrf
@@ -35,7 +35,7 @@
                              </div>
                              <div class="form-group">
                                  <label for="item_no">ERP Material No.</label>
-                                 <input type="text" name="ERP Material No." id="item_no" class="form-control" value="{{$itemdata['item_no']}}">
+                                 <input type="number" name="item_no" id="item_no" class="form-control" value="{{$itemdata['item_no']}}">
                              </div>
 
                              <div class="form-group">
@@ -45,7 +45,7 @@
 
                              <div class="form-group">
                                  <label for="cat_id">Category</label>
-                                 <select name="cat_id" id="cat_id" class="form-control">
+                                 <select name="cat_id" id="cat_id" class="form-control select2">
                                      @foreach( $all_category as $category)
                                      <option @if($itemdata->cat_id == $category->cat_id) selected @endif
                                          value="{{$category->cat_id}}">{{$category->name}}</option>
@@ -58,7 +58,7 @@
                              </div>
                              <div class="form-group"><?php $u_arr = arrayUnit(); ?>
                                  <label for="unit_id">Item Weight Unit</label>
-                                 <select name="unit_id" class="form-control" placeholder="Enter Unit">
+                                 <select name="unit_id" class="form-control select2" placeholder="Enter Unit">
                                      @foreach( $u_arr as $unit)
                                      <option value="{{$unit['unit_id']}}" <?php if ($unit['unit_id'] == $itemdata['unit_id']) {
                                                                                 echo "selected";
@@ -74,7 +74,7 @@
                              </div>
                              <div class="form-group">
                                  <label for="cityplant_id">Plant name</label>
-                                 <select name="cityplant_id" id="cityplant_id" class="form-control">
+                                 <select name="cityplant_id" id="cityplant_id" class="form-control select2">
                                      @foreach( $all_cityplant as $cityplant)
                                      <option @if($itemdata->cityplant_id == $cityplant->cityplant_id) selected @endif
                                          value="{{$cityplant->cityplant_id}}">{{$cityplant->name}}</option>

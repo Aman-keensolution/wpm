@@ -20,11 +20,11 @@
                      <div class="alert alert-danger">
                          <ul>
                              @foreach ($errors->all() as $error)
-                                 <li>{{ $error }}</li>
+                             <li>{{ $error }}</li>
                              @endforeach
                          </ul>
                      </div>
-                 @endif
+                     @endif
 
                      <form action="{{route('update_category',$category_list['cat_id'])}}" method="post">
                          @csrf
@@ -41,7 +41,7 @@
                                  </div>
                                  <div class="form-group">
                                      <label for="p_id">Parent Category</label>
-                                     <select name="p_id" id="p_id" class="form-control">
+                                     <select name="p_id" id="p_id" class="form-control select2">
                                          @foreach( $all_category as $category)
                                          <option @if($category_list->p_id == $category->cat_id) selected @endif value="{{$category->cat_id}}">{{$category->name}}</option>
                                          @endforeach

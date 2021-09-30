@@ -21,11 +21,11 @@
                      <div class="alert alert-danger">
                          <ul>
                              @foreach ($errors->all() as $error)
-                                 <li>{{ $error }}</li>
+                             <li>{{ $error }}</li>
                              @endforeach
                          </ul>
                      </div>
-                 @endif
+                     @endif
 
                      <form action="{{route('item.store')}}" method="post">
                          @csrf
@@ -44,11 +44,11 @@
                              </div>
                              <div class="form-group">
                                  <label for="item_avg_weight">Item Avg Weight</label>
-                                 <input type="number" name="item_avg_weight" id="item_avg_weight" class="form-control" placeholder="Enter Weight">
+                                 <input type="text" name="item_avg_weight" id="item_avg_weight" class="form-control" placeholder="Enter Weight">
                              </div>
                              <div class="form-group"><?php $u_arr = arrayUnit(); ?>
                                  <label for="unit_id">Item Weight Unit</label>
-                                 <select name="unit_id" class="form-control" placeholder="Enter Unit">
+                                 <select name="unit_id" class="form-control select2" placeholder="Enter Unit">
                                      @foreach( $u_arr as $unit)
                                      <option value="{{$unit['unit_id']}}">{{$unit['name']}}</option>
                                      @endforeach
@@ -60,7 +60,7 @@
                              </div>
                              <div class="form-group">
                                  <label for="cat_id">Category</label>
-                                 <select name="cat_id" id="cat_id" class="form-control">
+                                 <select name="cat_id" id="cat_id" class="form-control select2">
                                      @foreach( $all_category as $category)
                                      <option value="{{$category->cat_id}}">{{$category->name}}</option>
                                      @endforeach
@@ -68,7 +68,7 @@
                              </div>
                              <div class="form-group">
                                  <label for="cityplant_id">Plant</label>
-                                 <select name="cityplant_id" id="cityplant_id" class="form-control">
+                                 <select name="cityplant_id" id="cityplant_id" class="form-control select2">
                                      @foreach( $all_cityplant as $cityplant)
                                      <option value="{{$cityplant->cityplant_id}}">{{$cityplant->name}}</option>
                                      @endforeach

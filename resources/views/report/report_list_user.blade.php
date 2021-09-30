@@ -51,7 +51,7 @@
                                      <div class="form-group col-md-3">
                                          <label for="plant_id">Plant</label>
                                          <div class="input-group mb-3">
-                                             <select name="cityplant_id" id="cityplant_id" class="form-control">
+                                             <select name="cityplant_id" id="cityplant_id" class="form-control select2">
                                                  <option value="">Select</option>
                                                  @foreach( $all_plant as $plant)
                                                  <option value="{{$plant->cityplant_id}}">{{$plant->name}}

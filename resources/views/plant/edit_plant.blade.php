@@ -20,11 +20,11 @@
                      <div class="alert alert-danger">
                          <ul>
                              @foreach ($errors->all() as $error)
-                                 <li>{{ $error }}</li>
+                             <li>{{ $error }}</li>
                              @endforeach
                          </ul>
                      </div>
-                 @endif
+                     @endif
 
                      <form action="{{route('update_plant',$plant_data['plant_id'])}}" method="post">
                          @csrf
@@ -32,13 +32,13 @@
                              <div class="form-group">
                                  <label for="name">Plant Name</label>
                                  <label for="cityplant_id">Plant Name</label>
-                                 <select name="cityplant_id" id="cityplant_id" class="form-control" placeholder="Enter Plant name">
-                                    @foreach( $all_cityplant as $cityplant)
-                                    <option @if($plant_data->cityplant_id == $cityplant->cityplant_id) selected @endif value="{{$cityplant->cityplant_id}}">{{$cityplant->name}}</option>
-                                    <?php $sbd[$cityplant->cityplant_id]['sc'] = $cityplant->short_code; ?>
-                                    @endforeach
+                                 <select name="cityplant_id" id="cityplant_id" class="form-control select2" placeholder="Enter Plant name">
+                                     @foreach( $all_cityplant as $cityplant)
+                                     <option @if($plant_data->cityplant_id == $cityplant->cityplant_id) selected @endif value="{{$cityplant->cityplant_id}}">{{$cityplant->name}}</option>
+                                     <?php $sbd[$cityplant->cityplant_id]['sc'] = $cityplant->short_code; ?>
+                                     @endforeach
                                  </select>
-                                 <input type="hidden" name="name" id="name" class="form-control" value="{{$plant_data['name']}} placeholder="Enter Plant name">
+                                 <input type="hidden" name="name" id="name" class="form-control" value="{{$plant_data['name']}} placeholder=" Enter Plant name">
                              </div>
                              <div class="form-group">
                                  <label for="plant_address">Plant address</label>
@@ -66,27 +66,27 @@
          </div>
      </div>
      <script>
-     $(document).ready(function() {
-              
-        var json='<?php echo html_entity_decode(json_encode($sbd), ENT_QUOTES, 'UTF-8')?>';
-              
-            //var json='{"1":{"sc":"BWL"},"2":{"sc":"SBD"},"3":{"sc":"FBD"}}';
-            var obj = JSON.parse(json);
-            var selectedText = $("#cityplant_id option:selected").text();
-        v=$("#cityplant_id").val();
-            $("#name").val(selectedText);
-            
-            $("#short_code").val(obj[1].sc);//-----------------------------
+         $(document).ready(function() {
 
-        $("#cityplant_id").on("change", function() {
-            var selectedText = $("#cityplant_id option:selected").text();
-            v=$("#cityplant_id").val();
-            
-            $("#short_code").val(obj[v].sc);//-----------------------------
-            $("#name").val(selectedText);
-            
-        });
-    });
- </script>
+             var json = '<?php echo html_entity_decode(json_encode($sbd), ENT_QUOTES, 'UTF-8') ?>';
+
+             //var json='{"1":{"sc":"BWL"},"2":{"sc":"SBD"},"3":{"sc":"FBD"}}';
+             var obj = JSON.parse(json);
+             var selectedText = $("#cityplant_id option:selected").text();
+             v = $("#cityplant_id").val();
+             $("#name").val(selectedText);
+
+             $("#short_code").val(obj[1].sc); //-----------------------------
+
+             $("#cityplant_id").on("change", function() {
+                 var selectedText = $("#cityplant_id option:selected").text();
+                 v = $("#cityplant_id").val();
+
+                 $("#short_code").val(obj[v].sc); //-----------------------------
+                 $("#name").val(selectedText);
+
+             });
+         });
+     </script>
  </section>
  @stop

@@ -59,7 +59,7 @@
                                          <th>Name</th>
                                          <th>Price</th>
                                          <th>Item wt.(Kg)</th>
-                                         <th>Part-no</th>
+                                         <!-- <th>Part-no</th> -->
                                          <th>Action</th>
                                      </tr>
                                  </thead>
@@ -73,7 +73,7 @@
                                          <td>{{$item['name']}} </td>
                                          <td>{{$item['price']}} </td>
                                          <td>{{$item['item_avg_weight']}} </td>
-                                         <td>{{$item['part_no']}} </td>
+                                         <!-- <td>{{$item['part_no']}} </td> -->
                                          <td>
                                              <a href=" {{ route('item.edit_item', $item->item_id)}}"><span class="badge bg-primary">Edit</span></a>|
                                              @if($item['is_active']==1)

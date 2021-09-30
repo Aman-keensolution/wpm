@@ -1,10 +1,10 @@
  <!-- for user view -->
  @extends('layout.dashboard')
  @section('content')
- <?php  
- $wc_loc=session()->get('user_wc_loc');
- //dd($wc_loc);
- ?>
+ <?php
+    $wc_loc = session()->get('user_wc_loc');
+    //dd($wc_loc);
+    ?>
  <div class="content-header">
      <div class="container-fluid">
          <div class="row mb-12">
@@ -22,11 +22,11 @@
              <div class="alert alert-danger">
                  <ul>
                      @foreach ($errors->all() as $error)
-                         <li>{{ $error }}</li>
+                     <li>{{ $error }}</li>
                      @endforeach
                  </ul>
              </div>
-         @endif
+             @endif
              <form action="{{route('stock.store')}}" method="post">
                  @csrf
                  <div class="card-body">
@@ -39,19 +39,19 @@
                              <span class="ui_results1"></span>
                          </div>
                          <div class="form-group col-md-8">
-                            <label for="item_id">Item</label>
-                            <div class="input-group">
-                                <input name="item_name" id="item_name" readonly value="" class="form-control item_name">
-                                <input name="item_avg_weight1" id="item_avg_weight1" readonly value="" class="form-control item_name">
-                                <input name="item_avg_weight" id="item_avg_weight" type="hidden" readonly value="" class="form-control item_name">
-                                <div class="input-group-append">
-                                  <span class="input-group-text" id="">Kg.</span>
-                                </div>
-                              </div>
+                             <label for="item_id">Item</label>
+                             <div class="input-group">
+                                 <input name="item_name" id="item_name" readonly value="" class="form-control item_name">
+                                 <input name="item_avg_weight1" id="item_avg_weight1" readonly value="" class="form-control item_name">
+                                 <input name="item_avg_weight" id="item_avg_weight" type="hidden" readonly value="" class="form-control item_name">
+                                 <div class="input-group-append">
+                                     <span class="input-group-text" id="">Kg.</span>
+                                 </div>
+                             </div>
                          </div>
                          <?php
                             //dd(session()->get('user_wc_loc'));
-                         ?>
+                            ?>
                          <div class="form-group col-md-6">
                              <!--Auto file-->
                              <label for="plant_id">Plant</label>
@@ -59,22 +59,22 @@
                              <input name="" id="" readonly class="form-control" value="{{$wc_loc['plant'][0]['plant']}}" class="form-control">
                          </div>
                          <div class="form-group col-md-3">
-                            <!--Auto file-->
-                            <label for="weight_scale_id">Weighing machine</label>
-                            
-                            <select name="weight_scale_id" id="weight_scale_id" class="form-control">
-                                <option value="">Select</option>
-                                <?php $i= 0;?>
-                                @foreach( $wc_loc['WeightScale'] as $wc) 
-                                <option data-nos="{{$i}}" value="{{$wc['weight_scale_id']}}">{{$wc['name']}}</option>
-                                <?php $i++;?>
-                                @endforeach
-                            </select>
+                             <!--Auto file-->
+                             <label for="weight_scale_id">Weighing machine</label>
 
-                        </div>
+                             <select name="weight_scale_id" id="weight_scale_id" class="form-control select2">
+                                 <option value="">Select</option>
+                                 <?php $i = 0; ?>
+                                 @foreach( $wc_loc['WeightScale'] as $wc)
+                                 <option data-nos="{{$i}}" value="{{$wc['weight_scale_id']}}">{{$wc['name']}}</option>
+                                 <?php $i++; ?>
+                                 @endforeach
+                             </select>
+
+                         </div>
                          <div class="form-group col-md-3">
-                             <label for="plant_id">Location</label> 
-                             <input name="location_name" id="location_name" readonly value="" class="form-control" >
+                             <label for="plant_id">Location</label>
+                             <input name="location_name" id="location_name" readonly value="" class="form-control">
                              <input name="plant_id" id="plant_id" value="" type="hidden" class="form-control">
                          </div>
                          <div class="form-group col-md-3">
@@ -82,7 +82,7 @@
                              <div class="input-group mb-3">
                                  <select name="bin_id" id="bin_id" class="form-control select2">
                                      @foreach( $all_bin as $bin)
-                                        <option value="{{$bin->bin_id}}">{{$bin->name}}</option>
+                                     <option value="{{$bin->bin_id}}">{{$bin->name}}</option>
                                      @endforeach
                                  </select>
                                  <div class="input-group-append">
@@ -166,7 +166,7 @@
                          <select name="cityplant_id" id="cityplant_id"  class="form-control select2">';
         $p_arr = arrayCityPlant();
         foreach ($p_arr as $plant) {
-            $str .= ' <option value="' . $plant['cityplant_id'] . '">' . $plant['name']. '</option>';
+            $str .= ' <option value="' . $plant['cityplant_id'] . '">' . $plant['name'] . '</option>';
         }
         $str .= '  </select>
                      </div>
@@ -271,7 +271,7 @@
      </script>
      <script>
          $(document).ready(function() {
-            $('#calculate'). prop('disabled', true); 
+             $('#calculate').prop('disabled', true);
              $("#item_no").autocomplete({
                  source: function(request, response) {
                      // Fetch data
@@ -294,115 +294,115 @@
                      $('#item_no').val(ui.item.label);
                      $('#item_avg_weight1').val(ui.item.item_avg_weight);
                      $('#item_avg_weight').val(ui.item.item_avg_weight);
-                     var erp_mc =ui.item.erp_mc;
-                     var item_weight =ui.item.item_avg_weight;
-                    if (($('#erp_mc').val() >= 71000000 && $('#erp_mc').val() <= 74999999)
-                    || ($('#erp_mc').val() >= 10000000 && $('#erp_mc').val() <= 19999999)) {
-                        
-                        $('#unit_id option[value=2]').attr('selected', 'selected');//kg
-                        $('#unit_id option[value=1]').removeAttr('selected', 'selected');
-                        $('#unit_id option[value=3]').removeAttr('selected', 'selected');
-                        $('#unit_id option[value=4]').removeAttr('selected', 'selected');//nos
-                        $('#bin_id option[value=0]').remove();
-                            $('#bin_id').removeAttr('readonly');
-                            $('#gross_weight').removeAttr('readonly');
-                            $('#unit_id').removeAttr('readonly');
-                            $('#submit').prop('disabled', true); 
-                            $('#submit_p').prop('disabled', true); 
-                             $('.submit_group').attr('title',"Please Enter Valid Gross Weight.");
-                             $('.submit_group').attr('data-original-title',"Please Enter Valid Gross Weight.");
-                             $('.submit_group').attr('data-toggle', "tooltip");
-                            $('#counted_quantity').attr('readonly', true);
+                     var erp_mc = ui.item.erp_mc;
+                     var item_weight = ui.item.item_avg_weight;
+                     if (($('#erp_mc').val() >= 71000000 && $('#erp_mc').val() <= 74999999) ||
+                         ($('#erp_mc').val() >= 10000000 && $('#erp_mc').val() <= 19999999)) {
+
+                         $('#unit_id option[value=2]').attr('selected', 'selected'); //kg
+                         $('#unit_id option[value=1]').removeAttr('selected', 'selected');
+                         $('#unit_id option[value=3]').removeAttr('selected', 'selected');
+                         $('#unit_id option[value=4]').removeAttr('selected', 'selected'); //nos
+                         $('#bin_id option[value=0]').remove();
+                         $('#bin_id').removeAttr('readonly');
+                         $('#gross_weight').removeAttr('readonly');
+                         $('#unit_id').removeAttr('readonly');
+                         $('#submit').prop('disabled', true);
+                         $('#submit_p').prop('disabled', true);
+                         $('.submit_group').attr('title', "Please Enter Valid Gross Weight.");
+                         $('.submit_group').attr('data-original-title', "Please Enter Valid Gross Weight.");
+                         $('.submit_group').attr('data-toggle', "tooltip");
+                         $('#counted_quantity').attr('readonly', true);
 
 
-                    }else if($('#erp_mc').val() >= 90000000 && $('#erp_mc').val() <= 99999999)
-                        {
-                            console.log("here7-9");
-                            $('#unit_id option[value=4]').attr('selected', 'selected');//nos
-                            $('#unit_id option[value=1]').removeAttr('selected', 'selected');
-                            $('#unit_id option[value=2]').removeAttr('selected', 'selected');//kg
-                            $('#unit_id option[value=3]').removeAttr('selected', 'selected');
-                            $('#bin_id').append('<option selected value="0">Not Needed</option>');
-                            $('#bin_id').attr('readonly', true);
-                            $('#gross_weight').attr('readonly', true);
-                            $('#unit_id').attr('readonly', true);
-                            $('#gross_weight').val(0);
-                            $('#submit').prop('disabled', false); 
-                            $('#submit_p').prop('disabled', false); 
-                            $('#submit').removeAttr('style');
-                            $('#submit_p').removeAttr('style');
-                            $('.submit_group').removeAttr('title');
-                            $('.submit_group').removeAttr('data-original-title');
-                            $('.submit_group').removeAttr('data-toggle');
-                            $('#counted_quantity').removeAttr('readonly');
-                            
+                     } else if ($('#erp_mc').val() >= 90000000 && $('#erp_mc').val() <= 99999999) {
+                         console.log("here7-9");
+                         $('#unit_id option[value=4]').attr('selected', 'selected'); //nos
+                         $('#unit_id option[value=1]').removeAttr('selected', 'selected');
+                         $('#unit_id option[value=2]').removeAttr('selected', 'selected'); //kg
+                         $('#unit_id option[value=3]').removeAttr('selected', 'selected');
+                         $('#bin_id').append('<option selected value="0">Not Needed</option>');
+                         $('#bin_id').attr('readonly', true);
+                         $('#gross_weight').attr('readonly', true);
+                         $('#unit_id').attr('readonly', true);
+                         $('#gross_weight').val(0);
+                         $('#submit').prop('disabled', false);
+                         $('#submit_p').prop('disabled', false);
+                         $('#submit').removeAttr('style');
+                         $('#submit_p').removeAttr('style');
+                         $('.submit_group').removeAttr('title');
+                         $('.submit_group').removeAttr('data-original-title');
+                         $('.submit_group').removeAttr('data-toggle');
+                         $('#counted_quantity').removeAttr('readonly');
 
-                    } else if ($('#erp_mc').val() >= 20000000 && $('#erp_mc').val() <= 59999999) {
-                        console.log("here2-5");
-                        $('#unit_id option[value=4]').attr('selected', 'selected');//nos
-                        $('#unit_id option[value=1]').removeAttr('selected', 'selected');
-                        $('#unit_id option[value=2]').removeAttr('selected', 'selected');//kg
-                        $('#unit_id option[value=3]').removeAttr('selected', 'selected');
-                        $('#bin_id option[value=0]').remove();
-                        $('#bin_id').removeAttr('readonly');
-                        $('#gross_weight').removeAttr('readonly');
-                        $('#unit_id').removeAttr('readonly');
-                        $('#submit').prop('disabled', true); 
-                        $('#submit_p').prop('disabled', true); 
-                        $('.submit_group').attr('title',"Please Enter Valid Gross Weight.");
-                        $('.submit_group').attr('data-original-title',"Please Enter Valid Gross Weight.");
-                        $('.submit_group').attr('data-toggle', "tooltip");
-                        $('#counted_quantity').attr('readonly', true);
-                    }
-                    if($('#item_avg_weight1').val()<= 0 ){$('#item_avg_weight').val(1) }
+
+                     } else if ($('#erp_mc').val() >= 20000000 && $('#erp_mc').val() <= 59999999) {
+                         console.log("here2-5");
+                         $('#unit_id option[value=4]').attr('selected', 'selected'); //nos
+                         $('#unit_id option[value=1]').removeAttr('selected', 'selected');
+                         $('#unit_id option[value=2]').removeAttr('selected', 'selected'); //kg
+                         $('#unit_id option[value=3]').removeAttr('selected', 'selected');
+                         $('#bin_id option[value=0]').remove();
+                         $('#bin_id').removeAttr('readonly');
+                         $('#gross_weight').removeAttr('readonly');
+                         $('#unit_id').removeAttr('readonly');
+                         $('#submit').prop('disabled', true);
+                         $('#submit_p').prop('disabled', true);
+                         $('.submit_group').attr('title', "Please Enter Valid Gross Weight.");
+                         $('.submit_group').attr('data-original-title', "Please Enter Valid Gross Weight.");
+                         $('.submit_group').attr('data-toggle', "tooltip");
+                         $('#counted_quantity').attr('readonly', true);
+                     }
+                     if ($('#item_avg_weight1').val() <= 0) {
+                         $('#item_avg_weight').val(1)
+                     }
                      return false;
-                }
-            });
-             $('#bin_id').on("change", function() {
-                bin_id = $("#bin_id").find("option:selected").val();
-
-                $.ajax({
-                    url: "{{route('stock.get_bin_status')}}",
-                    data: "bid=" + bin_id,
-                    dataType: "html",
-                    method: 'GET',
-                    success: function(data) {
-                        var json = JSON.parse(data);
-                        alert(json.message);
-                        if(json.status==1)
-                        {
-                            $('#calculate').prop('disabled', false);
-                        }else{
-                            $('#calculate').prop('disabled', true); 
-                        }
-                    }
-                });
+                 }
              });
-            
-        });
-</script>
-<script>
+             $('#bin_id').on("change", function() {
+                 bin_id = $("#bin_id").find("option:selected").val();
+
+                 $.ajax({
+                     url: "{{route('stock.get_bin_status')}}",
+                     data: "bid=" + bin_id,
+                     dataType: "html",
+                     method: 'GET',
+                     success: function(data) {
+                         var json = JSON.parse(data);
+                         alert(json.message);
+                         if (json.status == 1) {
+                             $('#calculate').prop('disabled', false);
+                         } else {
+                             $('#calculate').prop('disabled', true);
+                         }
+                     }
+                 });
+             });
+
+         });
+     </script>
+     <script>
          $(document).ready(function() {
-             var json='<?php echo html_entity_decode(session()->get('user_wc_loc_json'), ENT_QUOTES, 'UTF-8')?>';
-            var obj = JSON.parse(json);
-           
-                $("#location_name").val(obj.plant[0].location);//-----------------------------
-                $("#plant_id").val(obj.plant[0].plant_id);//-----------------------------
-            
-            $("#weight_scale_id").on("change", function() {
-                var nos = $("#weight_scale_id option:selected").attr("data-nos");
+             var json = '<?php echo html_entity_decode(session()->get('user_wc_loc_json'), ENT_QUOTES, 'UTF-8') ?>';
+             var obj = JSON.parse(json);
+
+             $("#location_name").val(obj.plant[0].location); //-----------------------------
+             $("#plant_id").val(obj.plant[0].plant_id); //-----------------------------
+
+             $("#weight_scale_id").on("change", function() {
+                 var nos = $("#weight_scale_id option:selected").attr("data-nos");
                  console.log(obj);
-                $("#location_name").val(obj.plant[nos].location);//-----------------------------
-                $("#plant_id").val(obj.plant[nos].plant_id);//-----------------------------
-                
-                
-            });
+                 $("#location_name").val(obj.plant[nos].location); //-----------------------------
+                 $("#plant_id").val(obj.plant[nos].plant_id); //-----------------------------
+
+
+             });
          });
      </script>
 
  </section>
  <?php if (request()->route('print') == 1) { ?>
-    {{print_js()}}
+     {{print_js()}}
 
      <?php $data = $Stockdata; ?>
      <div class="modal fade" id="stockdata_modal" style="display: none;" aria-hidden="true">
