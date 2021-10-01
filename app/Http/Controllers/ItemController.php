@@ -67,6 +67,7 @@ class ItemController extends Controller
             $all_category = Category::all();
             $all_cityplant = CityPlant::all();
             $data['itemdata'] = Item::find($request->item_id);
+            //dd($data);
             return view('item.edit_item', $data)->with(['all_category' => $all_category, 'all_cityplant' => $all_cityplant]);
         } else {
              //return view('admin');
@@ -88,7 +89,7 @@ class ItemController extends Controller
         $data->manfactring_date = $request->manfactring_date;
         $data->save();
         return redirect('item_list');
-    }
+    } 
 
 
     public function block_item(Request $request)

@@ -147,9 +147,8 @@ class StockController extends Controller
         $Stock->unit_id = $request->unit_id;
         $Stock->gross_weight = $request->gross_weight;
         $Stock->remark = $request->remark;
-
         $Stock->assign_date =Carbon::now();
-        $Stock->bin_weight = $request->bin_weight;
+        if(in_array($request->bin_id,array(0,72,73,74))){$Stock->bin_weight = 0;}else{$Stock->bin_weight = $request->bin_weight;}
         $Stock->net_weight = $request->net_weight;
         $Stock->counted_quantity = $request->counted_quantity;
         $Stock->provision1 = 1;

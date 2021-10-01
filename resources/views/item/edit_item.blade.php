@@ -35,12 +35,12 @@
                              </div>
                              <div class="form-group">
                                  <label for="item_no">ERP Material No.</label>
-                                 <input type="number" name="item_no" id="item_no" class="form-control" value="{{$itemdata['item_no']}}">
+                                 <input type="text" name="item_no" id="item_no" class="form-control" value="{{$itemdata['item_no']}}">
                              </div>
 
                              <div class="form-group">
                                  <label for="price">Item Price</label>
-                                 <input type="number" name="price" id="price" class="form-control" value="{{$itemdata['price']}}">
+                                 <input type="text" name="price" id="price" class="form-control" value="{{$itemdata['price']}}">
                              </div>
 
                              <div class="form-group">

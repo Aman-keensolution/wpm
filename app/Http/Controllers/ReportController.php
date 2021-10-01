@@ -99,6 +99,7 @@ class ReportController extends Controller
     {
         $fileName = 'Report.csv';
         if (session()->get('role') == 1) {
+            
             $user_id = session()->get('Admin_id');
          
             $query = Stock::with('plant', 'item', 'bin', 'user', 'weightScale', 'unit','cityplant')->orderBy('stock_id', 'desc')->where('is_active', 1);

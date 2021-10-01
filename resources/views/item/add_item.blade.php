@@ -36,11 +36,11 @@
                              </div>
                              <div class="form-group">
                                  <label for="item_no">ERP Material No.</label>
-                                 <input type="number" name="item_no" id="item_no" class="form-control" placeholder="Enter ERP Material No.">
+                                 <input type="text" name="item_no" id="item_no" class="form-control" placeholder="Enter ERP Material No.">
                              </div>
                              <div class="form-group">
                                  <label for="price">Item Price</label>
-                                 <input type="number" name="price" id="price" class="form-control" placeholder="Enter Item Price">
+                                 <input type="text" name="price" id="price" class="form-control" placeholder="Enter Item Price">
                              </div>
                              <div class="form-group">
                                  <label for="item_avg_weight">Item Avg Weight</label>
@@ -56,7 +56,7 @@
                              </div>
                              <div class="form-group">
                                  <label for="batch_no">Batch Number</label>
-                                 <input type="number" name="batch_no" id="batch_no" class="form-control" placeholder="Enter Batch number">
+                                 <input type="text" name="batch_no" id="batch_no" class="form-control" placeholder="Enter Batch number">
                              </div>
                              <div class="form-group">
                                  <label for="cat_id">Category</label>
