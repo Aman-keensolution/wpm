@@ -40,24 +40,32 @@
                          @csrf
                          <div class="card-body">
                              <div class="row">
-                                 <div class="col-md-11">
+                                 <div class="col-md-7">
                                      <div class="row">
-
-                                         <div class="form-group col-md-2">
+                                         <div class="form-group col-md-3">
                                              <label for="date">Start - Date</label>
                                              <input type="date" id="min" class="form-control min datepicker hasDatepicker" value="">
                                          </div>
-                                         <div class="form-group col-md-2">
+                                         <div class="form-group col-md-3">
                                              <label for="date">End - Date </label>
                                              <input type="date" id="max" value="" class="form-control max datepicker hasDatepicker">
                                          </div>
-                                         <div class="form-group col-md-2">
+                                         <div class="form-group col-md-3">
                                              <label for="item_id">Item</label>
                                              <input type="text" name="table_search" id="table_search" class="form-control float-right" placeholder="Item">
                                              <input type="hidden" name="item_id" id="item_id">
 
                                          </div>
-                                         <div class="form-group col-md-2">
+                                         <div class="form-group col-md-3">
+                                             <label for="code_id">Code</label>
+                                             <input type="text" name="code_id" id="code_id" class="form-control float-right" placeholder="code">
+
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-md-4">
+                                     <div class="row">
+                                         <div class="form-group col-md-4">
                                              <label for="cityplant_id">Plant</label>
                                              <div class="input-group mb-3">
                                                  <select name="cityplant_id" id="cityplant_id" class="form-control select2">
@@ -68,7 +76,8 @@
                                                  </select>
                                              </div>
                                          </div>
-                                         <div class="form-group col-md-2">
+
+                                         <div class="form-group col-md-4">
                                              <label for="bin_id">Bin</label>
                                              <div class="input-group mb-3">
                                                  <select name="bin_id" id="bin_id" class="form-control select2">
@@ -80,7 +89,7 @@
                                              </div>
                                          </div>
 
-                                         <div class="form-group col-md-2">
+                                         <div class="form-group col-md-4">
                                              <label for="weight_scale_id">W. Scale</label>
                                              <div class="input-group mb-3">
                                                  <select name="weight_scale_id" id="weight_scale_id" class="form-control select2">
@@ -172,13 +181,17 @@
      </div><!-- /.container-fluid -->
      <script>
          function filter(_this) {
+             var id =  document.getElementById('code_id').value;
+             id = id.split("S");
+             code_id = id.slice(-1)[0];
+             var code_id = code_id;
              var weight_scale_id = document.getElementById('weight_scale_id').value;
              var bin_id = document.getElementById('bin_id').value;
              var item_id = document.getElementById('item_id').value;
              var cityplant_id = document.getElementById('cityplant_id').value;
              var min = document.getElementById('min').value;
              var max = document.getElementById('max').value;
-             let _url = $(_this).data('href') + "?item_id=" + item_id + "&cityplant_id=" + cityplant_id + "&min=" + min + "&max=" + max + "&bin_id=" + bin_id + "&weight_scale_id=" + weight_scale_id;
+             let _url = $(_this).data('href') + "?item_id=" + item_id + "&code_id=" + code_id + "&cityplant_id=" + cityplant_id + "&min=" + min + "&max=" + max + "&bin_id=" + bin_id + "&weight_scale_id=" + weight_scale_id;
              window.location.href = _url;
          }
          $(document).ready(function() {

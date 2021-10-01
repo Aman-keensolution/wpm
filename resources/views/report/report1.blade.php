@@ -84,7 +84,6 @@
                              <table class="table table-striped table-bordered dt-responsive nowrap data-table dataTable display compact" cellspacing="0" width="100%">
                                  <thead>
                                      <tr>
-
                                          <th>ERP M. Code</th>
                                          <th>ITEM DESCRIPTION</th>
                                          <th>PLANT</th>

@@ -47,6 +47,9 @@ class StockController extends Controller
                     if ($request->input('weight_scale_id') != '') {
                         $query->where('weight_scale_id', $request->input('weight_scale_id'));
                     }
+                    if ($request->input('code_id') != '') {
+                        $query->where('stock_id', $request->input('code_id'));
+                    }
 
                 }
             else{
@@ -66,6 +69,9 @@ class StockController extends Controller
                     }
                     if ($request->input('weight_scale_id') != '') {
                         $query->where('weight_scale_id', $request->input('weight_scale_id'));
+                    }
+                    if ($request->input('code_id') != '') {
+                        $query->where('stock_id', $request->input('code_id'));
                     }
                 }
                     $data = $query->paginate(20);
