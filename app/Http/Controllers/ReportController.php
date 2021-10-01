@@ -34,6 +34,9 @@ class ReportController extends Controller
             if ($request->input('item_id') != '') {
                 $query->where('item_id', $request->input('item_id'));
             }
+            if ($request->input('plant_id') != '') {
+                $query->where('plant_id', $request->input('plant_id'));
+            }
             if ($request->input('bin_id') != '') {
                 $query->where('bin_id', $request->input('bin_id'));
             }
@@ -66,6 +69,9 @@ class ReportController extends Controller
             if ($request->input('item_id') != '') {
                 $query->where('item_id', $request->input('item_id'));
             }
+            if ($request->input('plant_id') != '') {
+                $query->where('plant_id', $request->input('plant_id'));
+            }
             $data = $query->paginate(20);
             return view('report.report1', compact('data'))->with(['all_item' => $all_item, 'all_plant' => $all_plant]);
         }
@@ -88,6 +94,9 @@ class ReportController extends Controller
             }
             if ($request->input('item_id') != '') {
                 $query->where('item_id', $request->input('item_id'));
+            }
+            if ($request->input('plant_id') != '') {
+                $query->where('plant_id', $request->input('plant_id'));
             }
             $data = $query->paginate(20);
             return view('report.report_list_user', compact('data'))->with(['all_item' => $all_item, 'all_plant' => $all_plant]);
@@ -112,6 +121,9 @@ class ReportController extends Controller
             }
             if ($request->input('item_id') != '') {
                 $query->where('item_id', $request->input('item_id'));
+            }
+            if ($request->input('plant_id') != '') {
+                $query->where('plant_id', $request->input('plant_id'));
             }
             if ($request->input('bin_id') != '') {
                 $query->where('bin_id', $request->input('bin_id'));
@@ -180,6 +192,9 @@ class ReportController extends Controller
             if ($request->input('item_id') != '') {
                 $query->where('item_id', $request->input('item_id'));
             }
+            if ($request->input('plant_id') != '') {
+                $query->where('plant_id', $request->input('plant_id'));
+            }
             $tasks = $query->get();
         } else {
 
@@ -240,6 +255,11 @@ class ReportController extends Controller
             if ($request->input('item_id') != '') {
                 $query->where('item_id', $request->input('item_id'));
             }
+
+            if ($request->input('plant_id') != '') {
+                $query->where('plant_id', $request->input('plant_id'));
+            }
+
             $tasks = $query->get();
         } else {
             $user_id = session()->get('user_id');
@@ -293,5 +313,21 @@ class ReportController extends Controller
         $where = array('stock_id' => $id);
         $data = stock::where($where)->with('plant', 'item', 'bin', 'user', 'weightScale', 'unit', 'cityplant')->first();
         return response()->json($data);
+    }
+
+    public function get_location(Request $request)
+    {
+        $search = $request->search;
+        if ($search == '') {
+            $autocomplate = Plant::orderby('location_short_code', 'asc')->select('plant_id', 'location_short_code')->where('is_active', '=', 1)->limit(10)->get();
+        } else {
+            $autocomplate = Plant::orderby('location_short_code', 'asc')->select('plant_id', 'location_short_code')->where('location_short_code', 'like', '%' . $search . '%')->orWhere('plant_id', 'like', '%' . $search . '%')->limit(10)->get();
+        }
+        $response = array();
+        foreach ($autocomplate as $autocomplate) {
+            $response[] = array("value" => $autocomplate->plant_id, "label" => $autocomplate->location_short_code, "location_short_code" => $autocomplate->location_short_code);
+        }
+        echo json_encode($response);
+        exit;
     }
 }
