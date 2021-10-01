@@ -91,6 +91,7 @@
                                          <th>LOCATION CODE</th>
                                          <th>QTY</th>
                                          <th>AMOUNT</th>
+                                         <th>Weight</th>
                                      </tr>
                                  </thead>
                                  <tbody>
@@ -103,6 +104,7 @@
                                          <td>{{@$report->plant['location_short_code']}} </td>
                                          <td>{{@$report['counted_quantity']}} </td>
                                          <td>{{@$report->item['price']}}</td>
+                                         <td>{{@$report->item['item_avg_weight']}}</td>
                                      </tr>
                                      @endforeach
                                  </tbody>

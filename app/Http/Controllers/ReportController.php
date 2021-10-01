@@ -211,7 +211,7 @@ class ReportController extends Controller
             "Expires"             => "0"
         );
 
-        $columns = array( 'ERP M. Code', 'ITEM DESCRIPTION', 'Plant', 'Location', 'Location code', 'Quantity', 'AMOUNT');
+        $columns = array( 'ERP M. Code', 'ITEM DESCRIPTION', 'Plant', 'Location', 'Location code', 'Quantity','AMOUNT', 'Weight');
 
         $callback = function () use ($tasks, $columns) {
             $file = fopen('php://output', 'w');
@@ -226,9 +226,9 @@ class ReportController extends Controller
                 $row['Location code']  = @$task->plant['location_short_code'];
                 $row['Quantity']  = @$task->counted_quantity;
                 $row['AMOUNT']    = @$task->item['price'];
+                $row['Weight']    = @$task->item['item_avg_weight'];
             
-  
-                fputcsv($file, array( $row['ERP M. Code'], $row['ITEM DESCRIPTION'], $row['Plant'], $row['Location'], $row['Location code'], $row['Quantity'], $row['AMOUNT'],));
+                fputcsv($file, array( $row['ERP M. Code'], $row['ITEM DESCRIPTION'], $row['Plant'], $row['Location'], $row['Location code'], $row['Quantity'], $row['AMOUNT'], $row['Weight']));
             }
 
             fclose($file);
