@@ -87,7 +87,7 @@
                                          <th>Sno.</th>
                                          <th>ERP M. Code</th>
                                          <th>Quantity</th>
-                                         <!-- <th>LOCATION CODE</th> -->
+                                         <th>LOCATION</th>
                                          <th>Plant</th>
                                      </tr>
                                  </thead>
@@ -99,7 +99,7 @@
                                          <td>{{@$i}}</td>
                                          <td>{{@$report->item['item_no']}} </td>
                                          <td>{{@$report['counted_quantity']}} </td>
-                                         <!-- <td>{{@$report->plant['location_short_code']}} </td> -->
+                                          <td>{{@$report->plant['location']}} </td> 
                                          <td>{{@$report->plant['name']}} </td>
                                      </tr>
                                      @endforeach
