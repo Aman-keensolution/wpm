@@ -224,9 +224,33 @@
 
      <script>
          $(function() {
+             $('#unit_id').change(function() {
+                                  unit_id = $("#unit_id").find("option:selected").val();
+                if(unit_id==4){
+                    $('#counted_quantity').removeAttr('readonly');
+                    $('#gross_weight').attr('readonly', true);
+                     $('#submit').removeAttr('disabled');
+                    $('#submit_p').removeAttr('disabled');
+                    $('#submit').removeAttr('style');
+                    $('#submit_p').removeAttr('style');
+                    $('.submit_group').removeAttr('title');
+                    $('.submit_group').removeAttr('data-original-title');
+                    $('.submit_group').removeAttr('data-toggle');
+                }else{
+                    $('#counted_quantity').attr('readonly', true);
+                    $('#gross_weight').removeAttr('readonly');
+                    $('#submit').attr('disabled', 'disabled');
+                    $('#submit_p').attr('disabled', 'disabled');
+                    $('.submit_group').attr('title',
+                    "Please Enter Valid Gross Weight.");
+                    $('.submit_group').attr('data-original-title',
+                    "Please Enter Valid Gross Weight.");
+                    $('.submit_group').attr('data-toggle', "tooltip");
+                }
+
+             });
              $('#calculate').on("click", function() {
                  unit_id = $("#unit_id").find("option:selected").val();
-
                  $.ajax({
                      url: "{{route('stock.get_net_weight',0)}}",
                      data: "bin_id=" + $('#bin_id').val() + "&gross_weight=" + $(

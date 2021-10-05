@@ -104,7 +104,7 @@ class ReportController extends Controller
         return redirect()->route('admin');
     }
 
-    public function exportCsv(Request $request)
+    public function exportCsv(Request $request)//Report
     {
         $fileName = 'Report.csv';
         if (session()->get('role') == 1) {
@@ -145,7 +145,7 @@ class ReportController extends Controller
             "Expires"             => "0"
         );
 
-        $columns = array('Item', 'ERP M. Code', 'Bin', 'Weighing machine', 'Plant/Location', 'Location code', 'User', 'Assign Date', 'Gross Weight', 'Bin Weight', 'Net Weight', 'Quantity',);
+        $columns = array('Item','Code', 'ERP M. Code', 'Bin', 'Weighing machine', 'Plant/Location', 'Location code', 'User', 'Assign Date', 'Gross Weight', 'Bin Weight', 'Net Weight(In KG.)', 'Quantity',);
 
         $callback = function () use ($tasks, $columns) {
             $file = fopen('php://output', 'w');
@@ -153,8 +153,9 @@ class ReportController extends Controller
 
             foreach ($tasks as $task) {
                      $assign_date1 = @$task->assign_date;
-
+                     $code = @$task->plant['short_code'] . @$task->weightScale['short_code'] . @$task->plant['location_short_code'] . "S" . @$task['stock_id'];
                 $row['Item']  = @$task->item['name'];
+                $row['code']  = @$code;
                 $row['ERP M. Code']    = @$task->item['item_no'];
                 $row['Bin']    = @$task->bin['name'];
                 $row['Weighing machine']  = @$task->weightScale['name'];
@@ -167,7 +168,7 @@ class ReportController extends Controller
                 $row['Net Weight']  = @$task->net_weight;
                 $row['Quantity']  = @$task->counted_quantity;
             
-                fputcsv($file, array($row['Item'], $row['ERP M. Code'], $row['Bin'], $row['Weighing machine'], $row['Plant/Location'], $row['Location code'], $row['User'], $row['Assign Date'], $row['Gross Weight'], $row['Bin Weight'], $row['Net Weight'], $row['Quantity']));
+                fputcsv($file, array($row['Item'], $row['code'],$row['ERP M. Code'], $row['Bin'], $row['Weighing machine'], $row['Plant/Location'], $row['Location code'], $row['User'], $row['Assign Date'], $row['Gross Weight'], $row['Bin Weight'], $row['Net Weight'], $row['Quantity']));
             }
 
             fclose($file);
@@ -176,7 +177,7 @@ class ReportController extends Controller
         return response()->stream($callback, 200, $headers);
     }
 
-    public function exportCsv1(Request $request)
+    public function exportCsv1(Request $request)//plant wise report
     {
         $fileName = 'Report.csv';
         if (session()->get('role') == 1) {
@@ -211,7 +212,7 @@ class ReportController extends Controller
             "Expires"             => "0"
         );
 
-        $columns = array( 'ERP M. Code', 'ITEM DESCRIPTION', 'Plant', 'Location', 'Location code', 'Quantity','AMOUNT', 'Weight');
+        $columns = array( 'ERP M. Code', 'ITEM DESCRIPTION', 'Plant', 'Location', 'Location code', 'Quantity','AMOUNT', 'Total Weight(In KG.)');
 
         $callback = function () use ($tasks, $columns) {
             $file = fopen('php://output', 'w');
@@ -225,8 +226,21 @@ class ReportController extends Controller
                 $row['Location']  = @$task->plant['location'];
                 $row['Location code']  = @$task->plant['location_short_code'];
                 $row['Quantity']  = @$task->counted_quantity;
-                $row['AMOUNT']    = @$task->item['price'];
-                $row['Weight']    = @$task->item['item_avg_weight'];
+                $price=0;
+                if(@$task->item['price']==""){$iprice=0;}elseif(@$task->item['price']==NULL){$iprice=0;}else{$iprice=@$task->item['price'];}
+               if ((@$task->item['item_no']>= 71000000 && @$task->item['item_no'] <= 74999999) ||
+                   (@$task->item['item_no'] >= 10000000 && @$task->item['item_no'] <= 19999999)) {
+                   //kg
+                   $price=$iprice*@$task['net_weight'];
+               } else if (@$task->item['item_no'] >= 90000000 && @$task->item['item_no'] <= 99999999) {
+                   //nos
+                   $price=$iprice*@$task['counted_quantity'];
+               } else if (@$task->item['item_no'] >= 20000000 && @$task->item['item_no'] <= 59999999) {
+                   //nos
+                   $price=$iprice*@$task['counted_quantity'];
+               }
+                $row['AMOUNT']    = @$price;
+                $row['Weight']    = @$task['net_weight'];
             
                 fputcsv($file, array( $row['ERP M. Code'], $row['ITEM DESCRIPTION'], $row['Plant'], $row['Location'], $row['Location code'], $row['Quantity'], $row['AMOUNT'], $row['Weight']));
             }
@@ -275,22 +289,20 @@ class ReportController extends Controller
             "Expires"             => "0"
         );
 
-        $columns = array('Item', 'ERP M. Code','Quantity', 'Location','Plant');
+        $columns = array('ERP M. Code','Quantity', 'Location','Plant');
 
         $callback = function () use ($tasks, $columns) {
             $file = fopen('php://output', 'w');
-            fputcsv($file, $columns);
+            fputcsv($file, $columns); 
 
             foreach ($tasks as $task) {
                 $assign_date1 = @$task->assign_date;
-
-                $row['Item']  = @$task->item['name'];
                 $row['ERP M. Code']    = @$task->item['item_no'];
                 $row['Quantity']  = @$task->counted_quantity;
-                $row['Location']  = @$task->plant['location'];
+                $row['Location']  = @$task->plant['location_short_code'];
                 $row['Plant']  = @$task->plant['name'];
 
-                fputcsv($file, array($row['Item'], $row['ERP M. Code'] , $row['Quantity'] ,$row['Location'] , $row['Plant']));
+                fputcsv($file, array( $row['ERP M. Code'] , $row['Quantity'] ,$row['Location'] , $row['Plant']));
             }
 
             fclose($file);

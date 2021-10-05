@@ -127,7 +127,7 @@ class StockController extends Controller
             return redirect('admin');
         }
     }
-
+ 
     public function store(Request $request)
     {
                 /* validation code */
@@ -136,7 +136,6 @@ class StockController extends Controller
                     'bin_id' => 'required',
                     'cityplant_id' => 'required',
                     'plant_id' => 'required',
-                    'gross_weight' => 'required',
                     //'mobile' => 'required|min:10|max:10'
                 ]);
         if(session()->get('role')==1){ $user_id = session()->get('Admin_id');}

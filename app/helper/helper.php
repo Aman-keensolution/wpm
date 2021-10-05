@@ -400,10 +400,10 @@ function setDataTable_repo($rurl, $columns, $report_name = "Report")
         .item_tbl td {border: 1px solid #cccccc;}
         .l_text {font-weight: 800;}
         @media print {
-            div#page_print {margin-top: 0px;} 
+            
             @page{margin: 0mm;}
-            html{background-color: #FFFFFF;margin: 0px; }
-            body{border: dotted 0px #000 ;height: 142mm;width: 101mm;}
+            html{background-color: #FFFFFF;margin: 0mm; }
+            body{border: dotted 0px #000 ;height: 6in;width: 4in;}
             .div_print {
               transform: rotate(-90deg);
                 -webkit-transform: rotate(-90deg);

@@ -182,7 +182,7 @@
                                                                                                 echo "active";
                                                                                             } ?>">
                                     <i class="far fa-file"></i>
-                                    <p>Reports-1</p>
+                                    <p> Plant Wise Report</p>
                                 </a>
                             </li>
                             <li class="nav-item">

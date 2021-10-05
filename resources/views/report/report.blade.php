@@ -115,7 +115,8 @@
                              <table class="table table-striped table-bordered dt-responsive nowrap data-table dataTable display compact" cellspacing="0" width="100%">
                                  <thead>
                                      <tr>
-                                         <th>Item</th>
+                                        <th>Item</th>
+                                        <th>Code</th>
                                          <th>ERP M. Code</th>
                                          <th>Bin</th>
                                          <th>Weighing machine</th>
@@ -125,15 +126,18 @@
                                          <th>Assign Date</th>
                                          <th>Gross Weight</th>
                                          <th>Bin Weight</th>
-                                         <th>Net Weight</th>
+                                         <th>Net Weight(In KG.)</th>
                                          <th>Quantity</th>
                                      </tr>
                                  </thead>
                                  <tbody>
                                      @foreach($data as $report)
-                                     <?php @$assign_date1 = $report['assign_date']; ?>
+                                     <?php @$assign_date1 = $report['assign_date']; 
+                                     $code = @$report->plant['short_code'] . @$report->weightScale['short_code'] . @$report->plant['location_short_code'] . "S" . @$report['stock_id'];
+                                     ?>
                                      <tr>
-                                         <td>{{@$report->item['name']}}</td>
+                                        <td>{{@$report->item['name']}}</td>
+                                        <td>{{@$code}}</td>
                                          <td>{{@$report->item['item_no']}} </td>
                                          <td>{{@$report->bin['name']}} </td>
                                          <td>{{@$report->weightScale['name']}} </td>
