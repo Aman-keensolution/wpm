@@ -79,7 +79,7 @@ class ReportController extends Controller
                 $query->where('cityplant_id', $request->cityplant_id);
             }
             if ($request->input('item_id') != '') {
-                $query->where('item_id', $request->input('item_id'));
+                $query->where('item_id', $request->input('item_id')); //
             }
             if ($request->input('plant_id') != '') {
                 $query->where('plant_id', $request->input('plant_id'));
