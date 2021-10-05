@@ -157,16 +157,23 @@ class ReportController extends Controller
             "Expires"             => "0"
         );
 
-        $columns = array('Item','Code', 'ERP M. Code', 'Bin', 'Weighing machine', 'Plant/Location', 'Location code', 'User', 'Assign Date', 'Gross Weight', 'Bin Weight', 'Net Weight(In KG.)', 'Quantity',);
+        $columns = array('Item','Category', 'Code','ERP M. Code', 'Bin', 'Weighing machine', 'Plant/Location', 'Location code', 'User', 'Assign Date', 'Gross Weight', 'Bin Weight', 'Net Weight(In KG.)', 'Quantity',);
 
         $callback = function () use ($tasks, $columns) {
             $file = fopen('php://output', 'w');
             fputcsv($file, $columns);
-
+            $all_cats = Category::all();
+            $all_cat = array();
+            foreach($all_cats as $ac)
+            {
+                $all_cat[$ac->cat_id] = $ac->name;
+            }
+    
             foreach ($tasks as $task) {
                      $assign_date1 = @$task->assign_date;
                      $code = @$task->plant['short_code'] . @$task->weightScale['short_code'] . @$task->plant['location_short_code'] . "S" . @$task['stock_id'];
                 $row['Item']  = @$task->item['name'];
+                $row['Category'] = @$all_cat[@$task->item['cat_id']];
                 $row['code']  = @$code;
                 $row['ERP M. Code']    = @$task->item['item_no'];
                 $row['Bin']    = @$task->bin['name'];
@@ -180,7 +187,7 @@ class ReportController extends Controller
                 $row['Net Weight']  = @$task->net_weight;
                 $row['Quantity']  = @$task->counted_quantity;
             
-                fputcsv($file, array($row['Item'], $row['code'],$row['ERP M. Code'], $row['Bin'], $row['Weighing machine'], $row['Plant/Location'], $row['Location code'], $row['User'], $row['Assign Date'], $row['Gross Weight'], $row['Bin Weight'], $row['Net Weight'], $row['Quantity']));
+                fputcsv($file, array($row['Item'], $row['Category'] , $row['code'],$row['ERP M. Code'], $row['Bin'], $row['Weighing machine'], $row['Plant/Location'], $row['Location code'], $row['User'], $row['Assign Date'], $row['Gross Weight'], $row['Bin Weight'], $row['Net Weight'], $row['Quantity']));
             }
 
             fclose($file);
@@ -191,6 +198,7 @@ class ReportController extends Controller
 
     public function exportCsv1(Request $request)//plant wise report
     {
+        
         $fileName = 'Report.csv';
         if (session()->get('role') == 1) {
             $user_id = session()->get('Admin_id');
@@ -223,17 +231,24 @@ class ReportController extends Controller
             "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
             "Expires"             => "0"
         );
+        
 
-        $columns = array( 'ERP M. Code', 'ITEM DESCRIPTION', 'Plant', 'Location', 'Location code', 'Quantity','AMOUNT', 'Total Weight(In KG.)');
+        $columns = array( 'ERP M. Code', 'ITEM DESCRIPTION', 'Category','Plant', 'Location', 'Location code', 'Quantity','AMOUNT', 'Total Weight(In KG.)');
 
         $callback = function () use ($tasks, $columns) {
             $file = fopen('php://output', 'w');
             fputcsv($file, $columns);
-
+            $all_cats = Category::all();
+                    $all_cat = array();
+                    foreach($all_cats as $ac)
+                    {
+                        $all_cat[$ac->cat_id] = $ac->name;
+                    }
             foreach ($tasks as $task) {
     
                 $row['ERP M. Code']    = @$task->item['item_no'];
                 $row['ITEM DESCRIPTION']  = @$task->item['name'];
+                $row['Category'] = @$all_cat[@$task->item['cat_id']];
                 $row['Plant']  = @$task->plant['name'];
                 $row['Location']  = @$task->plant['location'];
                 $row['Location code']  = @$task->plant['location_short_code'];
@@ -254,7 +269,7 @@ class ReportController extends Controller
                 $row['AMOUNT']    = @$price;
                 $row['Weight']    = @$task['net_weight'];
             
-                fputcsv($file, array( $row['ERP M. Code'], $row['ITEM DESCRIPTION'], $row['Plant'], $row['Location'], $row['Location code'], $row['Quantity'], $row['AMOUNT'], $row['Weight']));
+                fputcsv($file, array( $row['ERP M. Code'], $row['ITEM DESCRIPTION'], $row['Category'], $row['Plant'], $row['Location'], $row['Location code'], $row['Quantity'], $row['AMOUNT'], $row['Weight']));
             }
 
             fclose($file);

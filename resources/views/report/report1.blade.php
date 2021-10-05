@@ -86,6 +86,7 @@
                                      <tr>
                                          <th>ERP M. Code</th>
                                          <th>ITEM DESCRIPTION</th>
+                                         <th>Category</th>
                                          <th>PLANT</th>
                                          <th>LOCATION</th>
                                          <th>LOCATION CODE</th>
@@ -100,6 +101,7 @@
                                          <?php $code = @$report->plant['short_code'] . @$report->weightScale['short_code'] . @$report->plant['location_short_code'] . "S" . @$report['stock_id']; ?>
                                          <td>{{@$report->item['item_no']}} </td>
                                          <td>{{@$report->item['name']}}</td>
+                                         <td>{{@$all_cat[@$report->item['cat_id']]}}</td>
                                          <td>{{@$report->plant['name']}} </td>
                                          <td>{{@$report->plant['location']}} </td>
                                          <td>{{@$report->plant['location_short_code']}} </td>
