@@ -65,25 +65,25 @@
                                  </div>
                                  <div class="col-md-4">
                                      <div class="row">
+
                                          <div class="form-group col-md-4">
                                              <label for="cityplant_id">Plant</label>
                                              <div class="input-group mb-3">
                                                  <select name="cityplant_id" id="cityplant_id" class="form-control select2">
                                                      <option value="">Select</option>
                                                      @foreach( $all_plant as $plant)
-                                                     <option value="{{$plant->cityplant_id}}">{{$plant->name}}</option>
+                                                     <option value="{{$plant->cityplant_id}}" {{ $plant->cityplant_id == $selected_id['cityplant_id'] ? 'selected' : '' }}>{{$plant->name}}</option>
                                                      @endforeach
                                                  </select>
                                              </div>
                                          </div>
-
                                          <div class="form-group col-md-4">
                                              <label for="bin_id">Bin</label>
                                              <div class="input-group mb-3">
                                                  <select name="bin_id" id="bin_id" class="form-control select2">
                                                      <option value="">Select</option>
                                                      @foreach( $all_bin as $bin)
-                                                     <option value="{{$bin->bin_id}}">{{$bin->name}}</option>
+                                                     <option value="{{$bin->bin_id}}" {{ $bin->bin_id == $selected_id['bin_id'] ? 'selected' : '' }}>{{$bin->name}}</option>
                                                      @endforeach
                                                  </select>
                                              </div>
@@ -95,13 +95,14 @@
                                                  <select name="weight_scale_id" id="weight_scale_id" class="form-control select2">
                                                      <option value="">Select</option>
                                                      @foreach( $all_WeightScale as $WeightScale)
-                                                     <option value="{{$WeightScale->weight_scale_id}}">
+                                                     <option value="{{$WeightScale->weight_scale_id}}" {{ $WeightScale->weight_scale_id == $selected_id['weight_scale_id'] ? 'selected' : '' }}>
                                                          {{$WeightScale->name}}
                                                      </option>
                                                      @endforeach
                                                  </select>
                                              </div>
                                          </div>
+
                                      </div>
                                  </div>
                                  <div class="button1 col-md-1">

@@ -25,7 +25,7 @@ class StockController extends Controller
         if (session()->has('Admin_login')) {
             $all_bin = Bin::all();
             $all_plant = CityPlant::all();
-            $all_item = Item::all();
+
             $all_WeightScale = WeightScale::all();
                 if(session()->get('role')==1){
            
@@ -74,8 +74,13 @@ class StockController extends Controller
                         $query->where('stock_id', $request->input('code_id'));
                     }
                 }
+                    $selected_id = [];
+                    $selected_id['cityplant_id'] = $request->cityplant_id;
+                    $selected_id['weight_scale_id'] = $request->weight_scale_id;
+                    $selected_id['bin_id'] = $request->bin_id;
+
                     $data = $query->paginate(20);
-                    return view('stock.stock_list', compact('data'))->with(['all_bin' => $all_bin, 'all_WeightScale' => $all_WeightScale, 'all_item' => $all_item, 'all_plant' => $all_plant]);
+                    return view('stock.stock_list', compact('data', 'selected_id'))->with(['all_bin' => $all_bin, 'all_WeightScale' => $all_WeightScale,  'all_plant' => $all_plant]);
         }
         return redirect()->route('admin');
     }

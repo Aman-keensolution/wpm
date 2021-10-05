@@ -51,9 +51,14 @@ class ReportController extends Controller
                 $query->where('weight_scale_id', $request->input('weight_scale_id'));
             }
 
+            $selected_id = [];
+            $selected_id['cityplant_id'] = $request->cityplant_id;
+            $selected_id['weight_scale_id'] = $request->weight_scale_id;
+            $selected_id['bin_id'] = $request->bin_id;
+
             $data= $query->paginate(20);
             
-            return view('report.report',compact('data'))->with(['all_bin' => $all_bin, 'all_plant' => $all_plant, 'all_cat' => $all_cat,'all_WeightScale' => $all_WeightScale ]);
+            return view('report.report',compact('data', 'selected_id'))->with(['all_bin' => $all_bin, 'all_plant' => $all_plant, 'all_cat' => $all_cat,'all_WeightScale' => $all_WeightScale ]);
         }
         return redirect()->route('admin');
     }
@@ -62,7 +67,6 @@ class ReportController extends Controller
     {
         if (session()->has('Admin_login')) {
     
-            
             $all_cats = Category::all();
             $all_cat=array();
             foreach($all_cats as $ac)
@@ -84,8 +88,12 @@ class ReportController extends Controller
             if ($request->input('plant_id') != '') {
                 $query->where('plant_id', $request->input('plant_id'));
             }
+
+            $selected_id = [];
+            $selected_id['cityplant_id'] = $request->cityplant_id;
+   
             $data = $query->paginate(20);
-            return view('report.report1', compact('data'))->with(['all_cat' => $all_cat,'all_plant' => $all_plant]);
+            return view('report.report1', compact('data','selected_id'))->with(['all_cat' => $all_cat,'all_plant' => $all_plant]);
         }
         return redirect()->route('admin');
     }
@@ -94,7 +102,6 @@ class ReportController extends Controller
     {
         if (session()->has('Admin_login')) {
             $all_plant = CityPlant::all();
-            $all_item = Item::all();
 
             $query =  Stock::select('*')->with( 'item', 'cityplant')->orderBy('stock_id', 'desc')->where('is_active', 1);
 
@@ -110,8 +117,12 @@ class ReportController extends Controller
             if ($request->input('plant_id') != '') {
                 $query->where('plant_id', $request->input('plant_id'));
             }
+
+            $selected_id = [];
+            $selected_id['cityplant_id'] = $request->cityplant_id;
+
             $data = $query->paginate(20);
-            return view('report.report_list_user', compact('data'))->with(['all_item' => $all_item, 'all_plant' => $all_plant]);
+            return view('report.report_list_user', compact('data', 'selected_id'))->with(['all_plant' => $all_plant]);
         }
         return redirect()->route('admin');
     }
