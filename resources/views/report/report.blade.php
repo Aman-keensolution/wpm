@@ -53,7 +53,7 @@
                                          <input type="text" name="table_location" id="table_location" class="form-control float-right" placeholder="Location">
                                          <input type="hidden" name="plant_id" id="plant_id">
                                      </div>
-                            
+
                                  </div>
                              </div>
                              <div class="col-md-4">
@@ -115,8 +115,8 @@
                              <table class="table table-striped table-bordered dt-responsive nowrap data-table dataTable display compact" cellspacing="0" width="100%">
                                  <thead>
                                      <tr>
-                                        <th>Item</th>
-                                        <th>Code</th>
+                                         <th>Item</th>
+                                         <th>Code</th>
                                          <th>ERP M. Code</th>
                                          <th>Bin</th>
                                          <th>Weighing machine</th>
@@ -132,12 +132,12 @@
                                  </thead>
                                  <tbody>
                                      @foreach($data as $report)
-                                     <?php @$assign_date1 = $report['assign_date']; 
-                                     $code = @$report->plant['short_code'] . @$report->weightScale['short_code'] . @$report->plant['location_short_code'] . "S" . @$report['stock_id'];
-                                     ?>
+                                     <?php @$assign_date1 = $report['assign_date'];
+                                        $code = @$report->plant['short_code'] . @$report->weightScale['short_code'] . @$report->plant['location_short_code'] . "S" . @$report['stock_id'];
+                                        ?>
                                      <tr>
-                                        <td>{{@$report->item['name']}}</td>
-                                        <td>{{@$code}}</td>
+                                         <td>{{@$report->item['name']}}</td>
+                                         <td>{{@$code}}</td>
                                          <td>{{@$report->item['item_no']}} </td>
                                          <td>{{@$report->bin['name']}} </td>
                                          <td>{{@$report->weightScale['name']}} </td>
@@ -157,7 +157,7 @@
                          </div>
                      </div>
                      <div class="d-flex justify-content-center">
-                         {!! $data->links() !!}
+                         {!! $data->appends($_GET)->links() !!}
                      </div>
                      <!-- /.card-body -->
 

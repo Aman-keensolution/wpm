@@ -87,7 +87,7 @@
                          </div>
                      </div>
                      <div class="d-flex justify-content-center">
-                         {!! $data->links() !!}
+                         {!! $data->appends($_GET)->links() !!}
                      </div>
                  </div>
              </div>

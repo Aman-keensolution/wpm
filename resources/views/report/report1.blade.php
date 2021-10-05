@@ -97,28 +97,35 @@
                                  <tbody>
                                      @foreach($data as $report)
                                      <tr>
-                                         <?php  $code = @$report->plant['short_code'] . @$report->weightScale['short_code'] . @$report->plant['location_short_code'] . "S" . @$report['stock_id'];?>
+                                         <?php $code = @$report->plant['short_code'] . @$report->weightScale['short_code'] . @$report->plant['location_short_code'] . "S" . @$report['stock_id']; ?>
                                          <td>{{@$report->item['item_no']}} </td>
                                          <td>{{@$report->item['name']}}</td>
                                          <td>{{@$report->plant['name']}} </td>
                                          <td>{{@$report->plant['location']}} </td>
                                          <td>{{@$report->plant['location_short_code']}} </td>
                                          <td>{{@$report['counted_quantity']}} </td>
-                                         <?php 
-                                         $price=0;
-                                         if(@$report->item['price']==""){$iprice=0;}elseif(@$report->item['price']==NULL){$iprice=0;}else{$iprice=@$report->item['price'];}
-                                        if ((@$report->item['item_no']>= 71000000 && @$report->item['item_no'] <= 74999999) ||
-                                            (@$report->item['item_no'] >= 10000000 && @$report->item['item_no'] <= 19999999)) {
-                                            //kg
-                                            $price=$iprice*@$report['net_weight'];
-                                        } else if (@$report->item['item_no'] >= 90000000 && @$report->item['item_no'] <= 99999999) {
-                                            //nos
-                                            $price=$iprice*@$report['counted_quantity'];
-                                        } else if (@$report->item['item_no'] >= 20000000 && @$report->item['item_no'] <= 59999999) {
-                                            //nos
-                                            $price=$iprice*@$report['counted_quantity'];
-                                        }
-                                         ?>
+                                         <?php
+                                            $price = 0;
+                                            if (@$report->item['price'] == "") {
+                                                $iprice = 0;
+                                            } elseif (@$report->item['price'] == NULL) {
+                                                $iprice = 0;
+                                            } else {
+                                                $iprice = @$report->item['price'];
+                                            }
+                                            if ((@$report->item['item_no'] >= 71000000 && @$report->item['item_no'] <= 74999999) ||
+                                                (@$report->item['item_no'] >= 10000000 && @$report->item['item_no'] <= 19999999)
+                                            ) {
+                                                //kg
+                                                $price = $iprice * @$report['net_weight'];
+                                            } else if (@$report->item['item_no'] >= 90000000 && @$report->item['item_no'] <= 99999999) {
+                                                //nos
+                                                $price = $iprice * @$report['counted_quantity'];
+                                            } else if (@$report->item['item_no'] >= 20000000 && @$report->item['item_no'] <= 59999999) {
+                                                //nos
+                                                $price = $iprice * @$report['counted_quantity'];
+                                            }
+                                            ?>
                                          <td>{{@$price}}</td>
                                          <td>{{@$report['net_weight']}}</td>
                                      </tr>
@@ -129,7 +136,7 @@
                          </div>
                      </div>
                      <div class="d-flex justify-content-center">
-                         {!! @$data->links() !!}
+                         {!! @$data->appends($_GET)->links() !!}
                      </div>
                      <!-- /.card-body -->
 

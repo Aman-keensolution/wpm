@@ -170,7 +170,7 @@
                              </div>
                          </div>
                          <div class="d-flex justify-content-center">
-                             {!! $data->links() !!}
+                             {!! $data->appends($_GET)->links() !!}
                          </div>
                      </form>
                      <!-- /.card-body -->
@@ -181,7 +181,7 @@
      </div><!-- /.container-fluid -->
      <script>
          function filter(_this) {
-             var id =  document.getElementById('code_id').value;
+             var id = document.getElementById('code_id').value;
              id = id.split("S");
              code_id = id.slice(-1)[0];
              var code_id = code_id;
