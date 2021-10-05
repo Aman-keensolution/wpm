@@ -116,6 +116,7 @@
                                  <thead>
                                      <tr>
                                          <th>Item</th>
+                                         <th>Category</th>
                                          <th>Code</th>
                                          <th>ERP M. Code</th>
                                          <th>Bin</th>
@@ -137,6 +138,7 @@
                                         ?>
                                      <tr>
                                          <td>{{@$report->item['name']}}</td>
+                                         <td>{{@$all_cat[@$report->item['cat_id']]}}</td>
                                          <td>{{@$code}}</td>
                                          <td>{{@$report->item['item_no']}} </td>
                                          <td>{{@$report->bin['name']}} </td>

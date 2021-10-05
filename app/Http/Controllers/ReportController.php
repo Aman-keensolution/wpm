@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use App\Models\Bin;
+use App\Models\Category;
 use App\Models\CityPlant;
 use App\Models\WeightScale;
 use App\Models\Plant;
@@ -21,7 +22,13 @@ class ReportController extends Controller
          if (session()->has('Admin_login')) {
             $all_bin = Bin::all();
             $all_plant = CityPlant::all();
-            $all_item = Item::all();
+            $all_cats = Category::all();
+            $all_cat=array();
+            foreach($all_cats as $ac)
+            {
+                $all_cat[$ac->cat_id] = $ac->name;
+            }
+            $all_plant = CityPlant::all();
             $all_WeightScale = WeightScale::all();
             $query = Stock::select('*')->with('plant', 'item', 'bin', 'user', 'weightScale', 'unit', 'cityplant')->orderBy('stock_id', 'desc')->where('is_active', 1);
 
@@ -46,7 +53,7 @@ class ReportController extends Controller
 
             $data= $query->paginate(20);
             
-            return view('report.report', compact('data'))->with(['all_bin' => $all_bin, 'all_WeightScale' => $all_WeightScale, 'all_item' => $all_item, 'all_plant' => $all_plant]);
+            return view('report.report',compact('data'))->with(['all_bin' => $all_bin, 'all_plant' => $all_plant, 'all_cat' => $all_cat,'all_WeightScale' => $all_WeightScale ]);
         }
         return redirect()->route('admin');
     }
@@ -55,9 +62,14 @@ class ReportController extends Controller
     {
         if (session()->has('Admin_login')) {
     
+            
+            $all_cats = Category::all();
+            $all_cat=array();
+            foreach($all_cats as $ac)
+            {
+                $all_cat[$ac->cat_id] = $ac->name;
+            }
             $all_plant = CityPlant::all();
-            $all_item = Item::all();
-
             $query = Stock::select('*')->with('plant', 'item', 'bin','cityplant')->orderBy('stock_id', 'desc')->where('is_active', 1);
 
             if ($request->input('min') != '' && $request->input('max') != '') {
@@ -73,7 +85,7 @@ class ReportController extends Controller
                 $query->where('plant_id', $request->input('plant_id'));
             }
             $data = $query->paginate(20);
-            return view('report.report1', compact('data'))->with(['all_item' => $all_item, 'all_plant' => $all_plant]);
+            return view('report.report1', compact('data'))->with(['all_cat' => $all_cat,'all_plant' => $all_plant]);
         }
         return redirect()->route('admin');
     }
