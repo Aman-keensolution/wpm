@@ -37,21 +37,21 @@
 
                                      <div class="form-group col-md-2">
                                          <label for="date">Start - Date</label>
-                                         <input type="date" id="min" class="form-control min datepicker hasDatepicker" value="min">
+                                         <input type="date" id="min" value="{{ $selected_id['min'] }}" class="form-control min datepicker hasDatepicker">
                                      </div>
                                      <div class="form-group col-md-2">
                                          <label for="date">End - Date </label>
-                                         <input type="date" id="max" value="max" class="form-control max datepicker hasDatepicker">
+                                         <input type="date" id="max" value="{{ $selected_id['max'] }}" class="form-control max datepicker hasDatepicker">
                                      </div>
                                      <div class="form-group col-md-3">
                                          <label for="item_id">Item</label>
-                                         <input type="text" name="table_search" id="table_search" class="form-control float-right" placeholder="Item">
-                                         <input type="hidden" name="item_id" id="item_id">
+                                         <input type="text" name="table_search" id="table_search" value="{{ $selected_id['item_id'] }}" class="form-control float-right" placeholder="Item">
+                                         <input type="hidden" name="item_id" id="item_id" value="{{ $selected_id['item_id'] }}">
                                      </div>
                                      <div class="form-group col-md-3">
                                          <label for="plant_id">Location</label>
-                                         <input type="text" name="table_location" id="table_location" class="form-control float-right" placeholder="Location">
-                                         <input type="hidden" name="plant_id" id="plant_id">
+                                         <input type="text" name="table_location" id="table_location" value="{{ $selected_id['plant_id'] }}" class="form-control float-right" placeholder="Location">
+                                         <input type="hidden" name="plant_id" id="plant_id" value="{{ $selected_id['plant_id'] }}">
                                      </div>
                                      <div class="form-group col-md-2">
                                          <label for="cityplant_id">Plant</label>

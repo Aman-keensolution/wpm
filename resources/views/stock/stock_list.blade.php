@@ -44,21 +44,20 @@
                                      <div class="row">
                                          <div class="form-group col-md-3">
                                              <label for="date">Start - Date</label>
-                                             <input type="date" id="min" class="form-control min datepicker hasDatepicker" value="">
+                                             <input type="date" id="min" value="{{ $selected_id['min'] }}" class="form-control min datepicker hasDatepicker">
                                          </div>
                                          <div class="form-group col-md-3">
                                              <label for="date">End - Date </label>
-                                             <input type="date" id="max" value="" class="form-control max datepicker hasDatepicker">
+                                             <input type="date" id="max" value="{{ $selected_id['max'] }}" class="form-control max datepicker hasDatepicker">
                                          </div>
                                          <div class="form-group col-md-3">
                                              <label for="item_id">Item</label>
-                                             <input type="text" name="table_search" id="table_search" class="form-control float-right" placeholder="Item">
-                                             <input type="hidden" name="item_id" id="item_id">
-
+                                             <input type="text" name="table_search" id="table_search" value="{{ $selected_id['item_id'] }}" class="form-control float-right" placeholder="Item">
+                                             <input type="hidden" name="item_id" id="item_id" value="{{ $selected_id['item_id'] }}">
                                          </div>
                                          <div class="form-group col-md-3">
                                              <label for="code_id">Code</label>
-                                             <input type="text" name="code_id" id="code_id" class="form-control float-right" placeholder="code">
+                                             <input type="text" name="code_id" id="code_id" value="{{ $selected_id['code_id'] }}" class="form-control float-right" placeholder="code">
 
                                          </div>
                                      </div>

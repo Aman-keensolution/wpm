@@ -25,8 +25,8 @@ class StockController extends Controller
         if (session()->has('Admin_login')) {
             $all_bin = Bin::all();
             $all_plant = CityPlant::all();
-
             $all_WeightScale = WeightScale::all();
+
                 if(session()->get('role')==1){
            
                     $user_id = session()->get('Admin_id');
@@ -75,6 +75,11 @@ class StockController extends Controller
                     }
                 }
                     $selected_id = [];
+                    $selected_id['min'] = $request->min;
+                    $selected_id['max'] = $request->max;
+                    $selected_id['code_id'] = $request->code_id;
+                    $selected_id['plant_id'] = $request->plant_id;
+                    $selected_id['item_id'] = $request->item_id;
                     $selected_id['cityplant_id'] = $request->cityplant_id;
                     $selected_id['weight_scale_id'] = $request->weight_scale_id;
                     $selected_id['bin_id'] = $request->bin_id;

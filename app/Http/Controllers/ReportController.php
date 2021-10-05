@@ -52,6 +52,10 @@ class ReportController extends Controller
             }
 
             $selected_id = [];
+            $selected_id['min'] = $request->min;
+            $selected_id['max'] = $request->max;
+            $selected_id['plant_id'] = $request->plant_id;
+            $selected_id['item_id'] = $request->item_id;
             $selected_id['cityplant_id'] = $request->cityplant_id;
             $selected_id['weight_scale_id'] = $request->weight_scale_id;
             $selected_id['bin_id'] = $request->bin_id;
@@ -90,6 +94,10 @@ class ReportController extends Controller
             }
 
             $selected_id = [];
+            $selected_id['min'] = $request->min;
+            $selected_id['max'] = $request->max;
+            $selected_id['plant_id'] = $request->plant_id;
+            $selected_id['item_id'] = $request->item_id;
             $selected_id['cityplant_id'] = $request->cityplant_id;
    
             $data = $query->paginate(20);
@@ -119,6 +127,10 @@ class ReportController extends Controller
             }
 
             $selected_id = [];
+            $selected_id['min'] = $request->min;
+            $selected_id['max'] = $request->max;
+            $selected_id['plant_id'] = $request->plant_id;
+            $selected_id['item_id'] = $request->item_id;
             $selected_id['cityplant_id'] = $request->cityplant_id;
 
             $data = $query->paginate(20);
