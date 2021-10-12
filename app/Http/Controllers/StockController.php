@@ -107,9 +107,7 @@ class StockController extends Controller
 
     public function add_stock(Request $request)
     {
-
         if (session()->has('Admin_login')) {
-            
             $wc_loc=session()->get('user_wc_loc');
             if(is_array($wc_loc)){
             if(session()->get('role')==1){ $user_id = session()->get('Admin_id');}
@@ -128,7 +126,7 @@ class StockController extends Controller
                 $all_item = Item::where('is_active', 1)->get();
                 $all_WeightScale = WeightScale::where('is_active', 1)->get();
                 $all_unit = Unit::all();
-                $data['Stockdata'] = Stock::where('stock_id', $request->stock_id)->with('cityplant','plant', 'bin','item','weightScale','unit')->get()->first(); 
+                $data['Stockdata']=Stock::where('stock_id',$request->stock_id)->with('cityplant','plant','bin','item','weightScale','unit')->get(); 
                 return view('stock.add_stock', $data)->with(['all_cityplant' => $all_cityplant, 'all_plant' => $all_plant, 'all_item' => $all_item, 'all_bin' => $all_bin, 'all_WeightScale' => $all_WeightScale, 'all_unit' => $all_unit, 'all_user' => $all_user]);
             } 
             return view('stock.add_stock')->with(['all_plant' => $all_plant, 'all_cityplant' => $all_cityplant ,'all_item' => $all_item, 'all_bin' => $all_bin, 'all_WeightScale' => $all_WeightScale, 'all_unit' => $all_unit, 'all_user' => $all_user]);
@@ -175,8 +173,8 @@ class StockController extends Controller
         if ($Stock) {
             if($request->submit=="Submit and Print")
                 {
-                    $data['Stockdata'] = Stock::where('stock_id', $Stock->stock_id)->with('cityplant','plant', 'bin','item','weightScale','unit','user')->get()->first(); 
-                    return redirect('add_stock/'.$Stock->stock_id.'/1')->with( ['data' => $data] );
+                    $data['Stockdata']=Stock::where('stock_id', $Stock->stock_id)->with('cityplant','plant', 'bin','item','weightScale','unit','user')->get()->first(); 
+                    return redirect('add_stock/'.$Stock->stock_id.'/1')->with(['data' => $data]);
                 }
             else if($request->submit=="Submit")
                 {return redirect('add_stock/0/0');}

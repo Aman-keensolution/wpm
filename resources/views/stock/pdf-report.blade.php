@@ -13,13 +13,7 @@
          <div class="row ">
              <div class="col-md-12 main-content">
              <div id="page_print">
-                 <?php foreach($Stockdatas as $data){?>
-                 {{print__label_template($data)}}
-                 <div class="clear-fix"></div>
-                 
-                 <div class="clear-fix"></div>
-
-                 <?php }?>
+                 {{print__label_template($Stockdatas)}}
              </div>
              <div class="clear-fix"></div>
 

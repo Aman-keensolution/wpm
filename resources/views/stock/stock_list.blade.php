@@ -139,8 +139,7 @@
                                          @foreach($data as $list)
                                          @php($i++)
                                          <?php $assign_date1 = $list['assign_date'];
-
-                                            $code = @$list->plant->short_code . @$list->weightScale->short_code . @$list->plant->location_short_code . "S" . @$list->stock_id; ?>
+                                            $code=@$list->plant->short_code.@$list->weightScale->short_code.@$list->plant->location_short_code."S". @$list->stock_id; ?>
                                          <tr>
                                              <td>{{$i}} </td>
                                              <td> <input type="checkbox" name="select_entry[]" id="select_entry_<?php echo @$list->stock_id ?>" class="select_entry" value="<?php echo @$list->stock_id ?>"></td>
